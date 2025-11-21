@@ -17,6 +17,9 @@
   align-items: center;
   gap: 32px;
   font-family: "Inter", sans-serif;
+  height: 100vh;
+  box-shadow: 0 0 14px 3px #0000000A;
+  
 }
 
 .login_input_container {
@@ -29,15 +32,21 @@
 
 .login_input {
   width: 100%;
-  height: 48px;
+  height: 36px;
   border-radius: 10px;
-  border-color: #d1d1d1;
-  border: 1px solid;
+  border: 1px solid #d1d1d1;
   font-family: "Inter", sans-serif;
   padding: 12px 21px;
   gap: 10px;
   flex-direction: space-between;
   display: flex;
+  font-size: 20px;
+}
+
+.login_input::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #d1d1d1;
 }
 
 form {
@@ -46,9 +55,10 @@ form {
   align-items: center;
   height: 449px;
   width: 652px;
-  gap: 10px;
+  gap: 32px;
   background-color: #ffffff;
   border-radius: 30px;
+  
 }
 
 h1 {
@@ -57,4 +67,67 @@ h1 {
   font-size: 61px;
   color: black;
   line-height: 120%;
+  /* margin: 0px; */
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.login-form-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.login-form-icon {
+  position: absolute;
+  top: 18px;
+  right: 0px;
+}
+
+.login-form-btns-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 35px;
+}
+
+.login-form-btn-login {
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 700;
+  padding: 15px 21px;
+  background-color: #2a3647;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.border-bottom-div {
+  width: 150px;
+  height: 3px;
+  background-color: #29abe2;
+}
+
+.login-form-header-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+   /* margin-bottom: 32px; */
+  margin-top: 48px; 
+  /* margin: 48px 115px; */
+}
+
+.login-form-btn-guestlogin {
+  border: 1px solid #2A3647;
+  font-size: 21px;
+  line-height: 120%;
+  font-weight: 700;
+  padding: 15px 21px;
+  background-color: white;
+  color: #2A3647;
+  border-radius: 8px;
+  cursor: pointer;
 }
