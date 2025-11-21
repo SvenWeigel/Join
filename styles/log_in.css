@@ -2,7 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: 100%;
   height: 100vh;
+  overflow: visible;
 }
 
 .center_img {
@@ -18,8 +21,7 @@
   gap: 32px;
   font-family: "Inter", sans-serif;
   height: 100vh;
-  box-shadow: 0 0 14px 3px #0000000A;
-  
+  box-shadow: 0 0 14px 3px #0000000a;
 }
 
 .login_input_container {
@@ -58,7 +60,6 @@ form {
   gap: 32px;
   background-color: #ffffff;
   border-radius: 30px;
-  
 }
 
 h1 {
@@ -115,19 +116,66 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-   /* margin-bottom: 32px; */
-  margin-top: 48px; 
+  /* margin-bottom: 32px; */
+  margin-top: 48px;
   /* margin: 48px 115px; */
 }
 
 .login-form-btn-guestlogin {
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   font-size: 21px;
   line-height: 120%;
   font-weight: 700;
   padding: 15px 21px;
   background-color: white;
-  color: #2A3647;
+  color: #2a3647;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.center_img_container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: visible;
+}
+
+.center_img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 274px;
+  height: 334px;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: top left;
+  transition: top 1000ms ease-in-out, left 1000ms ease-in-out,
+    width 1000ms ease-in-out, height 1000ms ease-in-out,
+    transform 1000ms ease-in-out;
+  will-change: top, left, width, height, transform;
+  backface-visibility: hidden;
+}
+
+.center_img.moved {
+  top: 80px;
+  left: 77px;
+  width: 100px;
+  height: 121px;
+  transform: translate(0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .center_img {
+    transition: none;
+  }
+  .center_img.moved {
+    transition: none;
+  }
+}
+
+/* Utility classes to toggle visibility via CSS classes */
+.center_img_container.hidden {
+  display: none;
+}
+.login_container.hidden {
+  display: none;
 }
