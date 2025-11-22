@@ -104,6 +104,12 @@ h1 {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  &:hover{
+    background-color: #28abe2;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
 }
 .border-bottom-div {
   width: 150px;
@@ -131,6 +137,13 @@ h1 {
   color: #2a3647;
   border-radius: 8px;
   cursor: pointer;
+
+  transition: all 0.3s ease;
+  &:hover{
+    color: #28abe2;
+    border: 1px solid #28abe2;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
 }
 
 .center_img_container {
@@ -178,4 +191,45 @@ h1 {
 }
 .login_container.hidden {
   display: none;
+}
+
+.login-site-logo-container {
+   
+  position: absolute;
+  top: 80px;
+  left: 77px;
+  width: 100px;
+  height: 121px;
+}
+
+.login-site-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  position: absolute;
+  top: 67px;
+  right: 77px;
+}
+.login-site-header-text {
+  width: 153px;
+  height: 24px;
+}
+
+.login-site-header-to-signup {
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 120%;
+  font-weight: 700;
+  padding: 15px 16px;
+  background-color: #2a3647;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover{
+    background-color: #28abe2;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+
+  }
 }
