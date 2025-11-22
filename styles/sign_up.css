@@ -74,6 +74,11 @@ padding-inline:0px;
   }
 }
 
+#signup-btn:disabled{
+  background-color:#a0a0a0;
+  cursor: not-allowed;
+}
+
 .check-container {
   display: flex;
   justify-content: center;

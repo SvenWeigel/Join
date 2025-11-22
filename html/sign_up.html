@@ -12,7 +12,7 @@
   <title>Join</title>
 </head>
 
-<body>
+<body onload="enableSignupOnCheck()">
 
   <!--Sollten es vielleicht anders regeln mit den CSS Klassen von Sign up und Log in-->
 
@@ -60,7 +60,7 @@
 
         <!-- <input class="login_input" type="password" placeholder="Password" src="assets/icons/lock.svg" /> -->
       </div>
-      <button class="sign-up-form-btn-login">Sign up</button>
+      <button id="signup-btn" class="sign-up-form-btn-login" disabled>Sign up</button>
     </form>
 
   </div>
@@ -70,9 +70,10 @@
   </div>
 
   <footer class="login-site-footer">
-    <p>Privacy Policy</p>
-    <p>Legal Notice</p>
+    <a href="privacy_policy.html">Privacy policy</a>
+    <a href="legal_notice.html">Legal Notice</a>
   </footer>
+  <script src="/scripts/script.js"></script>
 </body>
 
 </html>

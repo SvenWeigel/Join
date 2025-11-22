@@ -241,12 +241,14 @@ h1 {
   bottom: 30px;
   width: 100%;
 }
-.login-site-footer p {
+.login-site-footer a {
   color: #a8a8a8;
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+
   &:hover {
     color: #28abe2;
     font-weight: 500;
