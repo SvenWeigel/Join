@@ -106,7 +106,7 @@ h1 {
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease;
-  &:hover{
+  &:hover {
     background-color: #28abe2;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
   }
@@ -139,7 +139,7 @@ h1 {
   cursor: pointer;
 
   transition: all 0.3s ease;
-  &:hover{
+  &:hover {
     color: #28abe2;
     border: 1px solid #28abe2;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
@@ -194,7 +194,6 @@ h1 {
 }
 
 .login-site-logo-container {
-   
   position: absolute;
   top: 80px;
   left: 77px;
@@ -227,9 +226,29 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  &:hover{
+  &:hover {
     background-color: #28abe2;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+}
 
+.login-site-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+}
+.login-site-footer p {
+  color: #a8a8a8;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    color: #28abe2;
+    font-weight: 500;
   }
 }
