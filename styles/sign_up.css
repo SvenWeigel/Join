@@ -37,7 +37,15 @@ border:none;
 font-size: 20px;
 padding-block:0px;
 padding-inline:0px;
+
 }
+/* input-field cant be focused */
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+}
+
 
 .sign-up-input::placeholder{
   color: #D1D1D1;
@@ -48,10 +56,6 @@ padding-inline:0px;
   width:unset;
   height:unset;
   padding: 48px 88px;
-}
-
-.sign-up-form-icon{
-  
 }
 
 .sign-up-form-btn-login {
