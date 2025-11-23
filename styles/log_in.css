@@ -192,6 +192,15 @@ h1 {
 .login_container.hidden {
   display: none;
 }
+.login-site-header.hidden {
+  display: none;
+}
+.login-site-footer.hidden {
+  display: none;
+}
+.login-site-logo-container.hidden {
+  display: none;
+}
 
 .login-site-logo-container {
   position: absolute;
