@@ -49,7 +49,7 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: #28abe2;
+    /* color: #28abe2; */
     font-weight: 500;
   }
 }
