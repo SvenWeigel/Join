@@ -13,11 +13,22 @@
     <link rel="stylesheet" href="/styles/font.css" />
     <link rel="stylesheet" href="/styles/menu-bar.css" />
     <link rel="stylesheet" href="/styles/privacy_policy.css" />
+    <link rel="stylesheet" href="/styles/header.css"/>
 
     <title>Join</title>
   </head>
   <body>
-    <header></header>
+      <header>
+        <div class="header-content">
+          <span>Kanban Project Management Tool</span>
+          <div class="header-profile-container">
+            <img src="/assets/icons/help.svg" alt="help_icon" />
+            <div class="user-badge" title="Benutzer">
+              <div class="user-avatar">SM</div>
+            </div>
+          </div>
+        </div>
+       </header>
     <div class="page-content">
       <div class="menu-bar-container">
         <div class="join-logo-container">
@@ -47,6 +58,15 @@
           </div>
         </div>
 
+        <!-- anzeigen wenn User nicht logged in ist -->
+        <div class="menu-bar-btn-container" style="display:none">
+          <div class="contacts-btn center-btn">
+            <button class="main-bar-btn" href="">
+              <img src="/assets/icons/login.svg" alt="" />Log In
+            </button>
+          </div>
+        </div>
+
         <div class="legal-container">
           <div class="privacy-btn">
             <a href="">Privacy Policy</a>
@@ -57,8 +77,10 @@
         </div>
       </div>
 
+      
+
       <div class="privacy-policy-content">
-        <h1>Datenschutzerklärung</h1>
+        <h1>Privacy Policy</h1>
         <h2 id="m716">Präambel</h2>
         <p>
           Mit der folgenden Datenschutzerklärung möchten wir Sie darüber
@@ -137,7 +159,7 @@
           die Zwecke ihrer Verarbeitung zusammen und verweist auf die
           betroffenen Personen.
         </p>
-        <h3>Arten der verarbeiteten Daten</h3>
+        <h2>Arten der verarbeiteten Daten</h2>
         <ul>
           <li>Bestandsdaten.</li>
           <li>Beschäftigtendaten.</li>
@@ -147,14 +169,14 @@
           <li>Meta-, Kommunikations- und Verfahrensdaten.</li>
           <li>Protokolldaten.</li>
         </ul>
-        <h3>Kategorien betroffener Personen</h3>
+        <h2>Kategorien betroffener Personen</h2>
         <ul>
           <li>Beschäftigte.</li>
           <li>Nutzer.</li>
           <li>Dritte Personen.</li>
           <li>Hinweisgeber.</li>
         </ul>
-        <h3>Zwecke der Verarbeitung</h3>
+        <h2>Zwecke der Verarbeitung</h2>
         <ul>
           <li>
             Erbringung vertraglicher Leistungen und Erfüllung vertraglicher
@@ -1092,16 +1114,7 @@
             Übermitteln oder das Löschen.
           </li>
         </ul>
-        <p class="seal">
-          <a
-            href="https://datenschutz-generator.de/"
-            title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            >Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas
-            Schwenke</a
-          >
-        </p>
+
       </div>
     </div>
   </body>

@@ -1,8 +1,27 @@
+.header-profile-container img{
+    display: none;
+}
+
 .privacy-policy-content{
-    margin-left: 128px;
+    margin-left: 96px;
     margin-right: 128px;
 }
 
 .page-content{
     display: flex;
+    
 }
+
+.privacy-policy-content{
+    padding-top: 206px;
+    padding-bottom: 96px;
+}
+
+.privacy-policy-content ul{
+    list-style: none;
+}
+
+.privacy-btn{
+  background-color: #091931; 
+  width: 100%;
+} 
