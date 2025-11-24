@@ -25,3 +25,8 @@
   background-color: #091931; 
   width: 100%;
 } 
+
+.privacy-btn a{
+    text-decoration: none;
+}
+
