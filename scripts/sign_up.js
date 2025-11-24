@@ -10,12 +10,11 @@ const SELECTORS = {
 };
 
 const MESSAGES = {
-  fillAll: "Bitte alle Felder ausfüllen.",
-  passwordsMismatch: "Passwörter stimmen nicht überein.",
-  emailExists: "E-Mail existiert bereits.",
-  saved: "Registrierung erfolgreich.",
-  fetchUsersError: "Fehler beim Abrufen der Benutzerdaten",
-  saveError: "Fehler beim Speichern in der Datenbank",
+  passwordsMismatch: "Passwords do not match.",
+  emailExists: "Email already exists.",
+  saved: "Registration successful.",
+  fetchUsersError: "Error fetching user data.",
+  saveError: "Error saving to the database.",
 };
 
 // Schaltet den Signup-Button an/aus je nach Checkbox
@@ -35,18 +34,29 @@ function wirePrivacyToggle(checkboxId, buttonId) {
   );
 }
 
-// Prüft, ob Felder ausgefüllt sind und die Passwörter gleich sind
-function validateFormValues({ name, email, password, confirm }) {
-  if (!name || !email || !password) {
-    return { ok: false, message: MESSAGES.fillAll };
-  }
-  if (password !== confirm) {
-    return { ok: false, message: MESSAGES.passwordsMismatch };
-  }
-  return { ok: true };
+// Live-Validation: Setzt custom validity auf dem Confirm-Feld, wenn die
+// Passwörter nicht übereinstimmen. Sorgt dafür, dass Browser-Validation
+// eine verständliche Meldung zeigt.
+function wirePasswordConfirmValidation(passwordId, confirmId) {
+  const pwd = document.getElementById(passwordId);
+  const conf = document.getElementById(confirmId);
+  if (!pwd || !conf) return;
+
+  const validate = () => {
+    if (conf.value !== pwd.value) {
+      conf.setCustomValidity(MESSAGES.passwordsMismatch);
+    } else {
+      conf.setCustomValidity("");
+    }
+  };
+
+  pwd.addEventListener("input", validate);
+  conf.addEventListener("input", validate);
+  // initial
+  validate();
 }
 
-// Holt alle Benutzer vom Server (JSON erwartet)
+// Fetch all users from the server (expects JSON)
 async function fetchAllUsers(baseUrl) {
   const res = await fetch(`${baseUrl}/users.json`);
   if (!res.ok) throw new Error(MESSAGES.fetchUsersError);
@@ -94,13 +104,13 @@ async function registerAndRedirect({ name, email, password }) {
 async function handleSignupSubmit(e) {
   e.preventDefault();
 
-  const { name, email, password, confirm } = readFormValues();
-
-  const validation = validateFormValues({ name, email, password, confirm });
-  if (!validation.ok) {
-    alert(validation.message);
+  const form = document.getElementById(SELECTORS.form);
+  if (form && !form.checkValidity()) {
+    form.reportValidity();
     return;
   }
+
+  const { name, email, password, confirm } = readFormValues();
 
   const normalizedEmail = email.toLowerCase();
 
@@ -120,6 +130,8 @@ async function handleSignupSubmit(e) {
 // Setup beim Laden: Checkbox-Button verbinden und Formular-Handler setzen
 function init() {
   wirePrivacyToggle(SELECTORS.privacyCheck, SELECTORS.signupBtn);
+  // Passwort/Confirm Live-Validation statt Inline-attribute
+  wirePasswordConfirmValidation(SELECTORS.password, SELECTORS.confirm);
 
   const form = document.getElementById(SELECTORS.form);
   if (form) form.addEventListener("submit", handleSignupSubmit);

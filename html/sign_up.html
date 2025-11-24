@@ -45,9 +45,13 @@
           <div class="sign-up-input-box">
             <input
               id="signup-name"
+              name="name"
               class="sign-up-input"
               type="text"
               placeholder="Name"
+              autocomplete="name"
+              required
+              minlength="2"
             />
             <img src="/assets/icons/person.svg" style="padding: 4px" alt="" />
           </div>
@@ -55,9 +59,12 @@
           <div class="sign-up-input-box">
             <input
               id="signup-email"
+              name="email"
               class="sign-up-input"
-              type="text"
+              type="email"
               placeholder="Email"
+              autocomplete="email"
+              required
             />
             <img src="/assets/icons/mail.svg" alt="" />
           </div>
@@ -65,9 +72,16 @@
           <div class="sign-up-input-box">
             <input
               id="signup-password"
+              name="password"
               class="sign-up-input"
               type="password"
               placeholder="Password"
+              autocomplete="new-password"
+              required
+              minlength="8"
+              pattern="(?=.*\d)(?=.*[A-Za-z]).{8,}"
+              title="Minimum 8 characters, at least one letter and one number"
+            />
             />
             <img src="/assets/icons/lock.svg" alt="" />
           </div>
@@ -75,15 +89,23 @@
           <div class="sign-up-input-box">
             <input
               id="signup-confirm-password"
+              name="confirm_password"
               class="sign-up-input"
               type="password"
               placeholder="Confirm Password"
+              autocomplete="new-password"
+              required
             />
             <img src="/assets/icons/lock.svg" alt="" />
           </div>
 
           <div class="check-container">
-            <input type="checkbox" id="check-privacy" name="check-privacy" />
+            <input
+              type="checkbox"
+              id="check-privacy"
+              name="check-privacy"
+              required
+            />
             <label for="check-privacy"
               >I accept the
               <a href="privacy_policy.html">Privacy policy</a></label
@@ -92,7 +114,12 @@
 
           <!-- <input class="login_input" type="password" placeholder="Password" src="assets/icons/lock.svg" /> -->
         </div>
-        <button id="signup-btn" class="sign-up-form-btn-login" disabled>
+        <button
+          id="signup-btn"
+          type="submit"
+          class="sign-up-form-btn-login"
+          disabled
+        >
           Sign up
         </button>
       </form>
