@@ -6,6 +6,8 @@
     z-index: 2;
     position: sticky;
     top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .join-logo-container{
@@ -13,26 +15,31 @@
     justify-content: center;
     align-items: center;
     padding-top: 64px;
-    padding-bottom: 32px;
-    margin-bottom: 64px;
+    padding-bottom: 114px;
+    padding-left: 66px;
+    padding-right: 66px;
 }
 
 .menu-bar-btn-container{
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    gap: 8px;
     width: 232px;
+    margin-bottom: 114px;
+}
+
+.menu-bar-btn-container div{
+    margin-bottom: 8px;
 }
 
 .main-bar-btn{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
-    width: 160px;
-    height: 48px;
-    padding-left: 16px;
+    gap: 8px;
+    width: 232px;
+    height: 46px;
+    padding-left: 56px;
     box-sizing: border-box;
     color: #FFFFFF;
     background-color: transparent;
@@ -45,15 +52,13 @@
 .main-bar-btn:hover{
     background-color:#2A3D59;
     width: 232px;
-    padding-left: 52px;
 }
 
 .main-bar-btn img {
-    width: 24px;
-    height: 24px;
-    flex: 0 0 24px;
-    object-fit: contain;
-    display: block;
+    width: 30px;
+    height: 30px;
+    padding-bottom: 8px;    
+    padding-top: 8px;
 }
 
 .center-btn{
@@ -67,9 +72,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    flex-direction: column;;
-    position: absolute;
-    bottom: 80px;
+    flex-direction: column;
+    flex: 0 0 auto;
+    margin-top: auto;
+    margin-bottom: 64px;
     text-align: center;
     width: 100%
 }
@@ -86,10 +92,12 @@
 }
 
 .legal-container div{
-    width: 100%;
+    width: calc(100% - 52px);
     height: 35px;
     display:flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding-left: 52px;
+    margin-bottom: 4px;
 }
 
