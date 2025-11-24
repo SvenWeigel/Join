@@ -34,8 +34,6 @@ header {
 .user-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-radius: 24px;
   background: transparent;
   cursor: pointer;
 }
@@ -48,25 +46,9 @@ header {
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  color: #1f2937;
-  font-weight: 700;
-  font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-.user-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
   color: #29abe2;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 22px;
   border: 3.5px solid #2a3647;
-}
-.user-name {
-  font-size: 14px;
-  color: #111827;
+  box-sizing: border-box;
 }
