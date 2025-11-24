@@ -13,11 +13,22 @@
     <link rel="stylesheet" href="/styles/font.css" />
     <link rel="stylesheet" href="/styles/menu-bar.css" />
     <link rel="stylesheet" href="/styles/privacy_policy.css" />
+    <link rel="stylesheet" href="/styles/header.css"/>
 
     <title>Join</title>
   </head>
   <body>
-    <header></header>
+      <header>
+        <div class="header-content">
+          <span>Kanban Project Management Tool</span>
+          <div class="header-profile-container">
+            <img src="/assets/icons/help.svg" alt="help_icon" />
+            <div class="user-badge" title="Benutzer">
+              <div class="user-avatar">SM</div>
+            </div>
+          </div>
+        </div>
+       </header>
     <div class="page-content">
       <div class="menu-bar-container">
         <div class="join-logo-container">
@@ -47,6 +58,15 @@
           </div>
         </div>
 
+        <!-- anzeigen wenn User nicht logged in ist -->
+        <div class="menu-bar-btn-container" style="display:none">
+          <div class="contacts-btn center-btn">
+            <button class="main-bar-btn" href="">
+              <img src="/assets/icons/login.svg" alt="" />Log In
+            </button>
+          </div>
+        </div>
+
         <div class="legal-container">
           <div class="privacy-btn">
             <a href="">Privacy Policy</a>
@@ -57,9 +77,11 @@
         </div>
       </div>
 
+      
+
       <div class="privacy-policy-content">
-        <h1>Datenschutzerklärung</h1>
-        <h2 id="m716">Präambel</h2>
+        <h2>Privacy Policy</h2>
+        <h3 id="m716">Präambel</h3>
         <p>
           Mit der folgenden Datenschutzerklärung möchten wir Sie darüber
           aufklären, welche Arten Ihrer personenbezogenen Daten (nachfolgend
@@ -74,7 +96,7 @@
         <p>Die verwendeten Begriffe sind nicht geschlechtsspezifisch.</p>
 
         <p>Stand: 23. November 2025</p>
-        <h2>Inhaltsübersicht</h2>
+        <h3>Inhaltsübersicht</h3>
         <ul class="index">
           <li><a class="index-link" href="#m716">Präambel</a></li>
           <li><a class="index-link" href="#m3">Verantwortlicher</a></li>
@@ -124,14 +146,14 @@
           </li>
           <li><a class="index-link" href="#m42">Begriffsdefinitionen</a></li>
         </ul>
-        <h2 id="m3">Verantwortlicher</h2>
+        <h3 id="m3">Verantwortlicher</h3>
         <p>Sven, Weigel<br />Kranichstraße 19<br />46282 Dorsten</p>
         <p>
           E-Mail-Adresse:
           <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>
         </p>
 
-        <h2 id="mOverview">Übersicht der Verarbeitungen</h2>
+        <h3 id="mOverview">Übersicht der Verarbeitungen</h3>
         <p>
           Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und
           die Zwecke ihrer Verarbeitung zusammen und verweist auf die
@@ -168,7 +190,7 @@
           <li>Informationstechnische Infrastruktur.</li>
           <li>Hinweisgeberschutz.</li>
         </ul>
-        <h2 id="m2427">Maßgebliche Rechtsgrundlagen</h2>
+        <h3 id="m2427">Maßgebliche Rechtsgrundlagen</h3>
         <p>
           <strong>Maßgebliche Rechtsgrundlagen nach der DSGVO: </strong>Im
           Folgenden erhalten Sie eine Übersicht der Rechtsgrundlagen der DSGVO,
@@ -230,7 +252,7 @@
           gelangen.
         </p>
 
-        <h2 id="m25">Übermittlung von personenbezogenen Daten</h2>
+        <h3 id="m25">Übermittlung von personenbezogenen Daten</h3>
         <p>
           Im Rahmen unserer Verarbeitung von personenbezogenen Daten kommt es
           vor, dass diese an andere Stellen, Unternehmen, rechtlich
@@ -244,7 +266,7 @@
           Ihrer Daten ab.
         </p>
 
-        <h2 id="m24">Internationale Datentransfers</h2>
+        <h3 id="m24">Internationale Datentransfers</h3>
         <p>
           Datenverarbeitung in Drittländern: Sofern wir Daten in ein Drittland
           (d. h. außerhalb der Europäischen Union (EU) oder des Europäischen
@@ -299,9 +321,9 @@
           >
         </p>
 
-        <h2 id="m12">
+        <h3 id="m12">
           Allgemeine Informationen zur Datenspeicherung und Löschung
-        </h2>
+        </h3>
         <p>
           Wir löschen personenbezogene Daten, die wir verarbeiten, gemäß den
           gesetzlichen Bestimmungen, sobald die zugrundeliegenden Einwilligungen
@@ -370,7 +392,7 @@
           </li>
         </ul>
 
-        <h2 id="m10">Rechte der betroffenen Personen</h2>
+        <h3 id="m10">Rechte der betroffenen Personen</h3>
         <p>
           Rechte der betroffenen Personen aus der DSGVO: Ihnen stehen als
           Betroffene nach der DSGVO verschiedene Rechte zu, die sich
@@ -438,7 +460,7 @@
           </li>
         </ul>
 
-        <h2 id="m225">Bereitstellung des Onlineangebots und Webhosting</h2>
+        <h3 id="m225">Bereitstellung des Onlineangebots und Webhosting</h3>
         <p>
           Wir verarbeiten die Daten der Nutzer, um ihnen unsere Online-Dienste
           zur Verfügung stellen zu können. Zu diesem Zweck verarbeiten wir die
@@ -521,7 +543,7 @@
             jeweiligen Vorfalls von der Löschung ausgenommen.
           </li>
         </ul>
-        <h2 id="m367">Registrierung, Anmeldung und Nutzerkonto</h2>
+        <h3 id="m367">Registrierung, Anmeldung und Nutzerkonto</h3>
         <p>
           Nutzer können ein Nutzerkonto anlegen. Im Rahmen der Registrierung
           werden den Nutzern die erforderlichen Pflichtangaben mitgeteilt und zu
@@ -616,7 +638,7 @@
             >
           </li>
         </ul>
-        <h2 id="m2324">Datenschutzinformationen für Hinweisgeber</h2>
+        <h3 id="m2324">Datenschutzinformationen für Hinweisgeber</h3>
         <p>
           In diesem Abschnitt finden Sie Informationen darüber, wie wir Daten
           von Personen, die Hinweise geben (Hinweisgeber), sowie von betroffenen
@@ -941,7 +963,7 @@
             DSGVO). Berechtigte Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO).
           </li>
         </ul>
-        <h2 id="m15">Änderung und Aktualisierung</h2>
+        <h3 id="m15">Änderung und Aktualisierung</h3>
         <p>
           Wir bitten Sie, sich regelmäßig über den Inhalt unserer
           Datenschutzerklärung zu informieren. Wir passen die
@@ -958,7 +980,7 @@
           können und bitten die Angaben vor Kontaktaufnahme zu prüfen.
         </p>
 
-        <h2 id="m42">Begriffsdefinitionen</h2>
+        <h3 id="m42">Begriffsdefinitionen</h3>
         <p>
           In diesem Abschnitt erhalten Sie eine Übersicht über die in dieser
           Datenschutzerklärung verwendeten Begrifflichkeiten. Soweit die
@@ -1092,16 +1114,7 @@
             Übermitteln oder das Löschen.
           </li>
         </ul>
-        <p class="seal">
-          <a
-            href="https://datenschutz-generator.de/"
-            title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken."
-            target="_blank"
-            rel="noopener noreferrer nofollow"
-            >Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas
-            Schwenke</a
-          >
-        </p>
+
       </div>
     </div>
   </body>
