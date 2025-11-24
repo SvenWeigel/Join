@@ -10,10 +10,28 @@ function initSplash() {
   const footerContainer = document.querySelector(".login-site-footer");
   const logoContainer = document.querySelector(".login-site-logo-container");
 
-  setTimeout(() => startAnimation(img, centerContainer, loginContainer, headerContainer, footerContainer, logoContainer), 400);
+  setTimeout(
+    () =>
+      startAnimation(
+        img,
+        centerContainer,
+        loginContainer,
+        headerContainer,
+        footerContainer,
+        logoContainer
+      ),
+    400
+  );
 }
 
-function startAnimation(img, centerContainer, loginContainer, headerContainer, footerContainer, logoContainer) {
+function startAnimation(
+  img,
+  centerContainer,
+  loginContainer,
+  headerContainer,
+  footerContainer,
+  logoContainer
+) {
   if (!img) {
     // No image to animate; ensure splash is hidden before showing login
     if (centerContainer) centerContainer.classList.add("hidden");
