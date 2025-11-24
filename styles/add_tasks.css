@@ -2,3 +2,71 @@
   display: flex;
   min-height: 100vh;
 }
+
+.title-positioning {
+  left: 328px;
+  top: 206px;
+  text-align: left;
+  position: absolute;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 327px;
+  left: 328px;
+  height: 376px;
+  width: 440px;
+  gap: 16px;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.due-date-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.seperator-content {
+  background-color: #d1d1d1;
+  position: absolute;
+  left: 816.25px;
+  top: 327px;
+  border: 1px solid #d1d1d1;
+  height: 424px;
+  width: 1px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 327px;
+  left: 864.25px;
+  height: 400px;
+  width: 440px;
+  gap: 24px;
+}
+
+.buttons-actions {
+  width: 309px;
+  height: 56px;
+  position: absolute;
+  top: 889px;
+  left: 995.25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}

@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="main-layout-container">
-      <header>
+        <header>
         <div class="header-content">
           <span>Kanban Project Management Tool</span>
           <div class="header-profile-container">
@@ -22,9 +22,9 @@
             </div>
           </div>
         </div>
-      </header>
+        </header>
 
-      <aside class="menu-bar-container">
+        <aside class="menu-bar-container">
         <div class="join-logo-container">
           <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
         </div>
@@ -60,7 +60,80 @@
             <a href="">Legal Notice</a>
           </div>
         </div>
-      </aside>
+        </aside>
+
+        <div class="title-positioning">
+            <h2>Add Task</h2>
+        </div>
+        <div class="add-task-container">
+            <div class="left-content">
+                <div class="title-section">
+                    <span>Titel*</span>
+                    <input type="text" placeholder="Enter a title">
+                </div>
+                <div class="description-section">
+                    <span>Description</span>
+                    <textarea placeholder="Enter a description"></textarea>
+                </div>
+                <div class="due-date-section">
+                    <span>Due date*</span>
+                    <input type="date" placeholder="dd/mm/yyyy">
+                </div>
+            </div>
+            <div class="seperator-content"></div>
+            <div class="right-content">
+              <div class="priority-section">
+                <span>Priority</span>
+                <div class="priority-buttons">
+                  <button type="button" class="priority-btn urgent">
+                    Urgent
+                    <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+                  </button>
+                  <button type="button" class="priority-btn medium selected">
+                    Medium
+                    <img src="/assets/icons/medium_icon.svg" alt="Medium" class="prio-icon" />
+                  </button>
+                  <button type="button" class="priority-btn low">
+                    Low
+                    <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="assigned-section">
+                <label for="assigned-select">Assigned to</label>
+                <select id="assigned-select" class="select-input">
+                  <option value="">Select contacts to assign</option>
+                </select>
+              </div>
+
+              <div class="category-section">
+                <label for="category-select">Category*</label>
+                <select id="category-select" class="select-input" required>
+                  <option value="">Select task category</option>
+                </select>
+              </div>
+
+              <div class="subtasks-section">
+                <label for="subtask-input">Subtasks</label>
+                <input id="subtask-input" type="text" placeholder="Add new subtask" />
+              </div>
+            </div>
+        </div>
+        <div class="buttons-actions">
+            <button type="button" class="btn-clear">
+                Clear
+                <img src="/assets/icons/iconoir_cancel.svg" alt="Cancel" class="btn-icon" />
+            </button>
+            <button type="button" class="btn-create">
+                Create Task
+                <img src="/assets/icons/check.svg" alt="Confirm" class="btn-icon" />         
+            </button>
+        </div>
     </div>
+
+
+    </div>
+
   </body>
 </html>

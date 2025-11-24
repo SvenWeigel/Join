@@ -5,3 +5,11 @@ body {
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif;
 }
+
+h2 {
+  font-size: 61px;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
