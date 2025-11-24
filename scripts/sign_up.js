@@ -87,7 +87,7 @@ async function registerAndRedirect({ name, email, password }) {
   const user = { name, email, password, createdAt: new Date().toISOString() };
   await createUserRecord(BASE_URL, user);
   alert(MESSAGES.saved);
-  window.location.href = "board.html";
+  window.location.replace("/index.html");
 }
 
 // Haupt-Handler für Formular-Submit (koordiniert die Teilfunktionen)
