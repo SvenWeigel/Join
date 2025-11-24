@@ -53,3 +53,10 @@ a {
     font-weight: 500;
   }
 }
+
+.disabled-link{
+  pointer-events: none;
+  color: gray;
+  cursor: default;
+  text-decoration: none;
+}
