@@ -17,13 +17,26 @@ const MESSAGES = {
   saveError: "Error saving to the database.",
 };
 
-// Schaltet den Signup-Button an/aus je nach Checkbox
+/**
+ * Setzt den Zustand des Signup-Buttons basierend auf der Datenschutz-Checkbox.
+ * Wenn Checkbox oder Button fehlen, wird nichts unternommen.
+ *
+ * @param {HTMLInputElement} checkbox - Die Checkbox, die das Einverständnis repräsentiert.
+ * @param {HTMLElement} button - Der Signup-Button, dessen `disabled`-Eigenschaft gesetzt wird.
+ */
 function setSignupButtonState(checkbox, button) {
   if (!checkbox || !button) return;
   button.disabled = !checkbox.checked;
 }
 
-// Verknüpft die Datenschutz-Checkbox mit dem Button (initial + bei Änderung)
+/**
+ * Verknüpft eine Checkbox (z. B. Datenschutz) mit dem Signup-Button.
+ * Registriert außerdem einen `change`-Listener, damit sich der Button bei
+ * Änderungen automatisch aktiviert/deaktiviert.
+ *
+ * @param {string} checkboxId - ID der Checkbox im DOM.
+ * @param {string} buttonId - ID des Buttons im DOM.
+ */
 function wirePrivacyToggle(checkboxId, buttonId) {
   const checkbox = document.getElementById(checkboxId);
   const button = document.getElementById(buttonId);
@@ -34,29 +47,39 @@ function wirePrivacyToggle(checkboxId, buttonId) {
   );
 }
 
-// Live-Validation: Setzt custom validity auf dem Confirm-Feld, wenn die
-// Passwörter nicht übereinstimmen. Sorgt dafür, dass Browser-Validation
-// eine verständliche Meldung zeigt.
+/**
+ * Verkettet die Passwort- und Bestätigungsfelder für Live-Validation.
+ * Wenn die beiden Felder nicht übereinstimmen, wird auf dem Confirm-Feld
+ * eine erklärende Custom-Validity gesetzt, so dass der Browser eine
+ * verständliche Fehlermeldung anzeigt.
+ *
+ * @param {string} passwordId - ID des Passwort-Inputs.
+ * @param {string} confirmId - ID des Confirm-Inputs.
+ */
 function wirePasswordConfirmValidation(passwordId, confirmId) {
   const pwd = document.getElementById(passwordId);
   const conf = document.getElementById(confirmId);
   if (!pwd || !conf) return;
 
   const validate = () => {
-    if (conf.value !== pwd.value) {
+    if (conf.value !== pwd.value)
       conf.setCustomValidity(MESSAGES.passwordsMismatch);
-    } else {
-      conf.setCustomValidity("");
-    }
+    else conf.setCustomValidity("");
   };
 
   pwd.addEventListener("input", validate);
   conf.addEventListener("input", validate);
-  // initial
-  validate();
+  validate(); // initial prüfen
 }
 
-// Fetch all users from the server (expects JSON)
+/**
+ * Holt alle Benutzer-Datensätze vom Server.
+ * Erwartet eine JSON-Antwort in Form eines Objekts, das in ein Array umgewandelt wird.
+ *
+ * @param {string} baseUrl - Basis-URL der API/DB (z. B. Firebase REST endpoint).
+ * @returns {Promise<Array>} Array mit User-Objekten.
+ * @throws {Error} Wenn der Fetch fehlschlägt.
+ */
 async function fetchAllUsers(baseUrl) {
   const res = await fetch(`${baseUrl}/users.json`);
   if (!res.ok) throw new Error(MESSAGES.fetchUsersError);
@@ -64,7 +87,14 @@ async function fetchAllUsers(baseUrl) {
   return data ? Object.values(data) : [];
 }
 
-// Sendet neuen Benutzer zum Server (POST)
+/**
+ * Legt einen neuen Benutzer-Datensatz auf dem Server an (POST).
+ *
+ * @param {string} baseUrl - Basis-URL der API/DB.
+ * @param {Object} user - Benutzerobjekt, das gepostet wird.
+ * @returns {Promise<Object>} Response-JSON des Servers.
+ * @throws {Error} Wenn der POST fehlschlägt.
+ */
 async function createUserRecord(baseUrl, user) {
   const res = await fetch(`${baseUrl}/users.json`, {
     method: "POST",
@@ -75,8 +105,12 @@ async function createUserRecord(baseUrl, user) {
   return res.json();
 }
 
-// Behandelt Formular-Absendung: prüfen, speichern, weiterleiten
-// Lese Formularwerte aus
+/**
+ * Liest die aktuellen Werte des Signup-Formulars aus dem DOM.
+ * Trimmt `name` und `email`, gibt `password`/`confirm` unverändert zurück.
+ *
+ * @returns {{name:string,email:string,password:string,confirm:string}}
+ */
 function readFormValues() {
   return {
     name: document.getElementById(SELECTORS.name).value.trim(),
@@ -86,15 +120,24 @@ function readFormValues() {
   };
 }
 
-// Prüfe, ob E-Mail bereits existiert
+/**
+ * Prüft, ob die angegebene (normalisierte) E‑Mail bereits in der DB existiert.
+ *
+ * @param {string} normalizedEmail - E‑Mail in Kleinbuchstaben.
+ * @returns {Promise<boolean>} true, wenn die E‑Mail schon vorhanden ist.
+ */
 async function isEmailTaken(normalizedEmail) {
   const users = await fetchAllUsers(BASE_URL);
   return users.some((u) => (u.email || "").toLowerCase() === normalizedEmail);
 }
 
-// Erstelle Benutzer-Datensatz und leite weiter
+/**
+ * Erstellt einen neuen Benutzer-Datensatz (normalisiert Email) und leitet bei Erfolg weiter.
+ * Zeigt eine Erfolgs-Message und navigiert zurück zur Startseite.
+ *
+ * @param {{name:string,email:string,password:string}} param0 - Daten aus dem Formular.
+ */
 async function registerAndRedirect({ name, email, password }) {
-  // store email normalized to lowercase so lookups can query by exact value
   const user = {
     name,
     email: email.toLowerCase(),
@@ -106,7 +149,13 @@ async function registerAndRedirect({ name, email, password }) {
   window.location.replace("/index.html");
 }
 
-// Haupt-Handler für Formular-Submit (koordiniert die Teilfunktionen)
+/**
+ * Haupt-Handler für das Signup-Formular.
+ * Führt Browser-Validation durch, liest Formwerte, prüft auf Duplikate
+ * und erstellt den neuen Benutzer. Fehler werden geloggt und per Alert gezeigt.
+ *
+ * @param {Event} e - Submit-Event des Formulars.
+ */
 async function handleSignupSubmit(e) {
   e.preventDefault();
 
@@ -117,7 +166,6 @@ async function handleSignupSubmit(e) {
   }
 
   const { name, email, password, confirm } = readFormValues();
-
   const normalizedEmail = email.toLowerCase();
 
   try {
@@ -125,7 +173,6 @@ async function handleSignupSubmit(e) {
       alert(MESSAGES.emailExists);
       return;
     }
-
     await registerAndRedirect({ name, email, password });
   } catch (err) {
     console.error(err);
@@ -133,10 +180,13 @@ async function handleSignupSubmit(e) {
   }
 }
 
-// Setup beim Laden: Checkbox-Button verbinden und Formular-Handler setzen
+/**
+ * Initialisiert das Signup-Skript: Verknüpft Checkbox mit Button,
+ * aktiviert Live-Validation für Passwort/Confirm und hängt den
+ * Submit-Handler an das Formular.
+ */
 function init() {
   wirePrivacyToggle(SELECTORS.privacyCheck, SELECTORS.signupBtn);
-  // Passwort/Confirm Live-Validation statt Inline-attribute
   wirePasswordConfirmValidation(SELECTORS.password, SELECTORS.confirm);
 
   const form = document.getElementById(SELECTORS.form);

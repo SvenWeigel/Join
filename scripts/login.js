@@ -1,4 +1,9 @@
-// Login logic (clean, small functions ≤14 lines)
+/**
+ * Login-spezifische Selektoren und Meldungen.
+ * Die Funktionen in diesem Modul kümmern sich um: Formular-Input lesen,
+ * Benutzer per REST-API suchen, Validierung und das lokale Speichern
+ * des angemeldeten Benutzers in `localStorage`.
+ */
 const LOGIN_SELECTORS = {
   formSelector: ".login_container form",
   email: "login-email-input",
@@ -6,6 +11,9 @@ const LOGIN_SELECTORS = {
   guestBtnSelector: ".login-form-btn-guestlogin",
 };
 
+/**
+ * Benutzerfreundliche Meldungstexte, die in Alerts/Validation verwendet werden.
+ */
 const LOGIN_MESSAGES = {
   emailNotFound: "Email not found.",
   wrongPassword: "Incorrect password.",
@@ -15,10 +23,21 @@ const LOGIN_MESSAGES = {
   passwordRequired: "Please enter your password.",
 };
 
+/**
+ * Normalisiert eine E‑Mail (trim + toLowerCase).
+ * @param {string} email
+ * @returns {string}
+ */
 function normalizeEmail(email) {
   return (email || "").trim().toLowerCase();
 }
 
+/**
+ * Versucht, einen Benutzer per Firebase-Query (`orderBy=email&equaTo=...`) zu finden.
+ * Gibt das erste gefundene Benutzer-Objekt oder `null` zurück.
+ * @param {string} normalizedEmail - bereits lowercased
+ * @returns {Promise<Object|null>}
+ */
 async function queryUserByEmail(normalizedEmail) {
   try {
     const orderBy = encodeURIComponent('"email"');
@@ -35,6 +54,10 @@ async function queryUserByEmail(normalizedEmail) {
   }
 }
 
+/**
+ * Fallback: lädt alle Benutzer und sucht case-insensitive nach der E‑Mail.
+ * Diese Methode ist ineffizient bei vielen Benutzern, steht aber als Fallback bereit.
+ */
 async function fetchAllUsersAndFind(normalizedEmail) {
   try {
     const res = await fetch(`${BASE_URL}/users.json`);
@@ -52,12 +75,20 @@ async function fetchAllUsersAndFind(normalizedEmail) {
   }
 }
 
+/**
+ * Sucht einen Benutzer: zuerst per Query, dann per Full-Fetch als Fallback.
+ * @returns {Promise<Object|null>}
+ */
 async function findUserByEmail(normalizedEmail) {
   const byQuery = await queryUserByEmail(normalizedEmail);
   if (byQuery) return byQuery;
   return await fetchAllUsersAndFind(normalizedEmail);
 }
 
+/**
+ * Liest Email und Passwort aus dem Login-Formular.
+ * @returns {{email:string,password:string}}
+ */
 function readLoginFormValues() {
   return {
     email: document.getElementById(LOGIN_SELECTORS.email).value,
@@ -65,6 +96,10 @@ function readLoginFormValues() {
   };
 }
 
+/**
+ * Prefill: Trägt ggf. die gespeicherte E‑Mail aus `localStorage.currentUser` ins Form ein.
+ * Wird global als `window.preFillLoginForm` exponiert, da HTML ein `onclick`-Attribut verwendet.
+ */
 function preFillLoginForm() {
   try {
     const stored = localStorage.getItem("currentUser");
@@ -77,6 +112,11 @@ function preFillLoginForm() {
   } catch (err) {}
 }
 
+/**
+ * Führt Browser-Form-Validation aus und zeigt Fehlermeldungen an.
+ * @param {HTMLFormElement|null} form
+ * @returns {boolean} true wenn gültig oder kein Formular vorhanden.
+ */
 function validateForm(form) {
   if (!form) return true;
   if (!form.checkValidity()) {
@@ -86,6 +126,10 @@ function validateForm(form) {
   return true;
 }
 
+/**
+ * Führt die Login-Logik aus: lookup, Passwort-Check und Speichern im `localStorage`.
+ * @throws {Error} mit passenden Login-Meldungen bei Fehlschlag.
+ */
 async function performLogin(email, password) {
   const normalized = normalizeEmail(email);
   const user = await findUserByEmail(normalized);
@@ -95,6 +139,10 @@ async function performLogin(email, password) {
   return user;
 }
 
+/**
+ * Submit-Handler für das Login-Formular: validieren, einloggen, redirect.
+ * @param {Event} e
+ */
 async function handleLoginSubmit(e) {
   e.preventDefault();
   const form = document.querySelector(LOGIN_SELECTORS.formSelector);
@@ -110,6 +158,10 @@ async function handleLoginSubmit(e) {
   }
 }
 
+/**
+ * Erzeugt einen temporären Gast-Benutzer, speichert ihn und leitet weiter.
+ * @param {Event} e
+ */
 function handleGuestLogin(e) {
   e.preventDefault();
   const guestUser = { name: "Guest", email: "guest@guest.local", guest: true };
@@ -117,6 +169,11 @@ function handleGuestLogin(e) {
   window.location.replace("html/board.html");
 }
 
+/**
+ * Helfer: hängt benutzerdefinierte Validations-Messages an ein Input-Element.
+ * @param {HTMLElement|null} el
+ * @param {string} requiredMessage
+ */
 function attachValidation(el, requiredMessage) {
   if (!el) return;
   el.addEventListener("invalid", (e) => {
@@ -127,6 +184,9 @@ function attachValidation(el, requiredMessage) {
   el.addEventListener("input", () => el.setCustomValidity(""));
 }
 
+/**
+ * Verkettet Standard-Validationstexte für Email- und Passwort-Felder.
+ */
 function wireLoginValidationMessages() {
   attachValidation(
     document.getElementById(LOGIN_SELECTORS.email),
@@ -138,6 +198,9 @@ function wireLoginValidationMessages() {
   );
 }
 
+/**
+ * Initialisiert Login-Event-Handler und Validation beim Laden der Seite.
+ */
 function initLogin() {
   const form = document.querySelector(LOGIN_SELECTORS.formSelector);
   if (form) form.addEventListener("submit", handleLoginSubmit);
