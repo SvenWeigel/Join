@@ -67,6 +67,63 @@
           </div>
         </div>
       </div>
+      <main class="board-container">
+        <div class="board-header">
+          <h1>Board</h1>
+          <div class="find-add-container">
+            <input type="text" id="findTask" class="input-field" placeholder="Find Task">
+            <button id="addTaskBtn">Add task<img src="/assets/icons/add.svg"></button>
+          </div>
+        </div>
+        <div class="board-columns">
+          <div class="column">
+            <div class="column-header">
+              <h2>To do</h2>
+              <img src="/assets/icons/plus-button.svg">
+            </div>
+            <div class="column-content">
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-header">
+              <h2>In progress</h2>
+              <img src="/assets/icons/plus-button.svg">
+            </div>
+              <div class="column-content">
+              <div class="task-card">
+                <div>User Story</div>
+                <h4 class="task-title">Kochwelt Page & Recipe Recommender</h4>
+                <p class="task-description">Build start page with recipe recommendation...</p>
+                <div class="task-progress">
+                  <div class="progress-bar"></div>
+                  <span class="subtasks">1/2 Subtasks</span>
+                </div>
+                <div class="task-footer">
+                  <div class="task-assignees">
+                    <div class="badge">AM</div>
+                    <div class="badge">EM</div>
+                    <div class="badge">MB</div>
+                  </div>
+                  <img class="task-icon" src="/assets/icons/urgent_icon.svg">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-header">
+              <h2>Await feedback</h2>
+              <img src="/assets/icons/plus-button.svg">
+            </div>
+            <div class="column-content"></div>
+          </div>
+          <div class="column">
+            <div class="column-header">
+              <h2>Done</h2>
+            </div>
+            <div class="column-content"></div>
+          </div>
+        </div>
+      </main>
     </div>
     <script src="/scripts/header.js"></script>
   </body>
