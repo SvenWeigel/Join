@@ -8,8 +8,8 @@
   box-shadow: 0 0 14px 3px #0000000a;
 }
 
-.sign-up-form-header{
-    display: flex;
+.sign-up-form-header {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
@@ -21,40 +21,37 @@
   gap: 24px;
 }
 
-.sign-up-input-box{
+.sign-up-input-box {
   width: 380px;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 21px;
   border: 1px solid #d1d1d1;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
-.sign-up-input{
-font-family: "Inter", sans-serif;
-border:none;
-font-size: 20px;
-padding-block:0px;
-padding-inline:0px;
-
+.sign-up-input {
+  font-family: "Inter", sans-serif;
+  border: none;
+  font-size: 20px;
+  padding-block: 0px;
+  padding-inline: 0px;
 }
 /* input-field cant be focused */
 input:focus {
-    outline: none;
-    box-shadow: none;
-    border-color: inherit;
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
 }
 
-
-.sign-up-input::placeholder{
-  color: #D1D1D1;
+.sign-up-input::placeholder {
+  color: #d1d1d1;
 }
-
 
 .sign-up-form {
-  width:unset;
-  height:unset;
+  width: unset;
+  height: unset;
   padding: 48px 88px;
 }
 
@@ -78,8 +75,8 @@ input:focus {
   }
 }
 
-#signup-btn:disabled{
-  background-color:#a0a0a0;
+#signup-btn:disabled {
+  background-color: #a0a0a0;
   cursor: not-allowed;
 }
 
@@ -97,11 +94,10 @@ input:focus {
   text-decoration: none;
   color: #55bce8;
   font-size: 16px;
-  gap:2.5px;
+  gap: 2.5px;
 }
 
 #check-privacy {
-  
   height: 16px;
   width: 16px;
   border-radius: 3px;
@@ -130,4 +126,3 @@ input:focus {
     background-color: #e6e5e5;
   }
 }
-
