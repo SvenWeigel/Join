@@ -4,10 +4,9 @@
 }
 
 .title-positioning {
-  left: 328px;
-  top: 206px;
   text-align: left;
-  position: absolute;
+  padding-top: 210px;
+  padding-left: 96px;
 }
 
 .left-content {
