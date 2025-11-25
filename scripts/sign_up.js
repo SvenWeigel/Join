@@ -94,7 +94,13 @@ async function isEmailTaken(normalizedEmail) {
 
 // Erstelle Benutzer-Datensatz und leite weiter
 async function registerAndRedirect({ name, email, password }) {
-  const user = { name, email, password, createdAt: new Date().toISOString() };
+  // store email normalized to lowercase so lookups can query by exact value
+  const user = {
+    name,
+    email: email.toLowerCase(),
+    password,
+    createdAt: new Date().toISOString(),
+  };
   await createUserRecord(BASE_URL, user);
   alert(MESSAGES.saved);
   window.location.replace("/index.html");
