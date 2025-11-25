@@ -1,0 +1,183 @@
+.main-layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.title-positioning {
+  text-align: left;
+  padding-top: 210px;
+  padding-left: 96px;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 327px;
+  left: 328px;
+  height: 376px;
+  width: 440px;
+  gap: 16px;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.due-date-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.seperator-content {
+  background-color: #d1d1d1;
+  position: absolute;
+  left: 816.25px;
+  top: 327px;
+  height: 424px;
+  width: 1px;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 327px;
+  left: 864.25px;
+  height: 400px;
+  width: 440px;
+  gap: 24px;
+}
+
+.buttons-actions {
+  width: 309px;
+  height: 56px;
+  position: absolute;
+  top: 889px;
+  left: 995.25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.required-star {
+  color: #e60000;
+}
+
+.titel-input {
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  margin-bottom: 16px;
+  flex-direction: space-between;
+  font-size: 20px;
+}
+
+.due-date-input {
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  margin-bottom: 16px;
+  flex-direction: space-between;
+  font-size: 20px;
+}
+
+span {
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+textarea {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  font-size: 20px;
+  resize: vertical;
+}
+
+.priority-section {
+  display: flex;
+  flex-direction: column;
+}
+.priority-buttons-container {
+  display: flex;
+  gap: 16px;
+}
+
+.priority-btn {
+  border-radius: 10px;
+  width: 136px;
+  height: 56px;
+  border: 1px solid #d1d1d1;
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.prio-icon {
+  width: 20px;
+  height: 14px;
+  display: inline-block;
+  object-fit: contain;
+}
+
+.assigned-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtasks-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-input {
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding-left: 16px;
+  padding-right: 12px;
+  font-size: 16px;
+}
+
+.subtask-input {
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding-left: 16px;
+  padding-right: 12px;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
