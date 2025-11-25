@@ -123,7 +123,7 @@ async function handleSignupSubmit(e) {
     await registerAndRedirect({ name, email, password });
   } catch (err) {
     console.error(err);
-    alert("Fehler: " + err.message);
+    alert("Error: " + err.message);
   }
 }
 
@@ -137,4 +137,10 @@ function init() {
   if (form) form.addEventListener("submit", handleSignupSubmit);
 }
 
-document.addEventListener("DOMContentLoaded", init);
+// Sicherstellen, dass `init` ausgeführt wird, auch wenn das Skript
+// nach dem `DOMContentLoaded`-Event geladen wurde.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
