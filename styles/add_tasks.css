@@ -3,20 +3,25 @@
   min-height: 100vh;
 }
 
+.add-task-container {
+  padding-top: 96px;
+  width: calc(100% - 232px);
+}
+
 .title-positioning {
-  text-align: left;
-  padding-top: 210px;
+  padding: 110px 96px 48px 96px;
+}
+
+.content {
+  display: flex;
   padding-left: 96px;
+  gap: 48px;
 }
 
 .left-content {
+  width: 440px;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 327px;
-  left: 328px;
-  height: 376px;
-  width: 440px;
   gap: 16px;
 }
 
@@ -40,33 +45,22 @@
 
 .seperator-content {
   background-color: #d1d1d1;
-  position: absolute;
-  left: 816.25px;
-  top: 327px;
-  height: 424px;
   width: 1px;
+  height: 424px;
 }
 
 .right-content {
+  width: 440px;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 327px;
-  left: 864.25px;
-  height: 400px;
-  width: 440px;
-  gap: 24px;
+  gap: 16px;
 }
 
 .buttons-actions {
-  width: 309px;
-  height: 56px;
-  position: absolute;
-  top: 889px;
-  left: 995.25px;
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: end;
+  margin-top:130px;
+  gap:16px;
 }
 
 .required-star {
@@ -118,6 +112,7 @@ textarea {
   display: flex;
   flex-direction: column;
 }
+
 .priority-buttons-container {
   display: flex;
   gap: 16px;
@@ -180,4 +175,37 @@ textarea {
   padding-right: 12px;
   margin-bottom: 16px;
   font-size: 20px;
+}
+
+.btn-create{
+    display: flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 21px;
+  color: white;
+  white-space: nowrap;
+  background-color: #2a3647;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  gap: 4px;
+}
+
+.btn-clear{
+  display: flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;  
+  font-size: 20px;
+  color:#2A3647;
+  white-space: nowrap;
+  background-color: #F6F7F8;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #2A3647;
+  padding: 8px 16px;
+  gap: 4px;
 }
