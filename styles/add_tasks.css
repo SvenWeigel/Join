@@ -6,6 +6,7 @@
 .add-task-container {
   padding-top: 96px;
   width: calc(100% - 232px);
+  max-width: 1440px;
 }
 
 .title-positioning {

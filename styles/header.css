@@ -1,7 +1,7 @@
 header {
   position: fixed;
   top: 0;
-  left: 232px;
+  margin-left: 232px;
   width: calc(100% - 232px);
   height: 96px;
   background-color: #ffffff;
