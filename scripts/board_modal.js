@@ -208,15 +208,58 @@ function getFormData() {
 
 /**
  * Verarbeitet die Formular-Übermittlung.
- * Verhindert Standard-Submit, sammelt Daten, schließt Modal und setzt Formular zurück.
+ * Speichert den Task in Firebase und aktualisiert das Board.
+ * Gäste können keine Tasks erstellen.
  * @param {Event} e - Das Submit-Event
  */
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  const data = getFormData();
-  console.log("Create Task:", data);
-  closeModal();
-  form.reset();
+
+  // Aktuellen User aus localStorage holen (wurde beim Login gespeichert)
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  // Prüfen ob User ein Gast ist - Gäste dürfen keine Tasks erstellen
+  if (!currentUser || currentUser.guest) {
+    alert("As a guest, you cannot create tasks. Please register or log in.");
+    return;
+  }
+
+  // Formulardaten sammeln
+  const formData = getFormData();
+
+  // Task-Objekt für Firebase erstellen
+  const taskData = {
+    title: formData.title,
+    description: formData.description || "",
+    dueDate: formData.due,
+    priority: formData.priority,
+    assignees: formData.assignee ? [formData.assignee] : [], // Array für später mehrere Assignees
+    category: formData.category,
+    status: "todo", // Neue Tasks starten immer in "To do"
+    subtasks: formData.subtasks
+      ? [{ title: formData.subtasks, completed: false }] // Subtask als Objekt mit completed-Status
+      : [],
+    createdBy: currentUser.email,
+  };
+
+  try {
+    // Task in Firebase speichern (aus db.js)
+    const createdTask = await createTask(taskData);
+    console.log("Task created:", createdTask);
+
+    // Modal schließen und Formular zurücksetzen
+    closeModal();
+    form.reset();
+    resetPriority();
+
+    // Board neu rendern falls die Funktion existiert (wird in Schritt 3 erstellt)
+    if (typeof renderAllTasks === "function") {
+      await renderAllTasks();
+    }
+  } catch (error) {
+    console.error("Error creating task:", error);
+    alert("Task could not be created. Please try again.");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initModal);

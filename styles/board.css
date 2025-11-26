@@ -3,25 +3,25 @@
   min-height: 100vh;
 }
 
-.board-container{
+.board-container {
   padding-top: 96px;
-  width:calc(100% - 232px);
+  width: calc(100% - 232px);
 }
 
-.board-header{
-  display:flex;
+.board-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 79px 88px 48px 64px;
 }
 
-.find-add-container{
+.find-add-container {
   display: flex;
   gap: 32px;
   margin: 12px 0;
 }
 
-#addTaskBtn{
+#addTaskBtn {
   display: flex;
   align-items: center;
   font-family: "Inter", sans-serif;
@@ -29,7 +29,7 @@
   font-style: bold;
   font-size: 21px;
   color: white;
-  white-space:nowrap;
+  white-space: nowrap;
   background-color: #2a3647;
   border-radius: 8px;
   cursor: pointer;
@@ -38,31 +38,30 @@
   gap: 4px;
 }
 
-#addTaskBtn img{
+#addTaskBtn img {
   width: 18px;
   height: 18px;
 }
 
-.board-columns{
-  display:flex;
+.board-columns {
+  display: flex;
   justify-content: space-between;
   gap: 24px;
   padding: 0px 64px;
 }
 
-.board-columns h2{
+.board-columns h2 {
   font-size: 20px;
-  color: #42526E;
-
+  color: #42526e;
 }
 
-.column{
-  width:252px;
+.column {
+  width: 252px;
   display: flex;
   flex-direction: column;
 }
 
-.column-header{
+.column-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,41 +69,95 @@
   margin-bottom: 15px;
 }
 
-.task-card{
+.column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-card {
   background-color: white;
   border-radius: 24px;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
-  padding:16px;
+  padding: 16px;
 }
 
 .progress-bar {
-    width: 60px;
-    height: 6px;
-    background: #4589ff;
-    border-radius: 6px;
+  width: 60px;
+  height: 6px;
+  background: #4589ff;
+  border-radius: 6px;
 }
 
-.column img{
-  width:24px;
-  height:24px;
+.column img {
+  width: 24px;
+  height: 24px;
 }
 .task-assignees {
-    display: flex;
-    gap: -6px;
+  display: flex;
+  gap: -6px;
 }
 .badge {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: orange;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 .task-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ============================================================================
+   DRAG & DROP PLACEHOLDER
+   ============================================================================ */
+
+.drop-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 16px;
+  border: 1px dashed #d1d1d1;
+  border-radius: 10px;
+  background-color: #f6f7f8;
+  color: #a8a8a8;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Highlight wenn eine Karte über die Spalte gezogen wird */
+.column-content.drag-over .drop-placeholder {
+  border-color: #a8a8a8;
+  background-color: #e9e9e9;
+}
+
+/* ============================================================================
+   DRAG & DROP TASK CARD STATES
+   ============================================================================ */
+
+/* Task-Card ist draggable */
+.task-card {
+  cursor: grab;
+}
+
+.task-card:active {
+  cursor: grabbing;
+}
+
+/* Task-Card wird gerade gezogen */
+.task-card.dragging {
+  opacity: 0.4;
+}
+
+/* Spalte ist ein gültiges Drop-Target */
+.column-content.drag-over {
+  background-color: #f6f7f8;
+  border-radius: 10px;
 }
