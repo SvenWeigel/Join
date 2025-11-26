@@ -1,0 +1,365 @@
+/* ==========================================================================
+   BOARD MODAL STYLES
+   Eigenständige Styles für das Add Task Modal auf der Board-Seite
+   ========================================================================== */
+
+/* ==========================================================================
+   1. MODAL OVERLAY & CONTAINER
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.add-task-modal {
+  background: #fff;
+  width: 1000px;
+  max-width: calc(100% - 40px);
+  height: 680px;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   2. MODAL HEADER
+   ========================================================================== */
+
+.add-task-modal .modal-header {
+  position: relative;
+  margin-bottom: 32px;
+  padding-right: 36px;
+}
+
+.add-task-modal .modal-header h2 {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: 800;
+  color: #111;
+}
+
+.add-task-modal .modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #24303a;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.add-task-modal .modal-close:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   3. FORM LAYOUT
+   ========================================================================== */
+
+.add-task-modal form#addTaskForm {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.add-task-modal .add-task-container {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: 8px;
+}
+
+/* Linke Spalte */
+.add-task-modal .left-content {
+  flex: 1 1 50%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Rechte Spalte */
+.add-task-modal .right-content {
+  flex: 1 1 50%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Vertikale Trennlinie */
+.add-task-modal .seperator-content {
+  width: 0;
+  height: 424px;
+  border-left: 1px solid #d1d1d1;
+  margin: 0 16px;
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   4. FORM SECTIONS
+   ========================================================================== */
+
+.add-task-modal .title-section,
+.add-task-modal .description-section,
+.add-task-modal .due-date-section,
+.add-task-modal .priority-section,
+.add-task-modal .assigned-section,
+.add-task-modal .category-section,
+.add-task-modal .subtasks-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   5. LABELS & REQUIRED STAR
+   ========================================================================== */
+
+.add-task-modal .title-section label,
+.add-task-modal .description-section span,
+.add-task-modal .due-date-section label,
+.add-task-modal .priority-section span,
+.add-task-modal .assigned-section label,
+.add-task-modal .category-section label,
+.add-task-modal .subtasks-section label {
+  display: block;
+  margin-bottom: 8px;
+  color: #24303a;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.add-task-modal .required-star {
+  color: #ff8190;
+}
+
+/* ==========================================================================
+   6. INPUT FIELDS
+   ========================================================================== */
+
+.add-task-modal input[type="text"],
+.add-task-modal input[type="date"],
+.add-task-modal textarea,
+.add-task-modal select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  color: #2a3647;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+}
+
+.add-task-modal input[type="text"]::placeholder,
+.add-task-modal textarea::placeholder {
+  color: #d1d1d1;
+}
+
+.add-task-modal input:focus,
+.add-task-modal textarea:focus,
+.add-task-modal select:focus {
+  border-color: #2a3647;
+}
+
+.add-task-modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   7. PRIORITY BUTTONS
+   ========================================================================== */
+
+.add-task-modal .priority-buttons-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.add-task-modal .priority-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  min-width: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease;
+}
+
+.add-task-modal .priority-btn:hover {
+  border-color: #2a3647;
+}
+
+.add-task-modal .priority-btn.active {
+  background: #ffa800;
+  color: #fff;
+  border-color: #ffa800;
+}
+
+.add-task-modal .priority-btn.active img {
+  filter: brightness(0) invert(1);
+}
+
+.add-task-modal .prio-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   8. MODAL FOOTER
+   ========================================================================== */
+
+.add-task-modal .modal-footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 12px;
+}
+
+.add-task-modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.add-task-modal .required-note {
+  color: #d9534f;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ==========================================================================
+   9. ACTION BUTTONS
+   ========================================================================== */
+
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #2a3647;
+  color: #2a3647;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #dbdbdb;
+}
+
+.btn-cancel svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-create-task {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #2a3647;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-create-task:hover {
+  background: #091931;
+}
+
+.btn-create-task svg {
+  width: 16px;
+  height: 12px;
+}
+
+/* ==========================================================================
+   10. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .add-task-modal {
+    width: 92%;
+    height: auto;
+    max-height: 90vh;
+    padding: 20px;
+  }
+
+  .add-task-modal .add-task-container {
+    flex-direction: column;
+  }
+
+  .add-task-modal .seperator-content {
+    display: none;
+  }
+
+  .add-task-modal .modal-header h2 {
+    font-size: 36px;
+  }
+
+  .add-task-modal .modal-footer-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .add-task-modal .priority-buttons-container {
+    flex-wrap: wrap;
+  }
+}
