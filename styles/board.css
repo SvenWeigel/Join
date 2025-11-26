@@ -6,7 +6,7 @@
 .board-container {
   padding-top: 96px;
   width: calc(100% - 232px);
-  max-width: 1440px;
+  max-width: 1208px;
 }
 
 .board-header {
