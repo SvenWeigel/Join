@@ -18,6 +18,13 @@
   margin-bottom: 8px;
 }
 
+.headline-span-div {
+  font-size: 24px;
+  font-weight: 400;
+  color: #2a3647;
+  line-height: 120%;
+}
+
 .seperator-content {
   background-color: #d1d1d1;
   width: 0px;
@@ -43,8 +50,8 @@
 }
 
 .todo-div img {
-  padding-top: 49px;
-  padding-bottom: 49px;
+  padding-top: 49.5px;
+  padding-bottom: 49.5px;
   padding-left: 57px;
 }
 
@@ -53,17 +60,21 @@
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  padding-right: 57px;
+  padding-right: 63px;
 }
 
 .todo-number-span {
   font-size: 64px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 120%;
   color: #000000;
 }
 
 .todo-span {
   color: #2a3647;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 /* DONE */
@@ -79,7 +90,7 @@
 .done-div img {
   padding-top: 49px;
   padding-bottom: 49px;
-  padding-left: 57px;
+  padding-left: 63.5px;
 }
 
 .done-span-div {
@@ -87,17 +98,21 @@
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
-  padding-right: 57px;
+  padding-right: 63.5px;
 }
 
 .done-number-span {
   font-size: 64px;
-  font-weight: 700;
+  font-weight: 600;
   color: #000000;
+  line-height: 120%;
 }
 
 .done-span {
   color: #2a3647;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
 }
 
 /* Priority and Date Summary */
@@ -178,4 +193,120 @@
 
 .date-number-span {
   color: #2a3647;
+}
+
+/* Greeting Section */
+
+.greet-span-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.greet-span {
+  color: #2a3647;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+}
+
+.greet-name-span {
+  font-size: 64px;
+  font-weight: 700;
+  color: #29ABE2;
+  line-height: 120%;
+}
+
+/* Adjustments */
+
+.open-tasks-div {
+  display: flex;
+  gap: 28px;
+  margin-top: 28px;
+  align-items: flex-start;
+}
+
+.tasks-in-board-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 30px;
+  padding: 21.5px 42.5px 21.5px 42.5px;
+  cursor: pointer;
+}
+
+.tasks-in-board-span{
+  text-align: center;
+  font-size: 20px;
+  color: #2a3647;
+  font-weight: 400;
+}
+
+.tasks-in-board-number-span{
+  font-size: 64px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 120%;
+}
+
+.tasks-in-progress-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 30px;
+  padding: 21.5px 42.5px 21.5px 42.5px;
+  cursor: pointer;
+}
+
+.tasks-in-progress-span{
+  text-align: center;
+  font-size: 20px;
+  color: #2a3647;
+  font-weight: 400;
+}
+
+.tasks-in-progress-number-span{
+  font-size: 64px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 120%;
+}
+
+.tasks-completed-span{
+  text-align: center;
+  font-size: 20px;
+  color: #2a3647;
+  font-weight: 400;
+}
+.tasks-completed-number-span{
+  font-size: 64px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 120%;
+}
+
+.awaiting-feedback-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 30px;
+  padding: 21.5px 37.5px 21.5px 37.5px;
+  cursor: pointer;
+}
+.awaiting-feedback-span{
+  text-align: center;
+  font-size: 20px;
+  color: #2a3647;
+  font-weight: 400;
+}
+.awaiting-feedback-number-span{
+  font-size: 64px;
+  font-weight: 600;
+  color: #000000;
+  line-height: 120%;
 }
