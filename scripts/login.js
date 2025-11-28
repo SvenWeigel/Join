@@ -211,3 +211,34 @@ function initLogin() {
 
 document.addEventListener("DOMContentLoaded", initLogin);
 window.preFillLoginForm = preFillLoginForm;
+
+
+
+
+function changePasswordIcon() {
+  const passwordIcon = document.getElementById("password-icon");
+  const passwordInput = document.getElementById("login-password-input");
+
+  if (passwordInput.value.length > 0) {
+    passwordIcon.src = "assets/icons/visibility_off.svg";
+    passwordIcon.classList.add("pointer");
+  } else {
+    passwordIcon.src = "assets/icons/lock.svg";
+    passwordIcon.classList.remove("pointer");
+  }
+}
+
+function togglePasswordVisibility() {
+  const passwordIcon = document.getElementById("password-icon");
+  const passwordInput = document.getElementById("login-password-input");
+
+if (passwordInput.value.length > 0) {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    passwordIcon.src = "assets/icons/visibility.svg";
+  } else {
+    passwordInput.type = "password";
+    passwordIcon.src = "assets/icons/visibility_off.svg";
+  }
+}
+}

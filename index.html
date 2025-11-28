@@ -44,11 +44,12 @@
           <div class="input-box">
             <input
               id="login-password-input"
+              oninput="changePasswordIcon()"
               class="login_input"
               type="password"
               placeholder="Password"
             />
-            <img src="assets/icons/lock.svg" class="login-form-icon" alt="" />
+            <img id="password-icon" src="assets/icons/lock.svg" onclick="togglePasswordVisibility()" class="login-form-icon" alt="" />
           </div>
         </div>
         <div class="login-form-btns-container">
