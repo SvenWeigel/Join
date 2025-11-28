@@ -24,7 +24,6 @@
 .sign-up-input-box {
   width: 380px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 12px 21px;
   border: 1px solid #d1d1d1;
@@ -37,6 +36,7 @@
   font-size: 20px;
   padding-block: 0px;
   padding-inline: 0px;
+  flex-grow:1;
 }
 /* input-field cant be focused */
 input:focus {
