@@ -34,21 +34,21 @@
 
       <div class="menu-bar-btn-container">
         <div class="summary-btn center-btn">
-          <button class="main-bar-btn" href="">
+          <button class="main-bar-btn" href="summary.html">
             <img src="/assets/icons/summary.svg" alt="" />Summary
           </button>
         </div>
         <div class="add-task-btn center-btn">
-          <button class="main-bar-btn" href="">
+          <button class="main-bar-btn" href="add_task.html">
             <img src="/assets/icons/add_task.svg" alt="" />Add Task
           </button>
         </div>
         <div class="board-btn center-btn">
-          <button class="main-bar-btn" href="">
+          <button class="main-bar-btn" href="board.html">
             <img src="/assets/icons/board.svg" alt="" />Board
           </button>
         </div>
-        <div class="contacts-btn center-btn">
+        <div class="contacts-btn center-btn disabled-link">
           <button class="main-bar-btn" href="">
             <img src="/assets/icons/contacts.svg" alt="" />Contacts
           </button>
@@ -212,24 +212,34 @@
       <div class="contacts-right">
         <div class="contacts-title-row">
           <h1>Contacts</h1>
-          <span class="contacts-title-divider"></span>
-          <span class="contacts-title-sub">Better with a team</span>
+          <div class="contacts-title-divider"></div>
+          <h3 class="contacts-title-sub">Better with a team</h3>
         </div>
-        <div class="contacts-details">
-          <div class="contacts-details-avatar avatar-tw">TW</div>
+        <div class="contact-details">
+          <div class="contacts-details-avatar">TW</div>
           <div class="contacts-details-name-row">
             <span class="contacts-details-name">Tatjana Wolf</span>
-            <span class="contacts-details-actions">
-              <img src="/assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
-              <img src="/assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
-            </span>
+            <div class="contacts-details-actions">
+              <button class="edit-btn">
+                <img src="/assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
+                <span>Edit</span>
+              </button>
+              <button class="del-btn">
+                <img src="/assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
+                <span>Delete</span>
+              </button>
+            </div>
           </div>
-          <div class="contacts-details-info">
-            <div class="contacts-details-info-label">Email</div>
-            <div class="contacts-details-info-value"><a href="mailto:wolf@gmail.com">wolf@gmail.com</a></div>
-            <div class="contacts-details-info-label">Phone</div>
-            <div class="contacts-details-info-value">+49 2222 222 22 2</div>
-          </div>
+        </div>
+        <div class="contacts-details-info">
+
+          <h4>Contact Information</h4>
+        </div>
+        <div class="mail-and-phone-container">
+          <span>Email</span>
+          <a href="mailto:wolf@gmail.com">wolf@gmail.com</a>
+          <span>Phone</span>
+          <span id="phone-number">+49 2222 222 22 2</span>
         </div>
       </div>
     </main>

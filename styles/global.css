@@ -28,14 +28,25 @@ h2 {
   margin-block-end: 0em;
 }
 
-/* h3 - regular */
+/* h2 - regular */
 h3 {
   font-size: 27px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "Inter", sans-serif;
   margin-block-start: 0;
   margin-block-end: 0;
   line-height: 120%;
+  
+}
+
+h4{
+  font-family:"Inter", sans-serif;
+  font-weight: 400;
+  color:black;
+  line-height: 120%;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-size: 20px;
 }
 
 a {
@@ -57,6 +68,7 @@ a {
   color: gray;
   cursor: default;
   text-decoration: none;
+  background-color:#091931;
 }
 
 .input-field{
