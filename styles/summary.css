@@ -219,7 +219,7 @@
   line-height: 120%;
 }
 
-/* Adjustments */
+/* Tasks Overview */
 
 .open-tasks-div {
   display: flex;
@@ -232,9 +232,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 30px;
-  padding: 21.5px 42.5px 21.5px 42.5px;
+  height: 168px;
+  width: 168px;
   cursor: pointer;
 }
 
@@ -256,9 +258,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 30px;
-  padding: 21.5px 42.5px 21.5px 42.5px;
+  height: 168px;
+  width: 168px;
   cursor: pointer;
 }
 
@@ -293,9 +297,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 30px;
-  padding: 21.5px 37.5px 21.5px 37.5px;
+  height: 168px;
+  width: 168px;
   cursor: pointer;
 }
 .awaiting-feedback-span{
