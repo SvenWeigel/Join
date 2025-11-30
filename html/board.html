@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/styles/font.css" />
     <link rel="stylesheet" href="/styles/menu-bar.css" />
     <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/modal-task-view.css">
 
     <title>Join</title>
   </head>
@@ -292,6 +293,62 @@
           </form>
         </div>
       </div>
+
+    <div class="modal-task-view-overlay d-none" id="modalTaskViewOverlay">
+      <div class="inside-modal-view-overlay">  
+        <div class="task-view-header">
+          <span>User Story</span>
+          <button><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
+        </div>
+        <div class="task-view-title">
+          <span>Kochwelt Page & Recipe Recommender</span>
+        </div>
+        <div class="task-view-description">
+          <span>Build start page with recipe recommendation.</span>
+        </div>
+        <div class="task-view-due-date">
+          <span class="due-date-span">Due Date:</span>
+          <span>20/09/2024</span>
+        </div>
+        <div class="task-view-priority">
+          <span class="priority-span-task-view">Priority:</span>
+          <div class="priority-view-container">
+           <span class="priority-span">Medium</span>
+           <img src="/assets/icons/medium_icon_orange.svg" alt="Priority Medium Icon">
+          </div>
+        </div>
+        <div class="task-view-assigned-to-container">
+          <span class="assigned-to-span">Assigned to:</span>
+          <div class="assigned-avatars-container-list">
+            <div class="assigned-avatar contact-avatar-task-view" title="Avatar">SM</div>
+            <span class="avatar-full-name" title="full Name">Sarah Miller</span>
+          </div>
+        </div>
+        <div class="subtask-task-view">
+          <span class="subtasks-span-task-view">Subtasks</span>
+          <div class="subtasks-list-container">
+            <div class="subtask-item">
+              <input type="checkbox" id="subtask1" name="subtask1">
+              <label for="subtask1">Design homepage layout</label>
+            </div>
+            <div class="subtask-item">
+              <input type="checkbox" id="subtask2" name="subtask2" checked>
+              <label for="subtask2">Implement recipe recommendation algorithm</label>
+            </div>
+            <div class="subtask-item">
+              <input type="checkbox" id="subtask3" name="subtask3">
+              <label for="subtask3">Integrate user feedback system</label>
+            </div>
+          </div>
+        </div>
+        <div class="delete-edit-btn-container">
+          <button class="delete-btn-task-view"><img src="/assets/icons/delete.svg" alt="">Delete</button>
+          <div class="task-view-separator-div"></div>
+          <button class="edit-btn-task-view"><img src="/assets/icons/edit.svg" alt="">Edit</button>
+        </div>
+      </div>
+    </div>
+
     </div>
     <script src="/scripts/header.js"></script>
     <script src="/scripts/db.js"></script>
