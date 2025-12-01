@@ -6,7 +6,6 @@
 .board-container {
   padding-top: 96px;
   width: calc(100% - 232px);
-  max-width: 1208px;
 }
 
 .board-header {
@@ -152,9 +151,19 @@
   cursor: grabbing;
 }
 
-/* Task-Card wird gerade gezogen */
+/* Task-Card wird gerade gezogen - Original bleibt halbtransparent an Ort */
 .task-card.dragging {
-  opacity: 0.4;
+  opacity: 0.3;
+}
+
+/* Clone der Karte folgt dem Cursor mit Rotation */
+.drag-preview {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  transform: rotate(-5deg);
+  opacity: 0.95;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Spalte ist ein gültiges Drop-Target */
