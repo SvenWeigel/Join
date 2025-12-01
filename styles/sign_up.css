@@ -126,3 +126,34 @@ input:focus {
     background-color: #e6e5e5;
   }
 }
+
+#signup-success-overlay{
+    position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+@keyframes slideUpToCenter{
+  from {
+    transform: translateY(100vh);
+  }
+  to{
+    transform: translateY(0);
+  }
+}
+
+.signup-success-message{
+  background-color:#2a3647;
+  color:white;
+  font-family:  "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  padding: 25px;
+  border-radius:20px;
+  animation: slideUpToCenter 0.7s
+}

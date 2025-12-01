@@ -186,6 +186,7 @@ async function handleSignupSubmit(e) {
  * Submit-Handler an das Formular.
  */
 function init() {
+
   wirePrivacyToggle(SELECTORS.privacyCheck, SELECTORS.signupBtn);
   wirePasswordConfirmValidation(SELECTORS.password, SELECTORS.confirm);
 
@@ -201,13 +202,13 @@ if (document.readyState === "loading") {
   init();
 }
 
-function preFillSignupForm() {
-  const name = document.getElementsByName("name")[0];
-  const email = document.getElementsByName("email")[0];
-  const password = document.getElementsByName("password")[0];
-  const confirm = document.getElementsByName("confirm_password")[0];
-  if (name) name.value = "Sofia Müller";
-  if (email) email.value = "Sofiam@gmail.com";
-  if (password) password.value = "mypassword123";
-  if (confirm) confirm.value = "mypassword123";
-}
+// function preFillSignupForm() {
+//   const name = document.getElementsByName("name")[0];
+//   const email = document.getElementsByName("email")[0];
+//   const password = document.getElementsByName("password")[0];
+//   const confirm = document.getElementsByName("confirm_password")[0];
+//   if (name) name.value = "Sofia Müller";
+//   if (email) email.value = "Sofiam@gmail.com";
+//   if (password) password.value = "mypassword123";
+//   if (confirm) confirm.value = "mypassword123";
+// }
