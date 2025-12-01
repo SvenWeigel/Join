@@ -145,8 +145,7 @@ async function registerAndRedirect({ name, email, password }) {
     createdAt: new Date().toISOString(),
   };
   await createUserRecord(BASE_URL, user);
-  alert(MESSAGES.saved);
-  window.location.replace("/index.html");
+  showSignupSuccessOverlay();
 }
 
 /**
@@ -200,6 +199,17 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
+}
+
+function showSignupSuccessOverlay() {
+  const overlay = document.getElementById('signup-success-overlay');
+  if (overlay) {
+    overlay.style.display = 'flex';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      window.location.replace("/index.html");
+    }, 2000); // 2 Sekunden anzeigen, dann weiterleiten
+  }
 }
 
 // function preFillSignupForm() {
