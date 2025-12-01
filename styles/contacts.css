@@ -69,6 +69,10 @@
   color: #007cee;
 }
 
+.contact-list-entry.selected .contact-avatar {
+  border: 2px solid #ffffff;
+}
+
 .contact-avatar {
   width: 42px;
   height: 42px;
