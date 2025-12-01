@@ -7,8 +7,8 @@ function getLetterSeparatorTemplate(letter) {
   return `
     <div class="letter-separator">
       <span class="letter-separator-letter">${letter}</span>
-      <div class="letter-separator-line"></div>
     </div>
+    <div class="letter-separator-line"></div>
   `;
 }
 
