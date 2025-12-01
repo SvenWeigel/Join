@@ -14,7 +14,7 @@
   <title>Contacts</title>
 </head>
 
-<body>
+<body onload="initContacts()">
   <div class="main-layout-container">
     <header>
       <div class="header-content">
@@ -72,142 +72,8 @@
           Add new contact <img src="/assets/icons/person_add.svg" class="add-contact-icon">
         </button>
 
-        <!--JavaScript: nach Alphabet ordnen & Container mit Buchstabe und Trennlinie rendern-->
-
         <div class="contacts-list">
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-bz">BZ</div>
-            <div class="contact-info">
-              <div class="contact-name">Benedikt Ziegler</div>
-              <div class="contact-email">benedikt@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-ef">EF</div>
-            <div class="contact-info">
-              <div class="contact-name">Eva Fischer</div>
-              <div class="contact-email">eva@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-em">EM</div>
-            <div class="contact-info">
-              <div class="contact-name">Emmanuel Mauer</div>
-              <div class="contact-email">emmanuelma@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-mb">MB</div>
-            <div class="contact-info">
-              <div class="contact-name">Marcel Bauer</div>
-              <div class="contact-email">bauer@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry selected">
-            <div class="contact-avatar avatar-tw">TW</div>
-            <div class="contact-info">
-              <div class="contact-name">Tatjana Wolf</div>
-              <div class="contact-email">wolf@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
-          <div class="contact-list-entry">
-            <div class="contact-avatar avatar-de">DE</div>
-            <div class="contact-info">
-              <div class="contact-name">David Eisenberg</div>
-              <div class="contact-email">davidberg@gmail.com</div>
-            </div>
-          </div>
+          <!-- Contact list rendered by JavaScript -->
         </div>
       </div>
       <div class="contacts-right">
@@ -249,6 +115,8 @@
 
   </div>
 
+  <script src="/templates/template_contacts.js"></script>
+  <script src="/scripts/contacts.js"></script>
   <script src="/scripts/header.js"></script>
 </body>
 

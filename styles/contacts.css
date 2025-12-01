@@ -184,3 +184,25 @@
     font-size:16px;
     line-height: 120%;
 }
+
+/* Letter separator styles */
+.letter-separator {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 24px 0 24px;
+}
+
+.letter-separator-letter {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    color: #2a3647;
+    padding-bottom: 10px;
+}
+
+.letter-separator-line {
+    width: 100%;
+    height: 1px;
+    background-color: #d1d1d1;
+}
