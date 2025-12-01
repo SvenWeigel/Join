@@ -1,301 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="/assets/img/login_center_logo.svg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="/styles/board.css" />
-    <link rel="stylesheet" href="/styles/board_modal.css" />
-    <link rel="stylesheet" href="/styles/global.css" />
-    <link rel="stylesheet" href="/styles/font.css" />
-    <link rel="stylesheet" href="/styles/menu-bar.css" />
-    <link rel="stylesheet" href="/styles/header.css" />
-    <link rel="stylesheet" href="/styles/modal-task-view.css">
 
-    <title>Join</title>
-  </head>
-  <body>
-    <div class="main-layout-container">
-      <header>
-        <div class="header-content">
-          <span>Kanban Project Management Tool</span>
-          <div class="header-profile-container">
-            <img src="/assets/icons/help.svg" alt="help_icon" />
-            <div class="user-badge" title="Benutzer">
-              <div class="user-avatar">SM</div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/assets/img/login_center_logo.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="/styles/board.css" />
+  <link rel="stylesheet" href="/styles/board_modal.css" />
+  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="stylesheet" href="/styles/font.css" />
+  <link rel="stylesheet" href="/styles/menu-bar.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/modal-task-view.css">
+
+  <title>Join</title>
+</head>
+
+<body>
+  <div class="main-layout-container">
+    <header>
+      <div class="header-content">
+        <span>Kanban Project Management Tool</span>
+        <div class="header-profile-container">
+          <img src="/assets/icons/help.svg" alt="help_icon" />
+          <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
+            <div class="user-avatar">SM</div>
           </div>
         </div>
-      </header>
-
-      <aside class="menu-bar-container">
-        <div class="join-logo-container">
-          <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
+        <div class="profile-options d-none" id="profile-options">
+          <a href="legal_notice.html">Legal Notice</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+          <a href="../index.html">Log Out</a>
         </div>
+      </div>
+    </header>
 
-        <div class="menu-bar-btn-container">
-          <div class="summary-btn center-btn">
-            <a class="main-bar-btn" href="/html/summary.html">
-              <img src="/assets/icons/summary.svg" alt="" />Summary
-            </a>
-          </div>
-          <div class="add-task-btn center-btn">
-            <a class="main-bar-btn" href="/html/add_task.html">
-              <img src="/assets/icons/add_task.svg" alt="" />Add Task
-            </a>
-          </div>
-          <div class="board-btn center-btn">
-            <a class="main-bar-btn" href="/html/board.html">
-              <img src="/assets/icons/board.svg" alt="" />Board
-            </a>
-          </div>
-          <div class="contacts-btn center-btn">
-            <a class="main-bar-btn" href="/html/contacts.html">
-              <img src="/assets/icons/contacts.svg" alt="" />Contacts
-            </a>
-          </div>
+    <aside class="menu-bar-container">
+      <div class="join-logo-container">
+        <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
+      </div>
+
+      <div class="menu-bar-btn-container">
+        <div class="summary-btn center-btn">
+          <a class="main-bar-btn" href="/html/summary.html">
+            <img src="/assets/icons/summary.svg" alt="" />Summary
+          </a>
         </div>
-
-        <div class="legal-container">
-          <div class="privacy-btn">
-            <a href="/html/privacy_policy.html">Privacy Policy</a>
-          </div>
-          <div class="legal-link">
-            <a href="/html/legal_notice.html">Legal Notice</a>
-          </div>
+        <div class="add-task-btn center-btn">
+          <a class="main-bar-btn" href="/html/add_task.html">
+            <img src="/assets/icons/add_task.svg" alt="" />Add Task
+          </a>
         </div>
-      </aside>
-      
-      <main class="board-container">
-        <div class="board-header">
-          <h1>Board</h1>
-          <div class="find-add-container">
-            <input
-              type="text"
-              id="findTask"
-              class="input-field"
-              placeholder="Find Task"
-            />
-            <button id="addTaskBtn">
-              Add task<img src="/assets/icons/add.svg" />
-            </button>
-          </div>
+        <div class="board-btn center-btn">
+          <a class="main-bar-btn" href="/html/board.html">
+            <img src="/assets/icons/board.svg" alt="" />Board
+          </a>
         </div>
-        <div class="board-columns">
-          <div class="column">
-            <div class="column-header">
-              <h2>To do</h2>
-              <img src="/assets/icons/plus-button.svg" />
-            </div>
-            <div class="column-content"></div>
-          </div>
-          <div class="column">
-            <div class="column-header">
-              <h2>In progress</h2>
-              <img src="/assets/icons/plus-button.svg" />
-            </div>
-            <div class="column-content"></div>
-          </div>
-          <div class="column">
-            <div class="column-header">
-              <h2>Await feedback</h2>
-              <img src="/assets/icons/plus-button.svg" />
-            </div>
-            <div class="column-content"></div>
-          </div>
-          <div class="column">
-            <div class="column-header">
-              <h2>Done</h2>
-            </div>
-            <div class="column-content"></div>
-          </div>
-        </div>
-      </main>
-
-      <!-- Add Task Modal -->
-      <div id="addTaskModalOverlay" class="modal-overlay" aria-hidden="true">
-        <div
-          class="add-task-modal"
-          role="dialog"
-          aria-labelledby="addTaskModalTitle"
-        >
-          <button
-            type="button"
-            id="closeAddTaskBtn"
-            class="modal-close"
-            aria-label="Close"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path
-                d="M1 1L13 13M1 13L13 1"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </button>
-
-          <div class="modal-header">
-            <h2 id="addTaskModalTitle">Add Task</h2>
-          </div>
-
-          <form id="addTaskForm">
-            <div class="add-task-container">
-              <!-- Linke Spalte -->
-              <div class="left-content">
-                <div class="title-section">
-                  <label for="taskTitle"
-                    >Title<span class="required-star">*</span></label
-                  >
-                  <input
-                    id="taskTitle"
-                    name="title"
-                    class="titel-input"
-                    type="text"
-                    placeholder="Enter a title"
-                    required
-                  />
-                </div>
-                <div class="description-section">
-                  <span>Description</span>
-                  <textarea
-                    name="description"
-                    maxlength="440"
-                    placeholder="Enter a Description"
-                  ></textarea>
-                </div>
-                <div class="due-date-section">
-                  <label for="taskDueDate"
-                    >Due date<span class="required-star">*</span></label
-                  >
-                  <input
-                    id="taskDueDate"
-                    name="due"
-                    class="due-date-input"
-                    type="date"
-                    placeholder="dd/mm/yyyy"
-                    required
-                  />
-                </div>
-              </div>
-
-              <!-- Trennlinie -->
-              <div class="seperator-content"></div>
-
-              <!-- Rechte Spalte -->
-              <div class="right-content">
-                <div class="priority-section">
-                  <span>Priority</span>
-                  <div class="priority-buttons-container">
-                    <button
-                      type="button"
-                      class="priority-btn"
-                      data-priority="urgent"
-                    >
-                      Urgent
-                      <img
-                        src="/assets/icons/urgent_icon.svg"
-                        alt="Urgent"
-                        class="prio-icon"
-                      />
-                    </button>
-                    <button
-                      type="button"
-                      class="priority-btn active"
-                      data-priority="medium"
-                    >
-                      Medium
-                      <img
-                        src="/assets/icons/medium_icon_orange.svg"
-                        alt="Medium"
-                        class="prio-icon"
-                      />
-                    </button>
-                    <button
-                      type="button"
-                      class="priority-btn"
-                      data-priority="low"
-                    >
-                      Low
-                      <img
-                        src="/assets/icons/low_icon.svg"
-                        alt="Low"
-                        class="prio-icon"
-                      />
-                    </button>
-                  </div>
-                </div>
-
-                <div class="assigned-section">
-                  <label for="taskAssignee">Assigned to</label>
-                  <select
-                    id="taskAssignee"
-                    name="assignee"
-                    class="select-input"
-                  >
-                    <option value="">Select contacts to assign</option>
-                  </select>
-                </div>
-
-                <div class="category-section">
-                  <label for="taskCategory"
-                    >Category<span class="required-star">*</span></label
-                  >
-                  <select
-                    id="taskCategory"
-                    name="category"
-                    class="select-input"
-                    required
-                  >
-                    <option value="" disabled selected hidden>
-                      Select task category
-                    </option>
-                    <option value="technical">Technical Task</option>
-                    <option value="userstory">User Story</option>
-                  </select>
-                </div>
-
-                <div class="subtasks-section">
-                  <label for="taskSubtasks">Subtasks</label>
-                  <input
-                    id="taskSubtasks"
-                    name="subtasks"
-                    class="subtask-input"
-                    type="text"
-                    placeholder="Add new subtask"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Footer mit Required-Hinweis und Buttons -->
-            <div class="modal-footer-wrapper">
-              <span class="required-note"
-                ><span class="required-star">*</span>This field is
-                required</span
-              >
-              <div class="modal-footer">
-                <button type="button" id="cancelAddTask" class="btn-cancel">
-                  Cancel
-                  <img class="modal-close-icon" src="/assets/icons/iconoir_cancel.svg" alt="Close" />
-                </button>
-                <button type="submit" class="btn-create-task">
-                  Create Task
-                    <img class="check-icon" src="/assets/icons/check.svg" alt="check" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </form>
+        <div class="contacts-btn center-btn">
+          <a class="main-bar-btn" href="/html/contacts.html">
+            <img src="/assets/icons/contacts.svg" alt="" />Contacts
+          </a>
         </div>
       </div>
 
+      <div class="legal-container">
+        <div class="privacy-btn">
+          <a href="/html/privacy_policy.html">Privacy Policy</a>
+        </div>
+        <div class="legal-link">
+          <a href="/html/legal_notice.html">Legal Notice</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="board-container">
+      <div class="board-header">
+        <h1>Board</h1>
+        <div class="find-add-container">
+          <input type="text" id="findTask" class="input-field" placeholder="Find Task" />
+          <button id="addTaskBtn">
+            Add task<img src="/assets/icons/add.svg" />
+          </button>
+        </div>
+      </div>
+      <div class="board-columns">
+        <div class="column">
+          <div class="column-header">
+            <h2>To do</h2>
+            <img src="/assets/icons/plus-button.svg" />
+          </div>
+          <div class="column-content"></div>
+        </div>
+        <div class="column">
+          <div class="column-header">
+            <h2>In progress</h2>
+            <img src="/assets/icons/plus-button.svg" />
+          </div>
+          <div class="column-content"></div>
+        </div>
+        <div class="column">
+          <div class="column-header">
+            <h2>Await feedback</h2>
+            <img src="/assets/icons/plus-button.svg" />
+          </div>
+          <div class="column-content"></div>
+        </div>
+        <div class="column">
+          <div class="column-header">
+            <h2>Done</h2>
+          </div>
+          <div class="column-content"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Add Task Modal -->
+    <div id="addTaskModalOverlay" class="modal-overlay" aria-hidden="true">
+      <div class="add-task-modal" role="dialog" aria-labelledby="addTaskModalTitle">
+        <button type="button" id="closeAddTaskBtn" class="modal-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+
+        <div class="modal-header">
+          <h2 id="addTaskModalTitle">Add Task</h2>
+        </div>
+
+        <form id="addTaskForm">
+          <div class="add-task-container">
+            <!-- Linke Spalte -->
+            <div class="left-content">
+              <div class="title-section">
+                <label for="taskTitle">Title<span class="required-star">*</span></label>
+                <input id="taskTitle" name="title" class="titel-input" type="text" placeholder="Enter a title"
+                  required />
+              </div>
+              <div class="description-section">
+                <span>Description</span>
+                <textarea name="description" maxlength="440" placeholder="Enter a Description"></textarea>
+              </div>
+              <div class="due-date-section">
+                <label for="taskDueDate">Due date<span class="required-star">*</span></label>
+                <input id="taskDueDate" name="due" class="due-date-input" type="date" placeholder="dd/mm/yyyy"
+                  required />
+              </div>
+            </div>
+
+            <!-- Trennlinie -->
+            <div class="seperator-content"></div>
+
+            <!-- Rechte Spalte -->
+            <div class="right-content">
+              <div class="priority-section">
+                <span>Priority</span>
+                <div class="priority-buttons-container">
+                  <button type="button" class="priority-btn" data-priority="urgent">
+                    Urgent
+                    <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+                  </button>
+                  <button type="button" class="priority-btn active" data-priority="medium">
+                    Medium
+                    <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
+                  </button>
+                  <button type="button" class="priority-btn" data-priority="low">
+                    Low
+                    <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+                  </button>
+                </div>
+              </div>
+
+              <div class="assigned-section">
+                <label for="taskAssignee">Assigned to</label>
+                <select id="taskAssignee" name="assignee" class="select-input">
+                  <option value="">Select contacts to assign</option>
+                </select>
+              </div>
+
+              <div class="category-section">
+                <label for="taskCategory">Category<span class="required-star">*</span></label>
+                <select id="taskCategory" name="category" class="select-input" required>
+                  <option value="" disabled selected hidden>
+                    Select task category
+                  </option>
+                  <option value="technical">Technical Task</option>
+                  <option value="userstory">User Story</option>
+                </select>
+              </div>
+
+              <div class="subtasks-section">
+                <label for="taskSubtasks">Subtasks</label>
+                <input id="taskSubtasks" name="subtasks" class="subtask-input" type="text"
+                  placeholder="Add new subtask" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer mit Required-Hinweis und Buttons -->
+          <div class="modal-footer-wrapper">
+            <span class="required-note"><span class="required-star">*</span>This field is
+              required</span>
+            <div class="modal-footer">
+              <button type="button" id="cancelAddTask" class="btn-cancel">
+                Cancel
+                <img class="modal-close-icon" src="/assets/icons/iconoir_cancel.svg" alt="Close" />
+              </button>
+              <button type="submit" class="btn-create-task">
+                Create Task
+                <img class="check-icon" src="/assets/icons/check.svg" alt="check" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="modal-task-view-overlay d-none" id="modalTaskViewOverlay">
-      <div class="inside-modal-view-overlay">  
+      <div class="inside-modal-view-overlay">
         <div class="task-view-header">
           <span>User Story</span>
           <button><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
@@ -313,8 +235,8 @@
         <div class="task-view-priority">
           <span class="priority-span-task-view">Priority:</span>
           <div class="priority-view-container">
-           <span class="priority-span">Medium</span>
-           <img src="/assets/icons/medium_icon_orange.svg" alt="Priority Medium Icon">
+            <span class="priority-span">Medium</span>
+            <img src="/assets/icons/medium_icon_orange.svg" alt="Priority Medium Icon">
           </div>
         </div>
         <div class="task-view-assigned-to-container">
@@ -349,17 +271,18 @@
       </div>
     </div>
 
-    </div>
-    <script src="/scripts/header.js"></script>
-    <script src="/scripts/db.js"></script>
-    <script src="/templates/template_board.js"></script>
-    <script src="/render/render_task.js"></script>
-    <script src="/scripts/drag_and_drop.js"></script>
-    <script src="/scripts/board_modal.js"></script>
-    <script src="/scripts/script.js"></script>
-    <script>
-      // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
-      document.addEventListener("DOMContentLoaded", renderAllTasks);
-    </script>
-  </body>
+  </div>
+  <script src="/scripts/header.js"></script>
+  <script src="/scripts/db.js"></script>
+  <script src="/templates/template_board.js"></script>
+  <script src="/render/render_task.js"></script>
+  <script src="/scripts/drag_and_drop.js"></script>
+  <script src="/scripts/board_modal.js"></script>
+  <script src="/scripts/script.js"></script>
+  <script>
+    // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
+    document.addEventListener("DOMContentLoaded", renderAllTasks);
+  </script>
+</body>
+
 </html>

@@ -68,3 +68,8 @@ if (document.readyState === "loading") {
 }
 
 window.applyInitials = applyInitials;
+
+
+function showProfileOptions(){
+  document.getElementById("profile-options").classList.toggle('d-none');
+}
