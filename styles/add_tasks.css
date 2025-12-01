@@ -60,8 +60,8 @@
 .buttons-actions {
   display: flex;
   justify-content: end;
-  margin-top:130px;
-  gap:16px;
+  margin-top: 130px;
+  gap: 16px;
 }
 
 .required-star {
@@ -178,8 +178,8 @@ textarea {
   font-size: 20px;
 }
 
-.btn-create{
-    display: flex;
+.btn-create {
+  display: flex;
   align-items: center;
   font-family: "Inter", sans-serif;
   font-weight: 700;
@@ -195,18 +195,94 @@ textarea {
   gap: 4px;
 }
 
-.btn-clear{
+.btn-clear {
   display: flex;
   align-items: center;
   font-family: "Inter", sans-serif;
-  font-weight: 400;  
+  font-weight: 400;
   font-size: 20px;
-  color:#2A3647;
+  color: #2a3647;
   white-space: nowrap;
-  background-color: #F6F7F8;
+  background-color: #f6f7f8;
   border-radius: 8px;
   cursor: pointer;
-  border: 1px solid #2A3647;
+  border: 1px solid #2a3647;
   padding: 8px 16px;
   gap: 4px;
+}
+
+/* Priority Button Active States */
+.priority-btn.active[data-priority="urgent"] {
+  background-color: #ff3d00;
+  color: white;
+}
+
+.priority-btn.active[data-priority="urgent"] .prio-icon {
+  filter: brightness(0) invert(1);
+}
+
+.priority-btn.active[data-priority="medium"] {
+  background-color: #ffa800;
+  color: white;
+}
+
+.priority-btn.active[data-priority="medium"] .prio-icon {
+  filter: brightness(0) invert(1);
+}
+
+.priority-btn.active[data-priority="low"] {
+  background-color: #7ae229;
+  color: white;
+}
+
+.priority-btn.active[data-priority="low"] .prio-icon {
+  filter: brightness(0) invert(1);
+}
+
+.priority-btn:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Footer Wrapper */
+.form-footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding: 0 96px 48px 96px;
+}
+
+.required-note {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Success Message */
+.success-message {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2a3647;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.success-message.show {
+  bottom: 50px;
+}
+
+.success-message img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
 }
