@@ -47,10 +47,43 @@ let contacts = [
 ];
 
 /**
+ * Currently selected contact index (-1 means no contact selected)
+ */
+let selectedContactIndex = -1;
+
+/**
  * Initializes the contacts page
  */
 function initContacts() {
   renderContactList();
+  renderContactDetails(null);
+}
+
+/**
+ * Selects a contact and displays its details
+ * @param {number} index - Index of the contact in the contacts array
+ */
+function selectContact(index) {
+  selectedContactIndex = index;
+  renderContactDetails(contacts[index]);
+  highlightSelectedContact(index);
+}
+
+/**
+ * Highlights the selected contact in the list
+ * @param {number} index - Index of the selected contact
+ */
+function highlightSelectedContact(index) {
+  let entries = document.querySelectorAll(".contact-list-entry");
+  for (let i = 0; i < entries.length; i++) {
+    entries[i].classList.remove("selected");
+  }
+  let selectedEntry = document.querySelector(
+    `.contact-list-entry[onclick="selectContact(${index})"]`
+  );
+  if (selectedEntry) {
+    selectedEntry.classList.add("selected");
+  }
 }
 
 /**
@@ -86,23 +119,4 @@ function groupContactsByLetter(contactList) {
     grouped[firstLetter].push(contact);
   }
   return grouped;
-}
-
-/**
- * Renders the contact list with alphabetical separators
- */
-function renderContactList() {
-  let contactsListElement = document.querySelector(".contacts-list");
-  let groupedContacts = groupContactsByLetter(contacts);
-  let letters = Object.keys(groupedContacts).sort();
-  let html = "";
-  for (let i = 0; i < letters.length; i++) {
-    let letter = letters[i];
-    html += getLetterSeparatorTemplate(letter);
-    let contactsInGroup = groupedContacts[letter];
-    for (let j = 0; j < contactsInGroup.length; j++) {
-      html += getContactListEntryTemplate(contactsInGroup[j]);
-    }
-  }
-  contactsListElement.innerHTML = html;
 }

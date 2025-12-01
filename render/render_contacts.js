@@ -1,0 +1,33 @@
+/**
+ * Renders the contact list with alphabetical separators
+ */
+function renderContactList() {
+  let contactsListElement = document.querySelector(".contacts-list");
+  let groupedContacts = groupContactsByLetter(contacts);
+  let letters = Object.keys(groupedContacts).sort();
+  let html = "";
+  for (let i = 0; i < letters.length; i++) {
+    let letter = letters[i];
+    html += getLetterSeparatorTemplate(letter);
+    let contactsInGroup = groupedContacts[letter];
+    for (let j = 0; j < contactsInGroup.length; j++) {
+      let contact = contactsInGroup[j];
+      let originalIndex = contacts.indexOf(contact);
+      html += getContactListEntryTemplate(contact, originalIndex);
+    }
+  }
+  contactsListElement.innerHTML = html;
+}
+
+/**
+ * Renders the contact details view
+ * @param {Object} contact - Contact object to display, or null to clear
+ */
+function renderContactDetails(contact) {
+  let detailsContainer = document.querySelector(".contact-details-container");
+  if (contact) {
+    detailsContainer.innerHTML = getContactDetailsTemplate(contact);
+  } else {
+    detailsContainer.innerHTML = "";
+  }
+}
