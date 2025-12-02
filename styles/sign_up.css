@@ -157,3 +157,41 @@ input:focus {
   border-radius:20px;
   animation: slideUpToCenter 0.7s
 }
+
+@media (max-width: 630px){
+  .login-site-logo-container{
+    width: 64px;
+    height: 78px;
+  }
+  .login-site-logo{
+    width: 64px;
+    height: 78px;
+  }
+
+  .sign-up-form{
+    padding: 32px 16px;
+    width: 364px;
+  }
+
+  .sign-up-input-box{
+    width: 100%;
+  }
+  
+  .sign-up-input-container{
+    align-items: center;
+  }
+
+  .sign-up-form-header h1 {
+    font-size:47px;
+  }
+  .border-bottom-div{
+    width: 88px;
+  }
+  .sign-up-form-arrow-left-container {
+    top:44px;
+  }
+  .login-site-logo-container{
+    top:37px;
+    left: 38px;
+  }
+}
