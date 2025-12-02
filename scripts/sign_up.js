@@ -102,7 +102,8 @@ async function createUserRecord(baseUrl, user) {
     body: JSON.stringify(user),
   });
   if (!res.ok) throw new Error(MESSAGES.saveError);
-  return res.json();
+  const data = await res.json();
+  return { id: data.name, ...user };
 }
 
 /**
@@ -185,7 +186,6 @@ async function handleSignupSubmit(e) {
  * Submit-Handler an das Formular.
  */
 function init() {
-
   wirePrivacyToggle(SELECTORS.privacyCheck, SELECTORS.signupBtn);
   wirePasswordConfirmValidation(SELECTORS.password, SELECTORS.confirm);
 
@@ -202,11 +202,11 @@ if (document.readyState === "loading") {
 }
 
 function showSignupSuccessOverlay() {
-  const overlay = document.getElementById('signup-success-overlay');
+  const overlay = document.getElementById("signup-success-overlay");
   if (overlay) {
-    overlay.style.display = 'flex';
+    overlay.style.display = "flex";
     setTimeout(() => {
-      overlay.style.display = 'none';
+      overlay.style.display = "none";
       window.location.replace("/index.html");
     }, 2000); // 2 Sekunden anzeigen, dann weiterleiten
   }

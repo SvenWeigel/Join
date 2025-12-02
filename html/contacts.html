@@ -1,81 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/assets/img/login_center_logo.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/font.css" />
+    <link rel="stylesheet" href="/styles/menu-bar.css" />
+    <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/contacts.css" />
+    <link rel="stylesheet" href="/styles/contacts_modal.css" />
+    <script src="/scripts/script.js"></script>
+    <title>Contacts</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/assets/img/login_center_logo.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href="/styles/font.css" />
-  <link rel="stylesheet" href="/styles/menu-bar.css" />
-  <link rel="stylesheet" href="/styles/header.css" />
-  <link rel="stylesheet" href="/styles/contacts.css" />
-  <script src="/scripts/script.js"></script>
-  <title>Contacts</title>
-</head>
-
-<body onload="initContacts()">
-  <div class="main-layout-container">
-    <header>
-      <div class="header-content">
-        <span>Kanban Project Management Tool</span>
-        <div class="header-profile-container">
-          <img src="/assets/icons/help.svg" alt="help_icon" />
-          <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
-            <div class="user-avatar">SM</div>
+  <body onload="initContacts()">
+    <div class="main-layout-container">
+      <header>
+        <div class="header-content">
+          <span>Kanban Project Management Tool</span>
+          <div class="header-profile-container">
+            <img src="/assets/icons/help.svg" alt="help_icon" />
+            <div
+              class="user-badge"
+              onclick="showProfileOptions()"
+              title="Benutzer"
+            >
+              <div class="user-avatar">SM</div>
+            </div>
+          </div>
+          <div class="profile-options d-none" id="profile-options">
+            <a href="legal_notice.html">Legal Notice</a>
+            <a href="privacy_policy.html">Privacy Policy</a>
+            <a href="../index.html">Log Out</a>
           </div>
         </div>
-        <div class="profile-options d-none" id="profile-options">
-          <a href="legal_notice.html">Legal Notice</a>
-          <a href="privacy_policy.html">Privacy Policy</a>
-          <a href="../index.html">Log Out</a>
-        </div>
-      </div>
-    </header>
+      </header>
 
-    <aside class="menu-bar-container">
-      <div class="join-logo-container">
-        <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
-      </div>
+      <aside class="menu-bar-container">
+        <div class="join-logo-container">
+          <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
+        </div>
 
-      <div class="menu-bar-btn-container">
-        <div class="summary-btn center-btn">
-          <a class="main-bar-btn" href="summary.html">
-            <img src="/assets/icons/summary.svg" alt="" />Summary
-          </a>
+        <div class="menu-bar-btn-container">
+          <div class="summary-btn center-btn">
+            <a class="main-bar-btn" href="summary.html">
+              <img src="/assets/icons/summary.svg" alt="" />Summary
+            </a>
+          </div>
+          <div class="add-task-btn center-btn">
+            <a class="main-bar-btn" href="add_task.html">
+              <img src="/assets/icons/add_task.svg" alt="" />Add Task
+            </a>
+          </div>
+          <div class="board-btn center-btn">
+            <a class="main-bar-btn" href="board.html">
+              <img src="/assets/icons/board.svg" alt="" />Board
+            </a>
+          </div>
+          <div class="contacts-btn center-btn disabled-link">
+            <a class="main-bar-btn" href="">
+              <img src="/assets/icons/contacts.svg" alt="" />Contacts
+            </a>
+          </div>
         </div>
-        <div class="add-task-btn center-btn">
-          <a class="main-bar-btn" href="add_task.html">
-            <img src="/assets/icons/add_task.svg" alt="" />Add Task
-          </a>
-        </div>
-        <div class="board-btn center-btn">
-          <a class="main-bar-btn" href="board.html">
-            <img src="/assets/icons/board.svg" alt="" />Board
-          </a>
-        </div>
-        <div class="contacts-btn center-btn disabled-link">
-          <a class="main-bar-btn" href="">
-            <img src="/assets/icons/contacts.svg" alt="" />Contacts
-          </a>
-        </div>
-      </div>
 
-      <div class="legal-container">
-        <div class="privacy-btn">
-          <a href="/html/privacy_policy.html">Privacy Policy</a>
+        <div class="legal-container">
+          <div class="privacy-btn">
+            <a href="/html/privacy_policy.html">Privacy Policy</a>
+          </div>
+          <div class="legal-link">
+            <a href="/html/legal_notice.html">Legal Notice</a>
+          </div>
         </div>
-        <div class="legal-link">
-          <a href="/html/legal_notice.html">Legal Notice</a>
-        </div>
-      </div>
-    </aside>
+      </aside>
 
-    <main class="contacts-container">
-      <div class="contacts-left">
-        <button class="add-contact-btn">
-          Add new contact <img src="/assets/icons/person_add.svg" class="add-contact-icon">
-        </button>
+      <main class="contacts-container">
+        <div class="contacts-left">
+          <button class="add-contact-btn" onclick="openAddContactModal()">
+            Add new contact
+            <img src="/assets/icons/person_add.svg" class="add-contact-icon" />
+          </button>
 
         <div class="contacts-list">
           <!-- Contact list rendered by JavaScript -->
@@ -121,13 +130,239 @@
     </main>
   </div>
 
+    <!-- Add Contact Modal -->
+    <div
+      id="addContactModalOverlay"
+      class="contact-modal-overlay"
+      aria-hidden="true"
+    >
+      <div
+        class="add-contact-modal"
+        role="dialog"
+        aria-labelledby="addContactModalTitle"
+      >
+        <!-- Linke Seite (dunkel) -->
+        <div class="add-contact-modal-left">
+          <img
+            src="/assets/img/join_logo_vector.svg"
+            alt="Join Logo"
+            class="modal-logo"
+          />
+          <h2 id="addContactModalTitle">Add contact</h2>
+          <p class="modal-subtitle">Tasks are better with a team!</p>
+          <div class="modal-title-divider"></div>
+        </div>
+        <!-- Rechte Seite (Formular) -->
+        <div class="add-contact-modal-right">
+          <button
+            type="button"
+            class="modal-close-btn"
+            onclick="closeAddContactModal()"
+            aria-label="Close"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M1 1L13 13M1 13L13 1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <div class="modal-content-wrapper">
+            <div class="modal-badge-container">
+              <img
+                src="/assets/icons/clear-badge.svg"
+                alt="Contact Badge"
+                class="modal-contact-badge"
+              />
+            </div>
+            <div class="modal-inputs-container">
+              <div class="contact-input-group">
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  placeholder="Name"
+                  required
+                />
+                <img
+                  src="/assets/icons/person.svg"
+                  alt="Person"
+                  class="input-icon"
+                />
+              </div>
+              <div class="contact-input-group">
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <img
+                  src="/assets/icons/mail.svg"
+                  alt="Email"
+                  class="input-icon"
+                />
+              </div>
+              <div class="contact-input-group">
+                <input
+                  type="tel"
+                  id="contactPhone"
+                  name="phone"
+                  placeholder="Phone"
+                />
+                <img
+                  src="/assets/icons/call.svg"
+                  alt="Phone"
+                  class="input-icon"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-buttons-wrapper">
+            <form
+              id="addContactForm"
+              class="add-contact-form"
+              onsubmit="handleAddContact(event)"
+            >
+              <div class="modal-form-buttons">
+                <button
+                  type="button"
+                  class="btn-cancel-contact"
+                  onclick="closeAddContactModal()"
+                >
+                  Cancel <span class="cancel-x">&times;</span>
+                </button>
+                <button type="submit" class="btn-create-contact">
+                  Create contact
+                  <img src="/assets/icons/check.svg" alt="check" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  </div>
+    <!-- Edit Contact Modal -->
+    <div
+      id="editContactModalOverlay"
+      class="contact-modal-overlay"
+      aria-hidden="true"
+    >
+      <div
+        class="add-contact-modal edit-contact-modal"
+        role="dialog"
+        aria-labelledby="editContactModalTitle"
+      >
+        <!-- Linke Seite (dunkel) -->
+        <div class="add-contact-modal-left">
+          <img
+            src="/assets/img/join_logo_vector.svg"
+            alt="Join Logo"
+            class="modal-logo"
+          />
+          <h2 id="editContactModalTitle">Edit contact</h2>
+          <div class="modal-title-divider"></div>
+        </div>
+        <!-- Rechte Seite (Formular) -->
+        <div class="add-contact-modal-right">
+          <button
+            type="button"
+            class="modal-close-btn"
+            onclick="closeEditContactModal()"
+            aria-label="Close"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M1 1L13 13M1 13L13 1"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <div class="modal-content-wrapper">
+            <div class="modal-badge-container">
+              <div id="editContactBadge" class="edit-contact-badge">AM</div>
+            </div>
+            <div class="modal-inputs-container">
+              <div class="contact-input-group">
+                <input
+                  type="text"
+                  id="editContactName"
+                  name="name"
+                  placeholder="Name"
+                  required
+                />
+                <img
+                  src="/assets/icons/person.svg"
+                  alt="Person"
+                  class="input-icon"
+                />
+              </div>
+              <div class="contact-input-group">
+                <input
+                  type="email"
+                  id="editContactEmail"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <img
+                  src="/assets/icons/mail.svg"
+                  alt="Email"
+                  class="input-icon"
+                />
+              </div>
+              <div class="contact-input-group">
+                <input
+                  type="tel"
+                  id="editContactPhone"
+                  name="phone"
+                  placeholder="Phone"
+                />
+                <img
+                  src="/assets/icons/call.svg"
+                  alt="Phone"
+                  class="input-icon"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-buttons-wrapper">
+            <form
+              id="editContactForm"
+              class="add-contact-form"
+              onsubmit="handleEditContact(event)"
+            >
+              <div class="modal-form-buttons">
+                <button
+                  type="button"
+                  class="btn-delete-contact"
+                  onclick="handleDeleteContact()"
+                >
+                  Delete
+                </button>
+                <button type="submit" class="btn-save-contact">
+                  Save
+                  <img src="/assets/icons/check.svg" alt="check" />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <script src="/templates/template_contacts.js"></script>
-  <script src="/scripts/contacts.js"></script>
-  <script src="/render/render_contacts.js"></script>
-  <script src="/scripts/header.js"></script>
-</body>
-
+    3
+    <script src="/scripts/db.js"></script>
+    <script src="/templates/template_contacts.js"></script>
+    <script src="/scripts/contacts.js"></script>
+    <script src="/scripts/contact_modal.js"></script>
+    <script src="/render/render_contacts.js"></script>
+    <script src="/scripts/header.js"></script>
+  </body>
 </html>

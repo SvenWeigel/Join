@@ -14,14 +14,13 @@ function getLetterSeparatorTemplate(letter) {
 
 /**
  * Generates the HTML template for a single contact list entry
- * @param {Object} contact - Contact object with name, email, phone, color
- * @param {number} index - Index of the contact in the array
+ * @param {Object} contact - Contact object with id, name, email, phone, color
  * @returns {string} HTML string for the contact entry
  */
-function getContactListEntryTemplate(contact, index) {
+function getContactListEntryTemplate(contact) {
   let initials = getInitials(contact.name);
   return `
-    <div class="contact-list-entry" onclick="selectContact(${index})">
+    <div class="contact-list-entry" data-contact-id="${contact.id}" onclick="selectContact('${contact.id}')">
       <div class="contact-avatar" style="background-color: ${contact.color}">${initials}</div>
       <div class="contact-info">
         <div class="contact-name">${contact.name}</div>
@@ -33,7 +32,7 @@ function getContactListEntryTemplate(contact, index) {
 
 /**
  * Generates the HTML template for contact details view
- * @param {Object} contact - Contact object with name, email, phone, color
+ * @param {Object} contact - Contact object with id, name, email, phone, color
  * @returns {string} HTML string for the contact details
  */
 function getContactDetailsTemplate(contact) {
@@ -44,11 +43,11 @@ function getContactDetailsTemplate(contact) {
       <div class="contacts-details-name-row">
         <span class="contacts-details-name">${contact.name}</span>
         <div class="contacts-details-actions">
-          <button class="edit-btn">
+          <button class="edit-btn" onclick="openEditContactModal('${contact.id}')">
             <img src="/assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
             <span>Edit</span>
           </button>
-          <button class="del-btn">
+          <button class="del-btn" onclick="deleteContactFromDetails('${contact.id}')">
             <img src="/assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
             <span>Delete</span>
           </button>
