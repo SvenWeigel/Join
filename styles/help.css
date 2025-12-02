@@ -1,0 +1,22 @@
+.main-layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.help-content-div {
+  margin-left: 96px;
+  margin-right: 128px;
+  max-width: 1112px;
+  padding-top: 32px;
+  padding-bottom: 96px;
+}
+
+.title-positioning {
+  padding: 110px 96px 48px 96px;
+}
+
+.help-container {
+  width: calc(100% - 232px);
+  max-width: 1208px;
+  margin-top: 110px;
+}
