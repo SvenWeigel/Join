@@ -120,3 +120,15 @@ function groupContactsByLetter(contactList) {
   }
   return grouped;
 }
+
+/**
+ * Deletes a contact from the details view
+ * @param {number} index - Index of the contact to delete
+ */
+function deleteContactFromDetails(index) {
+  contacts.splice(index, 1);
+  renderContactList();
+  renderContactDetails(null);
+  selectedContactIndex = -1;
+}
+

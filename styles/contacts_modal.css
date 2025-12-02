@@ -1,0 +1,379 @@
+/* ==========================================================================
+   ADD CONTACT MODAL STYLES
+   ========================================================================== */
+
+.contact-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+
+.contact-modal-overlay.open {
+  display: flex;
+}
+
+.add-contact-modal {
+  display: flex;
+  width: 1000px;
+  max-width: calc(100% - 40px);
+  height: auto;
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  animation: slideInModal 0.3s ease-out;
+}
+
+@keyframes slideInModal {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Linke Seite des Modals (dunkel) */
+.add-contact-modal-left {
+  background-color: #2a3647;
+  width: 400px;
+  min-width: 400px;
+  padding: 66px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.add-contact-modal-left .modal-logo {
+  width: 55px;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.add-contact-modal-left h2 {
+  font-size: 47px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: white;
+}
+
+.add-contact-modal-left .modal-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  color: white;
+}
+
+.modal-title-divider {
+  width: 90px;
+  height: 3px;
+  background-color: #29abe2;
+  margin-top: 24px;
+}
+
+/* Rechte Seite des Modals (Formular) */
+.add-contact-modal-right {
+  background-color: white;
+  flex: 1;
+  padding: 48px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  position: relative;
+}
+
+/* Wrapper für Badge und Input-Felder */
+.modal-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Wrapper für Buttons */
+.modal-buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #24303a;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.modal-badge-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-contact-badge {
+  width: 120px;
+  height: 120px;
+}
+
+/* Container für Input-Felder */
+.modal-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Formular Styles */
+.add-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.contact-input-group {
+  position: relative;
+  width: 100%;
+}
+
+.contact-input-group input {
+  width: 100%;
+  padding: 12px 48px 12px 16px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  color: #2a3647;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-input-group input::placeholder {
+  color: #d1d1d1;
+}
+
+.contact-input-group input:focus {
+  border-color: #2a3647;
+}
+
+.contact-input-group .input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* Modal Footer Buttons */
+.modal-form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.btn-cancel-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: white;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel-contact:hover {
+  border-color: #29abe2;
+  color: #29abe2;
+}
+
+.btn-cancel-contact .cancel-x {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.btn-create-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #2a3647;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-create-contact:hover {
+  background: #091931;
+}
+
+.btn-create-contact img {
+  width: 16px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+}
+
+/* ==========================================================================
+   EDIT CONTACT MODAL STYLES
+   ========================================================================== */
+
+/* Edit Contact Badge (mit Farbe und Initialen) */
+.edit-contact-badge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 47px;
+  font-weight: 500;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Delete Button für Edit Modal */
+.btn-delete-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: white;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.2s ease;
+}
+
+.btn-delete-contact:hover {
+  border-color: #29abe2;
+  color: #29abe2;
+}
+
+/* Save Button für Edit Modal */
+.btn-save-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #2a3647;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-save-contact:hover {
+  background: #091931;
+}
+
+.btn-save-contact img {
+  width: 16px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+}
+
+/* Responsive für Modal */
+@media (max-width: 900px) {
+  .add-contact-modal {
+    flex-direction: column;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .add-contact-modal-left {
+    width: 100%;
+    min-width: unset;
+    padding: 32px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .add-contact-modal-left h2 {
+    font-size: 32px;
+  }
+
+  .add-contact-modal-right {
+    padding: 32px 24px;
+    gap: 24px;
+  }
+
+  .modal-content-wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .modal-contact-badge {
+    width: 80px;
+    height: 80px;
+  }
+
+  .edit-contact-badge {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+
+  .modal-form-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-cancel-contact,
+  .btn-create-contact,
+  .btn-delete-contact,
+  .btn-save-contact {
+    width: 100%;
+    justify-content: center;
+  }
+}

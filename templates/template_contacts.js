@@ -38,17 +38,18 @@ function getContactListEntryTemplate(contact, index) {
  */
 function getContactDetailsTemplate(contact) {
   let initials = getInitials(contact.name);
+  let contactIndex = contacts.indexOf(contact);
   return `
     <div class="contact-details">
       <div class="contacts-details-avatar" style="background-color: ${contact.color}">${initials}</div>
       <div class="contacts-details-name-row">
         <span class="contacts-details-name">${contact.name}</span>
         <div class="contacts-details-actions">
-          <button class="edit-btn">
+          <button class="edit-btn" onclick="openEditContactModal(${contactIndex})">
             <img src="/assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
             <span>Edit</span>
           </button>
-          <button class="del-btn">
+          <button class="del-btn" onclick="deleteContactFromDetails(${contactIndex})">
             <img src="/assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
             <span>Delete</span>
           </button>

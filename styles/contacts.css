@@ -126,7 +126,7 @@
   align-items: center;
 }
 
-.contacts-details-info{
+.contacts-details-info {
   padding: 46px 0;
 }
 
@@ -156,31 +156,47 @@
 
 .contacts-details-actions {
   padding-top: 8px;
+  gap: 5px;
   display: flex;
 }
 
 .contacts-details-actions button {
   border: none;
-  background-color: #f6f7f8;
+  background-color: transparent;
   color: #2a3647;
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.contacts-details-actions button:hover {
+  color: #29abe2;
+}
+
+.contacts-details-actions button:hover img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(98%) saturate(456%)
+    hue-rotate(161deg) brightness(96%) contrast(89%);
 }
 
 .contacts-details-actions img {
   width: 18px;
   height: 18px;
+  transition: filter 0.2s ease;
 }
 
 .edit-btn {
   display: flex;
+  align-items: center;
   text-align: center;
   gap: 8px;
 }
 
 .del-btn {
   display: flex;
+  align-items: center;
   text-align: center;
   gap: 8px;
 }
