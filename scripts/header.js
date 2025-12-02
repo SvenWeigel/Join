@@ -71,5 +71,22 @@ window.applyInitials = applyInitials;
 
 
 function showProfileOptions(){
-  document.getElementById("profile-options").classList.toggle('d-none');
+  const el = document.getElementById("profile-options");
+  if (el) {
+    el.classList.toggle('d-none');
+    if (!el.classList.contains('d-none')) {
+      // Menü ist jetzt offen: Klick außerhalb schließt es
+      document.addEventListener('click', closeProfileOptionsOnClickOutside);
+    }
+  }
+}
+function closeProfileOptionsOnClickOutside(event) {
+  const el = document.getElementById("profile-options");
+  if (el && !el.classList.contains('d-none')) {
+    // Prüfe, ob der Klick außerhalb des Menüs und außerhalb des User-Badge war
+    if (!el.contains(event.target) && !event.target.closest('.user-badge')) {
+      el.classList.add('d-none');
+      document.removeEventListener('click', closeProfileOptionsOnClickOutside);
+    }
+  }
 }
