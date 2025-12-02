@@ -12,8 +12,7 @@ function renderContactList() {
     let contactsInGroup = groupedContacts[letter];
     for (let j = 0; j < contactsInGroup.length; j++) {
       let contact = contactsInGroup[j];
-      let originalIndex = contacts.indexOf(contact);
-      html += getContactListEntryTemplate(contact, originalIndex);
+      html += getContactListEntryTemplate(contact);
     }
   }
   contactsListElement.innerHTML = html;

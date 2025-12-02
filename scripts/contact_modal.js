@@ -2,6 +2,10 @@
  * Opens the Add Contact Modal
  */
 function openAddContactModal() {
+  if (isGuestUser()) {
+    alert("As a guest, you cannot create contacts. Please sign up.");
+    return;
+  }
   let overlay = document.getElementById("addContactModalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
@@ -33,17 +37,35 @@ function resetAddContactForm() {
  * Handles the Add Contact form submission
  * @param {Event} event - The form submit event
  */
-function handleAddContact(event) {
+async function handleAddContact(event) {
   event.preventDefault();
+
+  if (isGuestUser()) {
+    alert("As a guest, you cannot create contacts. Please sign up.");
+    closeAddContactModal();
+    return;
+  }
+
   let name = document.getElementById("contactName").value.trim();
   let email = document.getElementById("contactEmail").value.trim();
   let phone = document.getElementById("contactPhone").value.trim();
   let color = getRandomColor();
   let newContact = { name, email, phone, color };
-  contacts.push(newContact);
-  renderContactList();
-  closeAddContactModal();
-  selectContact(contacts.length - 1);
+
+  try {
+    const userId = getCurrentUserId();
+    if (userId) {
+      const savedContact = await createContact(userId, newContact);
+      contacts.push(savedContact);
+      newContact = savedContact;
+    }
+    renderContactList();
+    closeAddContactModal();
+    selectContact(newContact.id);
+  } catch (err) {
+    console.error("Failed to create contact:", err);
+    alert("Fehler beim Erstellen des Kontakts.");
+  }
 }
 
 /**
@@ -93,17 +115,22 @@ document.addEventListener("keydown", function (event) {
 });
 
 /**
- * Index des aktuell bearbeiteten Kontakts
+ * ID des aktuell bearbeiteten Kontakts
  */
-let editingContactIndex = -1;
+let editingContactId = null;
 
 /**
  * Opens the Edit Contact Modal with pre-filled data
- * @param {number} index - Index of the contact to edit
+ * @param {string} contactId - ID of the contact to edit
  */
-function openEditContactModal(index) {
-  editingContactIndex = index;
-  let contact = contacts[index];
+function openEditContactModal(contactId) {
+  if (isGuestUser()) {
+    alert("As a guest, you cannot edit contacts. Please sign up.");
+    return;
+  }
+  editingContactId = contactId;
+  let contact = contacts.find((c) => c.id === contactId);
+  if (!contact) return;
   let overlay = document.getElementById("editContactModalOverlay");
 
   // Felder mit Kontaktdaten füllen
@@ -129,42 +156,76 @@ function closeEditContactModal() {
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
-  editingContactIndex = -1;
+  editingContactId = null;
 }
 
 /**
  * Handles the Edit Contact form submission
  * @param {Event} event - The form submit event
  */
-function handleEditContact(event) {
+async function handleEditContact(event) {
   event.preventDefault();
-  if (editingContactIndex < 0) return;
+  if (!editingContactId) return;
+
+  if (isGuestUser()) {
+    alert("As a guest, you cannot edit contacts. Please sign up.");
+    closeEditContactModal();
+    return;
+  }
 
   let name = document.getElementById("editContactName").value.trim();
   let email = document.getElementById("editContactEmail").value.trim();
   let phone = document.getElementById("editContactPhone").value.trim();
 
-  // Kontakt aktualisieren (Farbe bleibt erhalten)
-  contacts[editingContactIndex].name = name;
-  contacts[editingContactIndex].email = email;
-  contacts[editingContactIndex].phone = phone;
+  const updateData = { name, email, phone };
 
-  renderContactList();
-  closeEditContactModal();
-  selectContact(editingContactIndex);
+  try {
+    const userId = getCurrentUserId();
+    if (userId) {
+      await updateContactInDb(userId, editingContactId, updateData);
+      let contact = contacts.find((c) => c.id === editingContactId);
+      if (contact) {
+        contact.name = name;
+        contact.email = email;
+        contact.phone = phone;
+      }
+    }
+    const contactIdToSelect = editingContactId;
+    renderContactList();
+    closeEditContactModal();
+    selectContact(contactIdToSelect);
+  } catch (err) {
+    console.error("Failed to update contact:", err);
+    alert("Fehler beim Aktualisieren des Kontakts.");
+  }
 }
 
 /**
  * Handles the delete action from the Edit Modal
  */
-function handleDeleteContact() {
-  if (editingContactIndex < 0) return;
+async function handleDeleteContact() {
+  if (!editingContactId) return;
 
-  contacts.splice(editingContactIndex, 1);
-  renderContactList();
-  closeEditContactModal();
-  renderContactDetails(null);
-  selectedContactIndex = -1;
+  if (isGuestUser()) {
+    alert("As a guest, you cannot delete contacts. Please sign up.");
+    closeEditContactModal();
+    return;
+  }
+
+  try {
+    const userId = getCurrentUserId();
+    if (userId) {
+      await deleteContactFromDb(userId, editingContactId);
+      contacts = contacts.filter((c) => c.id !== editingContactId);
+    }
+    renderContactList();
+    closeEditContactModal();
+    renderContactDetails(null);
+    selectedContactId = null;
+  } catch (err) {
+    console.error("Failed to delete contact:", err);
+    alert("Fehler beim Löschen des Kontakts.");
+  }
 }
 
 /**

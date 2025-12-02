@@ -1,85 +1,150 @@
 /**
- * Static contact data for testing
+ * Demo-Kontakte für Gast-User (werden in localStorage gespeichert)
  */
-let contacts = [
+const GUEST_DEFAULT_CONTACTS = [
   {
-    name: "Anton Mayer",
-    email: "antonm@gmail.com",
-    phone: "+49 1111 111 11 1",
+    id: "guest-1",
+    name: "Max Mustermann",
+    email: "max.mustermann@beispiel.de",
+    phone: "+49 170 1234567",
     color: "#FF7A00",
   },
   {
-    name: "Anja Schulz",
-    email: "schulz@hotmail.com",
-    phone: "+49 2222 222 22 2",
+    id: "guest-2",
+    name: "Laura Schmidt",
+    email: "laura.schmidt@mail.de",
+    phone: "+49 151 9876543",
     color: "#9327FF",
   },
   {
-    name: "Benedikt Ziegler",
-    email: "benedikt@gmail.com",
-    phone: "+49 3333 333 33 3",
+    id: "guest-3",
+    name: "Thomas Weber",
+    email: "t.weber@firma.de",
+    phone: "+49 160 5551234",
     color: "#6E52FF",
   },
   {
-    name: "David Eisenberg",
-    email: "davidberg@gmail.com",
-    phone: "+49 4444 444 44 4",
+    id: "guest-4",
+    name: "Anna Becker",
+    email: "anna.becker@web.de",
+    phone: "+49 172 3334455",
     color: "#FC71FF",
   },
   {
-    name: "Eva Fischer",
-    email: "eva@gmail.com",
-    phone: "+49 5555 555 55 5",
-    color: "#FFBB2B",
-  },
-  {
-    name: "Emmanuel Mauer",
-    email: "emmanuelma@gmail.com",
-    phone: "+49 6666 666 66 6",
+    id: "guest-5",
+    name: "Stefan Hoffmann",
+    email: "s.hoffmann@business.de",
+    phone: "+49 155 7778899",
     color: "#1FD7C1",
   },
   {
-    name: "Marcel Bauer",
-    email: "bauer@gmail.com",
-    phone: "+49 7777 777 77 7",
-    color: "#462F8A",
+    id: "guest-6",
+    name: "Julia Klein",
+    email: "julia.klein@email.de",
+    phone: "+49 163 2223344",
+    color: "#FF4646",
   },
 ];
 
 /**
- * Currently selected contact index (-1 means no contact selected)
+ * Aktive Kontaktliste (wird beim Init aus Firebase oder localStorage geladen)
  */
-let selectedContactIndex = -1;
+let contacts = [];
 
 /**
- * Initializes the contacts page
+ * ID des aktuell ausgewählten Kontakts (null = kein Kontakt ausgewählt)
  */
-function initContacts() {
+let selectedContactId = null;
+
+/**
+ * Prüft ob der aktuelle User ein Gast ist
+ * @returns {boolean}
+ */
+function isGuestUser() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  return !currentUser || currentUser.guest === true;
+}
+
+/**
+ * Gibt die User-ID des aktuellen Users zurück
+ * @returns {string|null}
+ */
+function getCurrentUserId() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return null;
+  if (currentUser.id) return currentUser.id;
+
+  // Fallback: Wenn keine ID vorhanden, User neu einloggen lassen
+  console.warn("User hat keine ID - bitte neu einloggen");
+  return null;
+}
+
+/**
+ * Lädt Kontakte aus localStorage für Gast-User
+ * @returns {Array}
+ */
+function loadGuestContacts() {
+  const stored = localStorage.getItem("guestContacts");
+  if (stored) {
+    return JSON.parse(stored);
+  }
+  // Initialisiere mit Demo-Daten
+  localStorage.setItem("guestContacts", JSON.stringify(GUEST_DEFAULT_CONTACTS));
+  return [...GUEST_DEFAULT_CONTACTS];
+}
+
+/**
+ * Speichert Kontakte in localStorage für Gast-User
+ */
+function saveGuestContacts() {
+  localStorage.setItem("guestContacts", JSON.stringify(contacts));
+}
+
+/**
+ * Initializes the contacts page (async für Firebase-Abfragen)
+ */
+async function initContacts() {
+  if (isGuestUser()) {
+    contacts = loadGuestContacts();
+  } else {
+    const userId = getCurrentUserId();
+    if (userId) {
+      try {
+        contacts = await fetchContacts(userId);
+      } catch (err) {
+        console.error("Failed to load contacts:", err);
+        contacts = [];
+      }
+    } else {
+      contacts = [];
+    }
+  }
   renderContactList();
   renderContactDetails(null);
 }
 
 /**
  * Selects a contact and displays its details
- * @param {number} index - Index of the contact in the contacts array
+ * @param {string} contactId - ID of the contact
  */
-function selectContact(index) {
-  selectedContactIndex = index;
-  renderContactDetails(contacts[index]);
-  highlightSelectedContact(index);
+function selectContact(contactId) {
+  selectedContactId = contactId;
+  const contact = contacts.find((c) => c.id === contactId);
+  renderContactDetails(contact);
+  highlightSelectedContact(contactId);
 }
 
 /**
  * Highlights the selected contact in the list
- * @param {number} index - Index of the selected contact
+ * @param {string} contactId - ID of the selected contact
  */
-function highlightSelectedContact(index) {
+function highlightSelectedContact(contactId) {
   let entries = document.querySelectorAll(".contact-list-entry");
   for (let i = 0; i < entries.length; i++) {
     entries[i].classList.remove("selected");
   }
   let selectedEntry = document.querySelector(
-    `.contact-list-entry[onclick="selectContact(${index})"]`
+    `.contact-list-entry[data-contact-id="${contactId}"]`
   );
   if (selectedEntry) {
     selectedEntry.classList.add("selected");
@@ -123,12 +188,25 @@ function groupContactsByLetter(contactList) {
 
 /**
  * Deletes a contact from the details view
- * @param {number} index - Index of the contact to delete
+ * @param {string} contactId - ID of the contact to delete
  */
-function deleteContactFromDetails(index) {
-  contacts.splice(index, 1);
-  renderContactList();
-  renderContactDetails(null);
-  selectedContactIndex = -1;
-}
+async function deleteContactFromDetails(contactId) {
+  if (isGuestUser()) {
+    alert("As a guest, you cannot delete contacts. Please sign up.");
+    return;
+  }
 
+  try {
+    const userId = getCurrentUserId();
+    if (userId) {
+      await deleteContactFromDb(userId, contactId);
+      contacts = contacts.filter((c) => c.id !== contactId);
+    }
+    renderContactList();
+    renderContactDetails(null);
+    selectedContactId = null;
+  } catch (err) {
+    console.error("Failed to delete contact:", err);
+    alert("Fehler beim Löschen des Kontakts.");
+  }
+}

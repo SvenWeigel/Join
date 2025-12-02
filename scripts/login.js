@@ -46,8 +46,11 @@ async function queryUserByEmail(normalizedEmail) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(LOGIN_MESSAGES.fetchError);
     const data = await res.json();
-    const users = data ? Object.values(data) : [];
-    return users.length ? users[0] : null;
+    if (!data) return null;
+    const entries = Object.entries(data);
+    if (entries.length === 0) return null;
+    const [id, user] = entries[0];
+    return { id, ...user };
   } catch (err) {
     console.error("Query by email failed", err);
     return null;
@@ -64,11 +67,13 @@ async function fetchAllUsersAndFind(normalizedEmail) {
     if (!res.ok) throw new Error(LOGIN_MESSAGES.fetchError);
     const data = await res.json();
     if (!data) return null;
-    const users = Object.values(data);
-    return (
-      users.find((u) => (u.email || "").toLowerCase() === normalizedEmail) ||
-      null
-    );
+    const entries = Object.entries(data);
+    for (const [id, user] of entries) {
+      if ((user.email || "").toLowerCase() === normalizedEmail) {
+        return { id, ...user };
+      }
+    }
+    return null;
   } catch (err) {
     console.error("Fallback fetch failed", err);
     return null;
@@ -212,9 +217,6 @@ function initLogin() {
 document.addEventListener("DOMContentLoaded", initLogin);
 window.preFillLoginForm = preFillLoginForm;
 
-
-
-
 function changePasswordIcon() {
   const passwordIcon = document.getElementById("password-icon");
   const passwordInput = document.getElementById("login-password-input");
@@ -232,13 +234,13 @@ function togglePasswordVisibility() {
   const passwordIcon = document.getElementById("password-icon");
   const passwordInput = document.getElementById("login-password-input");
 
-if (passwordInput.value.length > 0) {
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    passwordIcon.src = "assets/icons/visibility.svg";
-  } else {
-    passwordInput.type = "password";
-    passwordIcon.src = "assets/icons/visibility_off.svg";
+  if (passwordInput.value.length > 0) {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      passwordIcon.src = "assets/icons/visibility.svg";
+    } else {
+      passwordInput.type = "password";
+      passwordIcon.src = "assets/icons/visibility_off.svg";
+    }
   }
-}
 }
