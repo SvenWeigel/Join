@@ -73,7 +73,7 @@ a {
 
 .input-field{
   width: 100%;
-  
+  color:#D1D1D1;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
   font-family: "Inter", sans-serif;
@@ -86,4 +86,37 @@ a {
 
 .d-none {
   display: none !important;
+}
+
+.btn-create {
+  display: flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 21px;
+  color: white;
+  white-space: nowrap;
+  background-color: #2a3647;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  gap: 4px;
+}
+
+.btn-clear {
+  display: flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: #2a3647;
+  white-space: nowrap;
+  background-color: #f6f7f8;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #2a3647;
+  padding: 8px 16px;
+  gap: 4px;
 }
