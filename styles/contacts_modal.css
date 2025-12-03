@@ -18,10 +18,7 @@
 
 .add-contact-modal {
   display: flex;
-  width: 1000px;
-  max-width: calc(100% - 40px);
-  height: auto;
-  border-radius: 30px;
+  height: 592px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
   font-family: "Inter", sans-serif;
   animation: slideInModal 0.3s ease-out;
@@ -41,25 +38,25 @@
 /* Linke Seite des Modals (dunkel) */
 .add-contact-modal-left {
   background-color: #2a3647;
-  width: 400px;
-  min-width: 400px;
   padding: 66px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: white;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius:20px;
 }
 
 .add-contact-modal-left .modal-logo {
   width: 55px;
   height: auto;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .add-contact-modal-left h2 {
   font-size: 47px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
   color: white;
 }
 
@@ -74,20 +71,21 @@
   width: 90px;
   height: 3px;
   background-color: #29abe2;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 /* Rechte Seite des Modals (Formular) */
 .add-contact-modal-right {
   background-color: white;
-  flex: 1;
-  padding: 48px 56px;
+  padding: 137px 38px 135px 83px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 32px;
   position: relative;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius:20px;
 }
 
 /* Wrapper für Badge und Input-Felder */
@@ -102,8 +100,6 @@
 /* Wrapper für Buttons */
 .modal-buttons-wrapper {
   display: flex;
-  justify-content: center;
-  width: 100%;
 }
 
 .modal-close-btn {
@@ -144,8 +140,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%;
-  max-width: 360px;
 }
 
 /* Formular Styles */
@@ -163,8 +157,8 @@
 }
 
 .contact-input-group input {
-  width: 100%;
-  padding: 12px 48px 12px 16px;
+  width: 422px;
+  padding: 13px 21px;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-size: 16px;
@@ -196,7 +190,6 @@
 /* Modal Footer Buttons */
 .modal-form-buttons {
   display: flex;
-  justify-content: center;
   gap: 24px;
   margin-top: 12px;
 }
@@ -247,11 +240,6 @@
   background: #091931;
 }
 
-.btn-create-contact img {
-  width: 16px;
-  height: 12px;
-  filter: brightness(0) invert(1);
-}
 
 /* ==========================================================================
    EDIT CONTACT MODAL STYLES
@@ -375,4 +363,5 @@
     width: 100%;
     justify-content: center;
   }
+
 }
