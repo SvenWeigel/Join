@@ -131,3 +131,42 @@ function getEmptyColumnTemplate(columnLabel) {
       </div>
   `;
 }
+
+// ============================================================================
+// MODAL ASSIGNEE DROPDOWN TEMPLATES
+// ============================================================================
+
+/**
+ * Generiert das HTML für ein Dropdown-Item.
+ * @param {string} id
+ * @param {string} name
+ * @param {string} initials
+ * @param {string} color
+ * @param {boolean} isSelected
+ * @returns {string}
+ */
+function getModalDropdownItemTemplate(id, name, initials, color, isSelected) {
+  const selectedClass = isSelected ? "selected" : "";
+  return `
+    <div class="dropdown-item ${selectedClass}" data-id="${id}" onclick="toggleModalAssignee(event, '${id}')">
+      <div class="dropdown-item-left">
+        <div class="dropdown-avatar" style="background-color: ${color}">${initials}</div>
+        <span>${name}</span>
+      </div>
+      <div class="dropdown-checkbox">
+        <img src="/assets/icons/check.svg" alt="Selected">
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Generiert das HTML für ein Kontakt-Badge.
+ * @param {string} name
+ * @param {string} initials
+ * @param {string} color
+ * @returns {string}
+ */
+function getModalContactBadgeTemplate(name, initials, color) {
+  return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
+}

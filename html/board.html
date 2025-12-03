@@ -171,10 +171,26 @@
               </div>
 
               <div class="assigned-section">
-                <label for="taskAssignee">Assigned to</label>
-                <select id="taskAssignee" name="assignee" class="select-input">
-                  <option value="">Select contacts to assign</option>
-                </select>
+                <label>Assigned to</label>
+                <div class="custom-dropdown" id="modalAssigneeDropdown">
+                  <div class="dropdown-header" onclick="toggleModalAssigneeDropdown()">
+                    <input
+                      type="text"
+                      id="modalAssigneeSearch"
+                      class="dropdown-search"
+                      placeholder="Select contacts to assign"
+                      oninput="filterModalAssigneeList()"
+                      onfocus="openModalAssigneeDropdown()"
+                    />
+                    <img
+                      src="/assets/icons/arrow_drop_downaa.svg"
+                      alt="Dropdown"
+                      class="dropdown-arrow"
+                    />
+                  </div>
+                  <div class="dropdown-list" id="modalAssigneeList"></div>
+                </div>
+                <div class="selected-contacts" id="modalSelectedContactsBadges"></div>
               </div>
 
               <div class="category-section">
@@ -275,8 +291,12 @@
   <script src="/scripts/header.js"></script>
   <script src="/scripts/db.js"></script>
   <script src="/templates/template_board.js"></script>
+  <script src="/templates/template_add_task.js"></script>
+  <script src="/render/render_add_task.js"></script>
+  <script src="/render/render_board.js"></script>
   <script src="/render/render_task.js"></script>
   <script src="/scripts/drag_and_drop.js"></script>
+  <script src="/scripts/board_modal_assigned_to.js"></script>
   <script src="/scripts/board_modal.js"></script>
   <script src="/scripts/script.js"></script>
   <script>
