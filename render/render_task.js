@@ -112,20 +112,45 @@ function renderSubtasksProgress(subtasks) {
 
 /**
  * Verarbeitet Assignees und generiert HTML über Template.
+ * Zeigt maximal 5 Badges an, bei mehr wird ein "+X" Badge angezeigt.
  *
- * @param {Array} assignees - Array von User-Emails oder Namen
+ * @param {Array|Object} assignees - Array oder Objekt von Assignee-Objekten [{name, color}, ...]
  * @returns {string} HTML-String der Badges oder leerer String
  */
 function renderAssignees(assignees) {
-  if (!assignees || assignees.length === 0) return "";
+  if (!assignees) return "";
 
-  // Für jeden Assignee: Initialen berechnen und Template aufrufen
-  return assignees
+  // Firebase kann Arrays als Objekte speichern - normalisieren
+  const assigneesArray = Array.isArray(assignees)
+    ? assignees
+    : Object.values(assignees);
+
+  if (assigneesArray.length === 0) return "";
+
+  const maxVisible = 5;
+  const visibleAssignees = assigneesArray.slice(0, maxVisible);
+  const overflowCount = assigneesArray.length - maxVisible;
+
+  // Für jeden sichtbaren Assignee: Badge generieren
+  let html = visibleAssignees
     .map((assignee) => {
-      const initials = getInitials(assignee);
-      return getAssigneeBadgeTemplate(initials);
+      // Unterstützt sowohl Objekte {name, color} als auch Strings (für Abwärtskompatibilität)
+      if (typeof assignee === "object" && assignee.name) {
+        const initials = getInitials(assignee.name);
+        return getAssigneeBadgeTemplate(initials, assignee.color);
+      } else {
+        const initials = getInitials(assignee);
+        return getAssigneeBadgeTemplate(initials);
+      }
     })
     .join("");
+
+  // Falls mehr als maxVisible Assignees, +X Badge hinzufügen
+  if (overflowCount > 0) {
+    html += getOverflowBadgeTemplate(overflowCount);
+  }
+
+  return html;
 }
 
 /**

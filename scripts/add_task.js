@@ -297,7 +297,7 @@ function buildTaskData(formData, creatorEmail) {
     description: formData.description || "",
     dueDate: formData.due,
     priority: formData.priority,
-    assignees: formData.assignees || [],
+    assignees: getAssigneesWithData(formData.assignees),
     category: formData.category,
     status: "todo",
     subtasks: formData.subtasks
@@ -305,6 +305,32 @@ function buildTaskData(formData, creatorEmail) {
       : [],
     createdBy: creatorEmail,
   };
+}
+
+/**
+ * Wandelt Assignee-IDs in vollständige Assignee-Objekte um.
+ * @param {string[]} assigneeIds - Array der ausgewählten Kontakt-IDs
+ * @returns {Object[]} Array von Objekten mit name und color
+ */
+function getAssigneesWithData(assigneeIds) {
+  if (!assigneeIds || assigneeIds.length === 0) return [];
+
+  const result = [];
+  const currentUser = getCurrentUser();
+
+  for (const id of assigneeIds) {
+    if (id === "currentUser" && currentUser) {
+      const userName = currentUser.name || currentUser.email.split("@")[0];
+      result.push({ name: userName, color: "#29abe2" });
+    } else {
+      const contact = availableContacts.find((c) => c.id === id);
+      if (contact) {
+        result.push({ name: contact.name, color: contact.color });
+      }
+    }
+  }
+
+  return result;
 }
 
 /**

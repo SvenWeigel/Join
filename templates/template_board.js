@@ -100,10 +100,22 @@ function getSubtasksProgressTemplate(completed, total) {
  * Generiert die HTML für einen einzelnen Assignee-Badge.
  *
  * @param {string} initials - Die Initialen (z.B. "MM")
+ * @param {string} [color] - Optionale Hintergrundfarbe
  * @returns {string} HTML-String des Badges
  */
-function getAssigneeBadgeTemplate(initials) {
-  return `<div class="badge">${initials}</div>`;
+function getAssigneeBadgeTemplate(initials, color) {
+  const style = color ? `style="background-color: ${color}"` : "";
+  return `<div class="badge" ${style}>${initials}</div>`;
+}
+
+/**
+ * Generiert die HTML für das Overflow-Badge (+X).
+ *
+ * @param {number} count - Anzahl der weiteren Assignees
+ * @returns {string} HTML-String des Overflow-Badges
+ */
+function getOverflowBadgeTemplate(count) {
+  return `<div class="badge badge-overflow">+${count}</div>`;
 }
 
 /**
