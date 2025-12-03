@@ -286,3 +286,161 @@ textarea {
   height: 24px;
   filter: brightness(0) invert(1);
 }
+
+/* Custom Dropdown for Assignees */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 12px 0 16px;
+}
+
+.dropdown-header:focus-within {
+  border-color: #29abe2;
+}
+
+.dropdown-search {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background: transparent;
+}
+
+.dropdown-search::placeholder {
+  color: #d1d1d1;
+}
+
+.dropdown-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: max-height 0.2s ease;
+}
+
+.dropdown-list.open {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item.no-hover:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.dropdown-item.selected {
+  background-color: #2a3647;
+  color: #fff;
+}
+
+.dropdown-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdown-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.dropdown-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2a3647;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.dropdown-item.selected .dropdown-checkbox {
+  background: #2a3647;
+  border-color: #fff;
+}
+
+.dropdown-checkbox img {
+  width: 12px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+  display: none;
+}
+
+.dropdown-item.selected .dropdown-checkbox img {
+  display: block;
+}
+
+/* Selected Contacts Badges */
+.selected-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.selected-contacts.hidden {
+  display: none;
+}
+
+.contact-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
