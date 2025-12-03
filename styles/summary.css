@@ -215,7 +215,7 @@
 .greet-name-span {
   font-size: 64px;
   font-weight: 700;
-  color: #29ABE2;
+  color: #29abe2;
   line-height: 120%;
 }
 
@@ -228,7 +228,7 @@
   align-items: flex-start;
 }
 
-.tasks-in-board-div{
+.tasks-in-board-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,21 +240,21 @@
   cursor: pointer;
 }
 
-.tasks-in-board-span{
+.tasks-in-board-span {
   text-align: center;
   font-size: 20px;
   color: #2a3647;
   font-weight: 400;
 }
 
-.tasks-in-board-number-span{
+.tasks-in-board-number-span {
   font-size: 64px;
   font-weight: 600;
   color: #000000;
   line-height: 120%;
 }
 
-.tasks-in-progress-div{
+.tasks-in-progress-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,34 +266,34 @@
   cursor: pointer;
 }
 
-.tasks-in-progress-span{
+.tasks-in-progress-span {
   text-align: center;
   font-size: 20px;
   color: #2a3647;
   font-weight: 400;
 }
 
-.tasks-in-progress-number-span{
+.tasks-in-progress-number-span {
   font-size: 64px;
   font-weight: 600;
   color: #000000;
   line-height: 120%;
 }
 
-.tasks-completed-span{
+.tasks-completed-span {
   text-align: center;
   font-size: 20px;
   color: #2a3647;
   font-weight: 400;
 }
-.tasks-completed-number-span{
+.tasks-completed-number-span {
   font-size: 64px;
   font-weight: 600;
   color: #000000;
   line-height: 120%;
 }
 
-.awaiting-feedback-div{
+.awaiting-feedback-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -304,13 +304,13 @@
   width: 168px;
   cursor: pointer;
 }
-.awaiting-feedback-span{
+.awaiting-feedback-span {
   text-align: center;
   font-size: 20px;
   color: #2a3647;
   font-weight: 400;
 }
-.awaiting-feedback-number-span{
+.awaiting-feedback-number-span {
   font-size: 64px;
   font-weight: 600;
   color: #000000;
@@ -322,184 +322,212 @@
 .priority-date-div:hover *,
 .tasks-in-board-div:hover *,
 .tasks-in-progress-div:hover *,
-.awaiting-feedback-div:hover *{
+.awaiting-feedback-div:hover * {
   color: white;
 }
 
-.todo-div:hover, .done-div:hover, .priority-date-div:hover, .tasks-in-board-div:hover, .tasks-in-progress-div:hover, .awaiting-feedback-div:hover{
+.todo-div:hover,
+.done-div:hover,
+.priority-date-div:hover,
+.tasks-in-board-div:hover,
+.tasks-in-progress-div:hover,
+.awaiting-feedback-div:hover {
   background-color: rgba(42, 54, 71, 1);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   transition: box-shadow 0.1s ease;
   transform: scale(1.1);
 }
 
-@media(max-width:1350px){
-  .greet-span-div{
-    display:none;
+.todo-div img.hover {
+  display: none;
+}
+
+.todo-div:hover img.normal {
+  display: none;
+}
+
+.todo-div:hover img.hover {
+  display: inline;
+}
+
+.done-div img.hover {
+  display: none;
+}
+
+.done-div:hover img.normal {
+  display: none;
+}
+
+.done-div:hover img.hover {
+  display: inline;
+}
+
+@media (max-width: 1350px) {
+  .greet-span-div {
+    display: none;
   }
-  .summary-content-div{
-    margin-left:0;
-    display:flex;
-    flex-direction:column;
+  .summary-content-div {
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 }
 
-@media(max-width: 870px){
-  .menu-bar-container{
-    display:none;
+@media (max-width: 870px) {
+  .menu-bar-container {
+    display: none;
   }
-  .main-layout-container{
+  .main-layout-container {
     justify-content: center;
   }
 
-  .summary-content-div{
+  .summary-content-div {
     width: unset;
     max-width: unset;
-    margin-top:96px;
-    padding:48px 16px;
+    margin-top: 96px;
+    padding: 48px 16px;
   }
-  .headline-div{
+  .headline-div {
     flex-direction: column;
-    width:100%;
+    width: 100%;
     align-items: flex-start;
-    margin-bottom:0;
+    margin-bottom: 0;
   }
-  .seperator-content{
+  .seperator-content {
     order: 99;
     height: 0px;
     width: 90px;
   }
 }
 
-@media(max-width:600px){
-  .summary-content-div{
-    padding:48px 0 0 0;
+@media (max-width: 600px) {
+  .summary-content-div {
+    padding: 48px 0 0 0;
   }
-  .todo-done-div{
-    margin-top:40px;
-    gap:24px;
+  .todo-done-div {
+    margin-top: 40px;
+    gap: 24px;
   }
 
-  .headline-span{
-    font-size:47px;
+  .headline-span {
+    font-size: 47px;
   }
-  .headline-span-div{
+  .headline-span-div {
     font-size: 20px;
   }
-  .todo-div{
-    width:186px;
-    height:110px;
-    align-items:center;
+  .todo-div {
+    width: 186px;
+    height: 110px;
+    align-items: center;
     justify-content: center;
   }
-  .todo-div img{
+  .todo-div img {
     width: 40px;
-    height:40px;
-    padding:0px;
+    height: 40px;
+    padding: 0px;
   }
-  .todo-span{
-    font-size:16px;
+  .todo-span {
+    font-size: 16px;
     white-space: nowrap;
   }
 
-  .todo-span-div{
-    padding:0;
+  .todo-span-div {
+    padding: 0;
   }
-  .todo-number-span{
-    font-size:47px;
-  }
-  .done-div{
-    width:186px;
-    height:110px;
-    align-items:center;
-    justify-content: center;
-  }
-  .done-div img{
-    width: 40px;
-    height:40px;
-    padding:0;
-  }
-  .done-span{
-    font-size:16px;
-    white-space: nowrap;
-  }
-  .done-span-div{
-    padding:0px;
-  }
-  .done-number-span{
-    font-size:47px;
-  }
-
-  .priority-date-greeting-div{
-    width: 396px;
-    height:110px;
-    margin-top:30px;
-  }
-  .priority-date-div{
-    gap:20px;
-    width:100%;
-    justify-content: center;
-    padding-top:17px;
-    padding-bottom:17px;
-  }
-  .urgency-summary img{
-    padding:0;
-    width:40px;
-    height:40px;
-  }
-  .urgency-number-span{
+  .todo-number-span {
     font-size: 47px;
   }
-  .urgency-span{
+  .done-div {
+    width: 186px;
+    height: 110px;
+    align-items: center;
+    justify-content: center;
+  }
+  .done-div img {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+  .done-span {
     font-size: 16px;
+    white-space: nowrap;
   }
-  .date-span-div{
-    padding:0;
+  .done-span-div {
+    padding: 0px;
   }
-  .date-span{
-    font-size:16px;
+  .done-number-span {
+    font-size: 47px;
   }
 
-  .date-number-span{
-    font-size:16px;
+  .priority-date-greeting-div {
+    width: 396px;
+    height: 110px;
+    margin-top: 30px;
   }
-  .seperator-content-summary{
+  .priority-date-div {
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+  .urgency-summary img {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+  }
+  .urgency-number-span {
+    font-size: 47px;
+  }
+  .urgency-span {
+    font-size: 16px;
+  }
+  .date-span-div {
+    padding: 0;
+  }
+  .date-span {
+    font-size: 16px;
+  }
+
+  .date-number-span {
+    font-size: 16px;
+  }
+  .seperator-content-summary {
     height: 68px;
   }
-  .open-tasks-div{
-    margin-top:18px;
-    gap:24px;
+  .open-tasks-div {
+    margin-top: 18px;
+    gap: 24px;
   }
-  .tasks-in-board-div{
-    height:116px;
-    width:116px;
+  .tasks-in-board-div {
+    height: 116px;
+    width: 116px;
   }
-  .tasks-in-board-number-span{
-    font-size:47px;
-  }
-  .tasks-in-board-span{
-    font-size: 16px;
-  }
-  .tasks-in-progress-div{
-    height:116px;
-    width:116px;
-  }
-  .tasks-in-progress-number-span{
-    font-size:47px;
-  }
-  .tasks-in-progress-span{
-    font-size:16px;
-  }
-  .awaiting-feedback-div{
-    height:116px;
-    width:116px;
-  }
-  .awaiting-feedback-number-span{
+  .tasks-in-board-number-span {
     font-size: 47px;
   }
-  .awaiting-feedback-span{
-    font-size:16px;
+  .tasks-in-board-span {
+    font-size: 16px;
   }
-
+  .tasks-in-progress-div {
+    height: 116px;
+    width: 116px;
+  }
+  .tasks-in-progress-number-span {
+    font-size: 47px;
+  }
+  .tasks-in-progress-span {
+    font-size: 16px;
+  }
+  .awaiting-feedback-div {
+    height: 116px;
+    width: 116px;
+  }
+  .awaiting-feedback-number-span {
+    font-size: 47px;
+  }
+  .awaiting-feedback-span {
+    font-size: 16px;
+  }
 }
