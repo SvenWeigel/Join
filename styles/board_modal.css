@@ -25,7 +25,6 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
   padding: 32px 36px;
   position: relative;
-  overflow: hidden;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   display: flex;

@@ -25,8 +25,12 @@ function renderContactList() {
 function renderContactDetails(contact) {
   let detailsContainer = document.querySelector(".contact-details-container");
   if (contact) {
+    detailsContainer.classList.remove("slide-in");
+    void detailsContainer.offsetWidth;
     detailsContainer.innerHTML = getContactDetailsTemplate(contact);
+    detailsContainer.classList.add("slide-in");
   } else {
     detailsContainer.innerHTML = "";
+    detailsContainer.classList.remove("slide-in");
   }
 }

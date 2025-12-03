@@ -23,7 +23,6 @@
   height: auto;
   border-radius: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-  overflow: hidden;
   font-family: "Inter", sans-serif;
   animation: slideInModal 0.3s ease-out;
 }
