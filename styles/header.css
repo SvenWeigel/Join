@@ -22,6 +22,10 @@ header {
   position:relative;
 }
 
+.logo-responsive{
+  display:none;
+}
+
 .header-profile-container {
   display: flex;
   align-items: center;
@@ -79,4 +83,37 @@ header {
 
 .profile-options a:hover{
   background-color: #2a3d59;
+}
+
+@media (max-width:870px){
+  header{
+    margin-left:0px;
+    width:100%;
+  }
+  .header-content{
+    padding:20px 16px;
+  }
+  .logo-responsive{
+    display:unset;
+    width:48px;
+    height:52px;
+  }
+  .header-content span{
+    display:none
+  }
+}
+
+@media(max-width:600px){
+  .logo-responsive{
+    width:32px;
+    height:39px;
+  }
+  .user-avatar{
+    width:40px;
+    height:40px;
+  }
+
+  .header-profile-container a{
+    display:none;
+  }
 }
