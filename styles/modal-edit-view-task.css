@@ -1,0 +1,342 @@
+.modal-edit-view-task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+}
+
+.inside-edit-view-task-overlay {
+  background-color: rgba(255, 255, 255, 1);
+  min-width: 525px;
+  max-width: 525px;
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
+  padding: 48px 40px;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close-btn span {
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+  background-color: rgba(0, 56, 255, 1);
+  border-radius: 8px;
+  padding: 4px 24px;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.close-btn button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn button :hover {
+  background-color: rgba(128, 128, 128, 0.103);
+  border-radius: 100px;
+}
+
+.title-input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title-input-div input {
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  margin-bottom: 16px;
+  flex-direction: space-between;
+  font-size: 20px;
+}
+
+.description-input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.description-input-div textarea {
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  font-size: 20px;
+  resize: vertical;
+  max-height: 200px;
+}
+
+.due-date-input-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.due-date-input-div input {
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 12px 21px;
+  margin-bottom: 16px;
+  flex-direction: space-between;
+  font-size: 20px;
+}
+
+.priority-btn-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.priority-buttons-container-edit-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.priority-btn-edit-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.priority-btn-edit-view .prio-icon {
+  height: 16px;
+  width: 16px;
+}
+
+.priority-btn-edit-view {
+  height: 40px;
+  width: 120px;
+}
+
+.priority-buttons-container-edit-view .priority-btn-edit-view {
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.priority-btn-edit-view {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.priority-btn-edit-view:hover {
+  background-color: rgba(0, 56, 255, 1);
+  color: white;
+}
+
+.assigned-to-div {
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.assigned-to-div h4 {
+  margin-bottom: 8px;
+}
+
+.assigned-avatars-container-edit-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 12px 0 16px;
+  position: relative;
+}
+
+.assigned-avatars-container-edit-view:focus-within {
+  border-color: #29abe2;
+}
+
+.dropdown-search-edit-view {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background: transparent;
+}
+
+.dropdown-search-edit-view::placeholder {
+  color: #d1d1d1;
+}
+
+.assigned-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.assigned-arrow.open {
+  transform: rotate(180deg);
+}
+
+.assigned-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: max-height 0.2s ease;
+}
+
+.assigned-dropdown-list.open {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+}
+
+.assigned-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.assigned-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.assigned-dropdown-item.no-hover:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.assigned-dropdown-item.selected {
+  background-color: #2a3647;
+  color: #fff;
+}
+
+.assigned-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.assigned-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.assigned-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2a3647;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.assigned-dropdown-item.selected .assigned-checkbox {
+  background: #2a3647;
+  border-color: #fff;
+}
+
+.assigned-checkbox img {
+  width: 12px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+  display: none;
+}
+
+.assigned-dropdown-item.selected .assigned-checkbox img {
+  display: block;
+}
+
+.contact-avatar-edit-view {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a3647;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 12px;
+}
+
+.avatar-full-name-edit-view {
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.subtasks-div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.subtask-input-edit-view {
+  padding: 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+.add-subtask-btn {
+  background: transparent;
+  border: none;
+  color: #3880ff;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: flex-start;
+  padding: 0;
+}

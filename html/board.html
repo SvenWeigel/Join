@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/styles/menu-bar.css" />
   <link rel="stylesheet" href="/styles/header.css" />
   <link rel="stylesheet" href="/styles/modal-task-view.css">
+  <link rel="stylesheet" href="/styles/modal-edit-view-task.css">
 
   <title>Join</title>
 </head>
@@ -286,6 +287,92 @@
         </div>
       </div>
     </div>
+
+    <div class="modal-edit-view-task-overlay" id="modalEditViewTaskOverlay">
+      <div class="inside-edit-view-task-overlay">
+        <div class="close-btn">
+          <button><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
+        </div>
+
+        <div class="title-input-div">
+          <h4>Title</h4>
+          <input type="text">
+        </div>
+
+        <div class="description-input-div">
+          <h4>Description</h4>
+          <textarea></textarea>
+        </div>
+
+        <div class="due-date-input-div">
+          <h4>Due Date</h4>
+          <input type="date">
+
+        </div>
+
+        <div class="priority-btn-div">
+          <h4>Priority</h4>
+          <div class="priority-buttons-container-edit-view">
+            <button type="button" class="priority-btn-edit-view" data-priority="urgent">
+              Urgent
+              <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+            </button>
+            <button type="button" class="priority-btn-edit-view" data-priority="medium">
+              Medium
+              <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
+            </button>
+            <button type="button" class="priority-btn-edit-view" data-priority="low">
+              Low
+              <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+            </button>
+          </div>
+          <div class="assigned-to-div">
+  <h4>Assigned to</h4>
+
+  <div class="assigned-avatars-container-edit-view" onclick="openEditViewAssigneeDropdown()">
+    <input 
+      type="text" 
+      id="editViewAssigneeSearch" 
+      class="dropdown-search-edit-view" 
+      placeholder="Select contacts to assign"
+      oninput="filterEditViewAssigneeList()" 
+    />
+
+    <img src="/assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
+  </div>
+
+  <div class="assigned-dropdown-list" id="assignedDropdownList">
+    <div class="assigned-dropdown-item">
+      <div class="assigned-item-left">
+        <div class="assigned-avatar">AM</div>
+        Alex Müller
+      </div>
+      <div class="assigned-checkbox">
+        <img src="/assets/icons/check.svg" />
+      </div>
+    </div>
+
+    <div class="assigned-dropdown-item">
+      <div class="assigned-item-left">
+        <div class="assigned-avatar">SM</div>
+        Sarah Miller
+      </div>
+      <div class="assigned-checkbox">
+        <img src="/assets/icons/check.svg" />
+      </div>
+    </div>
+  </div>
+  <div class="subtasks-div">
+    <h4>Subtasks</h4>
+    <input type="text" id="editViewSubtaskInput" class="subtask-input-edit-view" placeholder="Add new subtask" />
+    <div class="subtasks-list-edit-view" id="subtasksListEditView"></div>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+
 
   </div>
   <script src="/scripts/header.js"></script>
