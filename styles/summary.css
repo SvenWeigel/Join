@@ -378,6 +378,11 @@
   .menu-bar-container {
     display: none;
   }
+
+  .bottom-nav {
+    display: flex!important;
+  }
+  
   .main-layout-container {
     justify-content: center;
   }

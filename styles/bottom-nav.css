@@ -1,5 +1,5 @@
 .bottom-nav{
-    display:flex;
+    display:none;
     justify-content: space-around;
     align-items: center;
     position:absolute;
