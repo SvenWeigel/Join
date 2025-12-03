@@ -20,12 +20,11 @@
   background: #fff;
   width: 1000px;
   max-width: calc(100% - 40px);
-  height: 680px;
+  max-height: 90vh;
   border-radius: 18px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
   padding: 32px 36px;
   position: relative;
-  overflow: hidden;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   display: flex;
@@ -91,7 +90,6 @@
   box-sizing: border-box;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: auto;
   padding-bottom: 8px;
 }
 
@@ -177,6 +175,17 @@
   font-size: 16px;
   font-family: "Inter", sans-serif;
   outline: none;
+}
+
+/* Dropdown-Search soll keine generischen Input-Styles bekommen */
+.add-task-modal .dropdown-header .dropdown-search,
+.add-task-modal input[type="text"].dropdown-search {
+  width: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  height: auto;
 }
 
 .add-task-modal input[type="text"]::placeholder,
@@ -357,4 +366,165 @@
   .add-task-modal .priority-buttons-container {
     flex-wrap: wrap;
   }
+}
+
+/* ==========================================================================
+   11. MODAL CUSTOM DROPDOWN (Assigned to)
+   ========================================================================== */
+
+.add-task-modal .custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.add-task-modal .dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 12px 0 16px;
+}
+
+.add-task-modal .dropdown-header:focus-within {
+  border-color: #29abe2;
+}
+
+.add-task-modal .dropdown-search {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background: transparent;
+}
+
+.add-task-modal .dropdown-search::placeholder {
+  color: #d1d1d1;
+}
+
+.add-task-modal .dropdown-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.add-task-modal .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.add-task-modal .dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: max-height 0.2s ease;
+}
+
+.add-task-modal .dropdown-list.open {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+}
+
+.add-task-modal .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.add-task-modal .dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.add-task-modal .dropdown-item.no-hover:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.add-task-modal .dropdown-item.selected {
+  background-color: #2a3647;
+  color: #fff;
+}
+
+.add-task-modal .dropdown-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.add-task-modal .dropdown-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.add-task-modal .dropdown-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2a3647;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.add-task-modal .dropdown-item.selected .dropdown-checkbox {
+  background: #2a3647;
+  border-color: #fff;
+}
+
+.add-task-modal .dropdown-checkbox img {
+  width: 12px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+  display: none;
+}
+
+.add-task-modal .dropdown-item.selected .dropdown-checkbox img {
+  display: block;
+}
+
+/* Selected Contacts Badges */
+.add-task-modal .selected-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.add-task-modal .selected-contacts.hidden {
+  display: none;
+}
+
+.add-task-modal .contact-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
 }

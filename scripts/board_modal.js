@@ -3,27 +3,24 @@
  * @description Verwaltet die Add Task Modal-Funktionalität auf der Board-Seite
  */
 
-/** @type {HTMLElement|null} Das Modal-Overlay-Element */
+/** @type {HTMLElement|null} */
 let overlay = null;
-
-/** @type {HTMLFormElement|null} Das Formular-Element im Modal */
+/** @type {HTMLFormElement|null} */
 let form = null;
-
-/** @type {HTMLElement[]} Array der Priority-Button-Elemente */
+/** @type {HTMLElement[]} */
 let priorityButtons = [];
 
 /**
  * Initialisiert das Modal beim Laden der Seite.
- * Cached DOM-Elemente und bindet alle Event-Listener.
  */
-function initModal() {
+async function initModal() {
   cacheElements();
   bindEvents();
+  await loadModalContactsForDropdown();
 }
 
 /**
- * Cached alle benötigten DOM-Elemente in Variablen.
- * Verbessert die Performance durch Vermeidung wiederholter DOM-Abfragen.
+ * Cached alle benötigten DOM-Elemente.
  */
 function cacheElements() {
   overlay = document.getElementById("addTaskModalOverlay");
@@ -33,7 +30,6 @@ function cacheElements() {
 
 /**
  * Bindet alle Event-Listener für das Modal.
- * Delegiert an spezialisierte Binding-Funktionen.
  */
 function bindEvents() {
   bindOpenButton();
@@ -45,22 +41,24 @@ function bindEvents() {
 }
 
 /**
- * Bindet den Click-Event-Listener an den "Add Task"-Button.
- * Öffnet das Modal beim Klicken.
+ * Bindet den Click-Event an den "Add Task"-Button.
  */
 function bindOpenButton() {
   const openBtn = document.getElementById("addTaskBtn");
-  if (openBtn) {
-    openBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  }
+  if (openBtn) openBtn.addEventListener("click", handleOpenClick);
 }
 
 /**
- * Bindet Click-Event-Listener an die Schließen-Buttons.
- * Schließt das Modal bei Klick auf X oder Cancel.
+ * Behandelt den Klick auf den Open-Button.
+ * @param {Event} e
+ */
+function handleOpenClick(e) {
+  e.preventDefault();
+  openModal();
+}
+
+/**
+ * Bindet Click-Events an die Schließen-Buttons.
  */
 function bindCloseButtons() {
   const closeBtn = document.getElementById("closeAddTaskBtn");
@@ -70,30 +68,37 @@ function bindCloseButtons() {
 }
 
 /**
- * Bindet den Click-Event-Listener an das Overlay.
- * Schließt das Modal bei Klick außerhalb des Dialogs.
+ * Bindet den Click-Event an das Overlay.
  */
 function bindOverlayClick() {
-  if (overlay) {
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) closeModal();
-    });
-  }
+  if (overlay) overlay.addEventListener("click", handleOverlayClick);
 }
 
 /**
- * Bindet den Keydown-Event-Listener für die Escape-Taste.
- * Schließt das Modal bei Drücken von ESC.
+ * Behandelt Klicks auf das Overlay.
+ * @param {Event} e
+ */
+function handleOverlayClick(e) {
+  if (e.target === overlay) closeModal();
+}
+
+/**
+ * Bindet den Escape-Tasten-Listener.
  */
 function bindEscapeKey() {
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && isModalOpen()) closeModal();
-  });
+  document.addEventListener("keydown", handleEscapeKey);
 }
 
 /**
- * Bindet Click-Event-Listener an alle Priority-Buttons.
- * Ermöglicht die Auswahl der Task-Priorität.
+ * Behandelt Escape-Tastendruck.
+ * @param {Event} e
+ */
+function handleEscapeKey(e) {
+  if (e.key === "Escape" && isModalOpen()) closeModal();
+}
+
+/**
+ * Bindet Click-Events an alle Priority-Buttons.
  */
 function bindPriorityButtons() {
   priorityButtons.forEach((btn) => {
@@ -102,48 +107,44 @@ function bindPriorityButtons() {
 }
 
 /**
- * Bindet den Submit-Event-Listener an das Formular.
- * Verarbeitet die Formular-Übermittlung.
+ * Bindet den Submit-Event an das Formular.
  */
 function bindFormSubmit() {
-  if (form) {
-    form.addEventListener("submit", handleSubmit);
-  }
+  if (form) form.addEventListener("submit", handleSubmit);
 }
 
 /**
- * Öffnet das Modal und zeigt es an.
- * Setzt aria-Attribute, blockiert Hintergrund-Scrolling und fokussiert das erste Eingabefeld.
+ * Öffnet das Modal.
  */
 function openModal() {
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   focusFirstInput();
+  renderModalAssigneeDropdown();
 }
 
 /**
- * Schließt das Modal und versteckt es.
- * Setzt aria-Attribute zurück, aktiviert Hintergrund-Scrolling und setzt Priority zurück.
+ * Schließt das Modal.
  */
 function closeModal() {
   overlay.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
   resetPriority();
+  resetModalAssignees();
 }
 
 /**
- * Prüft, ob das Modal aktuell geöffnet ist.
- * @returns {boolean} True wenn das Modal geöffnet ist, sonst false
+ * Prüft ob das Modal geöffnet ist.
+ * @returns {boolean}
  */
 function isModalOpen() {
   return overlay?.classList.contains("open");
 }
 
 /**
- * Fokussiert das erste Eingabefeld im Modal.
- * Verwendet einen Timeout für zuverlässige Fokussierung nach der Animation.
+ * Fokussiert das erste Eingabefeld.
  */
 function focusFirstInput() {
   const firstInput = document.getElementById("taskTitle");
@@ -151,9 +152,8 @@ function focusFirstInput() {
 }
 
 /**
- * Wählt einen Priority-Button aus und markiert ihn als aktiv.
- * Entfernt die aktive Markierung von allen anderen Buttons.
- * @param {HTMLElement} selectedBtn - Der ausgewählte Priority-Button
+ * Wählt einen Priority-Button aus.
+ * @param {HTMLElement} selectedBtn
  */
 function selectPriority(selectedBtn) {
   priorityButtons.forEach((btn) => btn.classList.remove("active"));
@@ -161,8 +161,7 @@ function selectPriority(selectedBtn) {
 }
 
 /**
- * Setzt die Priority-Auswahl auf den Standardwert "Medium" zurück.
- * Wird beim Schließen des Modals aufgerufen.
+ * Setzt die Priority auf "Medium" zurück.
  */
 function resetPriority() {
   priorityButtons.forEach((btn) => btn.classList.remove("active"));
@@ -173,8 +172,8 @@ function resetPriority() {
 }
 
 /**
- * Ermittelt die aktuell ausgewählte Priorität.
- * @returns {string} Die ausgewählte Priorität ("urgent", "medium" oder "low")
+ * Ermittelt die ausgewählte Priorität.
+ * @returns {string}
  */
 function getSelectedPriority() {
   return (
@@ -184,15 +183,8 @@ function getSelectedPriority() {
 }
 
 /**
- * Sammelt alle Formulardaten und gibt sie als Objekt zurück.
- * @returns {Object} Objekt mit allen Task-Daten
- * @returns {string} return.title - Der Titel des Tasks
- * @returns {string} return.description - Die Beschreibung des Tasks
- * @returns {string} return.due - Das Fälligkeitsdatum
- * @returns {string} return.priority - Die Priorität
- * @returns {string} return.assignee - Der zugewiesene Kontakt
- * @returns {string} return.category - Die Kategorie
- * @returns {string} return.subtasks - Die Subtasks
+ * Sammelt alle Formulardaten.
+ * @returns {Object}
  */
 function getFormData() {
   return {
@@ -200,66 +192,80 @@ function getFormData() {
     description: form.description.value,
     due: form.due.value,
     priority: getSelectedPriority(),
-    assignee: form.assignee.value,
     category: form.category.value,
     subtasks: form.subtasks.value,
   };
 }
 
 /**
- * Verarbeitet die Formular-Übermittlung.
- * Speichert den Task in Firebase und aktualisiert das Board.
- * Gäste können keine Tasks erstellen.
- * @param {Event} e - Das Submit-Event
+ * Prüft ob der User ein Gast ist.
+ * @param {Object|null} user
+ * @returns {boolean}
  */
-async function handleSubmit(e) {
-  e.preventDefault();
+function isGuestOrNoUser(user) {
+  return !user || user.guest;
+}
 
-  // Aktuellen User aus localStorage holen (wurde beim Login gespeichert)
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-  // Prüfen ob User ein Gast ist - Gäste dürfen keine Tasks erstellen
-  if (!currentUser || currentUser.guest) {
-    alert("As a guest, you cannot create tasks. Please register or log in.");
-    return;
-  }
-
-  // Formulardaten sammeln
-  const formData = getFormData();
-
-  // Task-Objekt für Firebase erstellen
-  const taskData = {
+/**
+ * Erstellt das Task-Objekt für Firebase.
+ * @param {Object} formData
+ * @param {string} email
+ * @returns {Object}
+ */
+function buildTaskData(formData, email) {
+  return {
     title: formData.title,
     description: formData.description || "",
     dueDate: formData.due,
     priority: formData.priority,
-    assignees: formData.assignee ? [formData.assignee] : [], // Array für später mehrere Assignees
+    assignees: getModalAssigneesWithData(modalSelectedAssignees),
     category: formData.category,
-    status: "todo", // Neue Tasks starten immer in "To do"
+    status: "todo",
     subtasks: formData.subtasks
-      ? [{ title: formData.subtasks, completed: false }] // Subtask als Objekt mit completed-Status
+      ? [{ title: formData.subtasks, completed: false }]
       : [],
-    createdBy: currentUser.email,
+    createdBy: email,
   };
+}
 
+/**
+ * Verarbeitet die Formular-Übermittlung.
+ * @param {Event} e
+ */
+async function handleSubmit(e) {
+  e.preventDefault();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (isGuestOrNoUser(currentUser)) {
+    alert("As a guest, you cannot create tasks. Please register or log in.");
+    return;
+  }
+  await submitTask(currentUser);
+}
+
+/**
+ * Speichert den Task und aktualisiert das Board.
+ * @param {Object} currentUser
+ */
+async function submitTask(currentUser) {
   try {
-    // Task in Firebase speichern (aus db.js)
-    const createdTask = await createTask(taskData);
-    console.log("Task created:", createdTask);
-
-    // Modal schließen und Formular zurücksetzen
-    closeModal();
-    form.reset();
-    resetPriority();
-
-    // Board neu rendern falls die Funktion existiert (wird in Schritt 3 erstellt)
-    if (typeof renderAllTasks === "function") {
-      await renderAllTasks();
-    }
+    const taskData = buildTaskData(getFormData(), currentUser.email);
+    await createTask(taskData);
+    resetFormAndClose();
+    if (typeof renderAllTasks === "function") await renderAllTasks();
   } catch (error) {
     console.error("Error creating task:", error);
     alert("Task could not be created. Please try again.");
   }
+}
+
+/**
+ * Setzt das Formular zurück und schließt das Modal.
+ */
+function resetFormAndClose() {
+  closeModal();
+  form.reset();
+  resetPriority();
+  resetModalAssignees();
 }
 
 document.addEventListener("DOMContentLoaded", initModal);

@@ -9,14 +9,151 @@ let addTaskForm = null;
 /** @type {HTMLElement[]} Array der Priority-Button-Elemente */
 let addTaskPriorityButtons = [];
 
+/** @type {Object[]} Array der verfügbaren Kontakte */
+let availableContacts = [];
+
+/** @type {string[]} Array der ausgewählten Kontakt-IDs */
+let selectedAssignees = [];
+
 /**
  * Initialisiert die Add Task-Seite beim Laden.
  * Cached DOM-Elemente und bindet alle Event-Listener.
  */
-function initAddTaskPage() {
+async function initAddTaskPage() {
   cacheAddTaskElements();
   bindAddTaskEvents();
+  await loadContactsForDropdown();
 }
+
+/**
+ * Lädt die Kontakte für das Dropdown-Menü.
+ */
+async function loadContactsForDropdown() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    availableContacts = [];
+    renderAssigneeDropdown();
+    return;
+  }
+
+  // Für Gäste: Demo-Kontakte aus localStorage laden
+  if (currentUser.guest) {
+    const guestContacts = localStorage.getItem("guestContacts");
+    if (guestContacts) {
+      availableContacts = JSON.parse(guestContacts);
+    } else {
+      availableContacts = [];
+    }
+    renderAssigneeDropdown();
+    return;
+  }
+
+  try {
+    availableContacts = await fetchContacts(currentUser.id);
+    renderAssigneeDropdown();
+  } catch (error) {
+    console.error("Error loading contacts:", error);
+    availableContacts = [];
+    renderAssigneeDropdown();
+  }
+}
+
+/**
+ * Ermittelt die Initialen aus einem Namen.
+ */
+function getInitialsFromName(name) {
+  const parts = name.trim().split(" ");
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return name.substring(0, 2).toUpperCase();
+}
+
+/**
+ * Öffnet/Schließt das Assignee-Dropdown.
+ */
+function toggleAssigneeDropdown() {
+  const dropdown = document.getElementById("assigneeDropdown");
+  const list = document.getElementById("assigneeList");
+  const arrow = dropdown.querySelector(".dropdown-arrow");
+  const badges = document.getElementById("selectedContactsBadges");
+
+  list.classList.toggle("open");
+  arrow.classList.toggle("open");
+
+  // Badges verstecken wenn Dropdown offen, anzeigen wenn geschlossen
+  if (list.classList.contains("open")) {
+    badges.classList.add("hidden");
+  } else {
+    badges.classList.remove("hidden");
+  }
+}
+
+/**
+ * Öffnet das Assignee-Dropdown (ohne Toggle).
+ */
+function openAssigneeDropdown() {
+  const list = document.getElementById("assigneeList");
+  const arrow = document.querySelector(".dropdown-arrow");
+  const badges = document.getElementById("selectedContactsBadges");
+
+  if (!list.classList.contains("open")) {
+    list.classList.add("open");
+    arrow.classList.add("open");
+    badges.classList.add("hidden");
+  }
+}
+
+/**
+ * Filtert die Assignee-Liste basierend auf der Sucheingabe.
+ */
+function filterAssigneeList() {
+  const searchInput = document.getElementById("assigneeSearch");
+  const filter = searchInput.value;
+  renderAssigneeDropdown(filter);
+
+  const list = document.getElementById("assigneeList");
+  const arrow = document.querySelector(".dropdown-arrow");
+  if (!list.classList.contains("open")) {
+    list.classList.add("open");
+    arrow.classList.add("open");
+  }
+}
+
+/**
+ * Wählt einen Kontakt aus oder ab.
+ * @param {Event} event - Das Click-Event
+ * @param {string} contactId - Die ID des Kontakts
+ */
+function toggleAssignee(event, contactId) {
+  event.stopPropagation();
+  const index = selectedAssignees.indexOf(contactId);
+  if (index > -1) {
+    selectedAssignees.splice(index, 1);
+  } else {
+    selectedAssignees.push(contactId);
+  }
+  renderAssigneeDropdown(document.getElementById("assigneeSearch").value);
+  renderSelectedContactsBadges();
+}
+
+/**
+ * Schließt das Dropdown wenn außerhalb geklickt wird.
+ */
+document.addEventListener("click", function (event) {
+  const dropdown = document.getElementById("assigneeDropdown");
+  if (dropdown && !dropdown.contains(event.target)) {
+    const list = document.getElementById("assigneeList");
+    const arrow = dropdown.querySelector(".dropdown-arrow");
+    const badges = document.getElementById("selectedContactsBadges");
+
+    if (list && list.classList.contains("open")) {
+      list.classList.remove("open");
+      if (arrow) arrow.classList.remove("open");
+      if (badges) badges.classList.remove("hidden");
+    }
+  }
+});
 
 /**
  * Cached alle benötigten DOM-Elemente in Variablen.
@@ -95,7 +232,7 @@ function getAddTaskFormData() {
     description: addTaskForm.description.value,
     due: addTaskForm.due.value,
     priority: getAddTaskSelectedPriority(),
-    assignee: addTaskForm.assignee.value,
+    assignees: [...selectedAssignees],
     category: addTaskForm.category.value,
     subtasks: addTaskForm.subtasks.value,
   };
@@ -119,6 +256,11 @@ function clearAddTaskForm() {
   if (addTaskForm) {
     addTaskForm.reset();
     resetAddTaskPriority();
+    selectedAssignees = [];
+    renderAssigneeDropdown();
+    renderSelectedContactsBadges();
+    const searchInput = document.getElementById("assigneeSearch");
+    if (searchInput) searchInput.value = "";
   }
 }
 
@@ -155,7 +297,7 @@ function buildTaskData(formData, creatorEmail) {
     description: formData.description || "",
     dueDate: formData.due,
     priority: formData.priority,
-    assignees: formData.assignee ? [formData.assignee] : [],
+    assignees: getAssigneesWithData(formData.assignees),
     category: formData.category,
     status: "todo",
     subtasks: formData.subtasks
@@ -163,6 +305,32 @@ function buildTaskData(formData, creatorEmail) {
       : [],
     createdBy: creatorEmail,
   };
+}
+
+/**
+ * Wandelt Assignee-IDs in vollständige Assignee-Objekte um.
+ * @param {string[]} assigneeIds - Array der ausgewählten Kontakt-IDs
+ * @returns {Object[]} Array von Objekten mit name und color
+ */
+function getAssigneesWithData(assigneeIds) {
+  if (!assigneeIds || assigneeIds.length === 0) return [];
+
+  const result = [];
+  const currentUser = getCurrentUser();
+
+  for (const id of assigneeIds) {
+    if (id === "currentUser" && currentUser) {
+      const userName = currentUser.name || currentUser.email.split("@")[0];
+      result.push({ name: userName, color: "#29abe2" });
+    } else {
+      const contact = availableContacts.find((c) => c.id === id);
+      if (contact) {
+        result.push({ name: contact.name, color: contact.color });
+      }
+    }
+  }
+
+  return result;
 }
 
 /**

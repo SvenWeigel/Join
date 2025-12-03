@@ -31,6 +31,12 @@ function resetAddContactForm() {
   if (form) {
     form.reset();
   }
+  let nameInput = document.getElementById("contactName");
+  let emailInput = document.getElementById("contactEmail");
+  let phoneInput = document.getElementById("contactPhone");
+  if (nameInput) nameInput.value = "";
+  if (emailInput) emailInput.value = "";
+  if (phoneInput) phoneInput.value = "";
 }
 
 /**
