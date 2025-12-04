@@ -74,6 +74,7 @@ header {
   gap: 12px;
   z-index: 1100;
   padding:10px;
+  transition: transform 0.1s ease;
 }
 
 .profile-options a{
@@ -83,6 +84,10 @@ header {
 
 .profile-options a:hover{
   background-color: #2a3d59;
+}
+
+.help-options{
+  display:none;
 }
 
 @media (max-width:870px){
@@ -116,4 +121,15 @@ header {
   .header-profile-container a{
     display:none;
   }
+  .help-options{
+    display:flex;
+  }
+  .profile-options{
+    transform: translate(120%);
+  }
+  .profile-options.show{
+    transform: translateX(0);
+    transition: transform 0.1s ease;
+  }
+
 }

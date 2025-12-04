@@ -70,23 +70,34 @@ if (document.readyState === "loading") {
 window.applyInitials = applyInitials;
 
 
-function showProfileOptions(){
+function showProfileOptions() {
   const el = document.getElementById("profile-options");
   if (el) {
-    el.classList.toggle('d-none');
-    if (!el.classList.contains('d-none')) {
-      // Menü ist jetzt offen: Klick außerhalb schließt es
+    if (el.classList.contains('d-none')) {
+      el.classList.remove('d-none');
+      void el.offsetWidth;
+      el.classList.add('show');
       document.addEventListener('click', closeProfileOptionsOnClickOutside);
+    } else {
+      el.classList.remove('show');
+      document.removeEventListener('click', closeProfileOptionsOnClickOutside);
+      setTimeout(() => {
+        el.classList.add('d-none');
+      }, 100); 
     }
   }
 }
+
 function closeProfileOptionsOnClickOutside(event) {
   const el = document.getElementById("profile-options");
-  if (el && !el.classList.contains('d-none')) {
-    // Prüfe, ob der Klick außerhalb des Menüs und außerhalb des User-Badge war
+  if (el && el.classList.contains('show')) {
     if (!el.contains(event.target) && !event.target.closest('.user-badge')) {
-      el.classList.add('d-none');
+      el.classList.remove('show');
       document.removeEventListener('click', closeProfileOptionsOnClickOutside);
+      setTimeout(() => {
+        el.classList.add('d-none');
+      }, 400);
     }
   }
 }
+
