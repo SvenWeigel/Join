@@ -392,6 +392,7 @@ textarea {
   align-items: center;
   margin-top: 32px;
   padding: 0 96px 48px 96px;
+  max-width: 1052px;
 }
 
 .required-note {
