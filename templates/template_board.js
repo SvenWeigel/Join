@@ -54,6 +54,7 @@ const COLUMN_LABELS = ["To do", "In progress", "Await feedback", "Done"];
  * @param {string} task.title - Der Titel (bereits escaped)
  * @param {string} task.description - Die Beschreibung (bereits escaped/gekürzt)
  * @param {string} task.categoryLabel - Anzeige-Label für Kategorie (z.B. "User Story")
+ * @param {string} task.categoryClass - CSS-Klasse für Kategorie-Styling
  * @param {string} task.priorityIcon - Pfad zum Priority-Icon
  * @param {string} task.priority - Priority-Name für alt-Text
  * @param {string} task.subtasksHtml - Fertig gerendertes Subtasks-HTML
@@ -63,7 +64,7 @@ const COLUMN_LABELS = ["To do", "In progress", "Await feedback", "Done"];
 function getTaskCardTemplate(task) {
   return `
       <div class="task-card" data-task-id="${task.id}" draggable="true">
-        <div>${task.categoryLabel}</div>
+        <span class="task-category ${task.categoryClass}">${task.categoryLabel}</span>
         <h4 class="task-title">${task.title}</h4>
         <p class="task-description">
           ${task.description}
@@ -73,7 +74,7 @@ function getTaskCardTemplate(task) {
           <div class="task-assignees">
             ${task.assigneesHtml}
           </div>
-          <img class="task-icon" src="${task.priorityIcon}" />
+          <img class="task-priority-icon" src="${task.priorityIcon}" alt="${task.priority}" />
         </div>
       </div>
   `;
@@ -88,10 +89,13 @@ function getTaskCardTemplate(task) {
  * @returns {string} HTML-String der Fortschrittsanzeige
  */
 function getSubtasksProgressTemplate(completed, total) {
+  const progressPercent = total > 0 ? (completed / total) * 100 : 0;
   return `
         <div class="task-progress">
-          <div class="progress-bar"></div>
-          <span class="subtasks">${completed}/${total} Subtasks</span>
+          <div class="progress-bar-container">
+            <div class="progress-bar" style="width: ${progressPercent}%"></div>
+          </div>
+          <span class="subtasks-text">${completed}/${total} Subtasks</span>
         </div>
   `;
 }

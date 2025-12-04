@@ -83,6 +83,7 @@ function renderTaskCard(task) {
     title: escapeHtml(task.title),
     description: escapeHtml(truncateText(task.description, 50)),
     categoryLabel: categoryConfig.label,
+    categoryClass: categoryConfig.class,
     priorityIcon: priorityIcon,
     priority: task.priority,
     subtasksHtml: renderSubtasksProgress(task.subtasks),
