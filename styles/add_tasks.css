@@ -681,3 +681,52 @@ textarea {
 #pageCategoryList .dropdown-item.selected {
   background-color: #f0f0f0;
 }
+.required-note-form{
+  display:none;
+  font-size: 14px;
+  color: #666;
+}
+.required-star-form{
+  color: #e60000;
+}
+
+
+@media(max-width:1350px){
+  .content{
+    justify-content: center;
+    padding:0;
+    gap:20px;
+  }
+  
+}
+
+@media(max-width:1175px){
+  .content{
+    flex-direction:column;
+    align-items: flex-start;
+    margin:auto;
+  }
+  .seperator-content{
+    display:none;
+  }
+  .form-footer-wrapper{
+    justify-content: flex-end;
+    padding:0;
+    width:440px;
+  }
+  .buttons-actions{
+    margin:0;
+  }
+  form{
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items:center;
+  }
+  .required-note-form{
+    display:unset;
+  }
+  .required-note{
+    display:none
+  }
+}
