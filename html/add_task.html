@@ -13,33 +13,30 @@
     <link rel="stylesheet" href="/styles/menu-bar.css" />
     <link rel="stylesheet" href="/styles/add_tasks.css" />
     <link rel="stylesheet" href="/styles/header.css" />
+    <link rel="stylesheet" href="/styles/bottom-nav.css"/>
     <title>Add Task</title>
   </head>
 
   <body>
     <div class="main-layout-container">
       <header>
-        <div class="header-content">
-          <span>Kanban Project Management Tool</span>
-          <div class="header-profile-container">
-            <a href="/html/help.html"
-              ><img src="/assets/icons/help.svg" alt="help_icon"
-            /></a>
-            <div
-              class="user-badge"
-              onclick="showProfileOptions()"
-              title="Benutzer"
-            >
-              <div class="user-avatar">SM</div>
-            </div>
-          </div>
-          <div class="profile-options d-none" id="profile-options">
-            <a href="legal_notice.html">Legal Notice</a>
-            <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="../index.html">Log Out</a>
+      <div class="header-content">
+        <img class="logo-responsive" src="../assets/img/logo.svg">
+        <span>Kanban Project Management Tool</span>
+        <div class="header-profile-container">
+          <a href="/html/help.html"><img src="/assets/icons/help.svg" alt="help_icon" /></a>
+          <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
+            <div class="user-avatar">SM</div>
           </div>
         </div>
-      </header>
+        <div class="profile-options d-none" id="profile-options">
+          <a class="help-options" href="help.html">Help</a>
+          <a href="legal_notice.html">Legal Notice</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+          <a href="../index.html">Log Out</a>
+        </div>
+      </div>
+    </header>
 
       <aside class="menu-bar-container">
         <div class="join-logo-container">
@@ -306,6 +303,24 @@
         </div>
       </main>
     </div>
+    <nav class="bottom-nav">
+    <a href="./summary.html" class="nav-div current-nav">
+      <img class="bottom-nav-img" src="../assets/icons/summary.svg">
+      <span class="bottom-nav-span">Summary</span>
+    </a>
+    <a href="./add_task.html" class="nav-div">
+      <img class="bottom-nav-img" src="../assets/icons/add_task.svg">
+      <span class="bottom-nav-span">Add Task</span>
+    </a>
+    <a href="./board.html" class="nav-div">
+      <img class="bottom-nav-img" src="../assets/icons/board.svg">
+      <span class="bottom-nav-span">Board</span>
+    </a>
+    <a href="./contacts.html" class="nav-div">
+      <img class="bottom-nav-img" src="../assets/icons/contacts.svg">
+      <span class="bottom-nav-span">Contacts</span>
+    </a>
+  </nav>
 
     <script src="/scripts/db.js"></script>
     <script src="/templates/template_add_task.js"></script>
