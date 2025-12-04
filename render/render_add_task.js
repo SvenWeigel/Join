@@ -136,3 +136,19 @@ function renderSelectedContactsBadges() {
   if (!container) return;
   container.innerHTML = buildBadgesHtml();
 }
+
+// ==========================================================================
+// SUBTASK RENDER FUNCTIONS
+// ==========================================================================
+
+/**
+ * Rendert die Subtask-Liste.
+ */
+function renderPageSubtasks() {
+  const list = document.getElementById("subtaskList");
+  if (!list) return;
+
+  list.innerHTML = pageSubtasks
+    .map((subtask, index) => getSubtaskItemTemplate(subtask.title, index))
+    .join("");
+}

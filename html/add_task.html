@@ -196,32 +196,79 @@
               </div>
 
               <div class="category-section">
-                <label for="taskCategoryPage"
-                  >Category<span class="required-star">*</span></label
-                >
-                <select
+                <label>Category<span class="required-star">*</span></label>
+                <div class="custom-dropdown" id="categoryDropdownPage">
+                  <div
+                    class="dropdown-header"
+                    onclick="togglePageCategoryDropdown()"
+                  >
+                    <span
+                      id="pageCategorySelected"
+                      class="dropdown-selected-text"
+                      >Select task category</span
+                    >
+                    <img
+                      src="/assets/icons/arrow_drop_downaa.svg"
+                      alt="Dropdown"
+                      class="dropdown-arrow"
+                      id="categoryDropdownArrowPage"
+                    />
+                  </div>
+                  <div class="dropdown-list" id="pageCategoryList">
+                    <div
+                      class="dropdown-item category-option"
+                      data-value="technical"
+                      onclick="selectPageCategory('technical', 'Technical Task')"
+                    >
+                      <span>Technical Task</span>
+                    </div>
+                    <div
+                      class="dropdown-item category-option"
+                      data-value="userstory"
+                      onclick="selectPageCategory('userstory', 'User Story')"
+                    >
+                      <span>User Story</span>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  type="hidden"
                   id="taskCategoryPage"
                   name="category"
-                  class="select-input"
                   required
-                >
-                  <option value="" disabled selected hidden>
-                    Select a category
-                  </option>
-                  <option value="technical">Technical Task</option>
-                  <option value="userstory">User Story</option>
-                </select>
+                />
               </div>
 
               <div class="subtasks-section">
-                <label for="taskSubtasksPage">Subtasks</label>
-                <input
-                  id="taskSubtasksPage"
-                  name="subtasks"
-                  class="subtask-input"
-                  type="text"
-                  placeholder="Add new subtask"
-                />
+                <label>Subtasks</label>
+                <div class="subtask-input-wrapper" id="subtaskInputWrapper">
+                  <input
+                    id="taskSubtasksPage"
+                    name="subtasks"
+                    class="subtask-input"
+                    type="text"
+                    placeholder="Add new subtask"
+                    onfocus="showSubtaskActions()"
+                    onblur="hideSubtaskActionsDelayed()"
+                    onkeydown="handleSubtaskKeydown(event)"
+                  />
+                  <div class="subtask-actions" id="subtaskActions">
+                    <img
+                      src="/assets/icons/cancel_subtask.svg"
+                      alt="Cancel"
+                      class="subtask-action-icon"
+                      onclick="cancelSubtaskInput()"
+                    />
+                    <div class="subtask-action-divider"></div>
+                    <img
+                      src="/assets/icons/check_subtask.svg"
+                      alt="Confirm"
+                      class="subtask-action-icon"
+                      onclick="confirmSubtaskInput()"
+                    />
+                  </div>
+                </div>
+                <ul class="subtask-list" id="subtaskList"></ul>
               </div>
             </div>
           </div>
@@ -263,6 +310,9 @@
     <script src="/scripts/db.js"></script>
     <script src="/templates/template_add_task.js"></script>
     <script src="/render/render_add_task.js"></script>
+    <script src="/scripts/add_task_assigned_to.js"></script>
+    <script src="/scripts/add_task_category.js"></script>
+    <script src="/scripts/add_task_subtask.js"></script>
     <script src="/scripts/add_task.js"></script>
     <script src="/scripts/header.js"></script>
     <script src="/scripts/script.js"></script>

@@ -528,3 +528,259 @@
   font-weight: 500;
   color: #fff;
 }
+
+/* ==========================================================================
+   12. MODAL CUSTOM DROPDOWN (Category)
+   ========================================================================== */
+
+.add-task-modal #modalCategoryDropdown {
+  position: relative;
+  width: 100%;
+}
+
+.add-task-modal #modalCategoryDropdown .dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 12px 0 16px;
+}
+
+.add-task-modal #modalCategoryDropdown .dropdown-header:hover {
+  border-color: #29abe2;
+}
+
+.add-task-modal .dropdown-selected-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #d1d1d1;
+  display: flex;
+  align-items: center;
+  line-height: 48px;
+  margin-bottom: 0;
+}
+
+.add-task-modal .dropdown-selected-text.has-value {
+  color: #2a3647;
+}
+
+.add-task-modal #modalCategoryDropdown .dropdown-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.add-task-modal #modalCategoryDropdown .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.add-task-modal #modalCategoryList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: max-height 0.2s ease;
+}
+
+.add-task-modal #modalCategoryList.open {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+}
+
+.add-task-modal #modalCategoryList .dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+}
+
+.add-task-modal #modalCategoryList .dropdown-item span {
+  margin-bottom: 0;
+}
+
+.add-task-modal #modalCategoryList .dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.add-task-modal #modalCategoryList .dropdown-item.selected {
+  background-color: #f0f0f0;
+}
+
+/* ==========================================================================
+   SUBTASKS SECTION (Modal)
+   ========================================================================== */
+
+.add-task-modal .subtasks-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtask Input Wrapper */
+.add-task-modal .subtask-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.add-task-modal .subtask-input-wrapper .subtask-input {
+  flex: 1;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  font-family: "Inter", sans-serif;
+  padding-left: 16px;
+  padding-right: 80px;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.add-task-modal .subtask-input-wrapper .subtask-input:focus {
+  border-color: #29abe2;
+  outline: none;
+}
+
+.add-task-modal .subtask-actions {
+  position: absolute;
+  right: 12px;
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-task-modal .subtask-actions.visible {
+  display: flex;
+}
+
+.add-task-modal .subtask-action-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.add-task-modal .subtask-action-icon:hover {
+  opacity: 1;
+}
+
+.add-task-modal .subtask-action-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #d1d1d1;
+  margin: 0 4px;
+}
+
+/* Subtask List */
+.add-task-modal .subtask-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.add-task-modal .subtask-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-left: 0;
+}
+
+.add-task-modal .subtask-item:hover {
+  background-color: #f0f0f0;
+}
+
+.add-task-modal .subtask-item::before {
+  content: "•";
+  font-size: 18px;
+  color: #2a3647;
+}
+
+.add-task-modal .subtask-item-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+  margin-bottom: 0;
+}
+
+.add-task-modal .subtask-item-actions {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-task-modal .subtask-item:hover .subtask-item-actions {
+  display: flex;
+}
+
+.add-task-modal .subtask-item-actions .subtask-edit-icon,
+.add-task-modal .subtask-delete-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.add-task-modal .subtask-item-actions .subtask-edit-icon:hover,
+.add-task-modal .subtask-delete-icon:hover {
+  opacity: 1;
+}
+
+/* Subtask Edit Mode */
+.add-task-modal .subtask-edit-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.add-task-modal .subtask-edit-input {
+  flex: 1;
+  height: 36px;
+  border: none;
+  border-bottom: 1px solid #29abe2;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  padding: 0 8px;
+  background: transparent;
+  outline: none;
+}
+
+.add-task-modal .subtask-edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-task-modal .subtask-edit-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.add-task-modal .subtask-edit-icon:hover {
+  opacity: 1;
+}

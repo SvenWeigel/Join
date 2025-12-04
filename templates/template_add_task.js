@@ -37,3 +37,71 @@ function getDropdownItemTemplate(id, name, initials, color, isSelected) {
 function getContactBadgeTemplate(name, initials, color) {
   return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
 }
+
+// ==========================================================================
+// SUBTASK TEMPLATES
+// ==========================================================================
+
+/**
+ * Generiert das HTML-Template für ein Subtask-Item.
+ * @param {string} title - Der Titel des Subtasks
+ * @param {number} index - Der Index des Subtasks
+ * @returns {string} HTML-String für das Subtask-Item
+ */
+function getSubtaskItemTemplate(title, index) {
+  return `
+    <li class="subtask-item" ondblclick="editPageSubtask(${index})">
+      <span class="subtask-item-text">${escapeHtml(title)}</span>
+      <div class="subtask-item-actions">
+        <img
+          src="/assets/icons/edit_subtask.svg"
+          alt="Edit"
+          class="subtask-edit-icon"
+          onclick="editPageSubtask(${index}); event.stopPropagation();"
+        />
+        <div class="subtask-action-divider"></div>
+        <img
+          src="/assets/icons/delete_subtask.svg"
+          alt="Delete"
+          class="subtask-delete-icon"
+          onclick="deletePageSubtask(${index}, event)"
+        />
+      </div>
+    </li>
+  `;
+}
+
+/**
+ * Generiert das HTML-Template für den Subtask-Edit-Modus.
+ * @param {string} title - Der aktuelle Titel des Subtasks
+ * @param {number} index - Der Index des Subtasks
+ * @returns {string} HTML-String für den Edit-Modus
+ */
+function getSubtaskEditTemplate(title, index) {
+  return `
+    <div class="subtask-edit-wrapper">
+      <input
+        type="text"
+        class="subtask-edit-input"
+        value="${escapeHtml(title)}"
+        onkeydown="handleSubtaskEditKeydown(event, ${index})"
+        id="subtaskEditInput${index}"
+      />
+      <div class="subtask-edit-actions">
+        <img
+          src="/assets/icons/delete_subtask.svg"
+          alt="Delete"
+          class="subtask-edit-icon"
+          onclick="deletePageSubtask(${index}, event)"
+        />
+        <div class="subtask-action-divider"></div>
+        <img
+          src="/assets/icons/check_subtask.svg"
+          alt="Confirm"
+          class="subtask-edit-icon"
+          onclick="confirmPageSubtaskEdit(${index})"
+        />
+      </div>
+    </div>
+  `;
+}

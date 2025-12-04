@@ -133,6 +133,8 @@ function closeModal() {
   document.body.style.overflow = "";
   resetPriority();
   resetModalAssignees();
+  resetModalCategory();
+  resetModalSubtasks();
 }
 
 /**
@@ -221,9 +223,7 @@ function buildTaskData(formData, email) {
     assignees: getModalAssigneesWithData(modalSelectedAssignees),
     category: formData.category,
     status: "todo",
-    subtasks: formData.subtasks
-      ? [{ title: formData.subtasks, completed: false }]
-      : [],
+    subtasks: [...modalSubtasks],
     createdBy: email,
   };
 }
@@ -266,6 +266,8 @@ function resetFormAndClose() {
   form.reset();
   resetPriority();
   resetModalAssignees();
+  resetModalCategory();
+  resetModalSubtasks();
 }
 
 document.addEventListener("DOMContentLoaded", initModal);

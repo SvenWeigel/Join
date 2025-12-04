@@ -157,25 +157,167 @@ textarea {
   flex-direction: column;
 }
 
-.select-input {
-  height: 48px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  font-family: "Inter", sans-serif;
-  padding-left: 16px;
-  padding-right: 12px;
-  font-size: 16px;
+/* Subtask Input Wrapper */
+.subtask-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.subtask-input {
+.subtask-input-wrapper .subtask-input {
+  flex: 1;
   height: 48px;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
   font-family: "Inter", sans-serif;
   padding-left: 16px;
-  padding-right: 12px;
-  margin-bottom: 16px;
-  font-size: 20px;
+  padding-right: 80px;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.subtask-input-wrapper .subtask-input:focus {
+  border-color: #29abe2;
+  outline: none;
+}
+
+.subtask-actions {
+  position: absolute;
+  right: 12px;
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtask-actions.visible {
+  display: flex;
+}
+
+.subtask-action-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-action-icon:hover {
+  opacity: 1;
+}
+
+.subtask-action-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #d1d1d1;
+  margin: 0 4px;
+}
+
+/* Subtask List */
+.subtask-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.subtask-item:hover {
+  background-color: #f0f0f0;
+}
+
+.subtask-item::before {
+  content: "•";
+  margin-right: 12px;
+  font-size: 18px;
+  color: #2a3647;
+}
+
+.subtask-item-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+  margin-bottom: 0;
+}
+
+.subtask-item-actions {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtask-item:hover .subtask-item-actions {
+  display: flex;
+}
+
+.subtask-item-actions .subtask-edit-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-item-actions .subtask-edit-icon:hover {
+  opacity: 1;
+}
+
+.subtask-delete-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-delete-icon:hover {
+  opacity: 1;
+}
+
+/* Subtask Edit Mode */
+.subtask-edit-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.subtask-edit-input {
+  flex: 1;
+  height: 36px;
+  border: none;
+  border-bottom: 1px solid #29abe2;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  padding: 0 8px;
+  background: transparent;
+  outline: none;
+}
+
+.subtask-edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtask-edit-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-edit-icon:hover {
+  opacity: 1;
 }
 
 .btn-create {
@@ -443,4 +585,98 @@ textarea {
   font-size: 12px;
   font-weight: 500;
   color: #fff;
+}
+
+/* ==========================================================================
+   Category Custom Dropdown
+   ========================================================================== */
+
+#categoryDropdownPage {
+  position: relative;
+  width: 100%;
+}
+
+#categoryDropdownPage .dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 12px 0 16px;
+}
+
+#categoryDropdownPage .dropdown-header:hover {
+  border-color: #29abe2;
+}
+
+.dropdown-selected-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #d1d1d1;
+  display: flex;
+  align-items: center;
+  line-height: 48px;
+  margin-bottom: 0;
+}
+
+.dropdown-selected-text.has-value {
+  color: #2a3647;
+}
+
+#categoryDropdownPage .dropdown-arrow {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+#categoryDropdownPage .dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+#pageCategoryList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: max-height 0.2s ease;
+}
+
+#pageCategoryList.open {
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+}
+
+#pageCategoryList .dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+}
+
+#pageCategoryList .dropdown-item span {
+  margin-bottom: 0;
+}
+
+#pageCategoryList .dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+#pageCategoryList .dropdown-item.selected {
+  background-color: #f0f0f0;
 }

@@ -105,3 +105,19 @@ function renderModalSelectedContactsBadges() {
   const container = document.getElementById("modalSelectedContactsBadges");
   if (container) container.innerHTML = buildModalBadgesHtml();
 }
+
+// ============================================================================
+// MODAL SUBTASK RENDER FUNKTIONEN
+// ============================================================================
+
+/**
+ * Rendert die Subtask-Liste im Modal.
+ */
+function renderModalSubtasks() {
+  const list = document.getElementById("modalSubtaskList");
+  if (!list) return;
+
+  list.innerHTML = modalSubtasks
+    .map((subtask, index) => getModalSubtaskItemTemplate(subtask.title, index))
+    .join("");
+}
