@@ -201,6 +201,9 @@ async function renderAllTasks() {
 
     // 6. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
     initDragAndDrop();
+
+    // 7. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
+    initTaskCardClickHandlers();
   } catch (error) {
     console.error("Error loading tasks:", error);
   }

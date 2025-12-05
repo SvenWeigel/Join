@@ -153,8 +153,36 @@
 }
 
 .priority-btn-edit-view:hover {
-  background-color: rgba(0, 56, 255, 1);
+  background-color: rgba(240, 240, 240, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Priority Button Active States */
+.priority-btn-edit-view.active[data-priority="urgent"] {
+  background-color: #ff3d00;
   color: white;
+}
+
+.priority-btn-edit-view.active[data-priority="urgent"] .prio-icon {
+  filter: brightness(0) invert(1);
+}
+
+.priority-btn-edit-view.active[data-priority="medium"] {
+  background-color: #ffa800;
+  color: white;
+}
+
+.priority-btn-edit-view.active[data-priority="medium"] .prio-icon {
+  filter: brightness(0) invert(1);
+}
+
+.priority-btn-edit-view.active[data-priority="low"] {
+  background-color: #7ae229;
+  color: white;
+}
+
+.priority-btn-edit-view.active[data-priority="low"] .prio-icon {
+  filter: brightness(0) invert(1);
 }
 
 .assigned-to-div {
@@ -322,12 +350,67 @@
   margin-top: 16px;
 }
 
+.subtasks-list-edit-view {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+
 .subtask-input-edit-view {
-  padding: 8px;
-  border: 1px solid #d1d1d1;
-  border-radius: 10px;
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
   font-family: "Inter", sans-serif;
   font-size: 16px;
+  background: transparent;
+  outline: none;
+}
+
+.subtask-input-edit-view::placeholder {
+  color: #d1d1d1;
+}
+
+/* Subtask Input Wrapper für Edit Modal */
+.subtask-input-wrapper-edit {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 10px;
+  padding-right: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.subtask-input-wrapper-edit:focus-within {
+  border-color: #29abe2;
+}
+
+.subtask-actions-input {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtask-actions-input.show {
+  display: flex;
+}
+
+.subtask-actions-input .subtask-action-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-actions-input .subtask-action-icon:hover {
+  opacity: 1;
+}
+
+.subtask-actions-input .subtask-action-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #d1d1d1;
+  margin: 0 4px;
 }
 
 .add-subtask-btn {
@@ -339,4 +422,136 @@
   cursor: pointer;
   align-self: flex-start;
   padding: 0;
+}
+
+/* Edit Modal Footer mit OK Button */
+.edit-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.btn-ok {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background-color: #2a3647;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-ok:hover {
+  background-color: #29abe2;
+}
+
+.btn-ok img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+/* Subtask Items im Edit-Modal */
+.subtask-item-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.subtask-item-edit::before {
+  content: "•";
+  margin-right: 12px;
+  font-size: 18px;
+  color: #2a3647;
+}
+
+.subtask-item-edit:hover {
+  background-color: #f0f0f0;
+}
+
+.subtask-text {
+  flex: 1;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #2a3647;
+}
+
+.subtask-actions-edit {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtask-item-edit:hover .subtask-actions-edit {
+  display: flex;
+}
+
+.subtask-actions-edit img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.subtask-actions-edit img:hover {
+  opacity: 1;
+}
+
+.subtask-action-divider-edit {
+  width: 1px;
+  height: 24px;
+  background-color: #d1d1d1;
+  margin: 0 4px;
+}
+
+.subtask-edit-input-inline {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #29abe2;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Selected Assignees Badges Container */
+.selected-assignees-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.selected-assignees-badges.hidden {
+  display: none;
+}
+
+.selected-assignees-badges .contact-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 400;
+  border: 2px solid white;
+  margin-left: -8px;
+}
+
+.selected-assignees-badges .contact-badge:first-child {
+  margin-left: 0;
 }

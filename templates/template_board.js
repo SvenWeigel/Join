@@ -242,3 +242,120 @@ function getModalSubtaskEditTemplate(title, index) {
     </div>
   `;
 }
+
+// ============================================================================
+// VIEW MODAL TEMPLATES
+// ============================================================================
+
+/**
+ * Generiert das HTML für einen Assignee im View-Modal.
+ * @param {string} initials - Die Initialen des Assignees
+ * @param {string} color - Die Hintergrundfarbe
+ * @param {string} name - Der vollständige Name
+ * @returns {string} HTML-String für den Assignee
+ */
+function getViewAssigneeTemplate(initials, color, name) {
+  return `
+    <div class="assigned-avatars-container-list">
+      <div class="assigned-avatar contact-avatar-task-view" style="background-color: ${color}" title="${name}">${initials}</div>
+      <span class="avatar-full-name">${name}</span>
+    </div>
+  `;
+}
+
+/**
+ * Generiert das HTML für einen Subtask mit Checkbox im View-Modal.
+ * @param {number} index - Der Index des Subtasks
+ * @param {string} title - Der Titel des Subtasks (bereits escaped)
+ * @param {boolean} completed - Ob der Subtask erledigt ist
+ * @returns {string} HTML-String für den Subtask
+ */
+function getViewSubtaskTemplate(index, title, completed) {
+  const checkedAttr = completed ? "checked" : "";
+  return `
+    <div class="subtask-item">
+      <input type="checkbox" id="viewSubtask${index}" name="viewSubtask${index}" ${checkedAttr} onchange="toggleSubtaskComplete(${index})">
+      <label for="viewSubtask${index}">${title}</label>
+    </div>
+  `;
+}
+
+// ============================================================================
+// EDIT MODAL TEMPLATES
+// ============================================================================
+
+/**
+ * Generiert das HTML für ein Assignee-Badge im Edit-Modal.
+ * @param {string} initials - Die Initialen des Assignees
+ * @param {string} color - Die Hintergrundfarbe
+ * @param {string} name - Der vollständige Name
+ * @returns {string} HTML-String für das Badge
+ */
+function getEditAssigneeBadgeTemplate(initials, color, name) {
+  return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
+}
+
+/**
+ * Generiert das HTML für ein Dropdown-Item im Edit-Modal Assignee-Dropdown.
+ * @param {string} id - Die ID des Kontakts
+ * @param {string} name - Der Name des Kontakts (bereits escaped)
+ * @param {string} initials - Die Initialen
+ * @param {string} color - Die Hintergrundfarbe
+ * @param {boolean} isSelected - Ob der Kontakt ausgewählt ist
+ * @returns {string} HTML-String für das Dropdown-Item
+ */
+function getEditAssigneeDropdownItemTemplate(
+  id,
+  name,
+  initials,
+  color,
+  isSelected
+) {
+  const selectedClass = isSelected ? "selected" : "";
+  return `
+    <div class="assigned-dropdown-item ${selectedClass}" data-id="${id}" onclick="toggleEditAssignee(event, '${id}')">
+      <div class="assigned-item-left">
+        <div class="assigned-avatar" style="background-color: ${color}">${initials}</div>
+        <span>${name}</span>
+      </div>
+      <div class="assigned-checkbox">
+        <img src="/assets/icons/check.svg" />
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Generiert das HTML für ein Subtask-Item im Edit-Modal.
+ * @param {number} index - Der Index des Subtasks
+ * @param {string} title - Der Titel des Subtasks (bereits escaped)
+ * @returns {string} HTML-String für das Subtask-Item
+ */
+function getEditSubtaskItemTemplate(index, title) {
+  return `
+    <div class="subtask-item-edit" data-index="${index}" ondblclick="editEditSubtask(${index})">
+      <span class="subtask-text">${title}</span>
+      <div class="subtask-actions-edit">
+        <img src="/assets/icons/edit_subtask.svg" alt="Edit" onclick="editEditSubtask(${index}); event.stopPropagation();" />
+        <div class="subtask-action-divider-edit"></div>
+        <img src="/assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index}); event.stopPropagation();" />
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Generiert das HTML für den Inline-Edit-Modus eines Subtasks im Edit-Modal.
+ * @param {number} index - Der Index des Subtasks
+ * @param {string} title - Der aktuelle Titel (bereits escaped)
+ * @returns {string} HTML-String für den Inline-Edit-Modus
+ */
+function getEditSubtaskInlineEditTemplate(index, title) {
+  return `
+    <input type="text" class="subtask-edit-input-inline" value="${title}" id="editSubtaskInput${index}" />
+    <div class="subtask-actions-edit">
+      <img src="/assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index})" />
+      <img src="/assets/icons/check_subtask.svg" alt="Confirm" onclick="confirmEditSubtask(${index})" />
+    </div>
+  `;
+}
