@@ -171,7 +171,7 @@ function handleGuestLogin(e) {
   e.preventDefault();
   const guestUser = { name: "Guest", email: "guest@guest.local", guest: true };
   localStorage.setItem("currentUser", JSON.stringify(guestUser));
-  window.location.replace("html/board.html");
+  window.location.replace("html/summary.html");
 }
 
 /**
