@@ -23,6 +23,18 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  animation: slideInTaskModal 0.3s ease-out;
+}
+
+@keyframes slideInTaskModal {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .task-view-header {
@@ -40,6 +52,15 @@
   padding: 4px 24px;
   font-size: 23px;
   font-weight: 400;
+}
+
+/* Dynamische Kategorie-Farben */
+.task-view-header span.user-story {
+  background-color: #0038ff;
+}
+
+.task-view-header span.technical {
+  background-color: #1fd7c1;
 }
 
 .task-view-header button {

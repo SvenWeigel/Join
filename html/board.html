@@ -276,7 +276,7 @@
       <div class="inside-modal-view-overlay">
         <div class="task-view-header">
           <span>User Story</span>
-          <button><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
+          <button onclick="closeTaskViewModal()"><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
         </div>
         <div class="task-view-title">
           <span>Kochwelt Page & Recipe Recommender</span>
@@ -320,9 +320,9 @@
           </div>
         </div>
         <div class="delete-edit-btn-container">
-          <button class="delete-btn-task-view"><img src="/assets/icons/delete.svg" alt="">Delete</button>
+          <button class="delete-btn-task-view" onclick="deleteCurrentTask()"><img src="/assets/icons/delete.svg" alt="">Delete</button>
           <div class="task-view-separator-div"></div>
-          <button class="edit-btn-task-view"><img src="/assets/icons/edit.svg" alt="">Edit</button>
+          <button class="edit-btn-task-view" onclick="openEditModal()"><img src="/assets/icons/edit.svg" alt="">Edit</button>
         </div>
       </div>
     </div>
@@ -330,7 +330,7 @@
     <div class="modal-edit-view-task-overlay d-none" id="modalEditViewTaskOverlay">
       <div class="inside-edit-view-task-overlay">
         <div class="close-btn">
-          <button><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
+          <button onclick="closeEditModal()"><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
         </div>
 
         <div class="title-input-div">
@@ -352,15 +352,15 @@
         <div class="priority-btn-div">
           <h4>Priority</h4>
           <div class="priority-buttons-container-edit-view">
-            <button type="button" class="priority-btn-edit-view" data-priority="urgent">
+            <button type="button" class="priority-btn-edit-view" data-priority="urgent" onclick="selectEditPriority('urgent')">
               Urgent
               <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
             </button>
-            <button type="button" class="priority-btn-edit-view" data-priority="medium">
+            <button type="button" class="priority-btn-edit-view" data-priority="medium" onclick="selectEditPriority('medium')">
               Medium
               <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
             </button>
-            <button type="button" class="priority-btn-edit-view" data-priority="low">
+            <button type="button" class="priority-btn-edit-view" data-priority="low" onclick="selectEditPriority('low')">
               Low
               <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
             </button>
@@ -380,35 +380,46 @@
     <img src="/assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
   </div>
 
-  <div class="assigned-dropdown-list" id="assignedDropdownList">
-    <div class="assigned-dropdown-item">
-      <div class="assigned-item-left">
-        <div class="assigned-avatar">AM</div>
-        Alex Müller
-      </div>
-      <div class="assigned-checkbox">
-        <img src="/assets/icons/check.svg" />
-      </div>
-    </div>
-
-    <div class="assigned-dropdown-item">
-      <div class="assigned-item-left">
-        <div class="assigned-avatar">SM</div>
-        Sarah Miller
-      </div>
-      <div class="assigned-checkbox">
-        <img src="/assets/icons/check.svg" />
-      </div>
-    </div>
-  </div>
-  <div class="subtasks-div">
-    <h4>Subtasks</h4>
-    <input type="text" id="editViewSubtaskInput" class="subtask-input-edit-view" placeholder="Add new subtask" />
-    <div class="subtasks-list-edit-view" id="subtasksListEditView"></div>
-  </div>
+  <div class="assigned-dropdown-list" id="assignedDropdownList"></div>
+  <div class="selected-assignees-badges" id="editSelectedAssigneesBadges"></div>
 </div>
 
+<div class="subtasks-div">
+  <h4>Subtasks</h4>
+  <div class="subtask-input-wrapper-edit" id="editSubtaskInputWrapper">
+    <input 
+      type="text" 
+      id="editViewSubtaskInput" 
+      class="subtask-input-edit-view" 
+      placeholder="Add new subtask"
+      onfocus="showEditSubtaskActions()"
+      onblur="hideEditSubtaskActionsDelayed()"
+      onkeydown="handleEditSubtaskKeydown(event)"
+    />
+    <div class="subtask-actions-input" id="editSubtaskActions">
+      <img
+        src="/assets/icons/cancel_subtask.svg"
+        alt="Cancel"
+        class="subtask-action-icon"
+        onclick="cancelEditSubtaskInput()"
+      />
+      <div class="subtask-action-divider"></div>
+      <img
+        src="/assets/icons/check_subtask.svg"
+        alt="Confirm"
+        class="subtask-action-icon"
+        onclick="confirmEditSubtaskInput()"
+      />
+    </div>
+  </div>
+  <div class="subtasks-list-edit-view" id="subtasksListEditView"></div>
+</div>
 
+        <div class="edit-modal-footer">
+          <button type="button" class="btn-ok" onclick="saveTaskChanges()">
+            Ok <img src="/assets/icons/check.svg" alt="check" />
+          </button>
+        </div>
       </div>
     </div>
 
@@ -420,12 +431,15 @@
   <script src="/templates/template_add_task.js"></script>
   <script src="/render/render_add_task.js"></script>
   <script src="/render/render_board.js"></script>
-  <script src="/render/render_task.js"></script>
+  <script src="/render/render_board_task.js"></script>
+  <script src="/render/render_board_cards.js"></script>
   <script src="/scripts/drag_and_drop.js"></script>
   <script src="/scripts/board_modal_assigned_to.js"></script>
   <script src="/scripts/board_modal_category.js"></script>
   <script src="/scripts/board_modal_subtask.js"></script>
-  <script src="/scripts/board_modal.js"></script>
+  <script src="/scripts/board_modal_add_task.js"></script>
+  <script src="/scripts/board_modal_cards.js"></script>
+  <script src="/scripts/board_modal_cards_edit.js"></script>
   <script src="/scripts/script.js"></script>
   <script>
     // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
