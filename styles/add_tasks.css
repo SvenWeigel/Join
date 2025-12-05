@@ -333,7 +333,7 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   border: none;
-  padding: 8px 16px;
+  padding:16px;
   gap: 4px;
 }
 
@@ -703,16 +703,24 @@ textarea {
 @media(max-width:1175px){
   .content{
     flex-direction:column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: flex-start;
     margin:auto;
+    height:calc(100vh - 380px);
+    width:100%;
+    overflow-y: auto;
   }
   .seperator-content{
     display:none;
   }
   .form-footer-wrapper{
     justify-content: flex-end;
-    padding:0;
+    padding: 12px 16px;
     width:440px;
+    position:sticky;
+    bottom:0;
+    margin:0;
+    background-color: #f6f7f8;
   }
   .buttons-actions{
     margin:0;
@@ -722,6 +730,7 @@ textarea {
     justify-content: center;
     flex-direction:column;
     align-items:center;
+    width:100%;
   }
   .required-note-form{
     display:unset;
@@ -729,4 +738,68 @@ textarea {
   .required-note{
     display:none
   }
+  .title-positioning{
+    padding: 48px 96px;
+  }
+  
+}
+
+@media(max-width:870px){
+  .main-layout-container{
+    justify-content: center;
+    width:100%;
+  }
+  .add-task-container{
+    width:100%;
+  }
+  .title-positioning{
+    padding:48px 0 8px 0;
+    width:440px;
+  }
+  .add-task-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .form-footer-wrapper{
+    bottom: 80px;
+  }
+}
+@media(max-width:525px){
+  .content{
+    height: calc(100vh - 410px);
+  }
+  .title-positioning h1{
+    font-size:47px;
+  }
+  .title-positioning{
+    padding: 48px 0 8px 0;
+    width:100%;
+  }
+  .add-task-container{
+    
+    padding-left:16px;
+    padding-right:16px;
+  }
+  form{
+    padding-top:32px;
+  }
+  .titel-input{
+    height:30px;
+  }
+  .right-content{
+    width:100%;
+  }
+  .priority-btn{
+    width:unset;
+    flex:1;
+  }
+  .left-content{
+    width:100%;
+  }
+  .form-footer-wrapper{
+    padding:16px 0;
+    width:100%;
+  }
+  
 }
