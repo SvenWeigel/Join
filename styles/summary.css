@@ -363,9 +363,42 @@
 }
 
 @media (max-width: 1350px) {
+    .greet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 0.5s ease 2s forwards;
+    /* 0.5s ausblenden, nach 2s starten */
+    transition: opacity 0.5s;
+    opacity: 1;
+  }
+  .greet-overlay.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .greet-span{
+    white-space: nowrap;
+  }
+  .greet-container{
+    display:flex;
+    flex-direction: column;
+  }
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
   .greet-span-div {
     display: none;
   }
+  
   .summary-content-div {
     margin-left: 0;
     display: flex;

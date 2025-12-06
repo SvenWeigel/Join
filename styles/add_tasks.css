@@ -811,5 +811,7 @@ textarea {
   .btn-create{
     font-size:16px;
   }
-  
+  .required-note-form{
+    width:100%;
+  }
 }
