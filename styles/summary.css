@@ -371,15 +371,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeOut 0.5s ease 2s forwards;
+    animation: fadeOut 1.5s ease 2s forwards;
     /* 0.5s ausblenden, nach 2s starten */
-    transition: opacity 0.5s;
+    transition: opacity 1.5s;
     opacity: 1;
   }
-  .greet-overlay.hide {
-    opacity: 0;
-    pointer-events: none;
-  }
+
   .greet-span{
     white-space: nowrap;
   }
@@ -447,7 +444,7 @@
   }
   .todo-done-div {
     margin-top: 40px;
-    gap: 24px;
+    gap: 10px;
   }
 
   .headline-span {
@@ -538,7 +535,7 @@
   }
   .open-tasks-div {
     margin-top: 18px;
-    gap: 24px;
+    gap: 10px;
   }
   .tasks-in-board-div {
     height: 116px;

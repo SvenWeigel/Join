@@ -22,18 +22,3 @@ document.getElementById("awaiting-feedback-div").addEventListener("click", funct
     window.location.href = "/html/board.html";
 });
 
-function handleGreetOverlay() {
-    const overlay = document.getElementById('greetOverlay');
-    if (!overlay) return;
-    if (window.innerWidth <= 1350) {
-      overlay.style.display = 'flex';
-      setTimeout(() => {
-        overlay.classList.add('hide');
-        setTimeout(() => overlay.style.display = 'none', 500); // nach Animation ausblenden
-      }, 2000);
-    } else {
-      overlay.style.display = 'none';
-    }
-  }
-  window.addEventListener('DOMContentLoaded', handleGreetOverlay);
-  window.addEventListener('resize', handleGreetOverlay);
