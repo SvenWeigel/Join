@@ -362,6 +362,10 @@
   display: inline;
 }
 
+.greet-overlay{
+  display: none;
+}
+
 @media (max-width: 1350px) {
     .greet-overlay {
     position: fixed;
