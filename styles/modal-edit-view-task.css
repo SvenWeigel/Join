@@ -25,6 +25,12 @@
   gap: 24px;
 }
 
+.scroll-container {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
 .close-btn {
   display: flex;
   justify-content: flex-end;
@@ -85,6 +91,7 @@
   font-size: 20px;
   resize: vertical;
   max-height: 200px;
+  min-height: 32px;
 }
 
 .due-date-input-div {
