@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/assets/img/login_center_logo.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="/styles/board.css" />
-  <link rel="stylesheet" href="/styles/board_modal.css" />
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href="/styles/font.css" />
-  <link rel="stylesheet" href="/styles/menu-bar.css" />
-  <link rel="stylesheet" href="/styles/header.css" />
-  <link rel="stylesheet" href="/styles/modal-task-view.css">
-  <link rel="stylesheet" href="/styles/modal-edit-view-task.css">
-  <link rel="stylesheet" href="/styles/bottom-nav.css">
+  <base href="../">
+  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="styles/board.css" />
+  <link rel="stylesheet" href="styles/board_modal.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/font.css" />
+  <link rel="stylesheet" href="styles/menu-bar.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/modal-task-view.css">
+  <link rel="stylesheet" href="styles/modal-edit-view-task.css">
+  <link rel="stylesheet" href="styles/bottom-nav.css">
 
   <title>Join</title>
 </head>
@@ -22,10 +23,10 @@
   <div class="main-layout-container">
     <header>
       <div class="header-content">
-        <img class="logo-responsive" src="../assets/img/logo.svg">
+        <img class="logo-responsive" src="assets/img/logo.svg">
         <span>Kanban Project Management Tool</span>
         <div class="header-profile-container">
-          <a href="/html/help.html"><img src="/assets/icons/help.svg" alt="help_icon" /></a>
+          <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
           <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
             <div class="user-avatar">SM</div>
           </div>
@@ -34,45 +35,45 @@
           <a class="help-options" href="help.html">Help</a>
           <a href="legal_notice.html">Legal Notice</a>
           <a href="privacy_policy.html">Privacy Policy</a>
-          <a href="../index.html">Log Out</a>
+          <a href="index.html">Log Out</a>
         </div>
       </div>
     </header>
 
     <aside class="menu-bar-container">
       <div class="join-logo-container">
-        <img src="/assets/img/join_logo_vector.svg" alt="join logo" />
+        <img src="assets/img/join_logo_vector.svg" alt="join logo" />
       </div>
 
       <div class="menu-bar-btn-container">
         <div class="summary-btn center-btn">
-          <a class="main-bar-btn" href="/html/summary.html">
-            <img src="/assets/icons/summary.svg" alt="" />Summary
+          <a class="main-bar-btn" href="html/summary.html">
+            <img src="assets/icons/summary.svg" alt="" />Summary
           </a>
         </div>
         <div class="add-task-btn center-btn">
-          <a class="main-bar-btn" href="/html/add_task.html">
-            <img src="/assets/icons/add_task.svg" alt="" />Add Task
+          <a class="main-bar-btn" href="html/add_task.html">
+            <img src="assets/icons/add_task.svg" alt="" />Add Task
           </a>
         </div>
         <div class="board-btn center-btn">
-          <a class="main-bar-btn" href="/html/board.html">
-            <img src="/assets/icons/board.svg" alt="" />Board
+          <a class="main-bar-btn" href="html/board.html">
+            <img src="assets/icons/board.svg" alt="" />Board
           </a>
         </div>
         <div class="contacts-btn center-btn">
-          <a class="main-bar-btn" href="/html/contacts.html">
-            <img src="/assets/icons/contacts.svg" alt="" />Contacts
+          <a class="main-bar-btn" href="html/contacts.html">
+            <img src="assets/icons/contacts.svg" alt="" />Contacts
           </a>
         </div>
       </div>
 
       <div class="legal-container">
         <div class="privacy-btn">
-          <a href="/html/privacy_policy.html">Privacy Policy</a>
+          <a href="html/privacy_policy.html">Privacy Policy</a>
         </div>
         <div class="legal-link">
-          <a href="/html/legal_notice.html">Legal Notice</a>
+          <a href="html/legal_notice.html">Legal Notice</a>
         </div>
       </div>
     </aside>
@@ -83,7 +84,7 @@
         <div class="find-add-container">
           <input type="text" id="findTask" class="input-field" placeholder="Find Task" />
           <button id="addTaskBtn">
-            Add task<img src="/assets/icons/add.svg" />
+            Add task<img src="assets/icons/add.svg" />
           </button>
         </div>
       </div>
@@ -91,21 +92,21 @@
         <div class="column">
           <div class="column-header">
             <h2>To do</h2>
-            <img src="/assets/icons/plus-button.svg" />
+            <img src="assets/icons/plus-button.svg" />
           </div>
           <div class="column-content"></div>
         </div>
         <div class="column">
           <div class="column-header">
             <h2>In progress</h2>
-            <img src="/assets/icons/plus-button.svg" />
+            <img src="assets/icons/plus-button.svg" />
           </div>
           <div class="column-content"></div>
         </div>
         <div class="column">
           <div class="column-header">
             <h2>Await feedback</h2>
-            <img src="/assets/icons/plus-button.svg" />
+            <img src="assets/icons/plus-button.svg" />
           </div>
           <div class="column-content"></div>
         </div>
@@ -118,20 +119,20 @@
       </div>
     </main>
     <nav class="bottom-nav">
-      <a href="./summary.html" class="nav-div current-nav">
-        <img class="bottom-nav-img" src="../assets/icons/summary.svg">
+      <a href="summary.html" class="nav-div current-nav">
+        <img class="bottom-nav-img" src="assets/icons/summary.svg">
         <span class="bottom-nav-span">Summary</span>
       </a>
-      <a href="./add_task.html" class="nav-div">
-        <img class="bottom-nav-img" src="../assets/icons/add_task.svg">
+      <a href="add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/add_task.svg">
         <span class="bottom-nav-span">Add Task</span>
       </a>
-      <a href="./board.html" class="nav-div">
-        <img class="bottom-nav-img" src="../assets/icons/board.svg">
+      <a href="board.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/board.svg">
         <span class="bottom-nav-span">Board</span>
       </a>
-      <a href="./contacts.html" class="nav-div">
-        <img class="bottom-nav-img" src="../assets/icons/contacts.svg">
+      <a href="contacts.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/contacts.svg">
         <span class="bottom-nav-span">Contacts</span>
       </a>
     </nav>
@@ -178,15 +179,15 @@
                 <div class="priority-buttons-container">
                   <button type="button" class="priority-btn" data-priority="urgent">
                     Urgent
-                    <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+                    <img src="assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
                   </button>
                   <button type="button" class="priority-btn active" data-priority="medium">
                     Medium
-                    <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
+                    <img src="assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
                   </button>
                   <button type="button" class="priority-btn" data-priority="low">
                     Low
-                    <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+                    <img src="assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
                   </button>
                 </div>
               </div>
@@ -198,7 +199,7 @@
                     <input type="text" id="modalAssigneeSearch" class="dropdown-search"
                       placeholder="Select contacts to assign" oninput="filterModalAssigneeList()"
                       onfocus="openModalAssigneeDropdown()" />
-                    <img src="/assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow" />
+                    <img src="assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow" />
                   </div>
                   <div class="dropdown-list" id="modalAssigneeList"></div>
                 </div>
@@ -210,7 +211,7 @@
                 <div class="custom-dropdown" id="modalCategoryDropdown">
                   <div class="dropdown-header" onclick="toggleModalCategoryDropdown()">
                     <span id="modalCategorySelected" class="dropdown-selected-text">Select task category</span>
-                    <img src="/assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow"
+                    <img src="assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow"
                       id="categoryDropdownArrow" />
                   </div>
                   <div class="dropdown-list" id="modalCategoryList">
@@ -234,10 +235,10 @@
                     placeholder="Add new subtask" onfocus="showModalSubtaskActions()"
                     onblur="hideModalSubtaskActionsDelayed()" onkeydown="handleModalSubtaskKeydown(event)" />
                   <div class="subtask-actions" id="modalSubtaskActions">
-                    <img src="/assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
+                    <img src="assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
                       onclick="cancelModalSubtaskInput()" />
                     <div class="subtask-action-divider"></div>
-                    <img src="/assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
+                    <img src="assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
                       onclick="confirmModalSubtaskInput()" />
                   </div>
                 </div>
@@ -253,11 +254,11 @@
             <div class="modal-footer">
               <button type="button" id="cancelAddTask" class="btn-cancel">
                 Cancel
-                <img class="modal-close-icon" src="/assets/icons/iconoir_cancel.svg" alt="Close" />
+                <img class="modal-close-icon" src="assets/icons/iconoir_cancel.svg" alt="Close" />
               </button>
               <button type="submit" class="btn-create-task">
                 Create Task
-                <img class="check-icon" src="/assets/icons/check.svg" alt="check" />
+                <img class="check-icon" src="assets/icons/check.svg" alt="check" />
                 </svg>
               </button>
             </div>
@@ -270,7 +271,7 @@
       <div class="inside-modal-view-overlay">
         <div class="task-view-header">
           <span>User Story</span>
-          <button onclick="closeTaskViewModal()"><img src="/assets/icons/close-icon.svg"
+          <button onclick="closeTaskViewModal()"><img src="assets/icons/close-icon.svg"
               alt="close-overlay-button"></button>
         </div>
         <div class="task-view-title">
@@ -287,7 +288,7 @@
           <span class="priority-span-task-view">Priority:</span>
           <div class="priority-view-container">
             <span class="priority-span">Medium</span>
-            <img src="/assets/icons/medium_icon_orange.svg" alt="Priority Medium Icon">
+            <img src="assets/icons/medium_icon_orange.svg" alt="Priority Medium Icon">
           </div>
         </div>
         <div class="task-view-assigned-to-container">
@@ -315,10 +316,10 @@
           </div>
         </div>
         <div class="delete-edit-btn-container">
-          <button class="delete-btn-task-view" onclick="deleteCurrentTask()"><img src="/assets/icons/delete.svg"
+          <button class="delete-btn-task-view" onclick="deleteCurrentTask()"><img src="assets/icons/delete.svg"
               alt="">Delete</button>
           <div class="task-view-separator-div"></div>
-          <button class="edit-btn-task-view" onclick="openEditModal()"><img src="/assets/icons/edit.svg"
+          <button class="edit-btn-task-view" onclick="openEditModal()"><img src="assets/icons/edit.svg"
               alt="">Edit</button>
         </div>
       </div>
@@ -328,7 +329,7 @@
       <div class="inside-edit-view-task-overlay">
         <div class="scroll-container">
           <div class="close-btn">
-            <button onclick="closeEditModal()"><img src="/assets/icons/close-icon.svg"
+            <button onclick="closeEditModal()"><img src="assets/icons/close-icon.svg"
                 alt="close-overlay-button"></button>
           </div>
 
@@ -354,17 +355,17 @@
               <button type="button" class="priority-btn-edit-view" data-priority="urgent"
                 onclick="selectEditPriority('urgent')">
                 Urgent
-                <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+                <img src="assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
               </button>
               <button type="button" class="priority-btn-edit-view" data-priority="medium"
                 onclick="selectEditPriority('medium')">
                 Medium
-                <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
+                <img src="assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
               </button>
               <button type="button" class="priority-btn-edit-view" data-priority="low"
                 onclick="selectEditPriority('low')">
                 Low
-                <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+                <img src="assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
               </button>
             </div>
             <div class="assigned-to-div">
@@ -374,7 +375,7 @@
                 <input type="text" id="editViewAssigneeSearch" class="dropdown-search-edit-view"
                   placeholder="Select contacts to assign" oninput="filterEditViewAssigneeList()" />
 
-                <img src="/assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
+                <img src="assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
               </div>
 
               <div class="assigned-dropdown-list" id="assignedDropdownList"></div>
@@ -388,10 +389,10 @@
                   placeholder="Add new subtask" onfocus="showEditSubtaskActions()"
                   onblur="hideEditSubtaskActionsDelayed()" onkeydown="handleEditSubtaskKeydown(event)" />
                 <div class="subtask-actions-input" id="editSubtaskActions">
-                  <img src="/assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
+                  <img src="assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
                     onclick="cancelEditSubtaskInput()" />
                   <div class="subtask-action-divider"></div>
-                  <img src="/assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
+                  <img src="assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
                     onclick="confirmEditSubtaskInput()" />
                 </div>
               </div>
@@ -400,7 +401,7 @@
 
             <div class="edit-modal-footer">
               <button type="button" class="btn-ok" onclick="saveTaskChanges()">
-                Ok <img src="/assets/icons/check.svg" alt="check" />
+                Ok <img src="assets/icons/check.svg" alt="check" />
               </button>
             </div>
           </div>
@@ -408,22 +409,22 @@
 
       </div>
     </div>
-    <script src="/scripts/header.js"></script>
-    <script src="/scripts/db.js"></script>
-    <script src="/templates/template_board.js"></script>
-    <script src="/templates/template_add_task.js"></script>
-    <script src="/render/render_add_task.js"></script>
-    <script src="/render/render_board.js"></script>
-    <script src="/render/render_board_task.js"></script>
-    <script src="/render/render_board_cards.js"></script>
-    <script src="/scripts/drag_and_drop.js"></script>
-    <script src="/scripts/board_modal_assigned_to.js"></script>
-    <script src="/scripts/board_modal_category.js"></script>
-    <script src="/scripts/board_modal_subtask.js"></script>
-    <script src="/scripts/board_modal_add_task.js"></script>
-    <script src="/scripts/board_modal_cards.js"></script>
-    <script src="/scripts/board_modal_cards_edit.js"></script>
-    <script src="/scripts/script.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/db.js"></script>
+    <script src="templates/template_board.js"></script>
+    <script src="templates/template_add_task.js"></script>
+    <script src="render/render_add_task.js"></script>
+    <script src="render/render_board.js"></script>
+    <script src="render/render_board_task.js"></script>
+    <script src="render/render_board_cards.js"></script>
+    <script src="scripts/drag_and_drop.js"></script>
+    <script src="scripts/board_modal_assigned_to.js"></script>
+    <script src="scripts/board_modal_category.js"></script>
+    <script src="scripts/board_modal_subtask.js"></script>
+    <script src="scripts/board_modal_add_task.js"></script>
+    <script src="scripts/board_modal_cards.js"></script>
+    <script src="scripts/board_modal_cards_edit.js"></script>
+    <script src="scripts/script.js"></script>
     <script>
       // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
       document.addEventListener("DOMContentLoaded", renderAllTasks);
