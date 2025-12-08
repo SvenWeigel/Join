@@ -31,9 +31,9 @@ const CATEGORY_CONFIG = {
  * Mapping von Priorität zu Icon-Pfaden
  */
 const PRIORITY_ICONS = {
-  urgent: "/assets/icons/urgent_icon.svg",
-  medium: "/assets/icons/medium_icon_orange.svg",
-  low: "/assets/icons/low_icon.svg",
+  urgent: "assets/icons/urgent_icon.svg",
+  medium: "assets/icons/medium_icon_orange.svg",
+  low: "assets/icons/low_icon.svg",
 };
 
 /**
@@ -158,7 +158,7 @@ function getModalDropdownItemTemplate(id, name, initials, color, isSelected) {
         <span>${name}</span>
       </div>
       <div class="dropdown-checkbox">
-        <img src="/assets/icons/check.svg" alt="Selected">
+        <img src="assets/icons/check.svg" alt="Selected">
       </div>
     </div>
   `;
@@ -191,14 +191,14 @@ function getModalSubtaskItemTemplate(title, index) {
       <span class="subtask-item-text">${escapeHtml(title)}</span>
       <div class="subtask-item-actions">
         <img
-          src="/assets/icons/edit_subtask.svg"
+          src="assets/icons/edit_subtask.svg"
           alt="Edit"
           class="subtask-edit-icon"
           onclick="editModalSubtask(${index}); event.stopPropagation();"
         />
         <div class="subtask-action-divider"></div>
         <img
-          src="/assets/icons/delete_subtask.svg"
+          src="assets/icons/delete_subtask.svg"
           alt="Delete"
           class="subtask-delete-icon"
           onclick="deleteModalSubtask(${index}, event)"
@@ -226,14 +226,14 @@ function getModalSubtaskEditTemplate(title, index) {
       />
       <div class="subtask-edit-actions">
         <img
-          src="/assets/icons/delete_subtask.svg"
+          src="assets/icons/delete_subtask.svg"
           alt="Delete"
           class="subtask-edit-icon"
           onclick="deleteModalSubtask(${index}, event)"
         />
         <div class="subtask-action-divider"></div>
         <img
-          src="/assets/icons/check_subtask.svg"
+          src="assets/icons/check_subtask.svg"
           alt="Confirm"
           class="subtask-edit-icon"
           onclick="confirmModalSubtaskEdit(${index})"
@@ -319,7 +319,7 @@ function getEditAssigneeDropdownItemTemplate(
         <span>${name}</span>
       </div>
       <div class="assigned-checkbox">
-        <img src="/assets/icons/check.svg" />
+        <img src="assets/icons/check.svg" />
       </div>
     </div>
   `;
@@ -336,9 +336,9 @@ function getEditSubtaskItemTemplate(index, title) {
     <div class="subtask-item-edit" data-index="${index}" ondblclick="editEditSubtask(${index})">
       <span class="subtask-text">${title}</span>
       <div class="subtask-actions-edit">
-        <img src="/assets/icons/edit_subtask.svg" alt="Edit" onclick="editEditSubtask(${index}); event.stopPropagation();" />
+        <img src="assets/icons/edit_subtask.svg" alt="Edit" onclick="editEditSubtask(${index}); event.stopPropagation();" />
         <div class="subtask-action-divider-edit"></div>
-        <img src="/assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index}); event.stopPropagation();" />
+        <img src="assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index}); event.stopPropagation();" />
       </div>
     </div>
   `;
@@ -354,8 +354,8 @@ function getEditSubtaskInlineEditTemplate(index, title) {
   return `
     <input type="text" class="subtask-edit-input-inline" value="${title}" id="editSubtaskInput${index}" />
     <div class="subtask-actions-edit">
-      <img src="/assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index})" />
-      <img src="/assets/icons/check_subtask.svg" alt="Confirm" onclick="confirmEditSubtask(${index})" />
+      <img src="assets/icons/delete_subtask.svg" alt="Delete" onclick="deleteEditSubtask(${index})" />
+      <img src="assets/icons/check_subtask.svg" alt="Confirm" onclick="confirmEditSubtask(${index})" />
     </div>
   `;
 }
