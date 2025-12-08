@@ -83,10 +83,12 @@
         <div class="find-add-container">
           <input type="text" id="findTask" class="input-field" placeholder="Find Task" />
           <button id="addTaskBtn">
-            Add task<img src="/assets/icons/add.svg" />
+            <span class="add-task-span">Add task</span><img src="/assets/icons/add.svg" />
           </button>
         </div>
       </div>
+      <div class="responsive-input"><input type="text" id="findTask-responsive" class="input-field" placeholder="Find Task" /></div>
+    
       <div class="board-columns">
         <div class="column">
           <div class="column-header">
@@ -118,7 +120,7 @@
       </div>
     </main>
     <nav class="bottom-nav">
-      <a href="./summary.html" class="nav-div current-nav">
+      <a href="./summary.html" class="nav-div">
         <img class="bottom-nav-img" src="../assets/icons/summary.svg">
         <span class="bottom-nav-span">Summary</span>
       </a>
@@ -126,7 +128,7 @@
         <img class="bottom-nav-img" src="../assets/icons/add_task.svg">
         <span class="bottom-nav-span">Add Task</span>
       </a>
-      <a href="./board.html" class="nav-div">
+      <a href="./board.html" class="nav-div current-nav">
         <img class="bottom-nav-img" src="../assets/icons/board.svg">
         <span class="bottom-nav-span">Board</span>
       </a>
