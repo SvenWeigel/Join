@@ -4,11 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/assets/img/login_center_logo.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="/styles/log_in.css" />
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href="/styles/font.css" />
-  <link rel="stylesheet" href="/styles/sign_up.css" />
+  <base href="../" />
+  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="styles/log_in.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/font.css" />
+  <link rel="stylesheet" href="styles/sign_up.css" />
+  <link rel="stylesheet" href="styles/responsiv/responsiv_signup.css">
   <title>Join</title>
 </head>
 
@@ -22,7 +24,7 @@
   <div class="sign-up-container">
     <form id="signup-form" class="sign-up-form position-relative" action="" autocomplete="off">
       <div class="sign-up-form-arrow-left-container">
-        <a href="/index.html">
+        <a href="index.html">
           <img src="/assets/icons/arrow-left-line.svg" class="sign-up-form-arrow-left-icon" alt="" />
         </a>
       </div>
@@ -40,19 +42,19 @@
         <div class="sign-up-input-box">
           <input id="signup-email" name="email" class="sign-up-input" type="email" placeholder="Email"
             autocomplete="email" required />
-          <img src="/assets/icons/mail.svg" alt="" />
+          <img src="assets/icons/mail.svg" alt="" />
         </div>
 
         <div class="sign-up-input-box">
           <input id="signup-password" name="password" class="sign-up-input" type="password" placeholder="Password"
             autocomplete="new-password" required minlength="8" />
-          <img src="/assets/icons/lock.svg" alt="" />
+          <img src="assets/icons/lock.svg" alt="" />
         </div>
 
         <div class="sign-up-input-box">
           <input id="signup-confirm-password" name="confirm_password" class="sign-up-input" type="password"
             placeholder="Confirm Password" autocomplete="new-password" required />
-          <img src="/assets/icons/lock.svg" alt="" />
+          <img src="assets/icons/lock.svg" alt="" />
         </div>
 
         <div class="check-container">
@@ -70,7 +72,7 @@
   </div>
 
   <div class="login-site-logo-container">
-    <img src="/assets/img/logo.svg" alt="site logo" class="login-site-logo" />
+    <img src="assets/img/logo.svg" alt="site logo" class="login-site-logo" />
   </div>
 
   <div id="signup-success-overlay" style="display:none;">
