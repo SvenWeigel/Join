@@ -207,7 +207,7 @@ function showSignupSuccessOverlay() {
     overlay.style.display = "flex";
     setTimeout(() => {
       overlay.style.display = "none";
-      window.location.replace("/index.html");
+      window.location.replace("index.html");
     }, 2000); // 2 Sekunden anzeigen, dann weiterleiten
   }
 }
