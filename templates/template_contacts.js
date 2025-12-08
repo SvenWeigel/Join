@@ -44,11 +44,11 @@ function getContactDetailsTemplate(contact) {
         <span class="contacts-details-name">${contact.name}</span>
         <div class="contacts-details-actions">
           <button class="edit-btn" onclick="openEditContactModal('${contact.id}')">
-            <img src="/assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
+            <img src="assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
             <span>Edit</span>
           </button>
           <button class="del-btn" onclick="deleteContactFromDetails('${contact.id}')">
-            <img src="/assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
+            <img src="assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
             <span>Delete</span>
           </button>
         </div>

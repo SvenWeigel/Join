@@ -21,7 +21,7 @@ function getDropdownItemTemplate(id, name, initials, color, isSelected) {
         <span>${name}</span>
       </div>
       <div class="dropdown-checkbox">
-        <img src="/assets/icons/check.svg" alt="Selected">
+        <img src="assets/icons/check.svg" alt="Selected">
       </div>
     </div>
   `;
@@ -54,14 +54,14 @@ function getSubtaskItemTemplate(title, index) {
       <span class="subtask-item-text">${escapeHtml(title)}</span>
       <div class="subtask-item-actions">
         <img
-          src="/assets/icons/edit_subtask.svg"
+          src="assets/icons/edit_subtask.svg"
           alt="Edit"
           class="subtask-edit-icon"
           onclick="editPageSubtask(${index}); event.stopPropagation();"
         />
         <div class="subtask-action-divider"></div>
         <img
-          src="/assets/icons/delete_subtask.svg"
+          src="assets/icons/delete_subtask.svg"
           alt="Delete"
           class="subtask-delete-icon"
           onclick="deletePageSubtask(${index}, event)"
@@ -89,14 +89,14 @@ function getSubtaskEditTemplate(title, index) {
       />
       <div class="subtask-edit-actions">
         <img
-          src="/assets/icons/delete_subtask.svg"
+          src="assets/icons/delete_subtask.svg"
           alt="Delete"
           class="subtask-edit-icon"
           onclick="deletePageSubtask(${index}, event)"
         />
         <div class="subtask-action-divider"></div>
         <img
-          src="/assets/icons/check_subtask.svg"
+          src="assets/icons/check_subtask.svg"
           alt="Confirm"
           class="subtask-edit-icon"
           onclick="confirmPageSubtaskEdit(${index})"
