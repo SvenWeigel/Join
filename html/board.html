@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/styles/header.css" />
   <link rel="stylesheet" href="/styles/modal-task-view.css">
   <link rel="stylesheet" href="/styles/modal-edit-view-task.css">
+  <link rel="stylesheet" href="/styles/bottom-nav.css">
 
   <title>Join</title>
 </head>
@@ -21,6 +22,7 @@
   <div class="main-layout-container">
     <header>
       <div class="header-content">
+        <img class="logo-responsive" src="../assets/img/logo.svg">
         <span>Kanban Project Management Tool</span>
         <div class="header-profile-container">
           <a href="/html/help.html"><img src="/assets/icons/help.svg" alt="help_icon" /></a>
@@ -29,6 +31,7 @@
           </div>
         </div>
         <div class="profile-options d-none" id="profile-options">
+          <a class="help-options" href="help.html">Help</a>
           <a href="legal_notice.html">Legal Notice</a>
           <a href="privacy_policy.html">Privacy Policy</a>
           <a href="../index.html">Log Out</a>
@@ -114,7 +117,24 @@
         </div>
       </div>
     </main>
-
+    <nav class="bottom-nav">
+      <a href="./summary.html" class="nav-div current-nav">
+        <img class="bottom-nav-img" src="../assets/icons/summary.svg">
+        <span class="bottom-nav-span">Summary</span>
+      </a>
+      <a href="./add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="../assets/icons/add_task.svg">
+        <span class="bottom-nav-span">Add Task</span>
+      </a>
+      <a href="./board.html" class="nav-div">
+        <img class="bottom-nav-img" src="../assets/icons/board.svg">
+        <span class="bottom-nav-span">Board</span>
+      </a>
+      <a href="./contacts.html" class="nav-div">
+        <img class="bottom-nav-img" src="../assets/icons/contacts.svg">
+        <span class="bottom-nav-span">Contacts</span>
+      </a>
+    </nav>
     <!-- Add Task Modal -->
     <div id="addTaskModalOverlay" class="modal-overlay" aria-hidden="true">
       <div class="add-task-modal" role="dialog" aria-labelledby="addTaskModalTitle">
@@ -175,19 +195,10 @@
                 <label>Assigned to</label>
                 <div class="custom-dropdown" id="modalAssigneeDropdown">
                   <div class="dropdown-header" onclick="toggleModalAssigneeDropdown()">
-                    <input
-                      type="text"
-                      id="modalAssigneeSearch"
-                      class="dropdown-search"
-                      placeholder="Select contacts to assign"
-                      oninput="filterModalAssigneeList()"
-                      onfocus="openModalAssigneeDropdown()"
-                    />
-                    <img
-                      src="/assets/icons/arrow_drop_downaa.svg"
-                      alt="Dropdown"
-                      class="dropdown-arrow"
-                    />
+                    <input type="text" id="modalAssigneeSearch" class="dropdown-search"
+                      placeholder="Select contacts to assign" oninput="filterModalAssigneeList()"
+                      onfocus="openModalAssigneeDropdown()" />
+                    <img src="/assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow" />
                   </div>
                   <div class="dropdown-list" id="modalAssigneeList"></div>
                 </div>
@@ -199,18 +210,16 @@
                 <div class="custom-dropdown" id="modalCategoryDropdown">
                   <div class="dropdown-header" onclick="toggleModalCategoryDropdown()">
                     <span id="modalCategorySelected" class="dropdown-selected-text">Select task category</span>
-                    <img
-                      src="/assets/icons/arrow_drop_downaa.svg"
-                      alt="Dropdown"
-                      class="dropdown-arrow"
-                      id="categoryDropdownArrow"
-                    />
+                    <img src="/assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow"
+                      id="categoryDropdownArrow" />
                   </div>
                   <div class="dropdown-list" id="modalCategoryList">
-                    <div class="dropdown-item category-option" data-value="technical" onclick="selectModalCategory('technical', 'Technical Task')">
+                    <div class="dropdown-item category-option" data-value="technical"
+                      onclick="selectModalCategory('technical', 'Technical Task')">
                       <span>Technical Task</span>
                     </div>
-                    <div class="dropdown-item category-option" data-value="userstory" onclick="selectModalCategory('userstory', 'User Story')">
+                    <div class="dropdown-item category-option" data-value="userstory"
+                      onclick="selectModalCategory('userstory', 'User Story')">
                       <span>User Story</span>
                     </div>
                   </div>
@@ -221,30 +230,15 @@
               <div class="subtasks-section">
                 <label>Subtasks</label>
                 <div class="subtask-input-wrapper" id="modalSubtaskInputWrapper">
-                  <input
-                    id="taskSubtasks"
-                    name="subtasks"
-                    class="subtask-input"
-                    type="text"
-                    placeholder="Add new subtask"
-                    onfocus="showModalSubtaskActions()"
-                    onblur="hideModalSubtaskActionsDelayed()"
-                    onkeydown="handleModalSubtaskKeydown(event)"
-                  />
+                  <input id="taskSubtasks" name="subtasks" class="subtask-input" type="text"
+                    placeholder="Add new subtask" onfocus="showModalSubtaskActions()"
+                    onblur="hideModalSubtaskActionsDelayed()" onkeydown="handleModalSubtaskKeydown(event)" />
                   <div class="subtask-actions" id="modalSubtaskActions">
-                    <img
-                      src="/assets/icons/cancel_subtask.svg"
-                      alt="Cancel"
-                      class="subtask-action-icon"
-                      onclick="cancelModalSubtaskInput()"
-                    />
+                    <img src="/assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
+                      onclick="cancelModalSubtaskInput()" />
                     <div class="subtask-action-divider"></div>
-                    <img
-                      src="/assets/icons/check_subtask.svg"
-                      alt="Confirm"
-                      class="subtask-action-icon"
-                      onclick="confirmModalSubtaskInput()"
-                    />
+                    <img src="/assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
+                      onclick="confirmModalSubtaskInput()" />
                   </div>
                 </div>
                 <ul class="subtask-list" id="modalSubtaskList"></ul>
@@ -276,7 +270,8 @@
       <div class="inside-modal-view-overlay">
         <div class="task-view-header">
           <span>User Story</span>
-          <button onclick="closeTaskViewModal()"><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
+          <button onclick="closeTaskViewModal()"><img src="/assets/icons/close-icon.svg"
+              alt="close-overlay-button"></button>
         </div>
         <div class="task-view-title">
           <span>Kochwelt Page & Recipe Recommender</span>
@@ -320,9 +315,11 @@
           </div>
         </div>
         <div class="delete-edit-btn-container">
-          <button class="delete-btn-task-view" onclick="deleteCurrentTask()"><img src="/assets/icons/delete.svg" alt="">Delete</button>
+          <button class="delete-btn-task-view" onclick="deleteCurrentTask()"><img src="/assets/icons/delete.svg"
+              alt="">Delete</button>
           <div class="task-view-separator-div"></div>
-          <button class="edit-btn-task-view" onclick="openEditModal()"><img src="/assets/icons/edit.svg" alt="">Edit</button>
+          <button class="edit-btn-task-view" onclick="openEditModal()"><img src="/assets/icons/edit.svg"
+              alt="">Edit</button>
         </div>
       </div>
     </div>
@@ -330,122 +327,107 @@
     <div class="modal-edit-view-task-overlay d-none" id="modalEditViewTaskOverlay">
       <div class="inside-edit-view-task-overlay">
         <div class="scroll-container">
-        <div class="close-btn">
-          <button onclick="closeEditModal()"><img src="/assets/icons/close-icon.svg" alt="close-overlay-button"></button>
-        </div>
-
-        <div class="title-input-div">
-          <h4>Title</h4>
-          <input type="text">
-        </div>
-
-        <div class="description-input-div">
-          <h4>Description</h4>
-          <textarea></textarea>
-        </div>
-
-        <div class="due-date-input-div">
-          <h4>Due Date</h4>
-          <input type="date">
-
-        </div>
-
-        <div class="priority-btn-div">
-          <h4>Priority</h4>
-          <div class="priority-buttons-container-edit-view">
-            <button type="button" class="priority-btn-edit-view" data-priority="urgent" onclick="selectEditPriority('urgent')">
-              Urgent
-              <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
-            </button>
-            <button type="button" class="priority-btn-edit-view" data-priority="medium" onclick="selectEditPriority('medium')">
-              Medium
-              <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
-            </button>
-            <button type="button" class="priority-btn-edit-view" data-priority="low" onclick="selectEditPriority('low')">
-              Low
-              <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
-            </button>
+          <div class="close-btn">
+            <button onclick="closeEditModal()"><img src="/assets/icons/close-icon.svg"
+                alt="close-overlay-button"></button>
           </div>
-          <div class="assigned-to-div">
-  <h4>Assigned to</h4>
 
-  <div class="assigned-avatars-container-edit-view" onclick="openEditViewAssigneeDropdown()">
-    <input 
-      type="text" 
-      id="editViewAssigneeSearch" 
-      class="dropdown-search-edit-view" 
-      placeholder="Select contacts to assign"
-      oninput="filterEditViewAssigneeList()" 
-    />
+          <div class="title-input-div">
+            <h4>Title</h4>
+            <input type="text">
+          </div>
 
-    <img src="/assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
-  </div>
+          <div class="description-input-div">
+            <h4>Description</h4>
+            <textarea></textarea>
+          </div>
 
-  <div class="assigned-dropdown-list" id="assignedDropdownList"></div>
-  <div class="selected-assignees-badges" id="editSelectedAssigneesBadges"></div>
-</div>
+          <div class="due-date-input-div">
+            <h4>Due Date</h4>
+            <input type="date">
 
-<div class="subtasks-div">
-  <h4>Subtasks</h4>
-  <div class="subtask-input-wrapper-edit" id="editSubtaskInputWrapper">
-    <input 
-      type="text" 
-      id="editViewSubtaskInput" 
-      class="subtask-input-edit-view" 
-      placeholder="Add new subtask"
-      onfocus="showEditSubtaskActions()"
-      onblur="hideEditSubtaskActionsDelayed()"
-      onkeydown="handleEditSubtaskKeydown(event)"
-    />
-    <div class="subtask-actions-input" id="editSubtaskActions">
-      <img
-        src="/assets/icons/cancel_subtask.svg"
-        alt="Cancel"
-        class="subtask-action-icon"
-        onclick="cancelEditSubtaskInput()"
-      />
-      <div class="subtask-action-divider"></div>
-      <img
-        src="/assets/icons/check_subtask.svg"
-        alt="Confirm"
-        class="subtask-action-icon"
-        onclick="confirmEditSubtaskInput()"
-      />
-    </div>
-  </div>
-  <div class="subtasks-list-edit-view" id="subtasksListEditView"></div>
-</div>
+          </div>
 
-        <div class="edit-modal-footer">
-          <button type="button" class="btn-ok" onclick="saveTaskChanges()">
-            Ok <img src="/assets/icons/check.svg" alt="check" />
-          </button>
+          <div class="priority-btn-div">
+            <h4>Priority</h4>
+            <div class="priority-buttons-container-edit-view">
+              <button type="button" class="priority-btn-edit-view" data-priority="urgent"
+                onclick="selectEditPriority('urgent')">
+                Urgent
+                <img src="/assets/icons/urgent_icon.svg" alt="Urgent" class="prio-icon" />
+              </button>
+              <button type="button" class="priority-btn-edit-view" data-priority="medium"
+                onclick="selectEditPriority('medium')">
+                Medium
+                <img src="/assets/icons/medium_icon_orange.svg" alt="Medium" class="prio-icon" />
+              </button>
+              <button type="button" class="priority-btn-edit-view" data-priority="low"
+                onclick="selectEditPriority('low')">
+                Low
+                <img src="/assets/icons/low_icon.svg" alt="Low" class="prio-icon" />
+              </button>
+            </div>
+            <div class="assigned-to-div">
+              <h4>Assigned to</h4>
+
+              <div class="assigned-avatars-container-edit-view" onclick="openEditViewAssigneeDropdown()">
+                <input type="text" id="editViewAssigneeSearch" class="dropdown-search-edit-view"
+                  placeholder="Select contacts to assign" oninput="filterEditViewAssigneeList()" />
+
+                <img src="/assets/icons/arrow_drop_downaa.svg" class="assigned-arrow" id="assignedArrow" />
+              </div>
+
+              <div class="assigned-dropdown-list" id="assignedDropdownList"></div>
+              <div class="selected-assignees-badges" id="editSelectedAssigneesBadges"></div>
+            </div>
+
+            <div class="subtasks-div">
+              <h4>Subtasks</h4>
+              <div class="subtask-input-wrapper-edit" id="editSubtaskInputWrapper">
+                <input type="text" id="editViewSubtaskInput" class="subtask-input-edit-view"
+                  placeholder="Add new subtask" onfocus="showEditSubtaskActions()"
+                  onblur="hideEditSubtaskActionsDelayed()" onkeydown="handleEditSubtaskKeydown(event)" />
+                <div class="subtask-actions-input" id="editSubtaskActions">
+                  <img src="/assets/icons/cancel_subtask.svg" alt="Cancel" class="subtask-action-icon"
+                    onclick="cancelEditSubtaskInput()" />
+                  <div class="subtask-action-divider"></div>
+                  <img src="/assets/icons/check_subtask.svg" alt="Confirm" class="subtask-action-icon"
+                    onclick="confirmEditSubtaskInput()" />
+                </div>
+              </div>
+              <div class="subtasks-list-edit-view" id="subtasksListEditView"></div>
+            </div>
+
+            <div class="edit-modal-footer">
+              <button type="button" class="btn-ok" onclick="saveTaskChanges()">
+                Ok <img src="/assets/icons/check.svg" alt="check" />
+              </button>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
-
-    </div>
-  </div>
-  <script src="/scripts/header.js"></script>
-  <script src="/scripts/db.js"></script>
-  <script src="/templates/template_board.js"></script>
-  <script src="/templates/template_add_task.js"></script>
-  <script src="/render/render_add_task.js"></script>
-  <script src="/render/render_board.js"></script>
-  <script src="/render/render_board_task.js"></script>
-  <script src="/render/render_board_cards.js"></script>
-  <script src="/scripts/drag_and_drop.js"></script>
-  <script src="/scripts/board_modal_assigned_to.js"></script>
-  <script src="/scripts/board_modal_category.js"></script>
-  <script src="/scripts/board_modal_subtask.js"></script>
-  <script src="/scripts/board_modal_add_task.js"></script>
-  <script src="/scripts/board_modal_cards.js"></script>
-  <script src="/scripts/board_modal_cards_edit.js"></script>
-  <script src="/scripts/script.js"></script>
-  <script>
-    // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
-    document.addEventListener("DOMContentLoaded", renderAllTasks);
-  </script>
+    <script src="/scripts/header.js"></script>
+    <script src="/scripts/db.js"></script>
+    <script src="/templates/template_board.js"></script>
+    <script src="/templates/template_add_task.js"></script>
+    <script src="/render/render_add_task.js"></script>
+    <script src="/render/render_board.js"></script>
+    <script src="/render/render_board_task.js"></script>
+    <script src="/render/render_board_cards.js"></script>
+    <script src="/scripts/drag_and_drop.js"></script>
+    <script src="/scripts/board_modal_assigned_to.js"></script>
+    <script src="/scripts/board_modal_category.js"></script>
+    <script src="/scripts/board_modal_subtask.js"></script>
+    <script src="/scripts/board_modal_add_task.js"></script>
+    <script src="/scripts/board_modal_cards.js"></script>
+    <script src="/scripts/board_modal_cards_edit.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script>
+      // Board beim Laden initialisieren - Tasks aus Firebase laden und rendern
+      document.addEventListener("DOMContentLoaded", renderAllTasks);
+    </script>
 </body>
 
 </html>

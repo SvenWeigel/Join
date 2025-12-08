@@ -380,10 +380,24 @@
     transition: opacity 1.5s;
     opacity: 1;
   }
-
-  .greet-span{
-    white-space: nowrap;
+  .priority-date-div:hover{
+    transform:scale(1.05);
   }
+
+  .greet-span-responsive{
+    white-space: nowrap;
+    color: #2a3647;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  }
+  .greet-name-span-responsive{
+  font-size: 61px;
+  font-weight: 700;
+  color: #29abe2;
+  line-height: 120%;
+  }
+  
   .greet-container{
     display:flex;
     flex-direction: column;
@@ -450,6 +464,9 @@
     margin-top: 40px;
     gap: 10px;
   }
+  .urgency-summary{
+    gap:10px;
+  }
 
   .headline-span {
     font-size: 47px;
@@ -514,9 +531,9 @@
     padding-bottom: 17px;
   }
   .urgency-summary img {
-    padding: 0;
-    width: 40px;
-    height: 40px;
+    padding: 0 0 0 5px;
+    width: 35px;
+    height: 35px;
   }
   .urgency-number-span {
     font-size: 47px;
