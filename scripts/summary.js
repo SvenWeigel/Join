@@ -255,6 +255,24 @@ function readUserFromStorage() {
     return null;
   }
 }
+//Greeting kommt nur einmal pro Session
+ document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('greetOverlay');
+    if (!overlay) return;
+
+    // Prüfen, ob das Overlay schon in dieser Sitzung gezeigt wurde
+    if (sessionStorage.getItem('greetOverlayShown')) {
+      overlay.style.display = 'none';
+    } else {
+      // Nach 2 Sekunden ausblenden (wie bisher)
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.style.display = 'none', 1500); // gleiche Zeit wie CSS-Animation
+      }, 2000);
+      // Merken, dass das Overlay gezeigt wurde
+      sessionStorage.setItem('greetOverlayShown', 'true');
+    }
+  });
 
 // ============================================================================
 // INIT ON PAGE LOAD
