@@ -362,15 +362,64 @@
   display: inline;
 }
 
+.greet-overlay{
+  display: none;
+}
+
 @media (max-width: 1350px) {
+    .greet-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1.5s ease 2s forwards;
+    /* 0.5s ausblenden, nach 2s starten */
+    transition: opacity 1.5s;
+    opacity: 1;
+  }
+  .priority-date-div:hover{
+    transform:scale(1.05);
+  }
+
+  .greet-span-responsive{
+    white-space: nowrap;
+    color: #2a3647;
+  font-weight: 500;
+  font-size: 47px;
+  line-height: 120%;
+  }
+  .greet-name-span-responsive{
+  font-size: 61px;
+  font-weight: 700;
+  color: #29abe2;
+  line-height: 120%;
+  }
+  
+  .greet-container{
+    display:flex;
+    flex-direction: column;
+  }
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
   .greet-span-div {
     display: none;
   }
+  
   .summary-content-div {
     margin-left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width:100%;
   }
 }
 
@@ -408,11 +457,15 @@
 
 @media (max-width: 600px) {
   .summary-content-div {
-    padding: 48px 0 0 0;
+    padding: 48px 16px 0 16px;
+    width:100%;
   }
   .todo-done-div {
     margin-top: 40px;
-    gap: 24px;
+    gap: 10px;
+  }
+  .urgency-summary{
+    gap:10px;
   }
 
   .headline-span {
@@ -478,9 +531,9 @@
     padding-bottom: 17px;
   }
   .urgency-summary img {
-    padding: 0;
-    width: 40px;
-    height: 40px;
+    padding: 0 0 0 5px;
+    width: 35px;
+    height: 35px;
   }
   .urgency-number-span {
     font-size: 47px;
@@ -503,7 +556,7 @@
   }
   .open-tasks-div {
     margin-top: 18px;
-    gap: 24px;
+    gap: 10px;
   }
   .tasks-in-board-div {
     height: 116px;
@@ -535,4 +588,35 @@
   .awaiting-feedback-span {
     font-size: 16px;
   }
+  .todo-done-div{
+    width:100%;
+  }
+  .todo-div{
+    width:unset;
+    flex:1;
+  }
+  .done-div{
+    width:unset;
+    flex:1
+  }
+  
+  .open-tasks-div{
+    width:100%;
+  }
+  .priority-date-greeting-div{
+    width:100%;
+  }
+  .tasks-in-board-div{
+    flex:1;
+    width:unset;
+  }
+  .tasks-in-progress-div{
+    flex:1;
+    width:unset;
+  }
+  .awaiting-feedback-div{
+    flex:1;
+    width:unset;
+  }
+  
 }

@@ -156,7 +156,7 @@ async function handleLoginSubmit(e) {
   try {
     await performLogin(email, password);
     alert(LOGIN_MESSAGES.loginSuccess);
-    window.location.replace("html/board.html");
+    window.location.replace("html/summary.html");
   } catch (err) {
     console.error(err);
     alert(err.message || "Login error");
@@ -171,7 +171,7 @@ function handleGuestLogin(e) {
   e.preventDefault();
   const guestUser = { name: "Guest", email: "guest@guest.local", guest: true };
   localStorage.setItem("currentUser", JSON.stringify(guestUser));
-  window.location.replace("html/board.html");
+  window.location.replace("html/summary.html");
 }
 
 /**

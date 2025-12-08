@@ -186,22 +186,46 @@ function formatDateToEnglish(dateString) {
  */
 function updateGreeting() {
   const greetingText = getTimeBasedGreeting();
+
+  // Desktop Greeting
   const greetElement = document.querySelector(".greet-span");
   const nameElement = document.querySelector(".greet-name-span");
 
+  // Mobile Greeting (Overlay)
+  const greetElementResponsive = document.querySelector(
+    ".greet-span-responsive"
+  );
+  const nameElementResponsive = document.querySelector(
+    ".greet-name-span-responsive"
+  );
+
+  const user = readUserFromStorage();
+  const isGuest = !user || user.guest || !user.name;
+
+  // Desktop
   if (greetElement) {
-    const user = readUserFromStorage();
-    if (user && !user.guest && user.name) {
+    if (isGuest) {
+      greetElement.textContent = greetingText + "!";
+      if (nameElement) nameElement.style.display = "none";
+    } else {
       greetElement.textContent = greetingText + ",";
       if (nameElement) {
         nameElement.textContent = user.name;
         nameElement.style.display = "";
       }
+    }
+  }
+
+  // Mobile Overlay
+  if (greetElementResponsive) {
+    if (isGuest) {
+      greetElementResponsive.textContent = greetingText + "!";
+      if (nameElementResponsive) nameElementResponsive.style.display = "none";
     } else {
-      // Guest oder kein User: nur Greeting anzeigen, ohne Komma
-      greetElement.textContent = greetingText + "!";
-      if (nameElement) {
-        nameElement.style.display = "none";
+      greetElementResponsive.textContent = greetingText + ",";
+      if (nameElementResponsive) {
+        nameElementResponsive.textContent = user.name;
+        nameElementResponsive.style.display = "";
       }
     }
   }

@@ -5,7 +5,8 @@
 
 .board-container {
   padding-top: 96px;
-  width: calc(1440px - 232px);
+  width: calc(100% - 232px);
+  max-width: calc(1440px - 232px);
 }
 
 .board-header {
@@ -269,4 +270,47 @@
 .column-content.drag-over {
   background-color: #f6f7f8;
   border-radius: 10px;
+}
+
+@media(max-width:1390px){
+  .board-container{
+    width:100%;
+  }
+  .board-columns{
+    gap:10px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width:1305px){
+  .column{
+    width:230px;
+  }
+  .column-header{
+    padding: 0 10px;
+  }
+}
+@media (max-width:1215px){
+  .column{
+    width:200px;
+  }
+}
+
+@media (max-width:1095px){
+  .board-columns{
+    flex-direction: column;
+  }
+  .column-content{
+    flex-direction: row;
+  }
+  .column{
+    width:100%;
+  }
+  .column-header{
+    justify-content: flex-start;
+    gap: 25px;
+  }
+  .task-card{
+    width: 252px;
+  }
 }
