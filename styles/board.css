@@ -234,8 +234,7 @@
 
 /* Highlight wenn eine Karte über die Spalte gezogen wird */
 .column-content.drag-over .drop-placeholder {
-  border-color: #a8a8a8;
-  background-color: #e9e9e9;
+  display: none;
 }
 
 /* ============================================================================
@@ -271,92 +270,127 @@
   background-color: #f6f7f8;
   border-radius: 10px;
 }
-.responsive-input{
-  display:none;
+
+/* Drop-Indikator zeigt an, wo die Karte eingefügt wird */
+.drag-drop-indicator {
+  min-height: 200px;
+  border: 1px dashed #a8a8a8;
+  border-radius: 30px;
+  pointer-events: none;
+  transition: all 0.15s ease;
+  opacity: 0.5;
 }
 
-@media(max-width:1390px){
-  .board-container{
-    width:100%;
+/* Aktiver Drop-Indikator (wenn Karte darüber schwebt) */
+.drag-drop-indicator-active {
+  opacity: 1;
+  border-color: #2a3647;
+  background-color: rgba(42, 54, 71, 0.08);
+}
+
+/* Pop-Animation beim Start des Drags */
+.drag-start-pop {
+  animation: dragPop 0.15s ease-out;
+}
+
+@keyframes dragPop {
+  0% {
+    transform: scale(1);
   }
-  .board-columns{
-    gap:10px;
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.responsive-input {
+  display: none;
+}
+
+@media (max-width: 1390px) {
+  .board-container {
+    width: 100%;
+  }
+  .board-columns {
+    gap: 10px;
     padding: 0 16px;
   }
 }
 
-@media (max-width:1305px){
-  .column{
-    width:230px;
+@media (max-width: 1305px) {
+  .column {
+    width: 230px;
   }
-  .column-header{
+  .column-header {
     padding: 0 10px;
   }
 }
-@media (max-width:1215px){
-  .column{
-    width:200px;
+@media (max-width: 1215px) {
+  .column {
+    width: 200px;
   }
 }
 
-@media (max-width:1095px){
-  .board-container{
+@media (max-width: 1095px) {
+  .board-container {
     overflow-y: auto;
     height: calc(100vh - 96px - 80px);
   }
-  .board-container::-webkit-scrollbar{
-    display:none;
+  .board-container::-webkit-scrollbar {
+    display: none;
   }
-  .board-columns{
+  .board-columns {
     flex-direction: column;
   }
-  .column-content{
+  .column-content {
     flex-direction: row;
-    width:calc(100vw - 232px - 32px); /* -32- wegen padding*/
-    overflow-x:auto;
+    width: calc(100vw - 232px - 32px); /* -32- wegen padding*/
+    overflow-x: auto;
   }
-  .column-content::-webkit-scrollbar{
-    display:none;
+  .column-content::-webkit-scrollbar {
+    display: none;
   }
-  .column{
-    width:100%;
+  .column {
+    width: 100%;
   }
-  
-  .task-card{
+
+  .task-card {
     min-width: 252px;
   }
-  .board-header{
+  .board-header {
     padding: 79px 16px 48px 16px;
   }
-  .find-add-container{
-    gap:10px;
+  .find-add-container {
+    gap: 10px;
   }
 }
 
-@media(max-width:870px){
-  .column-content{
+@media (max-width: 870px) {
+  .column-content {
     width: calc(100vw - 32px);
   }
 }
 
-@media(max-width:700px){
-  .board-header{
+@media (max-width: 700px) {
+  .board-header {
     padding: 48px 16px 40px 16px;
   }
-  .responsive-input{
-    display:flex;
+  .responsive-input {
+    display: flex;
     padding: 14px 16px;
   }
-  #findTask{
-    display:none;
+  #findTask {
+    display: none;
   }
-  #findTask-repsonsive{
-    width:100%;
+  #findTask-repsonsive {
+    width: 100%;
   }
-  .add-task-span{
-    display:none;
+  .add-task-span {
+    display: none;
   }
-  #addTaskBtn{
+  #addTaskBtn {
     padding: 10px;
   }
 }

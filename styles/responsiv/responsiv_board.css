@@ -1,0 +1,11 @@
+/* ============================================================================
+   RESPONSIVE BOARD STYLES
+   ============================================================================ */
+
+/* Horizontales Spalten-Layout: Drop-Indikator anpassen */
+@media (max-width: 1095px) {
+  .drag-drop-indicator {
+    min-width: 252px;
+    min-height: 80px;
+  }
+}

@@ -204,8 +204,9 @@ async function renderAllTasks() {
 /**
  * Rendert die übergebenen Tasks ins Board.
  * @param {Array<Object>} tasks - Array von Task-Objekten
+ * @param {boolean} isSearchActive - Gibt an, ob gerade eine Suche aktiv ist
  */
-function renderFilteredTasks(tasks) {
+function renderFilteredTasks(tasks, isSearchActive = false) {
   // 1. Alle Spalten-Container holen
   const columns = document.querySelectorAll(".column-content");
 
@@ -220,12 +221,14 @@ function renderFilteredTasks(tasks) {
     }
   });
 
-  // 4. Leere Spalten mit Placeholder versehen
-  columns.forEach((col, index) => {
-    if (col.innerHTML.trim() === "") {
-      col.innerHTML = renderEmptyColumn(index);
-    }
-  });
+  // 4. Leere Spalten mit Placeholder versehen (nur wenn keine Suche aktiv ist)
+  if (!isSearchActive) {
+    columns.forEach((col, index) => {
+      if (col.innerHTML.trim() === "") {
+        col.innerHTML = renderEmptyColumn(index);
+      }
+    });
+  }
 
   // 5. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
   initDragAndDrop();
@@ -286,7 +289,8 @@ function handleSearchInput(event) {
   // Neuen Timer setzen (200ms Verzögerung)
   searchDebounceTimer = setTimeout(() => {
     const filteredTasks = filterTasksBySearch(searchText);
-    renderFilteredTasks(filteredTasks);
+    const isSearchActive = searchText && searchText.trim() !== "";
+    renderFilteredTasks(filteredTasks, isSearchActive);
   }, 200);
 }
 
