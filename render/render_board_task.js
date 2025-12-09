@@ -5,6 +5,22 @@
  */
 
 // ============================================================================
+// GLOBALE VARIABLEN
+// ============================================================================
+
+/**
+ * Speichert alle geladenen Tasks für die Suchfunktion.
+ * @type {Array<Object>}
+ */
+let allTasks = [];
+
+/**
+ * Debounce-Timer für die Suchfunktion.
+ * @type {number|null}
+ */
+let searchDebounceTimer = null;
+
+// ============================================================================
 // HILFSFUNKTIONEN - Datenverarbeitung
 // ============================================================================
 
@@ -175,36 +191,116 @@ function renderEmptyColumn(columnIndex) {
  */
 async function renderAllTasks() {
   try {
-    // 1. Alle Tasks aus Firebase laden
-    const tasks = await fetchTasks();
+    // 1. Alle Tasks aus Firebase laden und global speichern
+    allTasks = await fetchTasks();
 
-    // 2. Alle Spalten-Container holen
-    const columns = document.querySelectorAll(".column-content");
-
-    // 3. Alle Spalten leeren
-    columns.forEach((col) => (col.innerHTML = ""));
-
-    // 4. Jeden Task in die richtige Spalte rendern
-    tasks.forEach((task) => {
-      const columnIndex = STATUS_COLUMNS[task.status];
-      if (columnIndex !== undefined && columns[columnIndex]) {
-        columns[columnIndex].innerHTML += renderTaskCard(task);
-      }
-    });
-
-    // 5. Leere Spalten mit Placeholder versehen
-    columns.forEach((col, index) => {
-      if (col.innerHTML.trim() === "") {
-        col.innerHTML = renderEmptyColumn(index);
-      }
-    });
-
-    // 6. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
-    initDragAndDrop();
-
-    // 7. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
-    initTaskCardClickHandlers();
+    // 2. Gefilterte Tasks rendern (ohne Filter = alle Tasks)
+    renderFilteredTasks(allTasks);
   } catch (error) {
     console.error("Error loading tasks:", error);
+  }
+}
+
+/**
+ * Rendert die übergebenen Tasks ins Board.
+ * @param {Array<Object>} tasks - Array von Task-Objekten
+ */
+function renderFilteredTasks(tasks) {
+  // 1. Alle Spalten-Container holen
+  const columns = document.querySelectorAll(".column-content");
+
+  // 2. Alle Spalten leeren
+  columns.forEach((col) => (col.innerHTML = ""));
+
+  // 3. Jeden Task in die richtige Spalte rendern
+  tasks.forEach((task) => {
+    const columnIndex = STATUS_COLUMNS[task.status];
+    if (columnIndex !== undefined && columns[columnIndex]) {
+      columns[columnIndex].innerHTML += renderTaskCard(task);
+    }
+  });
+
+  // 4. Leere Spalten mit Placeholder versehen
+  columns.forEach((col, index) => {
+    if (col.innerHTML.trim() === "") {
+      col.innerHTML = renderEmptyColumn(index);
+    }
+  });
+
+  // 5. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
+  initDragAndDrop();
+
+  // 6. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
+  initTaskCardClickHandlers();
+}
+
+// ============================================================================
+// SUCHFUNKTIONEN
+// ============================================================================
+
+/**
+ * Filtert Tasks nach Suchbegriff in Titel und Beschreibung.
+ * @param {string} searchText - Der Suchbegriff
+ * @returns {Array<Object>} Gefilterte Tasks
+ */
+function filterTasksBySearch(searchText) {
+  if (!searchText || searchText.trim() === "") {
+    return allTasks;
+  }
+
+  const searchLower = searchText.toLowerCase().trim();
+
+  return allTasks.filter((task) => {
+    const titleMatch =
+      task.title && task.title.toLowerCase().includes(searchLower);
+    const descriptionMatch =
+      task.description && task.description.toLowerCase().includes(searchLower);
+    return titleMatch || descriptionMatch;
+  });
+}
+
+/**
+ * Handler für Sucheingabe mit Debounce.
+ * Synchronisiert beide Suchfelder und filtert Tasks.
+ * @param {Event} event - Das Input-Event
+ */
+function handleSearchInput(event) {
+  const searchText = event.target.value;
+
+  // Beide Suchfelder synchronisieren
+  const findTaskInput = document.getElementById("findTask");
+  const findTaskResponsive = document.getElementById("findTask-responsive");
+
+  if (findTaskInput && findTaskInput !== event.target) {
+    findTaskInput.value = searchText;
+  }
+  if (findTaskResponsive && findTaskResponsive !== event.target) {
+    findTaskResponsive.value = searchText;
+  }
+
+  // Debounce: Vorherigen Timer löschen
+  if (searchDebounceTimer) {
+    clearTimeout(searchDebounceTimer);
+  }
+
+  // Neuen Timer setzen (200ms Verzögerung)
+  searchDebounceTimer = setTimeout(() => {
+    const filteredTasks = filterTasksBySearch(searchText);
+    renderFilteredTasks(filteredTasks);
+  }, 200);
+}
+
+/**
+ * Initialisiert die Suchfunktion für beide Eingabefelder.
+ */
+function initBoardSearch() {
+  const findTaskInput = document.getElementById("findTask");
+  const findTaskResponsive = document.getElementById("findTask-responsive");
+
+  if (findTaskInput) {
+    findTaskInput.addEventListener("input", handleSearchInput);
+  }
+  if (findTaskResponsive) {
+    findTaskResponsive.addEventListener("input", handleSearchInput);
   }
 }
