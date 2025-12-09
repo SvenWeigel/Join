@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/contacts.css" />
   <link rel="stylesheet" href="styles/contacts_modal.css" />
-  <link rel="stylesheet" href="styles/bottom-nav.css"/>
+  <link rel="stylesheet" href="styles/bottom-nav.css" />
   <script src="scripts/script.js"></script>
   <title>Contacts</title>
 </head>
@@ -100,23 +100,23 @@
   </div>
   </main>
   <nav class="bottom-nav">
-      <a href="html/summary.html" class="nav-div">
-        <img class="bottom-nav-img" src="../assets/icons/summary.svg">
-        <span class="bottom-nav-span">Summary</span>
-      </a>
-      <a href="html/add_task.html" class="nav-div">
-        <img class="bottom-nav-img" src="assets/icons/add_task.svg">
-        <span class="bottom-nav-span">Add Task</span>
-      </a>
-      <a href="html/board.html" class="nav-div current-nav">
-        <img class="bottom-nav-img" src="../assets/icons/board.svg">
-        <span class="bottom-nav-span">Board</span>
-      </a>
-      <a href="html/contacts.html" class="nav-div">
-        <img class="bottom-nav-img" src="assets/icons/contacts.svg">
-        <span class="bottom-nav-span">Contacts</span>
-      </a>
-    </nav>
+    <a href="html/summary.html" class="nav-div">
+      <img class="bottom-nav-img" src="../assets/icons/summary.svg">
+      <span class="bottom-nav-span">Summary</span>
+    </a>
+    <a href="html/add_task.html" class="nav-div">
+      <img class="bottom-nav-img" src="assets/icons/add_task.svg">
+      <span class="bottom-nav-span">Add Task</span>
+    </a>
+    <a href="html/board.html" class="nav-div">
+      <img class="bottom-nav-img" src="../assets/icons/board.svg">
+      <span class="bottom-nav-span">Board</span>
+    </a>
+    <a href="html/contacts.html" class="nav-div current-nav">
+      <img class="bottom-nav-img" src="assets/icons/contacts.svg">
+      <span class="bottom-nav-span">Contacts</span>
+    </a>
+  </nav>
   </div>
 
   <!-- Add Contact Modal -->
@@ -154,18 +154,18 @@
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
             <div class="modal-buttons-wrapper">
-          <form id="addContactForm" class="add-contact-form" onsubmit="handleAddContact(event)">
-            <div class="modal-form-buttons">
-              <button type="button" class="btn-cancel-contact" onclick="closeAddContactModal()">
-                Cancel <img src="assets/icons/cancel.svg">
-              </button>
-              <button type="submit" class="btn-create-contact">
-                Create contact
-                <img src="assets/icons/check.svg" alt="check" />
-              </button>
+              <form id="addContactForm" class="add-contact-form" onsubmit="handleAddContact(event)">
+                <div class="modal-form-buttons">
+                  <button type="button" class="btn-cancel-contact" onclick="closeAddContactModal()">
+                    Cancel <img src="assets/icons/cancel.svg">
+                  </button>
+                  <button type="submit" class="btn-create-contact">
+                    Create contact
+                    <img src="assets/icons/check.svg" alt="check" />
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
           </div>
 
         </div>

@@ -132,6 +132,16 @@ function selectContact(contactId) {
   const contact = contacts.find((c) => c.id === contactId);
   renderContactDetails(contact);
   highlightSelectedContact(contactId);
+
+  // Klasse für mobile Ansicht hinzufügen
+  if (window.innerWidth < 870) {
+    const contactsRight = document.querySelector('.contacts-right');
+    const contactsLeft = document.querySelector('.contacts-left');
+    if (contactsRight) {
+      contactsRight.classList.add('show');
+      contactsLeft.classList.add('close');
+    }
+  }
 }
 
 /**
@@ -210,3 +220,5 @@ async function deleteContactFromDetails(contactId) {
     alert("Fehler beim Löschen des Kontakts.");
   }
 }
+
+

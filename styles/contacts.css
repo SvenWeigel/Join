@@ -276,6 +276,35 @@
   margin: 8px 0;
 }
 
+.btn-more{
+  display:none;
+}
+.contacts-details-actions-responsive{
+  display:none;
+  padding-top: 8px;
+  gap: 5px;
+  
+}
+.contacts-details-actions-responsive button {
+  border: none;
+  background-color: transparent;
+  color: #2a3647;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.contacts-details-actions-responsive button:hover {
+  color: #29abe2;
+}
+
+.contacts-details-actions-responsive button:hover img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(98%) saturate(456%)
+    hue-rotate(161deg) brightness(96%) contrast(89%);
+}
+
 @media(max-width: 1360px){
   .add-contact-btn{
     width: 100%;
@@ -332,15 +361,16 @@
   }
 }
 @media(max-width: 870px){
-  .contacts-right{
-    display:none
-  }
+  
   .contacts-container{
     width: 100%;
   }
   .contacts-left{
     width: 100%;
     padding: 32px 16px 0 16px;
+  }
+  .contacts-left.close{
+    display:none;
   }
   .contact-name{
     font-size:20px;
@@ -356,4 +386,61 @@
   .add-contact-span{
     display:none;
   }
+  .contact-list-entry{
+    width: unset;
+  }
+  .contacts-right{
+    display:none;
+    width:100%;
+    z-index: 9999;
+    padding: 32px 16px;
+    overflow-y: auto;
+  }
+  .contacts-right.show{
+    display:flex;
+  }
+  .contacts-details-info{
+    padding:0;
+  }
+   .contacts-details-actions{
+    display:none;
+  }
+
+  .contact-details-container{
+    height: 100%;
+  }
+
+  .contacts-details-actions-responsive{
+    display: flex;
+    flex-direction:column;
+    background-color: white;
+    gap:14px;
+    padding:16px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    border-top-left-radius: 20px;
+    border-top-right-radius:20px;
+    border-bottom-left-radius:20px;
+    position:fixed;
+    right: 16px;
+    bottom: 115px;
+    transition: right 0.3s;
+    
+  }
+ 
+  .btn-more{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a3647;
+    width: 56px;
+    height: 56px;
+    border-style: none;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 120px;
+    right: 16px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+  }
+  
 }

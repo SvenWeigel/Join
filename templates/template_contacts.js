@@ -63,5 +63,16 @@ function getContactDetailsTemplate(contact) {
       <span>Phone</span>
       <span id="phone-number">${contact.phone}</span>
     </div>
+     <button class="btn-more"><img src="assets/icons/more_vert.svg"></button>
+        <div class="contacts-details-actions-responsive">
+          <button class="edit-btn" onclick="openEditContactModal('${contact.id}')">
+            <img src="assets/icons/edit.svg" alt="Edit" title="Edit" class="contacts-details-action-icon" />
+            <span>Edit</span>
+          </button>
+          <button class="del-btn" onclick="deleteContactFromDetails('${contact.id}')">
+            <img src="assets/icons/delete.svg" alt="Delete" title="Delete" class="contacts-details-action-icon" />
+            <span>Delete</span>
+          </button>
+        </div>
   `;
 }
