@@ -340,6 +340,9 @@
 }
 
 @media(max-width:700px){
+  .board-header{
+    padding: 48px 16px 40px 16px;
+  }
   .responsive-input{
     display:flex;
     padding: 14px 16px;
