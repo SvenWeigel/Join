@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/contacts.css" />
   <link rel="stylesheet" href="styles/contacts_modal.css" />
+  <link rel="stylesheet" href="styles/bottom-nav.css"/>
   <script src="scripts/script.js"></script>
   <title>Contacts</title>
 </head>
@@ -20,6 +21,7 @@
   <div class="main-layout-container">
     <header>
       <div class="header-content">
+        <img class="logo-responsive" src="assets/img/logo.svg">
         <span>Kanban Project Management Tool</span>
         <div class="header-profile-container">
           <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
@@ -28,9 +30,10 @@
           </div>
         </div>
         <div class="profile-options d-none" id="profile-options">
+          <a class="help-options" href="html/help.html">Help</a>
           <a href="html/legal_notice.html">Legal Notice</a>
           <a href="html/privacy_policy.html">Privacy Policy</a>
-          <a href="index.html">Log Out</a>
+          <a href="html/index.html">Log Out</a>
         </div>
       </div>
     </header>
@@ -76,7 +79,7 @@
     <main class="contacts-container">
       <div class="contacts-left">
         <button class="add-contact-btn" onclick="openAddContactModal()">
-          Add new contact
+          <span class="add-contact-span">Add new contact</span>
           <img src="assets/icons/person_add.svg" class="add-contact-icon" />
         </button>
 
@@ -96,6 +99,24 @@
       </div>
   </div>
   </main>
+  <nav class="bottom-nav">
+      <a href="html/summary.html" class="nav-div">
+        <img class="bottom-nav-img" src="../assets/icons/summary.svg">
+        <span class="bottom-nav-span">Summary</span>
+      </a>
+      <a href="html/add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/add_task.svg">
+        <span class="bottom-nav-span">Add Task</span>
+      </a>
+      <a href="html/board.html" class="nav-div current-nav">
+        <img class="bottom-nav-img" src="../assets/icons/board.svg">
+        <span class="bottom-nav-span">Board</span>
+      </a>
+      <a href="html/contacts.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/contacts.svg">
+        <span class="bottom-nav-span">Contacts</span>
+      </a>
+    </nav>
   </div>
 
   <!-- Add Contact Modal -->
