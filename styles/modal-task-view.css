@@ -13,7 +13,7 @@
 
 .inside-modal-view-overlay {
   background-color: rgba(255, 255, 255, 1);
-  min-width: 525px;
+  width:100%;
   max-width: 525px;
   border-radius: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
@@ -219,4 +219,52 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+@media (max-width:650px){
+  .inside-modal-view-overlay{
+    min-width: none;
+    max-width: none;
+    width: 100%;
+    margin: 16px;
+    gap:16px;
+  }
+
+  .task-view-header span{
+    font-size:16px;
+  }
+
+  .task-view-title{
+    font-size:36px;
+  }
+  .task-view-title span{
+    font-size:36px;
+  }
+  .task-view-description span{
+    font-size:16px;
+  }
+  .task-view-due-date span{
+    font-size: 16px;
+  }
+  .priority-span-task-view{
+    font-size:16px;
+  }
+  .priority-span{
+    font-size:16px;
+  }
+  .assigned-to-span{
+    font-size:16px;
+  }
+  .subtask-task-view span{
+    font-size:16px;
+  }
+}
+
+@media (max-width: 380px){
+  .inside-modal-view-overlay{
+    padding: 28px 20px;
+  }
+  .task-view-header button{
+    padding: 0;
+  }
 }
