@@ -139,7 +139,9 @@ function selectContact(contactId) {
     const contactsLeft = document.querySelector('.contacts-left');
     if (contactsRight) {
       contactsRight.classList.add('show');
+      contactsRight.classList.remove('close');
       contactsLeft.classList.add('close');
+      contactsLeft.classList.remove('show');
     }
   }
 }
@@ -221,4 +223,36 @@ async function deleteContactFromDetails(contactId) {
   }
 }
 
+function backToContactList() {
+  if (window.innerWidth < 870) {
+    const contactsRight = document.querySelector('.contacts-right');
+    const contactsLeft = document.querySelector('.contacts-left');
+    if (contactsRight) {
+      contactsRight.classList.add('close');
+      contactsRight.classList.remove('show');
+      contactsLeft.classList.add('show');
+      contactsLeft.classList.remove('close')
+    }
+  }
+}
+
+//Responsiv: Edit/Delete Menü bei onclick öffnen
+function showDetails() {
+  const actionsResponsive = document.querySelector('.contacts-details-actions-responsive');
+  if (actionsResponsive) {
+    actionsResponsive.classList.add('show');
+  }
+}
+
+//Responsiv: Edit/Delete Menü beim Klick außerhalb schließen
+document.addEventListener('mousedown', function handleClickOutside(event) {
+  const actionsContainer = document.querySelector('.contacts-details-actions-responsive');
+  if (
+    actionsContainer &&
+    actionsContainer.classList.contains('show') &&
+    !actionsContainer.contains(event.target)
+  ) {
+    actionsContainer.classList.remove('show');
+  }
+});
 
