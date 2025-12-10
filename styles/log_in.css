@@ -176,15 +176,6 @@ h1 {
   transform: translate(0, 0) scale(1);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .center_img {
-    transition: none;
-  }
-  .center_img.moved {
-    transition: none;
-  }
-}
-
 /* Utility classes to toggle visibility via CSS classes */
 .center_img_container.hidden {
   display: none;

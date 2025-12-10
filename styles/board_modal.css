@@ -333,40 +333,7 @@
   height: 12px;
 }
 
-/* ==========================================================================
-   10. RESPONSIVE
-   ========================================================================== */
 
-@media (max-width: 960px) {
-  .add-task-modal {
-    width: 92%;
-    height: auto;
-    max-height: 90vh;
-    padding: 20px;
-  }
-
-  .add-task-modal .add-task-container {
-    flex-direction: column;
-  }
-
-  .add-task-modal .seperator-content {
-    display: none;
-  }
-
-  .add-task-modal .modal-header h2 {
-    font-size: 36px;
-  }
-
-  .add-task-modal .modal-footer-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .add-task-modal .priority-buttons-container {
-    flex-wrap: wrap;
-  }
-}
 
 /* ==========================================================================
    11. MODAL CUSTOM DROPDOWN (Assigned to)

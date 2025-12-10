@@ -9,3 +9,124 @@
     min-height: 80px;
   }
 }
+
+@media (max-width: 1390px) {
+  .board-container {
+    width: 100%;
+  }
+  .board-columns {
+    gap: 10px;
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 1305px) {
+  .column {
+    width: 230px;
+  }
+  .column-header {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 1215px) {
+  .column {
+    width: 200px;
+  }
+}
+
+@media (max-width: 1095px) {
+  .board-container {
+    overflow-y: auto;
+    height: calc(100vh - 96px - 80px);
+  }
+  .board-container::-webkit-scrollbar {
+    display: none;
+  }
+  .board-columns {
+    flex-direction: column;
+  }
+  .column-content {
+    flex-direction: row;
+    width: calc(100vw - 232px - 32px); /* -32- wegen padding*/
+    overflow-x: auto;
+  }
+  .column-content::-webkit-scrollbar {
+    display: none;
+  }
+  .column {
+    width: 100%;
+  }
+
+  .task-card {
+    min-width: 252px;
+  }
+  .board-header {
+    padding: 79px 16px 48px 16px;
+  }
+  .find-add-container {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 870px) {
+  .column-content {
+    width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 700px) {
+  .board-header {
+    padding: 48px 16px 40px 16px;
+  }
+  .responsive-input {
+    display: flex;
+    padding: 14px 16px;
+  }
+  #findTask {
+    display: none;
+  }
+  #findTask-repsonsive {
+    width: 100%;
+  }
+  .add-task-span {
+    display: none;
+  }
+  #addTaskBtn {
+    padding: 10px;
+  }
+}
+
+/* ==========================================================================
+   10. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .add-task-modal {
+    width: 92%;
+    height: auto;
+    max-height: 90vh;
+    padding: 20px;
+  }
+
+  .add-task-modal .add-task-container {
+    flex-direction: column;
+  }
+
+  .add-task-modal .seperator-content {
+    display: none;
+  }
+
+  .add-task-modal .modal-header h2 {
+    font-size: 36px;
+  }
+
+  .add-task-modal .modal-footer-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .add-task-modal .priority-buttons-container {
+    flex-wrap: wrap;
+  }
+}

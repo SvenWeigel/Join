@@ -1,0 +1,8 @@
+@media (prefers-reduced-motion: reduce) {
+  .center_img {
+    transition: none;
+  }
+  .center_img.moved {
+    transition: none;
+  }
+}
