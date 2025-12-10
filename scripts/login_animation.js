@@ -51,6 +51,17 @@ function startAnimation(
   footerContainer,
   logoContainer
 ) {
+  // Prüfe, ob Animation übersprungen werden soll (z.B. nach Logout)
+  if (sessionStorage.getItem("skipAnimation")) {
+    sessionStorage.removeItem("skipAnimation");
+    if (centerContainer) centerContainer.classList.add("hidden");
+    if (loginContainer) loginContainer.classList.remove("hidden");
+    if (headerContainer) headerContainer.classList.remove("hidden");
+    if (footerContainer) footerContainer.classList.remove("hidden");
+    if (logoContainer) logoContainer.classList.remove("hidden");
+    return;
+  }
+
   if (!img) {
     // Kein Bild vorhanden: direkt umschalten
     if (centerContainer) centerContainer.classList.add("hidden");

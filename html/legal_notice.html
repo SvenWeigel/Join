@@ -1,208 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="../" />
+    <title>Legal Notice</title>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/menu-bar.css" />
+    <link rel="stylesheet" href="styles/summary.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/legal_notice.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/login_center_logo.svg"
+      type="image/x-icon"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="../">
-  <title>Legal Notice</title>
-  <link rel="stylesheet" href="styles/global.css" />
-  <link rel="stylesheet" href="styles/font.css" />
-  <link rel="stylesheet" href="styles/menu-bar.css" />
-  <link rel="stylesheet" href="styles/summary.css" />
-  <link rel="stylesheet" href="styles/header.css" />
-  <link rel="stylesheet" href="styles/legal_notice.css" />
-  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
-</head>
-
-<body>
-  <header>
-    <div class="header-content">
-      <span>Kanban Project Management Tool</span>
-      <div class="header-profile-container">
-        <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
-        <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
-          <div class="user-avatar">SM</div>
+  <body>
+    <header>
+      <div class="header-content">
+        <span>Kanban Project Management Tool</span>
+        <div class="header-profile-container">
+          <a href="html/help.html"
+            ><img src="assets/icons/help.svg" alt="help_icon"
+          /></a>
+          <div
+            class="user-badge"
+            onclick="showProfileOptions()"
+            title="Benutzer"
+          >
+            <div class="user-avatar">SM</div>
+          </div>
         </div>
-      </div>
-      <div class="profile-options d-none" id="profile-options">
-        <a href="html/legal_notice.html">Legal Notice</a>
-        <a href="html/privacy_policy.html">Privacy Policy</a>
-        <a href="index.html">Log Out</a>
-      </div>
-    </div>
-  </header>
-
-  <div class="page-content">
-    <aside class="menu-bar-container">
-      <div class="join-logo-container">
-        <img src="assets/img/join_logo_vector.svg" alt="join logo" />
-      </div>
-
-      <div class="menu-bar-btn-container">
-        <div class="summary-btn center-btn">
-          <a class="main-bar-btn" href="html/summary.html">
-            <img src="assets/icons/summary.svg" alt="" />Summary
-          </a>
-        </div>
-        <div class="add-task-btn center-btn">
-          <a class="main-bar-btn" href="html/add_task.html">
-            <img src="assets/icons/add_task.svg" alt="" />Add Task
-          </a>
-        </div>
-        <div class="board-btn center-btn">
-          <a class="main-bar-btn" href="html/board.html">
-            <img src="assets/icons/board.svg" alt="" />Board
-          </a>
-        </div>
-        <div class="contacts-btn center-btn">
-          <a class="main-bar-btn" href="html/contacts.html">
-            <img src="assets/icons/contacts.svg" alt="" />Contacts
-          </a>
-        </div>
-      </div>
-
-      <div class="legal-container">
-        <div class="privacy-btn">
-          <a href="html/privacy_policy.html">Privacy Policy</a>
-        </div>
-        <div class="legal-link">
+        <div class="profile-options d-none" id="profile-options">
           <a href="html/legal_notice.html">Legal Notice</a>
+          <a href="html/privacy_policy.html">Privacy Policy</a>
+          <a href="#" onclick="logout(); return false;">Log Out</a>
         </div>
       </div>
-    </aside>
+    </header>
 
-    <div class="legal-notice-content">
-      <div class="container">
-        <div class="header">
+    <div class="page-content">
+      <aside class="menu-bar-container">
+        <div class="join-logo-container">
+          <img src="assets/img/join_logo_vector.svg" alt="join logo" />
+        </div>
+
+        <div class="menu-bar-btn-container">
+          <div class="summary-btn center-btn">
+            <a class="main-bar-btn" href="html/summary.html">
+              <img src="assets/icons/summary.svg" alt="" />Summary
+            </a>
+          </div>
+          <div class="add-task-btn center-btn">
+            <a class="main-bar-btn" href="html/add_task.html">
+              <img src="assets/icons/add_task.svg" alt="" />Add Task
+            </a>
+          </div>
+          <div class="board-btn center-btn">
+            <a class="main-bar-btn" href="html/board.html">
+              <img src="assets/icons/board.svg" alt="" />Board
+            </a>
+          </div>
+          <div class="contacts-btn center-btn">
+            <a class="main-bar-btn" href="html/contacts.html">
+              <img src="assets/icons/contacts.svg" alt="" />Contacts
+            </a>
+          </div>
+        </div>
+
+        <div class="legal-container">
+          <div class="privacy-btn">
+            <a href="html/privacy_policy.html">Privacy Policy</a>
+          </div>
+          <div class="legal-link">
+            <a href="html/legal_notice.html">Legal Notice</a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="legal-notice-content">
+        <div class="container">
+          <div class="header">
             <h1>⚖️ Legal Notice</h1>
             <p>Last Updated: November 30, 2025</p>
-        </div>
+          </div>
 
-        <div class="content">
+          <div class="content">
             <div class="toc">
-                <h2>📑 Quick Navigation</h2>
-                <ul>
-                    <li><a href="html/legal_notice.html#imprint">Imprint</a></li>
-                    <li><a href="html/legal_notice.html#contact">Exploring the Board</a></li>
-                    <li><a href="html/legal_notice.html#terms">Acceptance of Terms</a></li>
-                    <li><a href="html/legal_notice.html#scope">Scope and Ownership of the Product</a></li>
-                    <li><a href="html/legal_notice.html#proprietary">Proprietary Rights</a></li>
-                    <li><a href="html/legal_notice.html#use">Use of the Product</a></li>
-                    <li><a href="html/legal_notice.html#disclaimer">Disclaimer of Warranties and Limitation of Liability</a></li>
-                    <li><a href="html/legal_notice.html#indemnity">Indemnity</a></li>
-                </ul>
+              <h2>📑 Quick Navigation</h2>
+              <ul>
+                <li><a href="html/legal_notice.html#imprint">Imprint</a></li>
+                <li>
+                  <a href="html/legal_notice.html#contact"
+                    >Exploring the Board</a
+                  >
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#terms">Acceptance of Terms</a>
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#scope"
+                    >Scope and Ownership of the Product</a
+                  >
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#proprietary"
+                    >Proprietary Rights</a
+                  >
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#use">Use of the Product</a>
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#disclaimer"
+                    >Disclaimer of Warranties and Limitation of Liability</a
+                  >
+                </li>
+                <li>
+                  <a href="html/legal_notice.html#indemnity">Indemnity</a>
+                </li>
+              </ul>
             </div>
 
             <section id="imprint">
-                <h2>Imprint</h2>
-                <div class="team-list">
-                    <p><strong>Development Team:</strong></p>
-                    <ul>
-                        <li>Sven Weigel</li>
-                        <li>Valdrin Murselji</li>
-                        <li>Daniel Micklausch</li>
-                        <li>Farid Al Abdullah</li>
-                    </ul>
-                    <p style="margin-top: 15px;"><strong>Address:</strong><br>
-                    [Address of the JOIN operator]<br>
-                    [Postcode and city]</p>
-                </div>
+              <h2>Imprint</h2>
+              <div class="team-list">
+                <p><strong>Development Team:</strong></p>
+                <ul>
+                  <li>Sven Weigel</li>
+                  <li>Valdrin Murselji</li>
+                  <li>Daniel Micklausch</li>
+                  <li>Farid Al Abdullah</li>
+                </ul>
+                <p style="margin-top: 15px">
+                  <strong>Address:</strong><br />
+                  [Address of the JOIN operator]<br />
+                  [Postcode and city]
+                </p>
+              </div>
             </section>
 
             <section id="contact">
-                <h2>Exploring the Board</h2>
-                <div class="contact-box">
-                    <p><strong>Email:</strong> <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a></p>
-                </div>
+              <h2>Exploring the Board</h2>
+              <div class="contact-box">
+                <p>
+                  <strong>Email:</strong>
+                  <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>
+                </p>
+              </div>
             </section>
 
             <section id="terms">
-                <h2>Acceptance of Terms</h2>
-                <p>
-                    By accessing and using <strong>Join</strong> (Product), you acknowledge and agree to the following terms and conditions, and any policies, guidelines, or amendments thereto that may be presented to you from time to time. We, the listed students, may update or change the terms and conditions from time to time without notice.
-                </p>
+              <h2>Acceptance of Terms</h2>
+              <p>
+                By accessing and using <strong>Join</strong> (Product), you
+                acknowledge and agree to the following terms and conditions, and
+                any policies, guidelines, or amendments thereto that may be
+                presented to you from time to time. We, the listed students, may
+                update or change the terms and conditions from time to time
+                without notice.
+              </p>
             </section>
 
             <section id="scope">
-                <h2>Scope and Ownership of the Product</h2>
+              <h2>Scope and Ownership of the Product</h2>
+              <p>
+                <strong>Join</strong> has been developed as part of a student
+                group project in a web development bootcamp at the
+                <strong
+                  ><a
+                    href="https://developerakademie.com/"
+                    target="_blank"
+                    class="developer-akademie-link"
+                    >Developer Akademie GmbH</a
+                  ></strong
+                >. It has an educational purpose and is not intended for
+                extensive personal & business usage. As such, we cannot
+                guarantee consistent availability, reliability, accuracy, or any
+                other aspect of quality regarding this Product.
+              </p>
+
+              <div class="info-box">
                 <p>
-                    <strong>Join</strong> has been developed as part of a student group project in a web development bootcamp at the <strong><a href="https://developerakademie.com/" target="_blank" class="developer-akademie-link">Developer Akademie GmbH</a></strong>. It has an educational purpose and is not intended for extensive personal & business usage. As such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of quality regarding this Product.
+                  <strong>Design Ownership:</strong> The design of
+                  <strong>Join</strong> is owned by the
+                  <strong
+                    ><a
+                      href="https://developerakademie.com/"
+                      target="_blank"
+                      class="developer-akademie-link"
+                      >Developer Akademie GmbH</a
+                    ></strong
+                  >. Unauthorized use, reproduction, modification, distribution,
+                  or replication of the design is strictly prohibited.
                 </p>
-                
-                <div class="info-box">
-                    <p>
-                        <strong>Design Ownership:</strong> The design of <strong>Join</strong> is owned by the <strong><a href="https://developerakademie.com/" target="_blank" class="developer-akademie-link">Developer Akademie GmbH</a></strong>. Unauthorized use, reproduction, modification, distribution, or replication of the design is strictly prohibited.
-                    </p>
-                </div>
+              </div>
             </section>
 
             <section id="proprietary">
-                <h2>Proprietary Rights</h2>
-                <p>
-                    Aside from the design owned by <strong><a href="https://developerakademie.com/" target="_blank" class="developer-akademie-link">Developer Akademie GmbH</a></strong>, we, the listed students, retain all proprietary rights in <strong>Join</strong>, including any associated copyrighted material, trademarks, and other proprietary information.
-                </p>
+              <h2>Proprietary Rights</h2>
+              <p>
+                Aside from the design owned by
+                <strong
+                  ><a
+                    href="https://developerakademie.com/"
+                    target="_blank"
+                    class="developer-akademie-link"
+                    >Developer Akademie GmbH</a
+                  ></strong
+                >, we, the listed students, retain all proprietary rights in
+                <strong>Join</strong>, including any associated copyrighted
+                material, trademarks, and other proprietary information.
+              </p>
             </section>
 
             <section id="use">
-                <h2>Use of the Product</h2>
-                <div class="warning-box">
-                    <p>
-                        <strong>Join</strong> is intended to be used for lawful purposes only, in accordance with all applicable laws and regulations. Any use of <strong>Join</strong> for illegal activities, or to harass, harm, threaten, or intimidate another person, is strictly prohibited.
-                    </p>
-                </div>
+              <h2>Use of the Product</h2>
+              <div class="warning-box">
                 <p>
-                    You are solely responsible for your interactions with other users of <strong>Join</strong>.
+                  <strong>Join</strong> is intended to be used for lawful
+                  purposes only, in accordance with all applicable laws and
+                  regulations. Any use of <strong>Join</strong> for illegal
+                  activities, or to harass, harm, threaten, or intimidate
+                  another person, is strictly prohibited.
                 </p>
+              </div>
+              <p>
+                You are solely responsible for your interactions with other
+                users of <strong>Join</strong>.
+              </p>
             </section>
 
             <section id="disclaimer">
-                <h2>Disclaimer of Warranties and Limitation of Liability</h2>
+              <h2>Disclaimer of Warranties and Limitation of Liability</h2>
+              <p>
+                <strong>Join</strong> is provided 'as is' without warranty of
+                any kind, whether express or implied, including but not limited
+                to the implied warranties of merchantability, fitness for a
+                particular purpose, and non-infringement.
+              </p>
+              <div class="info-box">
                 <p>
-                    <strong>Join</strong> is provided 'as is' without warranty of any kind, whether express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+                  In no event will we, the listed students, or the
+                  <strong
+                    ><a
+                      href="https://developerakademie.com/"
+                      target="_blank"
+                      class="developer-akademie-link"
+                      >Developer Akademie</a
+                    ></strong
+                  >, be liable for any direct, indirect, incidental, special,
+                  consequential or exemplary damages, including but not limited
+                  to:
                 </p>
-                <div class="info-box">
-                    <p>
-                        In no event will we, the listed students, or the <strong><a href="https://developerakademie.com/" target="_blank" class="developer-akademie-link">Developer Akademie</a></strong>, be liable for any direct, indirect, incidental, special, consequential or exemplary damages, including but not limited to:
-                    </p>
-                    <ul>
-                        <li>Damages for loss of profits</li>
-                        <li>Loss of goodwill or use</li>
-                        <li>Loss of data or other intangible losses</li>
-                    </ul>
-                    <p style="margin-top: 10px;">
-                        This applies even if we have been advised of the possibility of such damages, arising out of or in connection with the use or performance of <strong>Join</strong>.
-                    </p>
-                </div>
+                <ul>
+                  <li>Damages for loss of profits</li>
+                  <li>Loss of goodwill or use</li>
+                  <li>Loss of data or other intangible losses</li>
+                </ul>
+                <p style="margin-top: 10px">
+                  This applies even if we have been advised of the possibility
+                  of such damages, arising out of or in connection with the use
+                  or performance of <strong>Join</strong>.
+                </p>
+              </div>
             </section>
 
             <section id="indemnity">
-                <h2>Indemnity</h2>
-                <p>
-                    You agree to indemnify, defend and hold harmless us, the listed students, the <strong><a href="https://developerakademie.com/" target="_blank" class="developer-akademie-link">Developer Akademie</a></strong>, and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to:
-                </p>
-                <ul>
-                    <li>Your use of <strong>Join</strong></li>
-                    <li>Your breach of this Legal Notice</li>
-                    <li>Your violation of any rights of another person or entity</li>
-                </ul>
+              <h2>Indemnity</h2>
+              <p>
+                You agree to indemnify, defend and hold harmless us, the listed
+                students, the
+                <strong
+                  ><a
+                    href="https://developerakademie.com/"
+                    target="_blank"
+                    class="developer-akademie-link"
+                    >Developer Akademie</a
+                  ></strong
+                >, and our affiliates, partners, officers, directors, agents,
+                and employees, from and against any claim, demand, loss, damage,
+                cost, or liability (including reasonable legal fees) arising out
+                of or relating to:
+              </p>
+              <ul>
+                <li>Your use of <strong>Join</strong></li>
+                <li>Your breach of this Legal Notice</li>
+                <li>
+                  Your violation of any rights of another person or entity
+                </li>
+              </ul>
             </section>
 
-            <div class="contact-box" style="margin-top: 40px;">
-                <p><strong>Questions or Notices?</strong></p>
-                <p>For any questions or notices, please contact us at <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>.</p>
+            <div class="contact-box" style="margin-top: 40px">
+              <p><strong>Questions or Notices?</strong></p>
+              <p>
+                For any questions or notices, please contact us at
+                <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>.
+              </p>
             </div>
-        </div>
+          </div>
 
-        <div class="footer">
+          <div class="footer">
             <p>© 2025 Join Development Team | All Rights Reserved</p>
-            <p>A project by students of <a href="https://developerakademie.com/" target="_blank">Developer Akademie GmbH</a></p>
+            <p>
+              A project by students of
+              <a href="https://developerakademie.com/" target="_blank"
+                >Developer Akademie GmbH</a
+              >
+            </p>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-  </div>
-  <script src="scripts/header.js"></script>
-  <script src="scripts/script.js"></script>
-</body>
-
+    <script src="scripts/header.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>

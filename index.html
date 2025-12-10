@@ -16,6 +16,12 @@
   </head>
 
   <body>
+    <script>
+      // Sofort prüfen ob Animation übersprungen werden soll (nach Logout)
+      if (sessionStorage.getItem("skipAnimation")) {
+        document.documentElement.classList.add("skip-animation");
+      }
+    </script>
     <div class="center_img_container">
       <img
         src="assets/img/login_center_logo.svg"
@@ -49,7 +55,13 @@
               type="password"
               placeholder="Password"
             />
-            <img id="password-icon" src="assets/icons/lock.svg" onclick="togglePasswordVisibility()" class="login-form-icon" alt="" />
+            <img
+              id="password-icon"
+              src="assets/icons/lock.svg"
+              onclick="togglePasswordVisibility()"
+              class="login-form-icon"
+              alt=""
+            />
           </div>
         </div>
         <div class="login-form-btns-container">
@@ -84,7 +96,7 @@
     </footer>
 
     <script src="scripts/login_animation.js"></script>
-      <script src="scripts/db.js"></script>
-      <script src="scripts/login.js"></script>
+    <script src="scripts/db.js"></script>
+    <script src="scripts/login.js"></script>
   </body>
 </html>

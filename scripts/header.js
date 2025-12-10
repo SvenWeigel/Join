@@ -69,35 +69,50 @@ if (document.readyState === "loading") {
 
 window.applyInitials = applyInitials;
 
-
 function showProfileOptions() {
   const el = document.getElementById("profile-options");
   if (el) {
-    if (el.classList.contains('d-none')) {
-      el.classList.remove('d-none');
+    if (el.classList.contains("d-none")) {
+      el.classList.remove("d-none");
       void el.offsetWidth;
-      el.classList.add('show');
-      document.addEventListener('click', closeProfileOptionsOnClickOutside);
+      el.classList.add("show");
+      document.addEventListener("click", closeProfileOptionsOnClickOutside);
     } else {
-      el.classList.remove('show');
-      document.removeEventListener('click', closeProfileOptionsOnClickOutside);
+      el.classList.remove("show");
+      document.removeEventListener("click", closeProfileOptionsOnClickOutside);
       setTimeout(() => {
-        el.classList.add('d-none');
-      }, 100); 
+        el.classList.add("d-none");
+      }, 100);
     }
   }
 }
 
 function closeProfileOptionsOnClickOutside(event) {
   const el = document.getElementById("profile-options");
-  if (el && el.classList.contains('show')) {
-    if (!el.contains(event.target) && !event.target.closest('.user-badge')) {
-      el.classList.remove('show');
-      document.removeEventListener('click', closeProfileOptionsOnClickOutside);
+  if (el && el.classList.contains("show")) {
+    if (!el.contains(event.target) && !event.target.closest(".user-badge")) {
+      el.classList.remove("show");
+      document.removeEventListener("click", closeProfileOptionsOnClickOutside);
       setTimeout(() => {
-        el.classList.add('d-none');
+        el.classList.add("d-none");
       }, 400);
     }
   }
 }
 
+/**
+ * Meldet den Benutzer ab, löscht die Session-Daten und leitet zur Login-Seite weiter.
+ * Setzt ein Flag, um die Splash-Animation zu überspringen.
+ */
+function logout() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem("guestContacts");
+  sessionStorage.setItem("skipAnimation", "true");
+
+  // Ermittle den korrekten Pfad zur index.html
+  const isInHtmlFolder = window.location.pathname.includes("/html/");
+  const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
+  window.location.href = redirectPath;
+}
+
+window.logout = logout;

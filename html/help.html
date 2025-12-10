@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="../">
+    <base href="../" />
     <title>help</title>
     <link rel="stylesheet" href="styles/menu-bar.css" />
     <link rel="stylesheet" href="styles/header.css" />
@@ -33,7 +33,7 @@
           <div class="profile-options d-none" id="profile-options">
             <a href="html/legal_notice.html">Legal Notice</a>
             <a href="html/privacy_policy.html">Privacy Policy</a>
-            <a href="index.html">Log Out</a>
+            <a href="#" onclick="logout(); return false;">Log Out</a>
           </div>
         </div>
       </header>
@@ -75,139 +75,207 @@
           </div>
         </div>
       </aside>
-<main class="help-container">
-      <div class="container">
-        <div class="header">
+      <main class="help-container">
+        <div class="container">
+          <div class="header">
             <h1>❓ Help</h1>
             <p>Ihr Leitfaden zur Nutzung von Join</p>
-        </div>
+          </div>
 
-        <div class="content">
+          <div class="content">
             <section id="welcome">
-                <h2>Willkommen auf der Hilfeseite von Join</h2>
-                <p>
-                    Willkommen bei <span class="highlight">Join</span>, Ihrem Leitfaden zur Nutzung unseres Kanban-Projektmanagement-Tools. Hier erfahren Sie, was Join ist, welche Vorteile es bietet und wie Sie es verwenden.
-                </p>
+              <h2>Willkommen auf der Hilfeseite von Join</h2>
+              <p>
+                Willkommen bei <span class="highlight">Join</span>, Ihrem
+                Leitfaden zur Nutzung unseres Kanban-Projektmanagement-Tools.
+                Hier erfahren Sie, was Join ist, welche Vorteile es bietet und
+                wie Sie es verwenden.
+              </p>
             </section>
 
             <div class="toc">
-                <h2>📑 Schnellnavigation</h2>
-                <ul>
-                    <li><a href="#what-is">Was ist Join?</a></li>
-                    <li><a href="#how-to-use">Wie man Join benutzt</a></li>
-                    <li><a href="#tips">Tipps für effektive Nutzung</a></li>
-                    <li><a href="#questions">Weitere Fragen?</a></li>
-                </ul>
+              <h2>📑 Schnellnavigation</h2>
+              <ul>
+                <li><a href="#what-is">Was ist Join?</a></li>
+                <li><a href="#how-to-use">Wie man Join benutzt</a></li>
+                <li><a href="#tips">Tipps für effektive Nutzung</a></li>
+                <li><a href="#questions">Weitere Fragen?</a></li>
+              </ul>
             </div>
 
             <section id="what-is">
-                <h2>Was ist Join?</h2>
-                <p>
-                    <span class="highlight">Join</span> ist ein Kanban-basiertes Projektmanagement-Tool, das von einer Gruppe engagierter Studierender im Rahmen ihres Web-Development-Bootcamps an der <span class="highlight">Developer Akademie</span> entwickelt wurde.
-                </p>
-                
-                <div class="info-box">
-                    <p>
-                        <strong>Was bedeutet Kanban?</strong><br>
-                        Der Begriff <span class="highlight">Kanban</span> stammt aus dem Japanischen und bedeutet „Billboard". Kanban ist eine effektive Methode, um Arbeit zu visualisieren, die gleichzeitige Arbeit zu begrenzen und die Effizienz (Flow) zu maximieren.
-                    </p>
-                </div>
+              <h2>Was ist Join?</h2>
+              <p>
+                <span class="highlight">Join</span> ist ein Kanban-basiertes
+                Projektmanagement-Tool, das von einer Gruppe engagierter
+                Studierender im Rahmen ihres Web-Development-Bootcamps an der
+                <span class="highlight">Developer Akademie</span> entwickelt
+                wurde.
+              </p>
 
+              <div class="info-box">
                 <p>
-                    Join nutzt die Prinzipien von Kanban, um Ihnen zu helfen, Aufgaben und Projekte auf einer <strong>intuitiven, visuellen Oberfläche</strong> zu verwalten.
+                  <strong>Was bedeutet Kanban?</strong><br />
+                  Der Begriff <span class="highlight">Kanban</span> stammt aus
+                  dem Japanischen und bedeutet „Billboard". Kanban ist eine
+                  effektive Methode, um Arbeit zu visualisieren, die
+                  gleichzeitige Arbeit zu begrenzen und die Effizienz (Flow) zu
+                  maximieren.
                 </p>
+              </div>
 
-                <p class="note">
-                    <strong>Wichtig:</strong> Join ist ein pädagogisches Projekt und nicht für den umfangreichen Geschäftsbetrieb ausgelegt. Wir bemühen uns, ein gutes Nutzererlebnis zu bieten, können jedoch keine konsistente Verfügbarkeit, Zuverlässigkeit oder Genauigkeit garantieren.
-                </p>
+              <p>
+                Join nutzt die Prinzipien von Kanban, um Ihnen zu helfen,
+                Aufgaben und Projekte auf einer
+                <strong>intuitiven, visuellen Oberfläche</strong> zu verwalten.
+              </p>
+
+              <p class="note">
+                <strong>Wichtig:</strong> Join ist ein pädagogisches Projekt und
+                nicht für den umfangreichen Geschäftsbetrieb ausgelegt. Wir
+                bemühen uns, ein gutes Nutzererlebnis zu bieten, können jedoch
+                keine konsistente Verfügbarkeit, Zuverlässigkeit oder
+                Genauigkeit garantieren.
+              </p>
             </section>
 
             <section id="how-to-use">
-                <h2>Wie man Join benutzt</h2>
+              <h2>Wie man Join benutzt</h2>
 
-                <div class="feature-box">
-                    <h3>1. Das Board erkunden</h3>
-                    <p>Nach dem Login finden Sie ein <strong>Standard-Board</strong>, das Ihr Projekt darstellt. Es enthält vier Standardlisten:</p>
+              <div class="feature-box">
+                <h3>1. Das Board erkunden</h3>
+                <p>
+                  Nach dem Login finden Sie ein <strong>Standard-Board</strong>,
+                  das Ihr Projekt darstellt. Es enthält vier Standardlisten:
+                </p>
+                <ul>
+                  <li>
+                    <strong>To Do</strong> - Aufgaben, die noch zu erledigen
+                    sind
+                  </li>
+                  <li>
+                    <strong>In Progress</strong> - Aufgaben, an denen gerade
+                    gearbeitet wird
+                  </li>
+                  <li>
+                    <strong>Await Feedback</strong> - Aufgaben, die auf
+                    Rückmeldung warten
+                  </li>
+                  <li><strong>Done</strong> - Erledigte Aufgaben</li>
+                </ul>
+              </div>
+
+              <div class="feature-box">
+                <h3>2. Kontakte erstellen</h3>
+                <p>
+                  Fügen Sie Kontakte hinzu, um gemeinsam an Projekten zu
+                  arbeiten:
+                </p>
+                <ol>
+                  <li>Gehen Sie zum Bereich <strong>„Contacts"</strong></li>
+                  <li>Klicken Sie auf <strong>„New Contact"</strong></li>
+                  <li>Füllen Sie die erforderlichen Informationen aus</li>
+                </ol>
+                <p>
+                  Die hinzugefügten Kontakte können Aufgaben zugewiesen bekommen
+                  und mit den Karten auf dem Board interagieren.
+                </p>
+              </div>
+
+              <div class="feature-box">
+                <h3>3. Karten hinzufügen</h3>
+                <p>Karten repräsentieren einzelne Aufgaben:</p>
+                <ol>
+                  <li>
+                    Klicken Sie auf das <strong>„+"-Symbol</strong> unter der
+                    passenden Liste
+                  </li>
+                  <li>
+                    Füllen Sie die Aufgabendetails aus:
                     <ul>
-                        <li><strong>To Do</strong> - Aufgaben, die noch zu erledigen sind</li>
-                        <li><strong>In Progress</strong> - Aufgaben, an denen gerade gearbeitet wird</li>
-                        <li><strong>Await Feedback</strong> - Aufgaben, die auf Rückmeldung warten</li>
-                        <li><strong>Done</strong> - Erledigte Aufgaben</li>
+                      <li>Name der Aufgabe</li>
+                      <li>Beschreibung</li>
+                      <li>Fälligkeitsdatum</li>
+                      <li>Zuständige Personen</li>
                     </ul>
-                </div>
+                  </li>
+                </ol>
+              </div>
 
-                <div class="feature-box">
-                    <h3>2. Kontakte erstellen</h3>
-                    <p>Fügen Sie Kontakte hinzu, um gemeinsam an Projekten zu arbeiten:</p>
-                    <ol>
-                        <li>Gehen Sie zum Bereich <strong>„Contacts"</strong></li>
-                        <li>Klicken Sie auf <strong>„New Contact"</strong></li>
-                        <li>Füllen Sie die erforderlichen Informationen aus</li>
-                    </ol>
-                    <p>Die hinzugefügten Kontakte können Aufgaben zugewiesen bekommen und mit den Karten auf dem Board interagieren.</p>
-                </div>
+              <div class="feature-box">
+                <h3>4. Karten verschieben</h3>
+                <p>
+                  Wenn eine Aufgabe von einem Stadium ins nächste wechselt,
+                  ziehen Sie die Karte einfach per
+                  <strong>Drag & Drop</strong> in die entsprechende Liste.
+                </p>
+                <p style="margin-top: 10px">
+                  💡
+                  <em
+                    >Tipp: Dies macht es einfach, den Fortschritt Ihrer Projekte
+                    visuell zu verfolgen.</em
+                  >
+                </p>
+              </div>
 
-                <div class="feature-box">
-                    <h3>3. Karten hinzufügen</h3>
-                    <p>Karten repräsentieren einzelne Aufgaben:</p>
-                    <ol>
-                        <li>Klicken Sie auf das <strong>„+"-Symbol</strong> unter der passenden Liste</li>
-                        <li>Füllen Sie die Aufgabendetails aus:
-                            <ul>
-                                <li>Name der Aufgabe</li>
-                                <li>Beschreibung</li>
-                                <li>Fälligkeitsdatum</li>
-                                <li>Zuständige Personen</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-
-                <div class="feature-box">
-                    <h3>4. Karten verschieben</h3>
-                    <p>Wenn eine Aufgabe von einem Stadium ins nächste wechselt, ziehen Sie die Karte einfach per <strong>Drag & Drop</strong> in die entsprechende Liste.</p>
-                    <p style="margin-top: 10px;">💡 <em>Tipp: Dies macht es einfach, den Fortschritt Ihrer Projekte visuell zu verfolgen.</em></p>
-                </div>
-
-                <div class="feature-box">
-                    <h3>5. Karten löschen</h3>
-                    <p>Nach Abschluss einer Aufgabe können Sie die Karte entweder in die <strong>„Done"-Liste</strong> verschieben oder löschen.</p>
-                    <p class="note" style="margin-top: 15px;">
-                        <strong>⚠️ Hinweis:</strong> Das Löschen ist <strong>irreversibel</strong>, also bitte vorsichtig sein.
-                    </p>
-                </div>
+              <div class="feature-box">
+                <h3>5. Karten löschen</h3>
+                <p>
+                  Nach Abschluss einer Aufgabe können Sie die Karte entweder in
+                  die <strong>„Done"-Liste</strong> verschieben oder löschen.
+                </p>
+                <p class="note" style="margin-top: 15px">
+                  <strong>⚠️ Hinweis:</strong> Das Löschen ist
+                  <strong>irreversibel</strong>, also bitte vorsichtig sein.
+                </p>
+              </div>
             </section>
 
             <section id="tips">
-                <h2>Tipps für effektive Nutzung</h2>
-                <div class="info-box">
-                    <ul style="margin-left: 20px;">
-                        <li>📊 Aktualisieren Sie das Board regelmäßig, damit es den aktuellen Projektstatus widerspiegelt</li>
-                        <li>💬 Kommunizieren Sie aktiv mit Ihrem Team, um Aufgaben und Fortschritte im Blick zu behalten</li>
-                        <li>🎯 Halten Sie Aufgabenbeschreibungen klar und präzise</li>
-                        <li>📅 Setzen Sie realistische Fälligkeitsdaten</li>
-                        <li>✅ Feiern Sie Erfolge, wenn Aufgaben in „Done" verschoben werden</li>
-                    </ul>
-                </div>
+              <h2>Tipps für effektive Nutzung</h2>
+              <div class="info-box">
+                <ul style="margin-left: 20px">
+                  <li>
+                    📊 Aktualisieren Sie das Board regelmäßig, damit es den
+                    aktuellen Projektstatus widerspiegelt
+                  </li>
+                  <li>
+                    💬 Kommunizieren Sie aktiv mit Ihrem Team, um Aufgaben und
+                    Fortschritte im Blick zu behalten
+                  </li>
+                  <li>🎯 Halten Sie Aufgabenbeschreibungen klar und präzise</li>
+                  <li>📅 Setzen Sie realistische Fälligkeitsdaten</li>
+                  <li>
+                    ✅ Feiern Sie Erfolge, wenn Aufgaben in „Done" verschoben
+                    werden
+                  </li>
+                </ul>
+              </div>
             </section>
 
             <section id="questions">
-                <h2>Weitere Fragen?</h2>
-                <div class="contact-box">
-                    <p>
-                        Bei Fragen zu Join können Sie uns jederzeit unter <strong>sven.wgl@gmail.com</strong> kontaktieren. Wir helfen Ihnen gerne weiter!
-                    </p>
-                    <p style="margin-top: 15px;">
-                        Viel Spaß beim Arbeiten mit <span class="highlight">Join</span>! 🎉
-                    </p>
-                </div>
+              <h2>Weitere Fragen?</h2>
+              <div class="contact-box">
+                <p>
+                  Bei Fragen zu Join können Sie uns jederzeit unter
+                  <strong>sven.wgl@gmail.com</strong> kontaktieren. Wir helfen
+                  Ihnen gerne weiter!
+                </p>
+                <p style="margin-top: 15px">
+                  Viel Spaß beim Arbeiten mit
+                  <span class="highlight">Join</span>! 🎉
+                </p>
+              </div>
             </section>
-        </div>
+          </div>
 
-        <div class="footer">
-            <p>© 2025 Join Development Team | Built with ❤️ by Developer Akademie Students</p>
+          <div class="footer">
+            <p>
+              © 2025 Join Development Team | Built with ❤️ by Developer Akademie
+              Students
+            </p>
+          </div>
         </div>
-    </div>
       </main>
     </div>
   </body>

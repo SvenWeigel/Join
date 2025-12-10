@@ -1,351 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="../" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/login_center_logo.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="styles/board.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/menu-bar.css" />
+    <link rel="stylesheet" href="styles/privacy_policy.css" />
+    <link rel="stylesheet" href="styles/header.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../">
-  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="styles/board.css" />
-  <link rel="stylesheet" href="styles/global.css" />
-  <link rel="stylesheet" href="styles/font.css" />
-  <link rel="stylesheet" href="styles/menu-bar.css" />
-  <link rel="stylesheet" href="styles/privacy_policy.css" />
-  <link rel="stylesheet" href="styles/header.css" />
+    <title>Join</title>
+  </head>
 
-  <title>Join</title>
-</head>
-
-<body>
-  <header>
-    <div class="header-content">
-      <span>Kanban Project Management Tool</span>
-      <div class="header-profile-container">
-        <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
-        <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
-          <div class="user-avatar">SM</div>
+  <body>
+    <header>
+      <div class="header-content">
+        <span>Kanban Project Management Tool</span>
+        <div class="header-profile-container">
+          <a href="html/help.html"
+            ><img src="assets/icons/help.svg" alt="help_icon"
+          /></a>
+          <div
+            class="user-badge"
+            onclick="showProfileOptions()"
+            title="Benutzer"
+          >
+            <div class="user-avatar">SM</div>
+          </div>
         </div>
-      </div>
-      <div class="profile-options d-none" id="profile-options">
-        <a href="html/legal_notice.html">Legal Notice</a>
-        <a href="html/privacy_policy.html">Privacy Policy</a>
-        <a href="index.html">Log Out</a>
-      </div>
-    </div>
-  </header>
-  <div class="page-content">
-    <div class="menu-bar-container">
-      <div class="join-logo-container">
-        <img src="assets/img/join_logo_vector.svg" alt="join logo" />
-      </div>
-
-      <div class="menu-bar-btn-container">
-        <div class="summary-btn center-btn">
-          <a class="main-bar-btn" href="html/summary.html">
-            <img src="assets/icons/summary.svg" alt="" />Summary
-          </a>
-        </div>
-        <div class="add-task-btn center-btn">
-          <a class="main-bar-btn" href="html/add_task.html">
-            <img src="assets/icons/add_task.svg" alt="" />Add Task
-          </a>
-        </div>
-        <div class="board-btn center-btn">
-          <a class="main-bar-btn" href="html/board.html">
-            <img src="assets/icons/board.svg" alt="" />Board
-          </a>
-        </div>
-        <div class="contacts-btn center-btn">
-          <a class="main-bar-btn" href="html/contacts.html">
-            <img src="assets/icons/contacts.svg" alt="" />Contacts
-          </a>
-        </div>
-      </div>
-
-      <!-- anzeigen wenn User nicht logged in ist -->
-      <div class="menu-bar-btn-container" style="display: none">
-        <div class="contacts-btn center-btn">
-          <button class="main-bar-btn" href="">
-            <img src="assets/icons/login.svg" alt="" />Log In
-          </button>
-        </div>
-      </div>
-
-      <div class="legal-container">
-        <div class="privacy-btn disabled-link">
-          <a href="html/privacy_policy.html">Privacy Policy</a>
-        </div>
-        <div class="legal-link">
+        <div class="profile-options d-none" id="profile-options">
           <a href="html/legal_notice.html">Legal Notice</a>
+          <a href="html/privacy_policy.html">Privacy Policy</a>
+          <a href="#" onclick="logout(); return false;">Log Out</a>
         </div>
       </div>
-    </div>
+    </header>
+    <div class="page-content">
+      <div class="menu-bar-container">
+        <div class="join-logo-container">
+          <img src="assets/img/join_logo_vector.svg" alt="join logo" />
+        </div>
 
-    <div class="privacy-policy-content">
-      <div class="container">
-        <div class="header">
+        <div class="menu-bar-btn-container">
+          <div class="summary-btn center-btn">
+            <a class="main-bar-btn" href="html/summary.html">
+              <img src="assets/icons/summary.svg" alt="" />Summary
+            </a>
+          </div>
+          <div class="add-task-btn center-btn">
+            <a class="main-bar-btn" href="html/add_task.html">
+              <img src="assets/icons/add_task.svg" alt="" />Add Task
+            </a>
+          </div>
+          <div class="board-btn center-btn">
+            <a class="main-bar-btn" href="html/board.html">
+              <img src="assets/icons/board.svg" alt="" />Board
+            </a>
+          </div>
+          <div class="contacts-btn center-btn">
+            <a class="main-bar-btn" href="html/contacts.html">
+              <img src="assets/icons/contacts.svg" alt="" />Contacts
+            </a>
+          </div>
+        </div>
+
+        <!-- anzeigen wenn User nicht logged in ist -->
+        <div class="menu-bar-btn-container" style="display: none">
+          <div class="contacts-btn center-btn">
+            <button class="main-bar-btn" href="">
+              <img src="assets/icons/login.svg" alt="" />Log In
+            </button>
+          </div>
+        </div>
+
+        <div class="legal-container">
+          <div class="privacy-btn disabled-link">
+            <a href="html/privacy_policy.html">Privacy Policy</a>
+          </div>
+          <div class="legal-link">
+            <a href="html/legal_notice.html">Legal Notice</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-policy-content">
+        <div class="container">
+          <div class="header">
             <h1>🔒 Privacy Policy</h1>
             <p>Last Updated: November 23, 2025</p>
-        </div>
+          </div>
 
-        <div class="content">
+          <div class="content">
             <section id="preamble">
-                <h2>Preamble</h2>
-                <p>
-                    With the following privacy policy, we would like to inform you about which types of your personal data (hereinafter also referred to as "data") we process for which purposes and to what extent. The privacy policy applies to all processing of personal data carried out by us, both in the context of providing our services and in particular on our websites, in mobile applications and within external online presences, such as our social media profiles (hereinafter collectively referred to as "online offering").
-                </p>
-                <p>The terms used are not gender-specific.</p>
+              <h2>Preamble</h2>
+              <p>
+                With the following privacy policy, we would like to inform you
+                about which types of your personal data (hereinafter also
+                referred to as "data") we process for which purposes and to what
+                extent. The privacy policy applies to all processing of personal
+                data carried out by us, both in the context of providing our
+                services and in particular on our websites, in mobile
+                applications and within external online presences, such as our
+                social media profiles (hereinafter collectively referred to as
+                "online offering").
+              </p>
+              <p>The terms used are not gender-specific.</p>
             </section>
 
             <div class="toc">
-                <h2>📑 Table of Contents</h2>
-                <ul>
-                    <li><a href="html/privacy_policy.html#preamble">Preamble</a></li>
-                    <li><a href="html/privacy_policy.html#controller">Controller</a></li>
-                    <li><a href="html/privacy_policy.html#overview">Overview of Processing</a></li>
-                    <li><a href="html/privacy_policy.html#legal-basis">Relevant Legal Basis</a></li>
-                    <li><a href="html/privacy_policy.html#transmission">Transmission of Personal Data</a></li>
-                    <li><a href="html/privacy_policy.html#international">International Data Transfers</a></li>
-                    <li><a href="html/privacy_policy.html#storage">General Information on Data Storage and Deletion</a></li>
-                    <li><a href="html/privacy_policy.html#rights">Rights of Data Subjects</a></li>
-                    <li><a href="html/privacy_policy.html#webhosting">Provision of Online Offering and Web Hosting</a></li>
-                    <li><a href="html/privacy_policy.html#registration">Registration, Login and User Account</a></li>
-                    <li><a href="html/privacy_policy.html#whistleblower">Privacy Information for Whistleblowers</a></li>
-                    <li><a href="html/privacy_policy.html#changes">Changes and Updates</a></li>
-                    <li><a href="html/privacy_policy.html#definitions">Term Definitions</a></li>
-                </ul>
+              <h2>📑 Table of Contents</h2>
+              <ul>
+                <li>
+                  <a href="html/privacy_policy.html#preamble">Preamble</a>
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#controller">Controller</a>
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#overview"
+                    >Overview of Processing</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#legal-basis"
+                    >Relevant Legal Basis</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#transmission"
+                    >Transmission of Personal Data</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#international"
+                    >International Data Transfers</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#storage"
+                    >General Information on Data Storage and Deletion</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#rights"
+                    >Rights of Data Subjects</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#webhosting"
+                    >Provision of Online Offering and Web Hosting</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#registration"
+                    >Registration, Login and User Account</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#whistleblower"
+                    >Privacy Information for Whistleblowers</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#changes"
+                    >Changes and Updates</a
+                  >
+                </li>
+                <li>
+                  <a href="html/privacy_policy.html#definitions"
+                    >Term Definitions</a
+                  >
+                </li>
+              </ul>
             </div>
 
             <section id="controller">
-                <h2>Controller</h2>
-                <div class="contact-box">
-                    <p><strong>Sven Weigel</strong><br>
-                    Kranichstraße 19<br>
-                    46282 Dorsten<br>
-                    Germany</p>
-                    <p><strong>Email:</strong> <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a></p>
-                </div>
+              <h2>Controller</h2>
+              <div class="contact-box">
+                <p>
+                  <strong>Sven Weigel</strong><br />
+                  Kranichstraße 19<br />
+                  46282 Dorsten<br />
+                  Germany
+                </p>
+                <p>
+                  <strong>Email:</strong>
+                  <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>
+                </p>
+              </div>
             </section>
 
             <section id="overview">
-                <h2>Overview of Processing</h2>
-                <p>The following overview summarizes the types of data processed and the purposes of their processing and refers to the data subjects.</p>
+              <h2>Overview of Processing</h2>
+              <p>
+                The following overview summarizes the types of data processed
+                and the purposes of their processing and refers to the data
+                subjects.
+              </p>
 
-                <h3>Types of Data Processed</h3>
-                <ul>
-                    <li>Inventory data</li>
-                    <li>Employee data</li>
-                    <li>Contact data</li>
-                    <li>Content data</li>
-                    <li>Usage data</li>
-                    <li>Meta, communication and procedural data</li>
-                    <li>Log data</li>
-                </ul>
+              <h3>Types of Data Processed</h3>
+              <ul>
+                <li>Inventory data</li>
+                <li>Employee data</li>
+                <li>Contact data</li>
+                <li>Content data</li>
+                <li>Usage data</li>
+                <li>Meta, communication and procedural data</li>
+                <li>Log data</li>
+              </ul>
 
-                <h3>Categories of Data Subjects</h3>
-                <ul>
-                    <li>Employees</li>
-                    <li>Users</li>
-                    <li>Third parties</li>
-                    <li>Whistleblowers</li>
-                </ul>
+              <h3>Categories of Data Subjects</h3>
+              <ul>
+                <li>Employees</li>
+                <li>Users</li>
+                <li>Third parties</li>
+                <li>Whistleblowers</li>
+              </ul>
 
-                <h3>Purposes of Processing</h3>
-                <ul>
-                    <li>Provision of contractual services and fulfillment of contractual obligations</li>
-                    <li>Security measures</li>
-                    <li>Organizational and administrative procedures</li>
-                    <li>Provision of our online offering and user-friendliness</li>
-                    <li>Information technology infrastructure</li>
-                    <li>Whistleblower protection</li>
-                </ul>
+              <h3>Purposes of Processing</h3>
+              <ul>
+                <li>
+                  Provision of contractual services and fulfillment of
+                  contractual obligations
+                </li>
+                <li>Security measures</li>
+                <li>Organizational and administrative procedures</li>
+                <li>Provision of our online offering and user-friendliness</li>
+                <li>Information technology infrastructure</li>
+                <li>Whistleblower protection</li>
+              </ul>
             </section>
 
             <section id="legal-basis">
-                <h2>Relevant Legal Basis</h2>
-                <p><strong>Relevant legal basis according to GDPR:</strong> Below you will find an overview of the legal basis of the GDPR on which we process personal data. Please note that in addition to the provisions of the GDPR, national data protection regulations may apply in your or our country of residence or domicile.</p>
+              <h2>Relevant Legal Basis</h2>
+              <p>
+                <strong>Relevant legal basis according to GDPR:</strong> Below
+                you will find an overview of the legal basis of the GDPR on
+                which we process personal data. Please note that in addition to
+                the provisions of the GDPR, national data protection regulations
+                may apply in your or our country of residence or domicile.
+              </p>
 
-                <ul>
-                    <li><strong>Consent (Art. 6 para. 1 sentence 1 lit. a) GDPR)</strong> - The data subject has given consent to the processing of their personal data for one or more specific purposes.</li>
-                    <li><strong>Performance of a Contract (Art. 6 para. 1 sentence 1 lit. b) GDPR)</strong> - Processing is necessary for the performance of a contract to which the data subject is party or in order to take steps at the request of the data subject prior to entering into a contract.</li>
-                    <li><strong>Legal Obligation (Art. 6 para. 1 sentence 1 lit. c) GDPR)</strong> - Processing is necessary for compliance with a legal obligation to which the controller is subject.</li>
-                    <li><strong>Legitimate Interests (Art. 6 para. 1 sentence 1 lit. f) GDPR)</strong> - Processing is necessary for the purposes of the legitimate interests pursued by the controller or by a third party.</li>
-                </ul>
+              <ul>
+                <li>
+                  <strong
+                    >Consent (Art. 6 para. 1 sentence 1 lit. a) GDPR)</strong
+                  >
+                  - The data subject has given consent to the processing of
+                  their personal data for one or more specific purposes.
+                </li>
+                <li>
+                  <strong
+                    >Performance of a Contract (Art. 6 para. 1 sentence 1 lit.
+                    b) GDPR)</strong
+                  >
+                  - Processing is necessary for the performance of a contract to
+                  which the data subject is party or in order to take steps at
+                  the request of the data subject prior to entering into a
+                  contract.
+                </li>
+                <li>
+                  <strong
+                    >Legal Obligation (Art. 6 para. 1 sentence 1 lit. c)
+                    GDPR)</strong
+                  >
+                  - Processing is necessary for compliance with a legal
+                  obligation to which the controller is subject.
+                </li>
+                <li>
+                  <strong
+                    >Legitimate Interests (Art. 6 para. 1 sentence 1 lit. f)
+                    GDPR)</strong
+                  >
+                  - Processing is necessary for the purposes of the legitimate
+                  interests pursued by the controller or by a third party.
+                </li>
+              </ul>
 
-                <div class="info-box">
-                    <p><strong>National Data Protection Regulations in Germany:</strong> In addition to the data protection regulations of the GDPR, national data protection regulations apply in Germany. This includes in particular the Federal Data Protection Act (Bundesdatenschutzgesetz – BDSG), which contains special regulations on the right to information, the right to deletion, the right to object, and automated decision-making including profiling.</p>
-                </div>
+              <div class="info-box">
+                <p>
+                  <strong
+                    >National Data Protection Regulations in Germany:</strong
+                  >
+                  In addition to the data protection regulations of the GDPR,
+                  national data protection regulations apply in Germany. This
+                  includes in particular the Federal Data Protection Act
+                  (Bundesdatenschutzgesetz – BDSG), which contains special
+                  regulations on the right to information, the right to
+                  deletion, the right to object, and automated decision-making
+                  including profiling.
+                </p>
+              </div>
             </section>
 
             <section id="transmission">
-                <h2>Transmission of Personal Data</h2>
-                <p>In the context of our processing of personal data, it may happen that this data is transmitted to or disclosed to other entities, companies, legally independent organizational units or persons. Recipients of this data may include service providers commissioned with IT tasks or providers of services and content that are integrated into a website. In such cases, we observe the legal requirements and in particular conclude appropriate contracts or agreements with the recipients of your data that serve to protect your data.</p>
+              <h2>Transmission of Personal Data</h2>
+              <p>
+                In the context of our processing of personal data, it may happen
+                that this data is transmitted to or disclosed to other entities,
+                companies, legally independent organizational units or persons.
+                Recipients of this data may include service providers
+                commissioned with IT tasks or providers of services and content
+                that are integrated into a website. In such cases, we observe
+                the legal requirements and in particular conclude appropriate
+                contracts or agreements with the recipients of your data that
+                serve to protect your data.
+              </p>
             </section>
 
             <section id="international">
-                <h2>International Data Transfers</h2>
-                <p><strong>Data Processing in Third Countries:</strong> If we transfer data to a third country (i.e. outside the European Union (EU) or the European Economic Area (EEA)), this is always done in accordance with legal requirements.</p>
+              <h2>International Data Transfers</h2>
+              <p>
+                <strong>Data Processing in Third Countries:</strong> If we
+                transfer data to a third country (i.e. outside the European
+                Union (EU) or the European Economic Area (EEA)), this is always
+                done in accordance with legal requirements.
+              </p>
 
-                <div class="info-box">
-                    <p><strong>Data Privacy Framework (DPF):</strong> For data transfers to the USA, we primarily rely on the Data Privacy Framework (DPF), which was recognized as a secure legal framework through an adequacy decision by the EU Commission on July 10, 2023.</p>
-                    <p>This dual safeguard ensures comprehensive protection of your data: The DPF forms the primary level of protection, while the Standard Contractual Clauses serve as additional security.</p>
-                    <p>More information: <a href="https://www.dataprivacyframework.gov/" target="_blank">https://www.dataprivacyframework.gov/</a></p>
-                </div>
+              <div class="info-box">
+                <p>
+                  <strong>Data Privacy Framework (DPF):</strong> For data
+                  transfers to the USA, we primarily rely on the Data Privacy
+                  Framework (DPF), which was recognized as a secure legal
+                  framework through an adequacy decision by the EU Commission on
+                  July 10, 2023.
+                </p>
+                <p>
+                  This dual safeguard ensures comprehensive protection of your
+                  data: The DPF forms the primary level of protection, while the
+                  Standard Contractual Clauses serve as additional security.
+                </p>
+                <p>
+                  More information:
+                  <a
+                    href="https://www.dataprivacyframework.gov/"
+                    target="_blank"
+                    >https://www.dataprivacyframework.gov/</a
+                  >
+                </p>
+              </div>
             </section>
 
             <section id="storage">
-                <h2>General Information on Data Storage and Deletion</h2>
-                <p>We delete personal data that we process in accordance with legal provisions as soon as the underlying consents are revoked or there are no further legal grounds for processing. This applies to cases in which the original processing purpose no longer applies or the data is no longer required.</p>
+              <h2>General Information on Data Storage and Deletion</h2>
+              <p>
+                We delete personal data that we process in accordance with legal
+                provisions as soon as the underlying consents are revoked or
+                there are no further legal grounds for processing. This applies
+                to cases in which the original processing purpose no longer
+                applies or the data is no longer required.
+              </p>
 
-                <h3>Retention Periods Under German Law:</h3>
-                <ul>
-                    <li><strong>10 Years</strong> - Books and records, annual financial statements, inventories, management reports (§ 147 para. 1 no. 1 in conjunction with para. 3 AO)</li>
-                    <li><strong>8 Years</strong> - Accounting documents such as invoices and cost receipts (§ 147 para. 1 no. 4 and 4a in conjunction with para. 3 sentence 1 AO)</li>
-                    <li><strong>6 Years</strong> - Other business documents insofar as they are relevant for taxation (§ 147 para. 1 no. 2, 3, 5 in conjunction with para. 3 AO)</li>
-                    <li><strong>3 Years</strong> - Data for warranty and compensation claims (§§ 195, 199 BGB)</li>
-                </ul>
+              <h3>Retention Periods Under German Law:</h3>
+              <ul>
+                <li>
+                  <strong>10 Years</strong> - Books and records, annual
+                  financial statements, inventories, management reports (§ 147
+                  para. 1 no. 1 in conjunction with para. 3 AO)
+                </li>
+                <li>
+                  <strong>8 Years</strong> - Accounting documents such as
+                  invoices and cost receipts (§ 147 para. 1 no. 4 and 4a in
+                  conjunction with para. 3 sentence 1 AO)
+                </li>
+                <li>
+                  <strong>6 Years</strong> - Other business documents insofar as
+                  they are relevant for taxation (§ 147 para. 1 no. 2, 3, 5 in
+                  conjunction with para. 3 AO)
+                </li>
+                <li>
+                  <strong>3 Years</strong> - Data for warranty and compensation
+                  claims (§§ 195, 199 BGB)
+                </li>
+              </ul>
             </section>
 
             <section id="rights">
-                <h2>Rights of Data Subjects</h2>
-                <p>As a data subject under the GDPR, you have various rights, which arise in particular from Articles 15 to 21 GDPR:</p>
+              <h2>Rights of Data Subjects</h2>
+              <p>
+                As a data subject under the GDPR, you have various rights, which
+                arise in particular from Articles 15 to 21 GDPR:
+              </p>
 
-                <ul>
-                    <li><strong>Right to Object:</strong> You have the right to object at any time, on grounds relating to your particular situation, to processing of personal data concerning you based on Art. 6 para. 1 lit. e or f GDPR.</li>
-                    <li><strong>Right to Withdraw Consent:</strong> You have the right to withdraw consent at any time.</li>
-                    <li><strong>Right of Access:</strong> You have the right to obtain confirmation as to whether or not personal data concerning you is being processed.</li>
-                    <li><strong>Right to Rectification:</strong> You have the right to obtain the rectification of inaccurate personal data concerning you.</li>
-                    <li><strong>Right to Erasure and Restriction of Processing:</strong> You have the right to obtain the erasure of personal data concerning you without undue delay.</li>
-                    <li><strong>Right to Data Portability:</strong> You have the right to receive the personal data concerning you in a structured, commonly used and machine-readable format.</li>
-                    <li><strong>Right to Lodge a Complaint:</strong> You have the right to lodge a complaint with a supervisory authority.</li>
-                </ul>
+              <ul>
+                <li>
+                  <strong>Right to Object:</strong> You have the right to object
+                  at any time, on grounds relating to your particular situation,
+                  to processing of personal data concerning you based on Art. 6
+                  para. 1 lit. e or f GDPR.
+                </li>
+                <li>
+                  <strong>Right to Withdraw Consent:</strong> You have the right
+                  to withdraw consent at any time.
+                </li>
+                <li>
+                  <strong>Right of Access:</strong> You have the right to obtain
+                  confirmation as to whether or not personal data concerning you
+                  is being processed.
+                </li>
+                <li>
+                  <strong>Right to Rectification:</strong> You have the right to
+                  obtain the rectification of inaccurate personal data
+                  concerning you.
+                </li>
+                <li>
+                  <strong
+                    >Right to Erasure and Restriction of Processing:</strong
+                  >
+                  You have the right to obtain the erasure of personal data
+                  concerning you without undue delay.
+                </li>
+                <li>
+                  <strong>Right to Data Portability:</strong> You have the right
+                  to receive the personal data concerning you in a structured,
+                  commonly used and machine-readable format.
+                </li>
+                <li>
+                  <strong>Right to Lodge a Complaint:</strong> You have the
+                  right to lodge a complaint with a supervisory authority.
+                </li>
+              </ul>
             </section>
 
             <section id="webhosting">
-                <h2>Provision of Online Offering and Web Hosting</h2>
-                <p>We process user data in order to be able to provide them with our online services. For this purpose, we process the user's IP address, which is necessary to transmit the content and functions of our online services to the user's browser or end device.</p>
+              <h2>Provision of Online Offering and Web Hosting</h2>
+              <p>
+                We process user data in order to be able to provide them with
+                our online services. For this purpose, we process the user's IP
+                address, which is necessary to transmit the content and
+                functions of our online services to the user's browser or end
+                device.
+              </p>
 
-                <h3>Types of Data Processed:</h3>
-                <ul>
-                    <li>Usage data (e.g. page views, click paths, usage intensity)</li>
-                    <li>Meta, communication and procedural data (e.g. IP addresses, time stamps)</li>
-                    <li>Log data (e.g. log files concerning logins or access times)</li>
-                </ul>
+              <h3>Types of Data Processed:</h3>
+              <ul>
+                <li>
+                  Usage data (e.g. page views, click paths, usage intensity)
+                </li>
+                <li>
+                  Meta, communication and procedural data (e.g. IP addresses,
+                  time stamps)
+                </li>
+                <li>
+                  Log data (e.g. log files concerning logins or access times)
+                </li>
+              </ul>
 
-                <div class="info-box">
-                    <p><strong>Collection of Access Data and Log Files:</strong> Access to our online offering is logged in the form of "server log files". Log file information is stored for a maximum of 30 days and then deleted or anonymized.</p>
-                </div>
+              <div class="info-box">
+                <p>
+                  <strong>Collection of Access Data and Log Files:</strong>
+                  Access to our online offering is logged in the form of "server
+                  log files". Log file information is stored for a maximum of 30
+                  days and then deleted or anonymized.
+                </p>
+              </div>
             </section>
 
             <section id="registration">
-                <h2>Registration, Login and User Account</h2>
-                <p>Users can create a user account. As part of the registration, users are informed of the required mandatory information and this is processed for the purposes of providing the user account on the basis of contractual performance.</p>
+              <h2>Registration, Login and User Account</h2>
+              <p>
+                Users can create a user account. As part of the registration,
+                users are informed of the required mandatory information and
+                this is processed for the purposes of providing the user account
+                on the basis of contractual performance.
+              </p>
 
-                <h3>Important Notes:</h3>
-                <ul>
-                    <li><strong>Registration with Pseudonyms:</strong> Users may use pseudonyms instead of real names as usernames</li>
-                    <li><strong>Deletion After Termination:</strong> After termination of the user account, the data will be deleted, subject to legal retention requirements</li>
-                    <li><strong>No Retention Obligation:</strong> Users are responsible for backing up their data before contract termination</li>
-                </ul>
+              <h3>Important Notes:</h3>
+              <ul>
+                <li>
+                  <strong>Registration with Pseudonyms:</strong> Users may use
+                  pseudonyms instead of real names as usernames
+                </li>
+                <li>
+                  <strong>Deletion After Termination:</strong> After termination
+                  of the user account, the data will be deleted, subject to
+                  legal retention requirements
+                </li>
+                <li>
+                  <strong>No Retention Obligation:</strong> Users are
+                  responsible for backing up their data before contract
+                  termination
+                </li>
+              </ul>
             </section>
 
             <section id="whistleblower">
-                <h2>Privacy Information for Whistleblowers</h2>
-                <p>In this section you will find information on how we handle data from persons who provide information (whistleblowers) as well as from affected and involved parties within the framework of our whistleblower procedure.</p>
+              <h2>Privacy Information for Whistleblowers</h2>
+              <p>
+                In this section you will find information on how we handle data
+                from persons who provide information (whistleblowers) as well as
+                from affected and involved parties within the framework of our
+                whistleblower procedure.
+              </p>
 
-                <div class="warning-box">
-                    <p><strong>Legal Basis (Germany):</strong> Processing is carried out to fulfill our legal obligations in accordance with the Whistleblower Protection Act (HinSchG) on the basis of Art. 6 para. 1 sentence 1 lit. c) GDPR in conjunction with § 10 HinSchG.</p>
-                </div>
+              <div class="warning-box">
+                <p>
+                  <strong>Legal Basis (Germany):</strong> Processing is carried
+                  out to fulfill our legal obligations in accordance with the
+                  Whistleblower Protection Act (HinSchG) on the basis of Art. 6
+                  para. 1 sentence 1 lit. c) GDPR in conjunction with § 10
+                  HinSchG.
+                </p>
+              </div>
 
-                <h3>Types of Data Processed:</h3>
+              <h3>Types of Data Processed:</h3>
+              <ul>
+                <li>Name and contact details of the reporting person</li>
+                <li>Names and data of possible witnesses</li>
+                <li>
+                  Names and data of persons against whom the report is directed
+                </li>
+                <li>Data about the alleged misconduct</li>
+                <li>Other relevant details</li>
+              </ul>
+
+              <h3>Special Categories of Personal Data:</h3>
+              <ul>
+                <li>Health-related data</li>
+                <li>Data on racial or ethnic origin</li>
+                <li>Information about religious or philosophical beliefs</li>
+                <li>Information about sexual orientation</li>
+              </ul>
+
+              <div class="info-box">
+                <p>
+                  <strong>Use in Incognito Mode:</strong> We recommend
+                  submitting reports in your browser's incognito mode to ensure
+                  additional anonymity.
+                </p>
+                <p><strong>Opening Incognito Mode:</strong></p>
                 <ul>
-                    <li>Name and contact details of the reporting person</li>
-                    <li>Names and data of possible witnesses</li>
-                    <li>Names and data of persons against whom the report is directed</li>
-                    <li>Data about the alleged misconduct</li>
-                    <li>Other relevant details</li>
+                  <li>Windows: Ctrl+Shift+N</li>
+                  <li>Mac: Command+Shift+N</li>
+                  <li>Mobile: Switch to private mode via tab menu</li>
                 </ul>
+              </div>
 
-                <h3>Special Categories of Personal Data:</h3>
-                <ul>
-                    <li>Health-related data</li>
-                    <li>Data on racial or ethnic origin</li>
-                    <li>Information about religious or philosophical beliefs</li>
-                    <li>Information about sexual orientation</li>
-                </ul>
-
-                <div class="info-box">
-                    <p><strong>Use in Incognito Mode:</strong> We recommend submitting reports in your browser's incognito mode to ensure additional anonymity.</p>
-                    <p><strong>Opening Incognito Mode:</strong></p>
-                    <ul>
-                        <li>Windows: Ctrl+Shift+N</li>
-                        <li>Mac: Command+Shift+N</li>
-                        <li>Mobile: Switch to private mode via tab menu</li>
-                    </ul>
-                </div>
-
-                <h3>Confidentiality and Disclosure:</h3>
-                <p>The identity of whistleblowers is treated in strict confidence. Disclosure to third parties only occurs in case of:</p>
-                <ul>
-                    <li>Express consent of the whistleblower</li>
-                    <li>Legal obligation to disclose</li>
-                    <li>Necessity to protect legal interests</li>
-                </ul>
+              <h3>Confidentiality and Disclosure:</h3>
+              <p>
+                The identity of whistleblowers is treated in strict confidence.
+                Disclosure to third parties only occurs in case of:
+              </p>
+              <ul>
+                <li>Express consent of the whistleblower</li>
+                <li>Legal obligation to disclose</li>
+                <li>Necessity to protect legal interests</li>
+              </ul>
             </section>
 
             <section id="changes">
-                <h2>Changes and Updates</h2>
-                <p>We ask you to inform yourself regularly about the content of our privacy policy. We will adapt the privacy policy as soon as changes in the data processing carried out by us make this necessary. We will inform you as soon as the changes require your cooperation (e.g. consent) or other individual notification.</p>
+              <h2>Changes and Updates</h2>
+              <p>
+                We ask you to inform yourself regularly about the content of our
+                privacy policy. We will adapt the privacy policy as soon as
+                changes in the data processing carried out by us make this
+                necessary. We will inform you as soon as the changes require
+                your cooperation (e.g. consent) or other individual
+                notification.
+              </p>
             </section>
 
             <section id="definitions">
-                <h2>Term Definitions</h2>
-                <p>In this section you will find an overview of the terms used in this privacy policy. Where the terms are legally defined, their legal definitions apply.</p>
+              <h2>Term Definitions</h2>
+              <p>
+                In this section you will find an overview of the terms used in
+                this privacy policy. Where the terms are legally defined, their
+                legal definitions apply.
+              </p>
 
-                <ul class="glossary">
-                    <li>
-                        <strong>Employees:</strong> Employees are persons who are in an employment relationship, whether as workers, employees or in similar positions. Employee data is all information relating to these persons and in the context of their employment.
-                    </li>
-                    <li>
-                        <strong>Inventory Data:</strong> Inventory data includes essential information necessary for the identification and management of contractual partners, user accounts, profiles and similar assignments.
-                    </li>
-                    <li>
-                        <strong>Content Data:</strong> Content data includes information generated in the course of creating, editing and publishing content of all kinds.
-                    </li>
-                    <li>
-                        <strong>Contact Data:</strong> Contact data is essential information that enables communication with persons or organizations.
-                    </li>
-                    <li>
-                        <strong>Meta, Communication and Procedural Data:</strong> These categories contain information about how data is processed, transmitted and managed.
-                    </li>
-                    <li>
-                        <strong>Usage Data:</strong> Usage data refers to information that captures how users interact with digital products, services or platforms.
-                    </li>
-                    <li>
-                        <strong>Personal Data:</strong> "Personal data" means any information relating to an identified or identifiable natural person.
-                    </li>
-                    <li>
-                        <strong>Log Data:</strong> Log data is information about events or activities that have been logged in a system or network.
-                    </li>
-                    <li>
-                        <strong>Controller:</strong> The "controller" means the natural or legal person who determines the purposes and means of the processing of personal data.
-                    </li>
-                    <li>
-                        <strong>Processing:</strong> "Processing" means any operation performed on personal data, whether or not by automated means.
-                    </li>
-                </ul>
+              <ul class="glossary">
+                <li>
+                  <strong>Employees:</strong> Employees are persons who are in
+                  an employment relationship, whether as workers, employees or
+                  in similar positions. Employee data is all information
+                  relating to these persons and in the context of their
+                  employment.
+                </li>
+                <li>
+                  <strong>Inventory Data:</strong> Inventory data includes
+                  essential information necessary for the identification and
+                  management of contractual partners, user accounts, profiles
+                  and similar assignments.
+                </li>
+                <li>
+                  <strong>Content Data:</strong> Content data includes
+                  information generated in the course of creating, editing and
+                  publishing content of all kinds.
+                </li>
+                <li>
+                  <strong>Contact Data:</strong> Contact data is essential
+                  information that enables communication with persons or
+                  organizations.
+                </li>
+                <li>
+                  <strong>Meta, Communication and Procedural Data:</strong>
+                  These categories contain information about how data is
+                  processed, transmitted and managed.
+                </li>
+                <li>
+                  <strong>Usage Data:</strong> Usage data refers to information
+                  that captures how users interact with digital products,
+                  services or platforms.
+                </li>
+                <li>
+                  <strong>Personal Data:</strong> "Personal data" means any
+                  information relating to an identified or identifiable natural
+                  person.
+                </li>
+                <li>
+                  <strong>Log Data:</strong> Log data is information about
+                  events or activities that have been logged in a system or
+                  network.
+                </li>
+                <li>
+                  <strong>Controller:</strong> The "controller" means the
+                  natural or legal person who determines the purposes and means
+                  of the processing of personal data.
+                </li>
+                <li>
+                  <strong>Processing:</strong> "Processing" means any operation
+                  performed on personal data, whether or not by automated means.
+                </li>
+              </ul>
             </section>
-        </div>
+          </div>
 
-        <div class="footer">
+          <div class="footer">
             <p>© 2025 Sven Weigel | All Rights Reserved</p>
-            <p>For privacy questions, contact us at: <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a></p>
+            <p>
+              For privacy questions, contact us at:
+              <a href="mailto:sven.wgl@gmail.com">sven.wgl@gmail.com</a>
+            </p>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-  </div>
-  <script src="scripts/header.js"></script>
-  <script src="scripts/script.js"></script>
-</body>
-
+    <script src="scripts/header.js"></script>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>
