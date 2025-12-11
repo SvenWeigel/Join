@@ -6,3 +6,42 @@
     transition: none;
   }
 }
+
+@media (max-width:700px){
+  form{
+    width: 100%;
+    margin: 0 16px;
+  }
+  .login-site-header{
+    top: unset;
+    right:unset;
+    bottom: 99px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .login-site-header-to-signup{
+    white-space:nowrap;
+  }
+  .login_input_container{
+    width: 70vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-site-logo-container img{
+    width: 64px;
+    height: 78px;
+  }
+  .login-form-btns-container{
+    flex-direction: column;
+    width: 50%;
+    gap:21px;
+    padding-bottom: 32px;
+  }
+  .login-form-btns-container button{
+    font-size:16px;
+  }
+  form{
+    height: unset;
+  }
+}

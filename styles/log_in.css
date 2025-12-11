@@ -34,15 +34,19 @@
 
 .login_input {
   width: 100%;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
   font-family: "Inter", sans-serif;
-  padding: 12px 21px;
   gap: 10px;
   flex-direction: space-between;
   display: flex;
   font-size: 20px;
+  flex:1;
+  border-style:none;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
 }
 
 .login_input::placeholder {
@@ -79,14 +83,14 @@ h1 {
 }
 
 .input-box {
-  position: relative;
+  display:flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  padding: 12px 21px;
 }
 
-.login-form-icon {
-  position: absolute;
-  top: 18px;
-  right: 0px;
-}
+
 
 .login-form-btns-container {
   display: flex;
