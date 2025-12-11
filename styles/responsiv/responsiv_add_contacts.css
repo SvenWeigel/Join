@@ -84,10 +84,35 @@
 
 @media(max-width:520px){
     .add-contact-modal-left{
-        padding: 62px 90px 62px 24px;
+        padding: 62px 45px 62px 24px;
     }
     .contact-input-group{
         width:70vw;
+    }
+    .modal-close-btn{
+        top:-200px;
+    }
+}
+
+@media(max-width: 380px){
+    .add-contact-modal-left{
+        padding: 30px 45px 40px 24px;
+    }
+    .modal-contact-badge{
+        width: 100px;
+        height: 100px;
+    }
+    .modal-inputs-container{
+        padding: 45px 16px 45px 16px;
+    }
+    .contacts-left{
+        padding: 32px 10px 0 10px;
+    }
+    .add-contact-modal-left h2{
+        margin:0;
+    }
+    .add-contact-modal-left h2{
+        line-height: 100%;
     }
 }
 
