@@ -1,0 +1,93 @@
+@media (max-width:1100px){
+    .add-contact-modal-left{
+        padding: 33px 24px;
+    }
+    .add-contact-modal-right{
+        padding: 38px;
+    }
+    .modal-content-wrapper{
+        gap: 20px;
+    }
+    .contact-input-group input{
+        width: 350px;
+    }
+}
+
+@media (max-width: 925px){
+    .add-contact-modal{
+        flex-direction: column;
+        height: unset;
+        width: 70%;
+    }
+    .add-contact-modal-left{
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 20px;
+        padding: 124px 90px 124px 24px;
+    }
+
+    .add-contact-modal-right{
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0;
+        padding: 0;
+    }
+    .btn-cancel-contact{
+        display:none;
+    }
+    .modal-content-wrapper{
+        flex-direction: column;
+        width: 100%;
+    }
+    .modal-badge-container{
+        position: absolute;
+        top:-55px;
+    }
+    .modal-inputs-container{
+        padding: 92px 16px 80px 16px;
+        align-items: center;
+        width:100%;
+    }
+    .contact-input-group{
+        width: 50vw;
+    }
+    .contact-input-group input{
+        width: 100%;
+    }
+    .modal-close-btn{
+        top:-330px;
+        right: 16px;
+    }
+    .modal-close-btn svg{
+        color: white;
+    }
+    .modal-logo{
+        display:none;
+    }
+
+    @keyframes slideInModal {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+}
+
+@media(max-width:720px){
+    .add-contact-modal{
+        width:100%;
+        margin:0 16px;
+    }
+}
+
+@media(max-width:520px){
+    .add-contact-modal-left{
+        padding: 62px 90px 62px 24px;
+    }
+    .contact-input-group{
+        width:70vw;
+    }
+}
+
