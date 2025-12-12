@@ -110,8 +110,8 @@ function logout() {
   sessionStorage.setItem("skipAnimation", "true");
 
   // Ermittle den korrekten Pfad zur index.html
-  const isInHtmlFolder = window.location.pathname.includes("/html/");
-  const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
+  const isInHtmlFolder = window.location.pathname.includes("html/");
+  const redirectPath = isInHtmlFolder ? "index.html" : "index.html";
   window.location.href = redirectPath;
 }
 
