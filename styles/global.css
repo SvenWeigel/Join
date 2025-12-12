@@ -56,11 +56,6 @@ a {
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
-
-  &:hover {
-    /* color: #28abe2; */
-    font-weight: 500;
-  }
 }
 
 .disabled-link {
