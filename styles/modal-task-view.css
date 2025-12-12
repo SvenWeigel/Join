@@ -24,6 +24,7 @@
   flex-direction: column;
   gap: 24px;
   animation: slideInTaskModal 0.3s ease-out;
+  overflow-wrap: anywhere;
 }
 
 @keyframes slideInTaskModal {
