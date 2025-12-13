@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1200;
+  z-index: 9999;
 }
 
 .inside-edit-view-task-overlay {
@@ -28,8 +28,7 @@
 .scroll-container {
   max-height: 80vh;
   overflow-y: auto;
-  padding-right: 8px;
-}
+  }
 
 .close-btn {
   display: flex;
@@ -453,6 +452,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-bottom:4px;
 }
 
 .btn-ok:hover {

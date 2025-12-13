@@ -1,0 +1,16 @@
+@media(max-width:700px){
+    .inside-edit-view-task-overlay{
+        width: 100%;
+        min-width:unset;
+        margin: 20px 16px;
+    }
+}
+
+@media(max-width:510px){
+    .priority-btn-edit-view{
+        width: unset;
+    }
+    .inside-edit-view-task-overlay{
+        padding: 28px 16px;
+    }
+}
