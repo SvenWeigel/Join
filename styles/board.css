@@ -22,6 +22,37 @@
   margin: 12px 0;
 }
 
+.search-bar{
+  display:flex;
+  align-items: center;
+  background-color: white;
+  padding: 8px 16px;
+  border: 1px solid #d1d1d1;
+  border-radius:10px;
+}
+
+.search-bar input{
+  font-family: "Inter", sans-serif;
+  border:none;
+  font-size:20px;
+  padding-block:0;
+  padding-inline: 0;
+  flex-grow:1;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
+}
+
+.find-separator{
+  background-color: #d1d1d1;
+  width: 1px;
+  height: 100%;
+  margin: 0 16px;
+}
+
 #addTaskBtn {
   display: flex;
   align-items: center;

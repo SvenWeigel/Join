@@ -79,10 +79,15 @@
     padding: 48px 16px 40px 16px;
   }
   .responsive-input {
-    display: flex;
-    padding: 14px 16px;
+    display:flex;
+  align-items: center;
+  background-color: white;
+  padding: 8px 16px;
+  border: 1px solid #a8a8a8;
+  border-radius:10px;
+  margin: 0 16px 24px 16px;
   }
-  #findTask {
+  .search-bar{
     display: none;
   }
   #findTask-repsonsive {
@@ -94,8 +99,34 @@
   #addTaskBtn {
     padding: 10px;
   }
+  .responsive-input input{
+    font-family: "Inter", sans-serif;
+  border:none;
+  font-size:20px;
+  padding-block:0;
+  padding-inline: 0;
+  flex-grow:1;
+  }
+
+  .find-separator-responsive{
+    width:1px;
+    height: 25px;
+    background-color: #d1d1d1;
+    margin: 0 16px;
+  }
+
+  input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: inherit;
+  }
 }
 
+@media(max-width: 345px){
+  .responsive-input input{
+    width: 100%;
+  }
+}
 /* ==========================================================================
    10. RESPONSIVE
    ========================================================================== */
