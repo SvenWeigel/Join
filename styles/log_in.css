@@ -109,7 +109,7 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   border: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.125s ease;
   &:hover {
     background-color: #28abe2;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
@@ -142,7 +142,7 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
 
-  transition: all 0.3s ease;
+  transition: all 0.125s ease;
   &:hover {
     color: #28abe2;
     border: 1px solid #28abe2;
@@ -229,7 +229,7 @@ h1 {
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.125s ease;
   &:hover {
     background-color: #28abe2;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
@@ -250,7 +250,7 @@ h1 {
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.125s ease;
   text-decoration: none;
 
   &:hover {

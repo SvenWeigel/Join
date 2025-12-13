@@ -54,7 +54,7 @@ a {
   font-weight: 400;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.125s ease;
   text-decoration: none;
 }
 

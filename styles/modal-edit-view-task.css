@@ -234,7 +234,7 @@
 .assigned-arrow {
   width: 24px;
   height: 24px;
-  transition: transform 0.2s ease;
+  transition: transform 0.125s ease;
 }
 
 .assigned-arrow.open {
@@ -252,7 +252,7 @@
   border-radius: 0 0 10px 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 100;
-  transition: max-height 0.2s ease;
+  transition: max-height 0.125s ease;
 }
 
 .assigned-dropdown-list.open {
@@ -268,7 +268,7 @@
   justify-content: space-between;
   padding: 10px 16px;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.125s ease;
 }
 
 .assigned-dropdown-item:hover {
@@ -383,7 +383,7 @@
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   padding-right: 12px;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.125s ease;
 }
 
 .subtask-input-wrapper-edit:focus-within {
@@ -405,7 +405,7 @@
   height: 24px;
   cursor: pointer;
   opacity: 0.7;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.125s ease;
 }
 
 .subtask-actions-input .subtask-action-icon:hover {
@@ -451,7 +451,7 @@
   font-size: 21px;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.125s ease;
   margin-bottom:4px;
 }
 
@@ -473,7 +473,7 @@
   padding: 8px 16px;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.125s ease;
 }
 
 .subtask-item-edit::before {
@@ -509,7 +509,7 @@
   height: 20px;
   cursor: pointer;
   opacity: 0.7;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.125s ease;
 }
 
 .subtask-actions-edit img:hover {

@@ -54,7 +54,7 @@
   padding: 15px 24px;
   cursor: pointer;
   border-radius: 10px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.125s ease;
 }
 
 .contact-list-entry:hover {
@@ -194,7 +194,7 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.125s ease;
 }
 
 .contacts-details-actions button:hover {
@@ -209,7 +209,7 @@
 .contacts-details-actions img {
   width: 18px;
   height: 18px;
-  transition: filter 0.2s ease;
+  transition: filter 0.125s ease;
 }
 
 .edit-btn {
@@ -294,7 +294,7 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.125s ease;
 }
 .contacts-details-actions-responsive button:hover {
   color: #29abe2;
