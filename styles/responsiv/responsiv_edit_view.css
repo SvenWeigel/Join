@@ -14,3 +14,12 @@
         padding: 28px 16px;
     }
 }
+@media(max-width:410px){
+    .priority-buttons-container-edit-view{
+        justify-content: space-between;
+        gap:4px;
+    }
+    .priority-buttons-container-edit-view .priority-btn-edit-view {
+        padding:4px;
+    }
+}
