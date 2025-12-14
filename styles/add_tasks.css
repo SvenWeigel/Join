@@ -420,8 +420,12 @@ textarea {
   z-index: 1000;
 }
 
+.success-message span{
+  margin:0;
+}
+
 .success-message.show {
-  bottom: 50px;
+  bottom: calc(50vh);
 }
 
 .success-message img {
