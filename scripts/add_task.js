@@ -222,7 +222,7 @@ async function handleAddTaskSubmit(e) {
     await createTask(taskData);
     clearAddTaskForm();
     showSuccessMessage();
-    setTimeout(() => { window.location.href = '/html/board.html'; }, 1500);
+    setTimeout(() => { window.location.href = 'html/board.html'; }, 1500);
   } catch (error) {
     console.error("Error creating task:", error);
     alert("Task could not be created. Please try again.");

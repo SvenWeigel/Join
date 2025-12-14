@@ -55,7 +55,7 @@ function bindOpenButton() {
 function handleOpenClick(e) {
   e.preventDefault();
   if (window.innerWidth < 970) {
-    window.location.href = '/html/add_task.html';
+    window.location.href = 'html/add_task.html';
   } else {
     openModal();
   }
