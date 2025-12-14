@@ -54,7 +54,11 @@ function bindOpenButton() {
  */
 function handleOpenClick(e) {
   e.preventDefault();
-  openModal();
+  if (window.innerWidth < 970) {
+    window.location.href = '/html/add_task.html';
+  } else {
+    openModal();
+  }
 }
 
 /**
