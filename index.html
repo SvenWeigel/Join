@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="styles/font.css" />
     <link rel="stylesheet" href="styles/responsiv/responsiv_login.css" />
     <script src="scripts/script.js"></script>
+    <script>
+      // Bereits eingeloggte Benutzer zur Summary weiterleiten
+      if (typeof redirectIfLoggedIn === "function") {
+        redirectIfLoggedIn();
+      }
+    </script>
     <title>Join</title>
   </head>
 

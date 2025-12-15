@@ -11,12 +11,18 @@
     <link rel="stylesheet" href="styles/summary.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/bottom-nav.css" />
-    <link rel="stylesheet" href="styles/responsiv/responsiv_summary.css">
+    <link rel="stylesheet" href="styles/responsiv/responsiv_summary.css" />
     <link
       rel="shortcut icon"
       href="assets/img/login_center_logo.svg"
       type="image/x-icon"
     />
+    <script src="scripts/script.js"></script>
+    <script>
+      if (typeof checkAuth === "function" && !checkAuth()) {
+        document.write("");
+      }
+    </script>
   </head>
 
   <body>

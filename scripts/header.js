@@ -103,15 +103,17 @@ function closeProfileOptionsOnClickOutside(event) {
 /**
  * Meldet den Benutzer ab, löscht die Session-Daten und leitet zur Login-Seite weiter.
  * Setzt ein Flag, um die Splash-Animation zu überspringen.
+ * Verwendet location.replace() um Browser-Zurück-Navigation zu verhindern.
  */
 function logout() {
   localStorage.removeItem(STORAGE_KEY);
+  sessionStorage.clear();
   sessionStorage.setItem("skipAnimation", "true");
 
   // Ermittle den korrekten Pfad zur index.html
   const isInHtmlFolder = window.location.pathname.includes("html/");
-  const redirectPath = isInHtmlFolder ? "index.html" : "index.html";
-  window.location.href = redirectPath;
+  const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
+  window.location.replace(redirectPath);
 }
 
 window.logout = logout;

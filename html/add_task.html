@@ -15,7 +15,13 @@
     <link rel="stylesheet" href="styles/add_tasks.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/bottom-nav.css" />
-    <link rel="stylesheet" href="styles/responsiv/responsiv_add_task.css">
+    <link rel="stylesheet" href="styles/responsiv/responsiv_add_task.css" />
+    <script src="scripts/script.js"></script>
+    <script>
+      if (typeof checkAuth === "function" && !checkAuth()) {
+        document.write("");
+      }
+    </script>
     <title>Add Task</title>
   </head>
 
