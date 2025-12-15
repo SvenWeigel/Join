@@ -13,37 +13,11 @@ let modalSelectedAssignees = [];
 // ==========================================================================
 
 /**
- * Lädt Kontakte für Gäste aus localStorage.
- * @returns {Object[]}
- */
-function loadGuestContacts() {
-  const guestContacts = localStorage.getItem("guestContacts");
-  return guestContacts ? JSON.parse(guestContacts) : [];
-}
-
-/**
- * Lädt die Kontakte für das Modal-Dropdown.
+ * Lädt die Kontakte für das Modal-Dropdown (global für alle User inkl. Gäste).
  */
 async function loadModalContactsForDropdown() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    modalAvailableContacts = [];
-    return;
-  }
-  if (currentUser.guest) {
-    modalAvailableContacts = loadGuestContacts();
-    return;
-  }
-  await loadContactsFromServer(currentUser.id);
-}
-
-/**
- * Lädt Kontakte vom Server.
- * @param {string} userId
- */
-async function loadContactsFromServer(userId) {
   try {
-    modalAvailableContacts = await fetchContacts(userId);
+    modalAvailableContacts = await fetchContacts();
   } catch (error) {
     console.error("Error loading contacts for modal:", error);
     modalAvailableContacts = [];

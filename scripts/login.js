@@ -164,17 +164,6 @@ async function handleLoginSubmit(e) {
 }
 
 /**
- * Erzeugt einen temporären Gast-Benutzer, speichert ihn und leitet weiter.
- * @param {Event} e
- */
-function handleGuestLogin(e) {
-  e.preventDefault();
-  const guestUser = { name: "Guest", email: "guest@guest.local", guest: true };
-  localStorage.setItem("currentUser", JSON.stringify(guestUser));
-  window.location.replace("html/summary.html");
-}
-
-/**
  * Helfer: hängt benutzerdefinierte Validations-Messages an ein Input-Element.
  * @param {HTMLElement|null} el
  * @param {string} requiredMessage

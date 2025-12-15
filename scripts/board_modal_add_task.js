@@ -55,7 +55,7 @@ function bindOpenButton() {
 function handleOpenClick(e) {
   e.preventDefault();
   if (window.innerWidth < 970) {
-    window.location.href = 'html/add_task.html';
+    window.location.href = "html/add_task.html";
   } else {
     openModal();
   }
@@ -204,15 +204,6 @@ function getFormData() {
 }
 
 /**
- * Prüft ob der User ein Gast ist.
- * @param {Object|null} user
- * @returns {boolean}
- */
-function isGuestOrNoUser(user) {
-  return !user || user.guest;
-}
-
-/**
  * Erstellt das Task-Objekt für Firebase.
  * @param {Object} formData
  * @param {string} email
@@ -239,10 +230,6 @@ function buildTaskData(formData, email) {
 async function handleSubmit(e) {
   e.preventDefault();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (isGuestOrNoUser(currentUser)) {
-    alert("As a guest, you cannot create tasks. Please register or log in.");
-    return;
-  }
   await submitTask(currentUser);
 }
 
@@ -252,7 +239,8 @@ async function handleSubmit(e) {
  */
 async function submitTask(currentUser) {
   try {
-    const taskData = buildTaskData(getFormData(), currentUser.email);
+    const email = currentUser?.email || "guest@guest.local";
+    const taskData = buildTaskData(getFormData(), email);
     await createTask(taskData);
     resetFormAndClose();
     if (typeof renderAllTasks === "function") await renderAllTasks();

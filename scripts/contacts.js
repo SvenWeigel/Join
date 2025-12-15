@@ -1,53 +1,5 @@
 /**
- * Demo-Kontakte für Gast-User (werden in localStorage gespeichert)
- */
-const GUEST_DEFAULT_CONTACTS = [
-  {
-    id: "guest-1",
-    name: "Max Mustermann",
-    email: "max.mustermann@beispiel.de",
-    phone: "+49 170 1234567",
-    color: "#FF7A00",
-  },
-  {
-    id: "guest-2",
-    name: "Laura Schmidt",
-    email: "laura.schmidt@mail.de",
-    phone: "+49 151 9876543",
-    color: "#9327FF",
-  },
-  {
-    id: "guest-3",
-    name: "Thomas Weber",
-    email: "t.weber@firma.de",
-    phone: "+49 160 5551234",
-    color: "#6E52FF",
-  },
-  {
-    id: "guest-4",
-    name: "Anna Becker",
-    email: "anna.becker@web.de",
-    phone: "+49 172 3334455",
-    color: "#FC71FF",
-  },
-  {
-    id: "guest-5",
-    name: "Stefan Hoffmann",
-    email: "s.hoffmann@business.de",
-    phone: "+49 155 7778899",
-    color: "#1FD7C1",
-  },
-  {
-    id: "guest-6",
-    name: "Julia Klein",
-    email: "julia.klein@email.de",
-    phone: "+49 163 2223344",
-    color: "#FF4646",
-  },
-];
-
-/**
- * Aktive Kontaktliste (wird beim Init aus Firebase oder localStorage geladen)
+ * Aktive Kontaktliste (wird beim Init aus Firebase geladen - global für alle User)
  */
 let contacts = [];
 
@@ -57,67 +9,15 @@ let contacts = [];
 let selectedContactId = null;
 
 /**
- * Prüft ob der aktuelle User ein Gast ist
- * @returns {boolean}
- */
-function isGuestUser() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  return !currentUser || currentUser.guest === true;
-}
-
-/**
- * Gibt die User-ID des aktuellen Users zurück
- * @returns {string|null}
- */
-function getCurrentUserId() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) return null;
-  if (currentUser.id) return currentUser.id;
-
-  // Fallback: Wenn keine ID vorhanden, User neu einloggen lassen
-  console.warn("User hat keine ID - bitte neu einloggen");
-  return null;
-}
-
-/**
- * Lädt Kontakte aus localStorage für Gast-User
- * @returns {Array}
- */
-function loadGuestContacts() {
-  const stored = localStorage.getItem("guestContacts");
-  if (stored) {
-    return JSON.parse(stored);
-  }
-  // Initialisiere mit Demo-Daten
-  localStorage.setItem("guestContacts", JSON.stringify(GUEST_DEFAULT_CONTACTS));
-  return [...GUEST_DEFAULT_CONTACTS];
-}
-
-/**
- * Speichert Kontakte in localStorage für Gast-User
- */
-function saveGuestContacts() {
-  localStorage.setItem("guestContacts", JSON.stringify(contacts));
-}
-
-/**
  * Initializes the contacts page (async für Firebase-Abfragen)
+ * Lädt globale Kontakte aus Firebase (für alle User inkl. Gäste)
  */
 async function initContacts() {
-  if (isGuestUser()) {
-    contacts = loadGuestContacts();
-  } else {
-    const userId = getCurrentUserId();
-    if (userId) {
-      try {
-        contacts = await fetchContacts(userId);
-      } catch (err) {
-        console.error("Failed to load contacts:", err);
-        contacts = [];
-      }
-    } else {
-      contacts = [];
-    }
+  try {
+    contacts = await fetchContacts();
+  } catch (err) {
+    console.error("Failed to load contacts:", err);
+    contacts = [];
   }
   renderContactList();
   renderContactDetails(null);
@@ -135,13 +35,13 @@ function selectContact(contactId) {
 
   // Klasse für mobile Ansicht hinzufügen
   if (window.innerWidth < 870) {
-    const contactsRight = document.querySelector('.contacts-right');
-    const contactsLeft = document.querySelector('.contacts-left');
+    const contactsRight = document.querySelector(".contacts-right");
+    const contactsLeft = document.querySelector(".contacts-left");
     if (contactsRight) {
-      contactsRight.classList.add('show');
-      contactsRight.classList.remove('close');
-      contactsLeft.classList.add('close');
-      contactsLeft.classList.remove('show');
+      contactsRight.classList.add("show");
+      contactsRight.classList.remove("close");
+      contactsLeft.classList.add("close");
+      contactsLeft.classList.remove("show");
     }
   }
 }
@@ -203,17 +103,9 @@ function groupContactsByLetter(contactList) {
  * @param {string} contactId - ID of the contact to delete
  */
 async function deleteContactFromDetails(contactId) {
-  if (isGuestUser()) {
-    alert("As a guest, you cannot delete contacts. Please sign up.");
-    return;
-  }
-
   try {
-    const userId = getCurrentUserId();
-    if (userId) {
-      await deleteContactFromDb(userId, contactId);
-      contacts = contacts.filter((c) => c.id !== contactId);
-    }
+    await deleteContactFromDb(contactId);
+    contacts = contacts.filter((c) => c.id !== contactId);
     renderContactList();
     renderContactDetails(null);
     selectedContactId = null;
@@ -225,34 +117,37 @@ async function deleteContactFromDetails(contactId) {
 
 function backToContactList() {
   if (window.innerWidth < 870) {
-    const contactsRight = document.querySelector('.contacts-right');
-    const contactsLeft = document.querySelector('.contacts-left');
+    const contactsRight = document.querySelector(".contacts-right");
+    const contactsLeft = document.querySelector(".contacts-left");
     if (contactsRight) {
-      contactsRight.classList.add('close');
-      contactsRight.classList.remove('show');
-      contactsLeft.classList.add('show');
-      contactsLeft.classList.remove('close')
+      contactsRight.classList.add("close");
+      contactsRight.classList.remove("show");
+      contactsLeft.classList.add("show");
+      contactsLeft.classList.remove("close");
     }
   }
 }
 
 //Responsiv: Edit/Delete Menü bei onclick öffnen
 function showDetails() {
-  const actionsResponsive = document.querySelector('.contacts-details-actions-responsive');
+  const actionsResponsive = document.querySelector(
+    ".contacts-details-actions-responsive"
+  );
   if (actionsResponsive) {
-    actionsResponsive.classList.add('show');
+    actionsResponsive.classList.add("show");
   }
 }
 
 //Responsiv: Edit/Delete Menü beim Klick außerhalb schließen
-document.addEventListener('mousedown', function handleClickOutside(event) {
-  const actionsContainer = document.querySelector('.contacts-details-actions-responsive');
+document.addEventListener("mousedown", function handleClickOutside(event) {
+  const actionsContainer = document.querySelector(
+    ".contacts-details-actions-responsive"
+  );
   if (
     actionsContainer &&
-    actionsContainer.classList.contains('show') &&
+    actionsContainer.classList.contains("show") &&
     !actionsContainer.contains(event.target)
   ) {
-    actionsContainer.classList.remove('show');
+    actionsContainer.classList.remove("show");
   }
 });
-

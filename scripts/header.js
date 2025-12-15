@@ -106,7 +106,6 @@ function closeProfileOptionsOnClickOutside(event) {
  */
 function logout() {
   localStorage.removeItem(STORAGE_KEY);
-  localStorage.removeItem("guestContacts");
   sessionStorage.setItem("skipAnimation", "true");
 
   // Ermittle den korrekten Pfad zur index.html

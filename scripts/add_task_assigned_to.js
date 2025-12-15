@@ -14,30 +14,11 @@ let availableContacts = [];
 let selectedAssignees = [];
 
 /**
- * Lädt die Kontakte für das Dropdown-Menü.
+ * Lädt die Kontakte für das Dropdown-Menü (global für alle User inkl. Gäste).
  */
 async function loadContactsForDropdown() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    availableContacts = [];
-    renderAssigneeDropdown();
-    return;
-  }
-
-  // Für Gäste: Demo-Kontakte aus localStorage laden
-  if (currentUser.guest) {
-    const guestContacts = localStorage.getItem("guestContacts");
-    if (guestContacts) {
-      availableContacts = JSON.parse(guestContacts);
-    } else {
-      availableContacts = [];
-    }
-    renderAssigneeDropdown();
-    return;
-  }
-
   try {
-    availableContacts = await fetchContacts(currentUser.id);
+    availableContacts = await fetchContacts();
     renderAssigneeDropdown();
   } catch (error) {
     console.error("Error loading contacts:", error);

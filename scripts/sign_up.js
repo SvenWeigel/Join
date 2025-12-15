@@ -167,6 +167,7 @@ async function isEmailTaken(normalizedEmail) {
 
 /**
  * Erstellt einen neuen Benutzer-Datensatz (normalisiert Email) und leitet bei Erfolg weiter.
+ * Erstellt zusätzlich einen globalen Contact-Eintrag für den neuen User.
  * Zeigt eine Erfolgs-Message und navigiert zurück zur Startseite.
  *
  * @param {{name:string,email:string,password:string}} param0 - Daten aus dem Formular.
@@ -179,7 +180,37 @@ async function registerAndRedirect({ name, email, password }) {
     createdAt: new Date().toISOString(),
   };
   await createUserRecord(BASE_URL, user);
+
+  // User auch als globalen Contact erstellen
+  const contact = {
+    name,
+    email: email.toLowerCase(),
+    phone: "",
+    color: getRandomContactColor(),
+  };
+  await createContact(contact);
+
   showSignupSuccessOverlay();
+}
+
+/**
+ * Generiert eine zufällige Farbe für neue Kontakte.
+ * @returns {string} Ein Hex-Farbcode
+ */
+function getRandomContactColor() {
+  const colors = [
+    "#FF7A00",
+    "#9327FF",
+    "#6E52FF",
+    "#FC71FF",
+    "#FFBB2B",
+    "#1FD7C1",
+    "#462F8A",
+    "#FF4646",
+    "#00BEE8",
+    "#FF745E",
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
 /**

@@ -156,21 +156,11 @@ function selectEditPriority(priority) {
 let editAvailableContacts = [];
 
 /**
- * Lädt Kontakte für das Edit-Modal (nutzt gleiche Logik wie Add-Task-Modal).
+ * Lädt Kontakte für das Edit-Modal (global für alle User inkl. Gäste).
  */
 async function loadEditContactsForDropdown() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    editAvailableContacts = [];
-    return;
-  }
-  if (currentUser.guest) {
-    const guestContacts = localStorage.getItem("guestContacts");
-    editAvailableContacts = guestContacts ? JSON.parse(guestContacts) : [];
-    return;
-  }
   try {
-    editAvailableContacts = await fetchContacts(currentUser.id);
+    editAvailableContacts = await fetchContacts();
   } catch (error) {
     console.error("Error loading contacts for edit modal:", error);
     editAvailableContacts = [];

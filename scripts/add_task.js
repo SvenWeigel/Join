@@ -139,19 +139,6 @@ function getCurrentUser() {
 }
 
 /**
- * Prüft ob der User ein Gast ist und zeigt ggf. eine Meldung.
- * @param {Object|null} user - Der aktuelle User
- * @returns {boolean} True wenn Gast oder nicht eingeloggt
- */
-function isGuestUser(user) {
-  if (!user || user.guest) {
-    alert("As a guest, you cannot create tasks. Please register or log in.");
-    return true;
-  }
-  return false;
-}
-
-/**
  * Erstellt ein Task-Objekt aus den Formulardaten.
  * @param {Object} formData - Die gesammelten Formulardaten
  * @param {string} creatorEmail - E-Mail des Erstellers
@@ -215,14 +202,18 @@ function showSuccessMessage() {
 async function handleAddTaskSubmit(e) {
   e.preventDefault();
   const currentUser = getCurrentUser();
-  if (isGuestUser(currentUser)) return;
   try {
     const formData = getAddTaskFormData();
-    const taskData = buildTaskData(formData, currentUser.email);
+    const taskData = buildTaskData(
+      formData,
+      currentUser?.email || "guest@guest.local"
+    );
     await createTask(taskData);
     clearAddTaskForm();
     showSuccessMessage();
-    setTimeout(() => { window.location.href = 'html/board.html'; }, 1500);
+    setTimeout(() => {
+      window.location.href = "html/board.html";
+    }, 1500);
   } catch (error) {
     console.error("Error creating task:", error);
     alert("Task could not be created. Please try again.");

@@ -2,10 +2,6 @@
  * Opens the Add Contact Modal
  */
 function openAddContactModal() {
-  if (isGuestUser()) {
-    alert("As a guest, you cannot create contacts. Please sign up.");
-    return;
-  }
   let overlay = document.getElementById("addContactModalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
@@ -46,12 +42,6 @@ function resetAddContactForm() {
 async function handleAddContact(event) {
   event.preventDefault();
 
-  if (isGuestUser()) {
-    alert("As a guest, you cannot create contacts. Please sign up.");
-    closeAddContactModal();
-    return;
-  }
-
   let name = document.getElementById("contactName").value.trim();
   let email = document.getElementById("contactEmail").value.trim();
   let phone = document.getElementById("contactPhone").value.trim();
@@ -59,12 +49,9 @@ async function handleAddContact(event) {
   let newContact = { name, email, phone, color };
 
   try {
-    const userId = getCurrentUserId();
-    if (userId) {
-      const savedContact = await createContact(userId, newContact);
-      contacts.push(savedContact);
-      newContact = savedContact;
-    }
+    const savedContact = await createContact(newContact);
+    contacts.push(savedContact);
+    newContact = savedContact;
     renderContactList();
     closeAddContactModal();
     selectContact(newContact.id);
@@ -130,10 +117,6 @@ let editingContactId = null;
  * @param {string} contactId - ID of the contact to edit
  */
 function openEditContactModal(contactId) {
-  if (isGuestUser()) {
-    alert("As a guest, you cannot edit contacts. Please sign up.");
-    return;
-  }
   editingContactId = contactId;
   let contact = contacts.find((c) => c.id === contactId);
   if (!contact) return;
@@ -173,12 +156,6 @@ async function handleEditContact(event) {
   event.preventDefault();
   if (!editingContactId) return;
 
-  if (isGuestUser()) {
-    alert("As a guest, you cannot edit contacts. Please sign up.");
-    closeEditContactModal();
-    return;
-  }
-
   let name = document.getElementById("editContactName").value.trim();
   let email = document.getElementById("editContactEmail").value.trim();
   let phone = document.getElementById("editContactPhone").value.trim();
@@ -186,15 +163,12 @@ async function handleEditContact(event) {
   const updateData = { name, email, phone };
 
   try {
-    const userId = getCurrentUserId();
-    if (userId) {
-      await updateContactInDb(userId, editingContactId, updateData);
-      let contact = contacts.find((c) => c.id === editingContactId);
-      if (contact) {
-        contact.name = name;
-        contact.email = email;
-        contact.phone = phone;
-      }
+    await updateContactInDb(editingContactId, updateData);
+    let contact = contacts.find((c) => c.id === editingContactId);
+    if (contact) {
+      contact.name = name;
+      contact.email = email;
+      contact.phone = phone;
     }
     const contactIdToSelect = editingContactId;
     renderContactList();
@@ -212,18 +186,9 @@ async function handleEditContact(event) {
 async function handleDeleteContact() {
   if (!editingContactId) return;
 
-  if (isGuestUser()) {
-    alert("As a guest, you cannot delete contacts. Please sign up.");
-    closeEditContactModal();
-    return;
-  }
-
   try {
-    const userId = getCurrentUserId();
-    if (userId) {
-      await deleteContactFromDb(userId, editingContactId);
-      contacts = contacts.filter((c) => c.id !== editingContactId);
-    }
+    await deleteContactFromDb(editingContactId);
+    contacts = contacts.filter((c) => c.id !== editingContactId);
     renderContactList();
     closeEditContactModal();
     renderContactDetails(null);

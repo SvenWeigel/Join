@@ -127,19 +127,18 @@ async function deleteTask(taskId) {
 // ============================================================================
 
 /**
- * Erstellt einen neuen Kontakt für einen bestimmten User in Firebase.
+ * Erstellt einen neuen Kontakt in Firebase (global für alle User).
  *
- * @param {string} userId - Die Firebase-ID des Users
  * @param {Object} contactData - Die Kontaktdaten (name, email, phone, color)
  * @returns {Promise<Object>} Der erstellte Kontakt mit Firebase-ID
  */
-async function createContact(userId, contactData) {
+async function createContact(contactData) {
   const contact = {
     ...contactData,
     createdAt: new Date().toISOString(),
   };
 
-  const response = await fetch(`${BASE_URL}/users/${userId}/contacts.json`, {
+  const response = await fetch(`${BASE_URL}/contacts.json`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(contact),
@@ -154,13 +153,12 @@ async function createContact(userId, contactData) {
 }
 
 /**
- * Lädt alle Kontakte eines Users aus Firebase.
+ * Lädt alle Kontakte aus Firebase (global für alle User).
  *
- * @param {string} userId - Die Firebase-ID des Users
  * @returns {Promise<Object[]>} Array aller Kontakte mit ihren IDs
  */
-async function fetchContacts(userId) {
-  const response = await fetch(`${BASE_URL}/users/${userId}/contacts.json`);
+async function fetchContacts() {
+  const response = await fetch(`${BASE_URL}/contacts.json`);
 
   if (!response.ok) {
     throw new Error("Failed to load contacts");
@@ -177,22 +175,18 @@ async function fetchContacts(userId) {
 }
 
 /**
- * Aktualisiert einen bestehenden Kontakt in Firebase.
+ * Aktualisiert einen bestehenden Kontakt in Firebase (global).
  *
- * @param {string} userId - Die Firebase-ID des Users
  * @param {string} contactId - Die Firebase-ID des Kontakts
  * @param {Object} updateData - Die zu aktualisierenden Felder
  * @returns {Promise<Object>} Die aktualisierten Kontaktdaten
  */
-async function updateContactInDb(userId, contactId, updateData) {
-  const response = await fetch(
-    `${BASE_URL}/users/${userId}/contacts/${contactId}.json`,
-    {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updateData),
-    }
-  );
+async function updateContactInDb(contactId, updateData) {
+  const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updateData),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to update contact");
@@ -202,19 +196,15 @@ async function updateContactInDb(userId, contactId, updateData) {
 }
 
 /**
- * Löscht einen Kontakt aus Firebase.
+ * Löscht einen Kontakt aus Firebase (global).
  *
- * @param {string} userId - Die Firebase-ID des Users
  * @param {string} contactId - Die Firebase-ID des Kontakts
  * @returns {Promise<void>}
  */
-async function deleteContactFromDb(userId, contactId) {
-  const response = await fetch(
-    `${BASE_URL}/users/${userId}/contacts/${contactId}.json`,
-    {
-      method: "DELETE",
-    }
-  );
+async function deleteContactFromDb(contactId) {
+  const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
+    method: "DELETE",
+  });
 
   if (!response.ok) {
     throw new Error("Failed to delete contact");
