@@ -139,6 +139,17 @@ function getCurrentUser() {
 }
 
 /**
+ * Liest den Status aus dem URL-Parameter.
+ * @returns {string} Der Status aus der URL oder "todo" als Standard
+ */
+function getStatusFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
+  const validStatuses = ["todo", "inprogress", "awaitfeedback", "done"];
+  return validStatuses.includes(status) ? status : "todo";
+}
+
+/**
  * Erstellt ein Task-Objekt aus den Formulardaten.
  * @param {Object} formData - Die gesammelten Formulardaten
  * @param {string} creatorEmail - E-Mail des Erstellers
@@ -152,7 +163,7 @@ function buildTaskData(formData, creatorEmail) {
     priority: formData.priority,
     assignees: getAssigneesWithData(formData.assignees),
     category: formData.category,
-    status: "todo",
+    status: getStatusFromUrl(),
     subtasks: formData.subtasks || [],
     createdBy: creatorEmail,
   };

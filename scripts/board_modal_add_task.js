@@ -9,6 +9,8 @@ let overlay = null;
 let form = null;
 /** @type {HTMLElement[]} */
 let priorityButtons = [];
+/** @type {string} Vorgewählter Status für neue Tasks */
+let preSelectedStatus = "todo";
 
 /**
  * Initialisiert das Modal beim Laden der Seite.
@@ -16,6 +18,7 @@ let priorityButtons = [];
 async function initModal() {
   cacheElements();
   bindEvents();
+  initColumnPlusButtons();
   await loadModalContactsForDropdown();
 }
 
@@ -119,8 +122,10 @@ function bindFormSubmit() {
 
 /**
  * Öffnet das Modal.
+ * @param {string} [status="todo"] - Der vorgewählte Status für den neuen Task
  */
-function openModal() {
+function openModal(status = "todo") {
+  preSelectedStatus = status;
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -217,7 +222,7 @@ function buildTaskData(formData, email) {
     priority: formData.priority,
     assignees: getModalAssigneesWithData(modalSelectedAssignees),
     category: formData.category,
-    status: "todo",
+    status: preSelectedStatus,
     subtasks: [...modalSubtasks],
     createdBy: email,
   };
@@ -260,6 +265,46 @@ function resetFormAndClose() {
   resetModalAssignees();
   resetModalCategory();
   resetModalSubtasks();
+}
+
+// ============================================================================
+// COLUMN PLUS BUTTON FUNKTIONEN
+// ============================================================================
+
+/**
+ * Status-Mapping für die Board-Spalten.
+ * @type {string[]}
+ */
+const COLUMN_STATUS_MAP = ["todo", "inprogress", "awaitfeedback"];
+
+/**
+ * Initialisiert die Click-Handler für die Plus-Buttons in den Spalten.
+ * Die "Done"-Spalte hat keinen Plus-Button.
+ */
+function initColumnPlusButtons() {
+  const columnHeaders = document.querySelectorAll(".column-header");
+
+  columnHeaders.forEach((header, index) => {
+    const plusIcon = header.querySelector("img");
+    if (plusIcon && COLUMN_STATUS_MAP[index]) {
+      plusIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        handleColumnPlusClick(COLUMN_STATUS_MAP[index]);
+      });
+    }
+  });
+}
+
+/**
+ * Behandelt den Klick auf einen Plus-Button in einer Spalte.
+ * @param {string} status - Der Status für den neuen Task
+ */
+function handleColumnPlusClick(status) {
+  if (window.innerWidth < 970) {
+    window.location.href = `html/add_task.html?status=${status}`;
+  } else {
+    openModal(status);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initModal);
