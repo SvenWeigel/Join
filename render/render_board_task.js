@@ -230,10 +230,20 @@ function renderFilteredTasks(tasks, isSearchActive = false) {
     });
   }
 
-  // 5. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
+  // 5. "No results" Meldung anzeigen/ausblenden
+  const noResultsMessage = document.getElementById("noSearchResults");
+  if (noResultsMessage) {
+    if (isSearchActive && tasks.length === 0) {
+      noResultsMessage.classList.add("show");
+    } else {
+      noResultsMessage.classList.remove("show");
+    }
+  }
+
+  // 6. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
   initDragAndDrop();
 
-  // 6. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
+  // 7. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
   initTaskCardClickHandlers();
 }
 

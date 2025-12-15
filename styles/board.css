@@ -280,6 +280,34 @@ input:focus {
   display: none;
 }
 
+/* No search results message (same style as success-message in add_tasks.css) */
+.no-search-results {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2a3647;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.125s ease-in-out;
+  z-index: 1000;
+}
+
+.no-search-results.show {
+  bottom: calc(50vh);
+}
+
+.no-search-results span {
+  margin: 0;
+}
+
 /* ============================================================================
    DRAG & DROP TASK CARD STATES
    ============================================================================ */
