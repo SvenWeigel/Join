@@ -18,33 +18,66 @@ const MESSAGES = {
 };
 
 /**
- * Setzt den Zustand des Signup-Buttons basierend auf der Datenschutz-Checkbox.
- * Wenn Checkbox oder Button fehlen, wird nichts unternommen.
+ * Prüft, ob alle Pflichtfelder des Signup-Formulars ausgefüllt und gültig sind.
+ * Berücksichtigt Name (min. 2 Zeichen), Email (gültiges Format), Passwort (min. 8 Zeichen),
+ * Passwortbestätigung (muss übereinstimmen) und die Datenschutz-Checkbox.
  *
- * @param {HTMLInputElement} checkbox - Die Checkbox, die das Einverständnis repräsentiert.
- * @param {HTMLElement} button - Der Signup-Button, dessen `disabled`-Eigenschaft gesetzt wird.
+ * @returns {boolean} true, wenn alle Felder gültig sind.
  */
-function setSignupButtonState(checkbox, button) {
-  if (!checkbox || !button) return;
-  button.disabled = !checkbox.checked;
+function areAllFieldsValid() {
+  const name = document.getElementById(SELECTORS.name);
+  const email = document.getElementById(SELECTORS.email);
+  const password = document.getElementById(SELECTORS.password);
+  const confirm = document.getElementById(SELECTORS.confirm);
+  const privacy = document.getElementById(SELECTORS.privacyCheck);
+
+  const nameValid = name && name.value.trim().length >= 2;
+  const emailValid = email && email.value.trim() !== "" && email.validity.valid;
+  const passwordValid = password && password.value.length >= 8;
+  const confirmValid =
+    confirm && confirm.value !== "" && confirm.value === password?.value;
+  const privacyChecked = privacy && privacy.checked;
+
+  return (
+    nameValid && emailValid && passwordValid && confirmValid && privacyChecked
+  );
 }
 
 /**
- * Verknüpft eine Checkbox (z. B. Datenschutz) mit dem Signup-Button.
- * Registriert außerdem einen `change`-Listener, damit sich der Button bei
- * Änderungen automatisch aktiviert/deaktiviert.
- *
- * @param {string} checkboxId - ID der Checkbox im DOM.
- * @param {string} buttonId - ID des Buttons im DOM.
+ * Aktualisiert den Zustand des Signup-Buttons basierend auf der Validierung aller Felder.
  */
-function wirePrivacyToggle(checkboxId, buttonId) {
-  const checkbox = document.getElementById(checkboxId);
-  const button = document.getElementById(buttonId);
-  if (!checkbox || !button) return;
-  setSignupButtonState(checkbox, button);
-  checkbox.addEventListener("change", () =>
-    setSignupButtonState(checkbox, button)
-  );
+function updateSignupButtonState() {
+  const button = document.getElementById(SELECTORS.signupBtn);
+  if (!button) return;
+  button.disabled = !areAllFieldsValid();
+}
+
+/**
+ * Verknüpft alle Formularfelder mit der Button-Zustandsaktualisierung.
+ * Registriert `input`-Listener auf Textfeldern und `change`-Listener auf der Checkbox.
+ */
+function wireFormValidation() {
+  const fieldIds = [
+    SELECTORS.name,
+    SELECTORS.email,
+    SELECTORS.password,
+    SELECTORS.confirm,
+  ];
+
+  fieldIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", updateSignupButtonState);
+    }
+  });
+
+  const checkbox = document.getElementById(SELECTORS.privacyCheck);
+  if (checkbox) {
+    checkbox.addEventListener("change", updateSignupButtonState);
+  }
+
+  // Initialen Zustand setzen
+  updateSignupButtonState();
 }
 
 /**
@@ -181,12 +214,12 @@ async function handleSignupSubmit(e) {
 }
 
 /**
- * Initialisiert das Signup-Skript: Verknüpft Checkbox mit Button,
+ * Initialisiert das Signup-Skript: Verknüpft alle Formularfelder mit der Validierung,
  * aktiviert Live-Validation für Passwort/Confirm und hängt den
  * Submit-Handler an das Formular.
  */
 function init() {
-  wirePrivacyToggle(SELECTORS.privacyCheck, SELECTORS.signupBtn);
+  wireFormValidation();
   wirePasswordConfirmValidation(SELECTORS.password, SELECTORS.confirm);
 
   const form = document.getElementById(SELECTORS.form);
