@@ -116,3 +116,23 @@ a {
   padding: 8px 16px;
   gap: 4px;
 }
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  #rotate-protection {
+    display: none;
+  }
+
+  #rotate-warning {
+    display: flex!important;
+  }
+}
+
+#rotate-warning {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+}
