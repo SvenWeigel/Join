@@ -276,6 +276,34 @@ function showSignupSuccessOverlay() {
   }
 }
 
+function changePasswordIcon(inputId,iconId) {
+  const passwordIcon = document.getElementById(iconId);
+  const passwordInput = document.getElementById(inputId);
+
+  if (passwordInput.value.length > 0) {
+    passwordIcon.src = "assets/icons/visibility_off.svg";
+    passwordIcon.classList.add("pointer");
+  } else {
+    passwordIcon.src = "assets/icons/lock.svg";
+    passwordIcon.classList.remove("pointer");
+  }
+}
+
+function togglePasswordVisibility(inputId, iconId) {
+  const passwordIcon = document.getElementById(iconId);
+  const passwordInput = document.getElementById(inputId);
+
+  if (passwordInput.value.length > 0) {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      passwordIcon.src = "assets/icons/visibility.svg";
+    } else {
+      passwordInput.type = "password";
+      passwordIcon.src = "assets/icons/visibility_off.svg";
+    }
+  }
+}
+
 // function preFillSignupForm() {
 //   const name = document.getElementsByName("name")[0];
 //   const email = document.getElementsByName("email")[0];

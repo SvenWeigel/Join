@@ -50,15 +50,15 @@
         </div>
 
         <div class="sign-up-input-box">
-          <input id="signup-password" name="password" class="sign-up-input" type="password" placeholder="Password"
+          <input id="signup-password" oninput="changePasswordIcon('signup-password','password-icon')" name="password" class="sign-up-input" type="password" placeholder="Password"
             autocomplete="new-password" required minlength="8" />
-          <img src="assets/icons/lock.svg" alt="" />
+          <img onclick="togglePasswordVisibility('signup-password','password-icon')" id="password-icon" src="assets/icons/lock.svg" alt="" />
         </div>
 
         <div class="sign-up-input-box">
-          <input id="signup-confirm-password" name="confirm_password" class="sign-up-input" type="password"
+          <input id="signup-confirm-password" oninput="changePasswordIcon('signup-confirm-password','password-confirm-icon')" onclick="togglePasswordVisibility()" name="confirm_password" class="sign-up-input" type="password"
             placeholder="Confirm Password" autocomplete="new-password" required />
-          <img src="assets/icons/lock.svg" alt="" />
+          <img id="password-confirm-icon" onclick="togglePasswordVisibility('signup-confirm-password','password-confirm-icon')" src="assets/icons/lock.svg" alt="" />
         </div>
 
         <div class="check-container">
