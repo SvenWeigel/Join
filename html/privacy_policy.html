@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="styles/privacy_policy.css" />
     <link rel="stylesheet" href="styles/header.css" />
     <link rel="stylesheet" href="styles/responsiv/responsiv_privacy_policy.css">
+    <link rel="stylesheet" href="styles/bottom-nav.css">
 
     <title>Join</title>
   </head>
@@ -26,27 +27,29 @@
     </div>
   <div id="rotate-protection">
     <header>
-      <div class="header-content">
-        <span>Kanban Project Management Tool</span>
-        <div class="header-profile-container">
-          <a href="html/help.html"
-            ><img src="assets/icons/help.svg" alt="help_icon"
-          /></a>
-          <div
-            class="user-badge"
-            onclick="showProfileOptions()"
-            title="Benutzer"
-          >
-            <div class="user-avatar">SM</div>
+        <div class="header-content">
+          <img class="logo-responsive" src="assets/img/logo.svg" />
+          <span>Kanban Project Management Tool</span>
+          <div class="header-profile-container">
+            <a href="html/help.html"
+              ><img src="assets/icons/help.svg" alt="help_icon"
+            /></a>
+            <div
+              class="user-badge"
+              onclick="showProfileOptions()"
+              title="Benutzer"
+            >
+              <div class="user-avatar">SM</div>
+            </div>
+          </div>
+          <div class="profile-options d-none" id="profile-options">
+            <a class="help-options" href="html/help.html">Help</a>
+            <a href="html/legal_notice.html">Legal Notice</a>
+            <a href="html/privacy_policy.html">Privacy Policy</a>
+            <a href="#" onclick="logout(); return false;">Log Out</a>
           </div>
         </div>
-        <div class="profile-options d-none" id="profile-options">
-          <a href="html/legal_notice.html">Legal Notice</a>
-          <a href="html/privacy_policy.html">Privacy Policy</a>
-          <a href="#" onclick="logout(); return false;">Log Out</a>
-        </div>
-      </div>
-    </header>
+      </header>
     <div class="page-content">
       <div class="menu-bar-container">
         <div class="join-logo-container">
@@ -467,7 +470,30 @@
         <li>
           <strong>Content data:</strong> Content data includes information generated in the course of creating, editing, and publishing content of all kinds. This category of data
       </div>
+      
     </div>
+
+    <button onclick="history.back()" class="btn-back">
+      <img src="assets/icons/arrow-left-line.svg">
+    </button>
+    <nav class="bottom-nav">
+      <a href="html/summary.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/summary.svg" />
+        <span class="bottom-nav-span">Summary</span>
+      </a>
+      <a href="html/add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/add_task.svg" />
+        <span class="bottom-nav-span">Add Task</span>
+      </a>
+      <a href="html/board.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/board.svg" />
+        <span class="bottom-nav-span">Board</span>
+      </a>
+      <a href="html/contacts.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/contacts.svg" />
+        <span class="bottom-nav-span">Contacts</span>
+      </a>
+    </nav>
     </div>
     <script src="scripts/header.js"></script>
     <script src="scripts/script.js"></script>

@@ -4,18 +4,6 @@ let draggedTask = null;
 /** @type {HTMLElement|null} */
 let dragPreview = null;
 
-/** @type {number|null} */
-let touchTimeout = null;
-
-/** @type {boolean} */
-let isTouchDragging = false;
-
-/** @type {HTMLElement|null} */
-let currentDropColumn = null;
-
-/** @type {number} */
-const LONG_PRESS_DELAY = 200;
-
 // ============================================================================
 // HILFSFUNKTIONEN - Pointer Events & Drop Indicator
 // ============================================================================
@@ -61,29 +49,19 @@ function showDropIndicator(column) {
 }
 
 /**
- * Shows drop indicators in adjacent columns based on the source column.
- * Only neighboring columns get indicators (e.g., from "await feedback" → "in progress" and "done").
+ * Shows drop indicators in all columns except the source column.
+ * All columns get indicators to show they can receive the dragged task.
  * @param {HTMLElement} sourceColumn - The column where the drag started
  */
 function showAdjacentDropIndicators(sourceColumn) {
   const columns = Array.from(document.querySelectorAll(".column-content"));
-  const sourceIndex = columns.indexOf(sourceColumn);
 
-  if (sourceIndex === -1) return;
-
-  // Show indicator in previous column (if exists)
-  if (sourceIndex > 0) {
-    const prevColumn = columns[sourceIndex - 1];
-    prevColumn.classList.add("drag-over");
-    showDropIndicator(prevColumn);
-  }
-
-  // Show indicator in next column (if exists)
-  if (sourceIndex < columns.length - 1) {
-    const nextColumn = columns[sourceIndex + 1];
-    nextColumn.classList.add("drag-over");
-    showDropIndicator(nextColumn);
-  }
+  columns.forEach((column) => {
+    if (column !== sourceColumn) {
+      column.classList.add("drag-over");
+      showDropIndicator(column);
+    }
+  });
 }
 
 /**
@@ -134,15 +112,9 @@ function getColumnAtPoint(x, y) {
 function initDragAndDrop() {
   const taskCards = document.querySelectorAll(".task-card");
   taskCards.forEach((card) => {
-    // Desktop drag events
+    // Desktop drag events only - mobile uses move menu
     card.addEventListener("dragstart", handleDragStart);
     card.addEventListener("dragend", handleDragEnd);
-
-    // Touch events for mobile
-    card.addEventListener("touchstart", handleTouchStart, { passive: true });
-    card.addEventListener("touchmove", handleTouchMove, { passive: false });
-    card.addEventListener("touchend", handleTouchEnd, { passive: true });
-    card.addEventListener("touchcancel", handleTouchCancel, { passive: true });
   });
 
   const columns = document.querySelectorAll(".column-content");
@@ -294,160 +266,93 @@ async function handleDrop(e) {
 }
 
 // ============================================================================
-// TOUCH DRAG & DROP (Mobile Support)
+// MOBILE MOVE MENU
 // ============================================================================
 
-/**
- * Creates the drag preview for touch dragging.
- * @param {HTMLElement} card - The card to create preview from
- * @param {number} x - X position
- * @param {number} y - Y position
- */
-function createTouchDragPreview(card, x, y) {
-  const rect = card.getBoundingClientRect();
-  dragPreview = card.cloneNode(true);
-  dragPreview.classList.add("drag-preview");
-  dragPreview.style.width = rect.width + "px";
-  dragPreview.style.left = x - rect.width / 2 + "px";
-  dragPreview.style.top = y - 30 + "px";
-  document.body.appendChild(dragPreview);
-}
+/** @type {string|null} */
+let currentMoveTaskId = null;
+
+/** @type {string|null} */
+let currentMoveTaskStatus = null;
 
 /**
- * Cleans up after touch drag ends.
+ * Opens the move menu for a task.
+ * @param {Event} event - The click event
+ * @param {string} taskId - The ID of the task to move
  */
-function cleanupTouchDrag() {
-  if (touchTimeout) {
-    clearTimeout(touchTimeout);
-    touchTimeout = null;
-  }
+function openMoveMenu(event, taskId) {
+  event.stopPropagation();
 
-  if (dragPreview) {
-    dragPreview.remove();
-    dragPreview = null;
-  }
+  currentMoveTaskId = taskId;
 
-  if (draggedTask) {
-    draggedTask.classList.remove("dragging");
-    draggedTask.classList.remove("drag-start-pop");
-  }
+  // Find current status of the task
+  const taskCard = document.querySelector(`[data-task-id="${taskId}"]`);
+  const column = taskCard?.closest(".column-content");
+  currentMoveTaskStatus = column?.dataset?.status || null;
 
-  draggedTask = null;
-  isTouchDragging = false;
-  currentDropColumn = null;
-
-  enableCardPointerEvents();
-  removeAllDropIndicators();
-
-  document.querySelectorAll(".column-content").forEach((col) => {
-    col.classList.remove("drag-over");
+  // Highlight current status option
+  const menuOptions = document.querySelectorAll(".move-menu-option");
+  menuOptions.forEach((option) => {
+    if (option.dataset.status === currentMoveTaskStatus) {
+      option.classList.add("current-status");
+    } else {
+      option.classList.remove("current-status");
+    }
   });
+
+  // Position menu at the task card
+  const menu = document.querySelector(".move-menu");
+  const button = event.currentTarget;
+  const buttonRect = button.getBoundingClientRect();
+
+  // Position below the button, aligned to the right
+  menu.style.top = buttonRect.bottom + 8 + "px";
+  menu.style.left = buttonRect.right - menu.offsetWidth + "px";
+
+  // Show the menu
+  const overlay = document.getElementById("moveMenuOverlay");
+  overlay.classList.add("open");
+
+  // Adjust if menu goes off screen
+  const menuRect = menu.getBoundingClientRect();
+  if (menuRect.right > window.innerWidth) {
+    menu.style.left = window.innerWidth - menuRect.width - 16 + "px";
+  }
+  if (menuRect.left < 0) {
+    menu.style.left = "16px";
+  }
+  if (menuRect.bottom > window.innerHeight) {
+    menu.style.top = buttonRect.top - menuRect.height - 8 + "px";
+  }
 }
 
 /**
- * Handles touch start - initiates long press timer.
- * @param {TouchEvent} e
+ * Closes the move menu.
  */
-function handleTouchStart(e) {
-  const card = e.currentTarget;
-  const touch = e.touches[0];
-
-  touchTimeout = setTimeout(() => {
-    // Long press activated - start dragging
-    isTouchDragging = true;
-    draggedTask = card;
-
-    draggedTask.classList.add("dragging");
-    draggedTask.classList.add("drag-start-pop");
-
-    createTouchDragPreview(card, touch.clientX, touch.clientY);
-    disableCardPointerEvents();
-
-    // Show drop indicators in adjacent columns
-    const sourceColumn = card.closest(".column-content");
-    if (sourceColumn) {
-      showAdjacentDropIndicators(sourceColumn);
-    }
-
-    // Find initial column and highlight its indicator
-    const column = getColumnAtPoint(touch.clientX, touch.clientY);
-    if (column) {
-      updateDropIndicatorHighlight(column, sourceColumn);
-      currentDropColumn = column;
-    }
-  }, LONG_PRESS_DELAY);
+function closeMoveMenu() {
+  const overlay = document.getElementById("moveMenuOverlay");
+  overlay.classList.remove("open");
+  currentMoveTaskId = null;
+  currentMoveTaskStatus = null;
 }
 
 /**
- * Handles touch move - updates preview position and drop target.
- * @param {TouchEvent} e
+ * Moves the current task to a new status.
+ * @param {string} newStatus - The new status to move the task to
  */
-function handleTouchMove(e) {
-  if (!isTouchDragging) {
-    // Cancel long press if finger moves before timer completes
-    if (touchTimeout) {
-      clearTimeout(touchTimeout);
-      touchTimeout = null;
-    }
+async function moveTaskToStatus(newStatus) {
+  if (!currentMoveTaskId || newStatus === currentMoveTaskStatus) {
+    closeMoveMenu();
     return;
   }
 
-  e.preventDefault(); // Prevent scrolling while dragging
-
-  const touch = e.touches[0];
-
-  // Update preview position
-  if (dragPreview) {
-    dragPreview.style.left = touch.clientX - dragPreview.offsetWidth / 2 + "px";
-    dragPreview.style.top = touch.clientY - 30 + "px";
-  }
-
-  // Find column under finger
-  const column = getColumnAtPoint(touch.clientX, touch.clientY);
-
-  if (column !== currentDropColumn) {
-    // Update active indicator highlight
-    const sourceColumn = draggedTask?.closest(".column-content");
-    updateDropIndicatorHighlight(column, sourceColumn);
-
-    currentDropColumn = column;
-  }
-}
-
-/**
- * Handles touch end - performs drop if dragging.
- * @param {TouchEvent} e
- */
-async function handleTouchEnd(e) {
-  if (touchTimeout) {
-    clearTimeout(touchTimeout);
-    touchTimeout = null;
-  }
-
-  if (!isTouchDragging) return;
-
-  const taskId = draggedTask?.dataset?.taskId;
-  const targetColumn = currentDropColumn;
-
-  cleanupTouchDrag();
-
-  if (!taskId || !targetColumn) return;
-
-  const newStatus = targetColumn.dataset.status;
-
   try {
-    await updateTask(taskId, { status: newStatus });
+    await updateTask(currentMoveTaskId, { status: newStatus });
+    closeMoveMenu();
     await renderAllTasks();
   } catch (error) {
-    console.error("Error updating task status:", error);
+    console.error("Error moving task:", error);
     alert("Task could not be moved. Please try again.");
+    closeMoveMenu();
   }
-}
-
-/**
- * Handles touch cancel - cleans up without performing drop.
- * @param {TouchEvent} e
- */
-function handleTouchCancel(e) {
-  cleanupTouchDrag();
 }

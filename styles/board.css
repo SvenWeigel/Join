@@ -118,6 +118,7 @@ input:focus {
 }
 
 .task-card {
+  position: relative;
   background-color: white;
   border-radius: 24px;
   box-shadow: 0px 0px 10px 3px #00000014;
@@ -128,6 +129,107 @@ input:focus {
   opacity: 1;
   overflow-wrap: anywhere;
   max-width: 252px;
+}
+
+/* ============================================================================
+   TASK CARD - MOBILE MOVE BUTTON
+   ============================================================================ */
+
+.task-move-btn {
+  display: none;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.125s ease;
+  z-index: 1;
+}
+
+.task-move-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.task-move-btn:active {
+  background-color: #d0d0d0;
+}
+
+.task-move-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================================================
+   MOBILE MOVE MENU OVERLAY & POPUP
+   ============================================================================ */
+
+.move-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.move-menu-overlay.open {
+  display: block;
+}
+
+.move-menu {
+  position: absolute;
+  background-color: white;
+  border-radius: 20px;
+  padding: 16px;
+  min-width: 180px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1001;
+}
+
+.move-menu-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2a3647;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 4px;
+}
+
+.move-menu-option {
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #2a3647;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.125s ease;
+}
+
+.move-menu-option:hover {
+  background-color: #f4f4f4;
+}
+
+.move-menu-option:active {
+  background-color: #e0e0e0;
+}
+
+.move-menu-option.current-status {
+  color: #a8a8a8;
+  pointer-events: none;
+  background-color: #f9f9f9;
 }
 
 /* ============================================================================

@@ -1,3 +1,23 @@
+@media (max-width:870px){
+  .btn-back{
+    width:32px;
+    height:32px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    background-color: #f6f7f8;
+    cursor: pointer;
+    position:absolute;
+    top: 128px;
+    right: 16px;
+  }
+  .btn-back:hover{
+    background-color:#d1d1d1;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 40px 20px;
@@ -13,5 +33,10 @@
 
   h2 {
     font-size: 1.5em;
+  }
+   .legal-notice-content{
+    margin-left: 20px;
+    margin-right: 24px; 
+    padding-top: 153px;
   }
 }
