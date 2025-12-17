@@ -60,6 +60,12 @@
   .task-card {
     min-width: 252px;
   }
+
+  /* Show move button on mobile/tablet */
+  .task-move-btn {
+    display: flex;
+  }
+
   .board-header {
     padding: 79px 16px 48px 16px;
   }
@@ -79,15 +85,15 @@
     padding: 48px 16px 40px 16px;
   }
   .responsive-input {
-    display:flex;
-  align-items: center;
-  background-color: white;
-  padding: 8px 16px;
-  border: 1px solid #a8a8a8;
-  border-radius:10px;
-  margin: 0 16px 24px 16px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 8px 16px;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    margin: 0 16px 24px 16px;
   }
-  .search-bar{
+  .search-bar {
     display: none;
   }
   #findTask-repsonsive {
@@ -99,31 +105,31 @@
   #addTaskBtn {
     padding: 10px;
   }
-  .responsive-input input{
+  .responsive-input input {
     font-family: "Inter", sans-serif;
-  border:none;
-  font-size:20px;
-  padding-block:0;
-  padding-inline: 0;
-  flex-grow:1;
+    border: none;
+    font-size: 20px;
+    padding-block: 0;
+    padding-inline: 0;
+    flex-grow: 1;
   }
 
-  .find-separator-responsive{
-    width:1px;
+  .find-separator-responsive {
+    width: 1px;
     height: 25px;
     background-color: #d1d1d1;
     margin: 0 16px;
   }
 
   input:focus {
-  outline: none;
-  box-shadow: none;
-  border-color: inherit;
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
   }
 }
 
-@media(max-width: 345px){
-  .responsive-input input{
+@media (max-width: 345px) {
+  .responsive-input input {
     width: 100%;
   }
 }

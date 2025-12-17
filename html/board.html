@@ -143,6 +143,25 @@
       <span>No tasks found</span>
     </div>
 
+    <!-- Mobile Move Menu -->
+    <div id="moveMenuOverlay" class="move-menu-overlay" onclick="closeMoveMenu()">
+      <div class="move-menu" onclick="event.stopPropagation()">
+        <span class="move-menu-title">Move to</span>
+        <button type="button" class="move-menu-option" data-status="todo" onclick="moveTaskToStatus('todo')">
+          To do
+        </button>
+        <button type="button" class="move-menu-option" data-status="inprogress" onclick="moveTaskToStatus('inprogress')">
+          In progress
+        </button>
+        <button type="button" class="move-menu-option" data-status="awaitfeedback" onclick="moveTaskToStatus('awaitfeedback')">
+          Await feedback
+        </button>
+        <button type="button" class="move-menu-option" data-status="done" onclick="moveTaskToStatus('done')">
+          Done
+        </button>
+      </div>
+    </div>
+
     <nav class="bottom-nav">
       <a href="html/summary.html" class="nav-div">
         <img class="bottom-nav-img" src="../assets/icons/summary.svg">

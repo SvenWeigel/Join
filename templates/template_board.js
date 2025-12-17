@@ -64,6 +64,9 @@ const COLUMN_LABELS = ["To do", "In progress", "Await feedback", "Done"];
 function getTaskCardTemplate(task) {
   return `
       <div class="task-card" data-task-id="${task.id}" draggable="true">
+        <button type="button" class="task-move-btn" onclick="openMoveMenu(event, '${task.id}')" aria-label="Move task">
+          <img src="assets/icons/move_task.svg" alt="Move" />
+        </button>
         <span class="task-category ${task.categoryClass}">${task.categoryLabel}</span>
         <h4 class="task-title">${task.title}</h4>
         <p class="task-description">
