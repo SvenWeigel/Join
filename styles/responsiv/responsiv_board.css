@@ -37,7 +37,7 @@
 @media (max-width: 1095px) {
   .board-container {
     overflow-y: auto;
-    height: calc(100vh - 96px - 80px);
+    height: calc(100vh - 96px - 90px);
   }
   .board-container::-webkit-scrollbar {
     display: none;

@@ -89,7 +89,7 @@
 
 @media (max-width: 600px) {
   .summary-content-div {
-    padding: 48px 16px 0 16px;
+    padding: 48px 16px 90px 16px;
     width:100%;
   }
   .todo-done-div {
