@@ -1,4 +1,11 @@
-// ID-Namen der Elemente
+/**
+ * @fileoverview Sign Up Page Controller
+ * @description Handles user registration functionality including form validation and account creation.
+ */
+
+/**
+ * Element ID names for the signup form.
+ */
 const SELECTORS = {
   form: "signup-form",
   name: "signup-name",
@@ -18,33 +25,54 @@ const MESSAGES = {
 };
 
 /**
- * Prüft, ob alle Pflichtfelder des Signup-Formulars ausgefüllt und gültig sind.
- * Berücksichtigt Name (min. 2 Zeichen), Email (gültiges Format), Passwort (min. 8 Zeichen),
- * Passwortbestätigung (muss übereinstimmen) und die Datenschutz-Checkbox.
+ * Gets all signup form field elements.
  *
- * @returns {boolean} true, wenn alle Felder gültig sind.
+ * @returns {Object} Object containing all form field elements
+ */
+function getSignupFormFields() {
+  return {
+    name: document.getElementById(SELECTORS.name),
+    email: document.getElementById(SELECTORS.email),
+    password: document.getElementById(SELECTORS.password),
+    confirm: document.getElementById(SELECTORS.confirm),
+    privacy: document.getElementById(SELECTORS.privacyCheck),
+  };
+}
+
+/**
+ * Validates individual signup form fields.
+ *
+ * @param {Object} fields - The form field elements
+ * @returns {Object} Object with validation results for each field
+ */
+function validateSignupFields(fields) {
+  const { name, email, password, confirm, privacy } = fields;
+  return {
+    nameValid: name && name.value.trim().length >= 2,
+    emailValid: email && email.value.trim() !== "" && email.validity.valid,
+    passwordValid: password && password.value.length >= 8,
+    confirmValid:
+      confirm && confirm.value !== "" && confirm.value === password?.value,
+    privacyChecked: privacy && privacy.checked,
+  };
+}
+
+/**
+ * Checks if all required signup form fields are valid.
+ *
+ * @returns {boolean} True if all fields are valid
  */
 function areAllFieldsValid() {
-  const name = document.getElementById(SELECTORS.name);
-  const email = document.getElementById(SELECTORS.email);
-  const password = document.getElementById(SELECTORS.password);
-  const confirm = document.getElementById(SELECTORS.confirm);
-  const privacy = document.getElementById(SELECTORS.privacyCheck);
-
-  const nameValid = name && name.value.trim().length >= 2;
-  const emailValid = email && email.value.trim() !== "" && email.validity.valid;
-  const passwordValid = password && password.value.length >= 8;
-  const confirmValid =
-    confirm && confirm.value !== "" && confirm.value === password?.value;
-  const privacyChecked = privacy && privacy.checked;
-
+  const fields = getSignupFormFields();
+  const { nameValid, emailValid, passwordValid, confirmValid, privacyChecked } =
+    validateSignupFields(fields);
   return (
     nameValid && emailValid && passwordValid && confirmValid && privacyChecked
   );
 }
 
 /**
- * Aktualisiert den Zustand des Signup-Buttons basierend auf der Validierung aller Felder.
+ * Updates the signup button state based on the validation of all fields.
  */
 function updateSignupButtonState() {
   const button = document.getElementById(SELECTORS.signupBtn);
@@ -53,65 +81,66 @@ function updateSignupButtonState() {
 }
 
 /**
- * Verknüpft alle Formularfelder mit der Button-Zustandsaktualisierung.
- * Registriert `input`-Listener auf Textfeldern und `change`-Listener auf der Checkbox.
+ * Attaches input listeners to text fields for validation.
  */
-function wireFormValidation() {
+function wireTextFieldValidation() {
   const fieldIds = [
     SELECTORS.name,
     SELECTORS.email,
     SELECTORS.password,
     SELECTORS.confirm,
   ];
-
   fieldIds.forEach((id) => {
     const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener("input", updateSignupButtonState);
-    }
+    if (el) el.addEventListener("input", updateSignupButtonState);
   });
+}
 
+/**
+ * Links all form fields with the button state update.
+ */
+function wireFormValidation() {
+  wireTextFieldValidation();
   const checkbox = document.getElementById(SELECTORS.privacyCheck);
-  if (checkbox) {
-    checkbox.addEventListener("change", updateSignupButtonState);
-  }
-
-  // Initialen Zustand setzen
+  if (checkbox) checkbox.addEventListener("change", updateSignupButtonState);
   updateSignupButtonState();
 }
 
 /**
- * Verkettet die Passwort- und Bestätigungsfelder für Live-Validation.
- * Wenn die beiden Felder nicht übereinstimmen, wird auf dem Confirm-Feld
- * eine erklärende Custom-Validity gesetzt, so dass der Browser eine
- * verständliche Fehlermeldung anzeigt.
+ * Creates a password match validator function.
  *
- * @param {string} passwordId - ID des Passwort-Inputs.
- * @param {string} confirmId - ID des Confirm-Inputs.
+ * @param {HTMLElement} pwd - Password input element
+ * @param {HTMLElement} conf - Confirm password input element
+ * @returns {Function} Validator function
+ */
+function createPasswordValidator(pwd, conf) {
+  return () => {
+    const message = conf.value !== pwd.value ? MESSAGES.passwordsMismatch : "";
+    conf.setCustomValidity(message);
+  };
+}
+
+/**
+ * Links password and confirmation fields for live validation.
+ *
+ * @param {string} passwordId - ID of the password input
+ * @param {string} confirmId - ID of the confirm input
  */
 function wirePasswordConfirmValidation(passwordId, confirmId) {
   const pwd = document.getElementById(passwordId);
   const conf = document.getElementById(confirmId);
   if (!pwd || !conf) return;
-
-  const validate = () => {
-    if (conf.value !== pwd.value)
-      conf.setCustomValidity(MESSAGES.passwordsMismatch);
-    else conf.setCustomValidity("");
-  };
-
+  const validate = createPasswordValidator(pwd, conf);
   pwd.addEventListener("input", validate);
   conf.addEventListener("input", validate);
-  validate(); // initial prüfen
+  validate();
 }
 
 /**
- * Holt alle Benutzer-Datensätze vom Server.
- * Erwartet eine JSON-Antwort in Form eines Objekts, das in ein Array umgewandelt wird.
+ * Fetches all user records from the server.
  *
- * @param {string} baseUrl - Basis-URL der API/DB (z. B. Firebase REST endpoint).
- * @returns {Promise<Array>} Array mit User-Objekten.
- * @throws {Error} Wenn der Fetch fehlschlägt.
+ * @param {string} baseUrl - Base URL of the API
+ * @returns {Promise<Array>} Array of user objects
  */
 async function fetchAllUsers(baseUrl) {
   const res = await fetch(`${baseUrl}/users.json`);
@@ -121,12 +150,11 @@ async function fetchAllUsers(baseUrl) {
 }
 
 /**
- * Legt einen neuen Benutzer-Datensatz auf dem Server an (POST).
+ * Creates a new user record on the server.
  *
- * @param {string} baseUrl - Basis-URL der API/DB.
- * @param {Object} user - Benutzerobjekt, das gepostet wird.
- * @returns {Promise<Object>} Response-JSON des Servers.
- * @throws {Error} Wenn der POST fehlschlägt.
+ * @param {string} baseUrl - Base URL of the API
+ * @param {Object} user - User object to be posted
+ * @returns {Promise<Object>} Created user with ID
  */
 async function createUserRecord(baseUrl, user) {
   const res = await fetch(`${baseUrl}/users.json`, {
@@ -140,10 +168,9 @@ async function createUserRecord(baseUrl, user) {
 }
 
 /**
- * Liest die aktuellen Werte des Signup-Formulars aus dem DOM.
- * Trimmt `name` und `email`, gibt `password`/`confirm` unverändert zurück.
+ * Reads signup form values from the DOM.
  *
- * @returns {{name:string,email:string,password:string,confirm:string}}
+ * @returns {{name: string, email: string, password: string, confirm: string}} Form values
  */
 function readFormValues() {
   return {
@@ -155,10 +182,10 @@ function readFormValues() {
 }
 
 /**
- * Prüft, ob die angegebene (normalisierte) E‑Mail bereits in der DB existiert.
+ * Checks if email already exists in the database.
  *
- * @param {string} normalizedEmail - E‑Mail in Kleinbuchstaben.
- * @returns {Promise<boolean>} true, wenn die E‑Mail schon vorhanden ist.
+ * @param {string} normalizedEmail - Email in lowercase
+ * @returns {Promise<boolean>} True if email exists
  */
 async function isEmailTaken(normalizedEmail) {
   const users = await fetchAllUsers(BASE_URL);
@@ -166,78 +193,116 @@ async function isEmailTaken(normalizedEmail) {
 }
 
 /**
- * Erstellt einen neuen Benutzer-Datensatz (normalisiert Email) und leitet bei Erfolg weiter.
- * Erstellt zusätzlich einen globalen Contact-Eintrag für den neuen User.
- * Zeigt eine Erfolgs-Message und navigiert zurück zur Startseite.
+ * Creates user object from form data.
  *
- * @param {{name:string,email:string,password:string}} param0 - Daten aus dem Formular.
+ * @param {string} name - User name
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @returns {Object} User object
  */
-async function registerAndRedirect({ name, email, password }) {
-  const user = {
+function createUserObject(name, email, password) {
+  return {
     name,
     email: email.toLowerCase(),
     password,
     createdAt: new Date().toISOString(),
   };
-  await createUserRecord(BASE_URL, user);
+}
 
-  // User auch als globalen Contact erstellen
-  const contact = {
+/**
+ * Creates contact object from user data.
+ *
+ * @param {string} name - Contact name
+ * @param {string} email - Contact email
+ * @returns {Object} Contact object
+ */
+function createContactFromUser(name, email) {
+  return {
     name,
     email: email.toLowerCase(),
     phone: "",
     color: getRandomContactColor(),
   };
-  await createContact(contact);
+}
 
+/**
+ * Registers new user and creates contact entry.
+ *
+ * @param {{name: string, email: string, password: string}} data - Form data
+ */
+async function registerAndRedirect({ name, email, password }) {
+  const user = createUserObject(name, email, password);
+  await createUserRecord(BASE_URL, user);
+  await createContact(createContactFromUser(name, email));
   showSignupSuccessOverlay();
 }
 
 /**
- * Generiert eine zufällige Farbe für neue Kontakte.
- * @returns {string} Ein Hex-Farbcode
+ * Available colors for new contacts.
+ */
+const CONTACT_COLORS = [
+  "#FF7A00",
+  "#9327FF",
+  "#6E52FF",
+  "#FC71FF",
+  "#FFBB2B",
+  "#1FD7C1",
+  "#462F8A",
+  "#FF4646",
+  "#00BEE8",
+  "#FF745E",
+];
+
+/**
+ * Generates a random color for new contacts.
+ *
+ * @returns {string} A hex color code
  */
 function getRandomContactColor() {
-  const colors = [
-    "#FF7A00",
-    "#9327FF",
-    "#6E52FF",
-    "#FC71FF",
-    "#FFBB2B",
-    "#1FD7C1",
-    "#462F8A",
-    "#FF4646",
-    "#00BEE8",
-    "#FF745E",
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
+  return CONTACT_COLORS[Math.floor(Math.random() * CONTACT_COLORS.length)];
 }
 
 /**
- * Haupt-Handler für das Signup-Formular.
- * Führt Browser-Validation durch, liest Formwerte, prüft auf Duplikate
- * und erstellt den neuen Benutzer. Fehler werden geloggt und per Alert gezeigt.
+ * Validates signup form using browser validation.
  *
- * @param {Event} e - Submit-Event des Formulars.
+ * @returns {boolean} True if form is valid
  */
-async function handleSignupSubmit(e) {
-  e.preventDefault();
-
+function validateSignupForm() {
   const form = document.getElementById(SELECTORS.form);
   if (form && !form.checkValidity()) {
     form.reportValidity();
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Processes signup after validation passes.
+ *
+ * @param {string} name - User name
+ * @param {string} email - User email
+ * @param {string} password - User password
+ */
+async function processSignup(name, email, password) {
+  const normalizedEmail = email.toLowerCase();
+  if (await isEmailTaken(normalizedEmail)) {
+    alert(MESSAGES.emailExists);
     return;
   }
+  await registerAndRedirect({ name, email, password });
+}
 
-  const { name, email, password, confirm } = readFormValues();
-  const normalizedEmail = email.toLowerCase();
-
+/**
+ * Handles signup form submission.
+ *
+ * @param {Event} e - Submit event
+ */
+async function handleSignupSubmit(e) {
+  e.preventDefault();
+  if (!validateSignupForm()) return;
+  const { name, email, password } = readFormValues();
   try {
-    if (await isEmailTaken(normalizedEmail)) {
-      alert(MESSAGES.emailExists);
-      return;
-    }
-    await registerAndRedirect({ name, email, password });
+    await processSignup(name, email, password);
   } catch (err) {
     console.error(err);
     alert("Error: " + err.message);
@@ -245,9 +310,7 @@ async function handleSignupSubmit(e) {
 }
 
 /**
- * Initialisiert das Signup-Skript: Verknüpft alle Formularfelder mit der Validierung,
- * aktiviert Live-Validation für Passwort/Confirm und hängt den
- * Submit-Handler an das Formular.
+ * Initializes the signup form validation and handlers.
  */
 function init() {
   wireFormValidation();
@@ -257,60 +320,63 @@ function init() {
   if (form) form.addEventListener("submit", handleSignupSubmit);
 }
 
-// Sicherstellen, dass `init` ausgeführt wird, auch wenn das Skript
-// nach dem `DOMContentLoaded`-Event geladen wurde.
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
 }
 
+/**
+ * Redirects to start page after hiding overlay.
+ *
+ * @param {HTMLElement} overlay - The overlay element
+ */
+function redirectAfterDelay(overlay) {
+  setTimeout(() => {
+    overlay.style.display = "none";
+    window.location.replace("index.html");
+  }, 2000);
+}
+
+/**
+ * Shows the signup success overlay and redirects.
+ */
 function showSignupSuccessOverlay() {
   const overlay = document.getElementById("signup-success-overlay");
-  if (overlay) {
-    overlay.style.display = "flex";
-    setTimeout(() => {
-      overlay.style.display = "none";
-      window.location.replace("index.html");
-    }, 2000); // 2 Sekunden anzeigen, dann weiterleiten
-  }
+  if (!overlay) return;
+  overlay.style.display = "flex";
+  redirectAfterDelay(overlay);
 }
 
-function changePasswordIcon(inputId,iconId) {
-  const passwordIcon = document.getElementById(iconId);
-  const passwordInput = document.getElementById(inputId);
-
-  if (passwordInput.value.length > 0) {
-    passwordIcon.src = "assets/icons/visibility_off.svg";
-    passwordIcon.classList.add("pointer");
-  } else {
-    passwordIcon.src = "assets/icons/lock.svg";
-    passwordIcon.classList.remove("pointer");
-  }
+/**
+ * Changes password icon based on input value.
+ *
+ * @param {string} inputId - The password input ID
+ * @param {string} iconId - The icon element ID
+ */
+function changePasswordIcon(inputId, iconId) {
+  const icon = document.getElementById(iconId);
+  const input = document.getElementById(inputId);
+  const hasValue = input.value.length > 0;
+  icon.src = hasValue
+    ? "assets/icons/visibility_off.svg"
+    : "assets/icons/lock.svg";
+  icon.classList.toggle("pointer", hasValue);
 }
 
+/**
+ * Toggles password field visibility.
+ *
+ * @param {string} inputId - The password input ID
+ * @param {string} iconId - The icon element ID
+ */
 function togglePasswordVisibility(inputId, iconId) {
-  const passwordIcon = document.getElementById(iconId);
-  const passwordInput = document.getElementById(inputId);
-
-  if (passwordInput.value.length > 0) {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      passwordIcon.src = "assets/icons/visibility.svg";
-    } else {
-      passwordInput.type = "password";
-      passwordIcon.src = "assets/icons/visibility_off.svg";
-    }
-  }
+  const icon = document.getElementById(iconId);
+  const input = document.getElementById(inputId);
+  if (input.value.length === 0) return;
+  const isHidden = input.type === "password";
+  input.type = isHidden ? "text" : "password";
+  icon.src = isHidden
+    ? "assets/icons/visibility.svg"
+    : "assets/icons/visibility_off.svg";
 }
-
-// function preFillSignupForm() {
-//   const name = document.getElementsByName("name")[0];
-//   const email = document.getElementsByName("email")[0];
-//   const password = document.getElementsByName("password")[0];
-//   const confirm = document.getElementsByName("confirm_password")[0];
-//   if (name) name.value = "Sofia Müller";
-//   if (email) email.value = "Sofiam@gmail.com";
-//   if (password) password.value = "mypassword123";
-//   if (confirm) confirm.value = "mypassword123";
-// }

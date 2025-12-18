@@ -1,16 +1,21 @@
 /**
- * Aktive Kontaktliste (wird beim Init aus Firebase geladen - global für alle User)
+ * @fileoverview Contacts Page Controller
+ * @description Manages the contacts page functionality including loading, selecting, and displaying contacts.
+ */
+
+/**
+ * Active contact list (loaded from Firebase on init - global for all users)
  */
 let contacts = [];
 
 /**
- * ID des aktuell ausgewählten Kontakts (null = kein Kontakt ausgewählt)
+ * ID of the currently selected contact (null = no contact selected)
  */
 let selectedContactId = null;
 
 /**
- * Initializes the contacts page (async für Firebase-Abfragen)
- * Lädt globale Kontakte aus Firebase (für alle User inkl. Gäste)
+ * Initializes the contacts page (async for Firebase queries)
+ * Loads global contacts from Firebase (for all users including guests)
  */
 async function initContacts() {
   try {
@@ -24,7 +29,23 @@ async function initContacts() {
 }
 
 /**
- * Selects a contact and displays its details
+ * Toggles mobile view to show contact details.
+ */
+function showMobileContactDetails() {
+  if (window.innerWidth >= 870) return;
+  const contactsRight = document.querySelector(".contacts-right");
+  const contactsLeft = document.querySelector(".contacts-left");
+  if (contactsRight) {
+    contactsRight.classList.add("show");
+    contactsRight.classList.remove("close");
+    contactsLeft.classList.add("close");
+    contactsLeft.classList.remove("show");
+  }
+}
+
+/**
+ * Selects a contact and displays its details.
+ *
  * @param {string} contactId - ID of the contact
  */
 function selectContact(contactId) {
@@ -32,18 +53,7 @@ function selectContact(contactId) {
   const contact = contacts.find((c) => c.id === contactId);
   renderContactDetails(contact);
   highlightSelectedContact(contactId);
-
-  // Klasse für mobile Ansicht hinzufügen
-  if (window.innerWidth < 870) {
-    const contactsRight = document.querySelector(".contacts-right");
-    const contactsLeft = document.querySelector(".contacts-left");
-    if (contactsRight) {
-      contactsRight.classList.add("show");
-      contactsRight.classList.remove("close");
-      contactsLeft.classList.add("close");
-      contactsLeft.classList.remove("show");
-    }
-  }
+  showMobileContactDetails();
 }
 
 /**
@@ -78,21 +88,28 @@ function getInitials(name) {
 }
 
 /**
- * Groups contacts alphabetically by the first letter of their name
+ * Sorts contacts alphabetically by name.
+ *
+ * @param {Array} contactList - Array of contact objects
+ * @returns {Array} Sorted array of contacts
+ */
+function sortContactsByName(contactList) {
+  return contactList.slice().sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Groups contacts alphabetically by the first letter of their name.
+ *
  * @param {Array} contactList - Array of contact objects
  * @returns {Object} Object with letters as keys and arrays of contacts as values
  */
 function groupContactsByLetter(contactList) {
-  let sortedContacts = contactList
-    .slice()
-    .sort((a, b) => a.name.localeCompare(b.name));
-  let grouped = {};
+  const sortedContacts = sortContactsByName(contactList);
+  const grouped = {};
   for (let i = 0; i < sortedContacts.length; i++) {
-    let contact = sortedContacts[i];
-    let firstLetter = contact.name.charAt(0).toUpperCase();
-    if (!grouped[firstLetter]) {
-      grouped[firstLetter] = [];
-    }
+    const contact = sortedContacts[i];
+    const firstLetter = contact.name.charAt(0).toUpperCase();
+    if (!grouped[firstLetter]) grouped[firstLetter] = [];
     grouped[firstLetter].push(contact);
   }
   return grouped;
@@ -115,6 +132,9 @@ async function deleteContactFromDetails(contactId) {
   }
 }
 
+/**
+ * Navigates back to the contact list (mobile view)
+ */
 function backToContactList() {
   if (window.innerWidth < 870) {
     const contactsRight = document.querySelector(".contacts-right");
@@ -128,7 +148,9 @@ function backToContactList() {
   }
 }
 
-//Responsiv: Edit/Delete Menü bei onclick öffnen
+/**
+ * Shows the responsive edit/delete menu on click
+ */
 function showDetails() {
   const actionsResponsive = document.querySelector(
     ".contacts-details-actions-responsive"
@@ -138,7 +160,9 @@ function showDetails() {
   }
 }
 
-//Responsiv: Edit/Delete Menü beim Klick außerhalb schließen
+/**
+ * Closes the responsive edit/delete menu when clicking outside
+ */
 document.addEventListener("mousedown", function handleClickOutside(event) {
   const actionsContainer = document.querySelector(
     ".contacts-details-actions-responsive"

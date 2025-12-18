@@ -1,26 +1,22 @@
 /**
  * @fileoverview Board Templates
- * @description Reine Template-Funktionen - geben nur HTML zurück, keine Logik!
- *              Logik befindet sich in /scripts/render.js
+ * @description Pure template functions - only return HTML, no logic!
+ *              Logic is located in /scripts/render.js
  */
-
-// ============================================================================
-// KONFIGURATION - Mapping von Daten zu HTML/CSS
-// ============================================================================
 
 /**
- * Mapping von Task-Status zu Spalten-Index im Board
- * Index entspricht der Reihenfolge der .column-content Elemente im HTML
+ * Mapping of task status to column index in the board.
+ * Index corresponds to the order of .column-content elements in HTML.
  */
 const STATUS_COLUMNS = {
-  todo: 0, // Erste Spalte: "To do"
-  inprogress: 1, // Zweite Spalte: "In progress"
-  awaitfeedback: 2, // Dritte Spalte: "Await feedback"
-  done: 3, // Vierte Spalte: "Done"
+  todo: 0,
+  inprogress: 1,
+  awaitfeedback: 2,
+  done: 3,
 };
 
 /**
- * Mapping von Kategorie zu CSS-Klasse und Anzeige-Label
+ * Mapping of category to CSS class and display label.
  */
 const CATEGORY_CONFIG = {
   technical: { class: "technical", label: "Technical Task" },
@@ -28,7 +24,7 @@ const CATEGORY_CONFIG = {
 };
 
 /**
- * Mapping von Priorität zu Icon-Pfaden
+ * Mapping of priority to icon paths.
  */
 const PRIORITY_ICONS = {
   urgent: "assets/icons/urgent_icon.svg",
@@ -37,29 +33,25 @@ const PRIORITY_ICONS = {
 };
 
 /**
- * Labels für leere Spalten
+ * Labels for empty columns.
  */
 const COLUMN_LABELS = ["To do", "In progress", "Await feedback", "Done"];
 
-// ============================================================================
-// TEMPLATE FUNKTIONEN - Geben nur HTML zurück, keine Logik!
-// ============================================================================
-
 /**
- * Generiert die HTML für eine einzelne Task-Card.
- * Struktur entspricht exakt der hardcoded Card im HTML.
+ * Generates the HTML for a single task card.
+ * Structure matches exactly the hardcoded card in the HTML.
  *
- * @param {Object} task - Das Task-Objekt
- * @param {string} task.id - Die Firebase-ID
- * @param {string} task.title - Der Titel (bereits escaped)
- * @param {string} task.description - Die Beschreibung (bereits escaped/gekürzt)
- * @param {string} task.categoryLabel - Anzeige-Label für Kategorie (z.B. "User Story")
- * @param {string} task.categoryClass - CSS-Klasse für Kategorie-Styling
- * @param {string} task.priorityIcon - Pfad zum Priority-Icon
- * @param {string} task.priority - Priority-Name für alt-Text
- * @param {string} task.subtasksHtml - Fertig gerendertes Subtasks-HTML
- * @param {string} task.assigneesHtml - Fertig gerendertes Assignees-HTML
- * @returns {string} HTML-String der Task-Card
+ * @param {Object} task - The task object
+ * @param {string} task.id - The Firebase ID
+ * @param {string} task.title - The title (already escaped)
+ * @param {string} task.description - The description (already escaped/truncated)
+ * @param {string} task.categoryLabel - Display label for category (e.g. "User Story")
+ * @param {string} task.categoryClass - CSS class for category styling
+ * @param {string} task.priorityIcon - Path to the priority icon
+ * @param {string} task.priority - Priority name for alt text
+ * @param {string} task.subtasksHtml - Pre-rendered subtasks HTML
+ * @param {string} task.assigneesHtml - Pre-rendered assignees HTML
+ * @returns {string} HTML string of the task card
  */
 function getTaskCardTemplate(task) {
   return `
@@ -84,12 +76,12 @@ function getTaskCardTemplate(task) {
 }
 
 /**
- * Generiert die HTML für die Subtasks-Fortschrittsanzeige.
- * Struktur entspricht exakt der hardcoded Card im HTML.
+ * Generates the HTML for the subtasks progress indicator.
+ * Structure matches exactly the hardcoded card in the HTML.
  *
- * @param {number} completed - Anzahl erledigter Subtasks
- * @param {number} total - Gesamtanzahl Subtasks
- * @returns {string} HTML-String der Fortschrittsanzeige
+ * @param {number} completed - Number of completed subtasks
+ * @param {number} total - Total number of subtasks
+ * @returns {string} HTML string of the progress indicator
  */
 function getSubtasksProgressTemplate(completed, total) {
   const progressPercent = total > 0 ? (completed / total) * 100 : 0;
@@ -104,11 +96,11 @@ function getSubtasksProgressTemplate(completed, total) {
 }
 
 /**
- * Generiert die HTML für einen einzelnen Assignee-Badge.
+ * Generates the HTML for a single assignee badge.
  *
- * @param {string} initials - Die Initialen (z.B. "MM")
- * @param {string} [color] - Optionale Hintergrundfarbe
- * @returns {string} HTML-String des Badges
+ * @param {string} initials - The initials (e.g. "MM")
+ * @param {string} [color] - Optional background color
+ * @returns {string} HTML string of the badge
  */
 function getAssigneeBadgeTemplate(initials, color) {
   const style = color ? `style="background-color: ${color}"` : "";
@@ -116,20 +108,20 @@ function getAssigneeBadgeTemplate(initials, color) {
 }
 
 /**
- * Generiert die HTML für das Overflow-Badge (+X).
+ * Generates the HTML for the overflow badge (+X).
  *
- * @param {number} count - Anzahl der weiteren Assignees
- * @returns {string} HTML-String des Overflow-Badges
+ * @param {number} count - Number of additional assignees
+ * @returns {string} HTML string of the overflow badge
  */
 function getOverflowBadgeTemplate(count) {
   return `<div class="badge badge-overflow">+${count}</div>`;
 }
 
 /**
- * Generiert die HTML für eine leere Spalte (Drag & Drop Platzhalter).
+ * Generates the HTML for an empty column (drag & drop placeholder).
  *
- * @param {string} columnLabel - Das Label der Spalte (z.B. "To do")
- * @returns {string} HTML-String des Placeholders
+ * @param {string} columnLabel - The label of the column (e.g. "To do")
+ * @returns {string} HTML string of the placeholder
  */
 function getEmptyColumnTemplate(columnLabel) {
   return `
@@ -139,18 +131,14 @@ function getEmptyColumnTemplate(columnLabel) {
   `;
 }
 
-// ============================================================================
-// MODAL ASSIGNEE DROPDOWN TEMPLATES
-// ============================================================================
-
 /**
- * Generiert das HTML für ein Dropdown-Item.
- * @param {string} id
- * @param {string} name
- * @param {string} initials
- * @param {string} color
- * @param {boolean} isSelected
- * @returns {string}
+ * Generates the HTML for a dropdown item.
+ * @param {string} id - The contact ID
+ * @param {string} name - The contact name
+ * @param {string} initials - The contact initials
+ * @param {string} color - The background color
+ * @param {boolean} isSelected - Whether the contact is selected
+ * @returns {string} HTML string for the dropdown item
  */
 function getModalDropdownItemTemplate(id, name, initials, color, isSelected) {
   const selectedClass = isSelected ? "selected" : "";
@@ -168,25 +156,21 @@ function getModalDropdownItemTemplate(id, name, initials, color, isSelected) {
 }
 
 /**
- * Generiert das HTML für ein Kontakt-Badge.
- * @param {string} name
- * @param {string} initials
- * @param {string} color
- * @returns {string}
+ * Generates the HTML for a contact badge.
+ * @param {string} name - The contact name
+ * @param {string} initials - The contact initials
+ * @param {string} color - The background color
+ * @returns {string} HTML string for the contact badge
  */
 function getModalContactBadgeTemplate(name, initials, color) {
   return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
 }
 
-// ============================================================================
-// MODAL SUBTASK TEMPLATES
-// ============================================================================
-
 /**
- * Generiert das HTML-Template für ein Subtask-Item im Modal.
- * @param {string} title - Der Titel des Subtasks
- * @param {number} index - Der Index des Subtasks
- * @returns {string} HTML-String für das Subtask-Item
+ * Generates the HTML template for a subtask item in the modal.
+ * @param {string} title - The title of the subtask
+ * @param {number} index - The index of the subtask
+ * @returns {string} HTML string for the subtask item
  */
 function getModalSubtaskItemTemplate(title, index) {
   return `
@@ -212,10 +196,10 @@ function getModalSubtaskItemTemplate(title, index) {
 }
 
 /**
- * Generiert das HTML-Template für den Subtask-Edit-Modus im Modal.
- * @param {string} title - Der aktuelle Titel des Subtasks
- * @param {number} index - Der Index des Subtasks
- * @returns {string} HTML-String für den Edit-Modus
+ * Generates the HTML template for the subtask edit mode in the modal.
+ * @param {string} title - The current title of the subtask
+ * @param {number} index - The index of the subtask
+ * @returns {string} HTML string for the edit mode
  */
 function getModalSubtaskEditTemplate(title, index) {
   return `
@@ -246,16 +230,12 @@ function getModalSubtaskEditTemplate(title, index) {
   `;
 }
 
-// ============================================================================
-// VIEW MODAL TEMPLATES
-// ============================================================================
-
 /**
- * Generiert das HTML für einen Assignee im View-Modal.
- * @param {string} initials - Die Initialen des Assignees
- * @param {string} color - Die Hintergrundfarbe
- * @param {string} name - Der vollständige Name
- * @returns {string} HTML-String für den Assignee
+ * Generates the HTML for an assignee in the view modal.
+ * @param {string} initials - The initials of the assignee
+ * @param {string} color - The background color
+ * @param {string} name - The full name
+ * @returns {string} HTML string for the assignee
  */
 function getViewAssigneeTemplate(initials, color, name) {
   return `
@@ -267,11 +247,11 @@ function getViewAssigneeTemplate(initials, color, name) {
 }
 
 /**
- * Generiert das HTML für einen Subtask mit Checkbox im View-Modal.
- * @param {number} index - Der Index des Subtasks
- * @param {string} title - Der Titel des Subtasks (bereits escaped)
- * @param {boolean} completed - Ob der Subtask erledigt ist
- * @returns {string} HTML-String für den Subtask
+ * Generates the HTML for a subtask with checkbox in the view modal.
+ * @param {number} index - The index of the subtask
+ * @param {string} title - The title of the subtask (already escaped)
+ * @param {boolean} completed - Whether the subtask is completed
+ * @returns {string} HTML string for the subtask
  */
 function getViewSubtaskTemplate(index, title, completed) {
   const checkedAttr = completed ? "checked" : "";
@@ -283,29 +263,25 @@ function getViewSubtaskTemplate(index, title, completed) {
   `;
 }
 
-// ============================================================================
-// EDIT MODAL TEMPLATES
-// ============================================================================
-
 /**
- * Generiert das HTML für ein Assignee-Badge im Edit-Modal.
- * @param {string} initials - Die Initialen des Assignees
- * @param {string} color - Die Hintergrundfarbe
- * @param {string} name - Der vollständige Name
- * @returns {string} HTML-String für das Badge
+ * Generates the HTML for an assignee badge in the edit modal.
+ * @param {string} initials - The initials of the assignee
+ * @param {string} color - The background color
+ * @param {string} name - The full name
+ * @returns {string} HTML string for the badge
  */
 function getEditAssigneeBadgeTemplate(initials, color, name) {
   return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
 }
 
 /**
- * Generiert das HTML für ein Dropdown-Item im Edit-Modal Assignee-Dropdown.
- * @param {string} id - Die ID des Kontakts
- * @param {string} name - Der Name des Kontakts (bereits escaped)
- * @param {string} initials - Die Initialen
- * @param {string} color - Die Hintergrundfarbe
- * @param {boolean} isSelected - Ob der Kontakt ausgewählt ist
- * @returns {string} HTML-String für das Dropdown-Item
+ * Generates the HTML for a dropdown item in the edit modal assignee dropdown.
+ * @param {string} id - The contact ID
+ * @param {string} name - The contact name (already escaped)
+ * @param {string} initials - The initials
+ * @param {string} color - The background color
+ * @param {boolean} isSelected - Whether the contact is selected
+ * @returns {string} HTML string for the dropdown item
  */
 function getEditAssigneeDropdownItemTemplate(
   id,
@@ -329,10 +305,10 @@ function getEditAssigneeDropdownItemTemplate(
 }
 
 /**
- * Generiert das HTML für ein Subtask-Item im Edit-Modal.
- * @param {number} index - Der Index des Subtasks
- * @param {string} title - Der Titel des Subtasks (bereits escaped)
- * @returns {string} HTML-String für das Subtask-Item
+ * Generates the HTML for a subtask item in the edit modal.
+ * @param {number} index - The index of the subtask
+ * @param {string} title - The title of the subtask (already escaped)
+ * @returns {string} HTML string for the subtask item
  */
 function getEditSubtaskItemTemplate(index, title) {
   return `
@@ -348,10 +324,10 @@ function getEditSubtaskItemTemplate(index, title) {
 }
 
 /**
- * Generiert das HTML für den Inline-Edit-Modus eines Subtasks im Edit-Modal.
- * @param {number} index - Der Index des Subtasks
- * @param {string} title - Der aktuelle Titel (bereits escaped)
- * @returns {string} HTML-String für den Inline-Edit-Modus
+ * Generates the HTML for the inline edit mode of a subtask in the edit modal.
+ * @param {number} index - The index of the subtask
+ * @param {string} title - The current title (already escaped)
+ * @returns {string} HTML string for the inline edit mode
  */
 function getEditSubtaskInlineEditTemplate(index, title) {
   return `

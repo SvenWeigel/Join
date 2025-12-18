@@ -1,13 +1,14 @@
 /**
  * @fileoverview Guest Login Handler
- * @description Verwaltet den Gast-Login für die Join-Anwendung.
- * Der Guest-User kann wie ein angemeldeter User auf alle globalen Daten zugreifen.
+ * @description Handles guest login for the Join application.
+ *              The guest user can access all global data like a logged-in user.
  */
 
 /**
- * Erzeugt einen temporären Gast-Benutzer, speichert ihn und leitet weiter.
- * Der Guest-User hat Zugriff auf alle globalen Tasks und Contacts.
- * @param {Event} e - Das Click-Event
+ * Creates a temporary guest user, saves it and redirects.
+ * The guest user has access to all global tasks and contacts.
+ *
+ * @param {Event} e - The click event
  */
 function handleGuestLogin(e) {
   e.preventDefault();
@@ -17,8 +18,9 @@ function handleGuestLogin(e) {
 }
 
 /**
- * Prüft ob der aktuelle User ein Gast ist (nur für UI-Zwecke wie Begrüßung).
- * @returns {boolean} True wenn der User als Gast markiert ist
+ * Checks if the current user is a guest (only for UI purposes like greeting).
+ *
+ * @returns {boolean} True if the user is marked as guest
  */
 function isGuestLoggedIn() {
   try {
@@ -29,6 +31,5 @@ function isGuestLoggedIn() {
   }
 }
 
-// Global verfügbar machen
 window.handleGuestLogin = handleGuestLogin;
 window.isGuestLoggedIn = isGuestLoggedIn;

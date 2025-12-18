@@ -1,19 +1,16 @@
 /**
  * @fileoverview Board Modal Assigned To Controller
- * @description Verwaltet die Assigned-To Dropdown-Funktionalität im Add Task Modal
+ * @description Manages the Assigned-To dropdown functionality in the Add Task modal
  */
 
 /** @type {Object[]} */
 let modalAvailableContacts = [];
+
 /** @type {string[]} */
 let modalSelectedAssignees = [];
 
-// ==========================================================================
-// KONTAKTE LADEN
-// ==========================================================================
-
 /**
- * Lädt die Kontakte für das Modal-Dropdown (global für alle User inkl. Gäste).
+ * Loads contacts for the modal dropdown (global for all users including guests).
  */
 async function loadModalContactsForDropdown() {
   try {
@@ -24,12 +21,8 @@ async function loadModalContactsForDropdown() {
   }
 }
 
-// ==========================================================================
-// DROPDOWN STEUERUNG
-// ==========================================================================
-
 /**
- * Holt die Modal-Dropdown-Elemente.
+ * Gets the modal dropdown elements.
  * @returns {Object}
  */
 function getModalDropdownElements() {
@@ -41,7 +34,7 @@ function getModalDropdownElements() {
 }
 
 /**
- * Öffnet/Schließt das Modal-Assignee-Dropdown.
+ * Opens/closes the modal assignee dropdown.
  */
 function toggleModalAssigneeDropdown() {
   const { dropdown, list, badges } = getModalDropdownElements();
@@ -52,7 +45,7 @@ function toggleModalAssigneeDropdown() {
 }
 
 /**
- * Öffnet das Modal-Assignee-Dropdown.
+ * Opens the modal assignee dropdown.
  */
 function openModalAssigneeDropdown() {
   const { list, badges } = getModalDropdownElements();
@@ -67,7 +60,7 @@ function openModalAssigneeDropdown() {
 }
 
 /**
- * Öffnet die Dropdown-Liste falls geschlossen.
+ * Opens the dropdown list if closed.
  */
 function openDropdownListIfClosed() {
   const list = document.getElementById("modalAssigneeList");
@@ -81,7 +74,7 @@ function openDropdownListIfClosed() {
 }
 
 /**
- * Schließt das Modal-Dropdown.
+ * Closes the modal dropdown.
  * @param {HTMLElement} dropdown
  */
 function closeModalDropdown(dropdown) {
@@ -96,7 +89,7 @@ function closeModalDropdown(dropdown) {
 }
 
 /**
- * Schließt das Dropdown bei Klick außerhalb.
+ * Closes the dropdown when clicking outside.
  */
 document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("modalAssigneeDropdown");
@@ -104,12 +97,8 @@ document.addEventListener("click", function (event) {
     closeModalDropdown(dropdown);
 });
 
-// ==========================================================================
-// FILTER & AUSWAHL
-// ==========================================================================
-
 /**
- * Filtert die Modal-Assignee-Liste.
+ * Filters the modal assignee list.
  */
 function filterModalAssigneeList() {
   const filter = document.getElementById("modalAssigneeSearch").value;
@@ -118,7 +107,7 @@ function filterModalAssigneeList() {
 }
 
 /**
- * Wählt einen Kontakt aus oder ab.
+ * Selects or deselects a contact.
  * @param {Event} event
  * @param {string} contactId
  */
@@ -135,7 +124,7 @@ function toggleModalAssignee(event, contactId) {
 }
 
 /**
- * Setzt die Modal-Assignees zurück.
+ * Resets the modal assignees.
  */
 function resetModalAssignees() {
   modalSelectedAssignees = [];
@@ -145,12 +134,8 @@ function resetModalAssignees() {
   renderModalSelectedContactsBadges();
 }
 
-// ==========================================================================
-// HILFSFUNKTIONEN
-// ==========================================================================
-
 /**
- * Holt den aktuellen Benutzer.
+ * Gets the current user.
  * @returns {Object|null}
  */
 function getModalCurrentUser() {
@@ -158,7 +143,7 @@ function getModalCurrentUser() {
 }
 
 /**
- * Extrahiert den Anzeigenamen.
+ * Extracts the display name.
  * @param {Object} user
  * @returns {string}
  */
@@ -167,7 +152,7 @@ function getModalUserName(user) {
 }
 
 /**
- * Ermittelt die Initialen aus einem Namen.
+ * Gets initials from a name.
  * @param {string} name
  * @returns {string}
  */
@@ -180,7 +165,7 @@ function getModalInitialsFromName(name) {
 }
 
 /**
- * Filtert die Kontaktliste.
+ * Filters the contact list.
  * @param {string} filter
  * @returns {Array<Object>}
  */
@@ -191,7 +176,7 @@ function filterModalContacts(filter) {
 }
 
 /**
- * Prüft ob ein Name dem Filter entspricht.
+ * Checks if a name matches the filter.
  * @param {string} name
  * @param {string} filter
  * @returns {boolean}
@@ -200,12 +185,8 @@ function matchesModalFilter(name, filter) {
   return filter === "" || name.toLowerCase().includes(filter.toLowerCase());
 }
 
-// ==========================================================================
-// ASSIGNEE DATEN
-// ==========================================================================
-
 /**
- * Holt die Daten eines Assignees.
+ * Gets the data of an assignee.
  * @param {string} id
  * @returns {Object|null}
  */
@@ -216,7 +197,7 @@ function getModalAssigneeData(id) {
 }
 
 /**
- * Holt die Daten des aktuellen Users als Assignee.
+ * Gets the current user's data as assignee.
  * @returns {Object|null}
  */
 function getCurrentUserData() {
@@ -227,7 +208,7 @@ function getCurrentUserData() {
 }
 
 /**
- * Wandelt Assignee-IDs in Objekte um.
+ * Converts assignee IDs to objects.
  * @param {string[]} assigneeIds
  * @returns {Object[]}
  */
@@ -237,7 +218,7 @@ function getModalAssigneesWithData(assigneeIds) {
 }
 
 /**
- * Holt ein Assignee-Objekt anhand der ID.
+ * Gets an assignee object by ID.
  * @param {string} id
  * @returns {Object|null}
  */

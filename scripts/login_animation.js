@@ -1,97 +1,86 @@
 /**
- * Initialisiert die Splash-/Login-Animation nach dem Laden der Seite.
- * Warte kurz (400ms) und starte dann die Animation (falls vorhanden).
+ * @fileoverview Login Animation Controller
+ * @description Manages the splash screen and login page animations on application startup.
+ */
+
+/**
+ * Initializes the splash/login animation after page load.
  */
 document.addEventListener("DOMContentLoaded", () => {
   initSplash();
 });
 
 /**
- * Sammelt benötigte DOM-Elemente und ruft `startAnimation` verzögert auf.
+ * Collects required DOM elements and calls startAnimation with delay.
  */
 function initSplash() {
-  const img = document.querySelector(".center_img");
-  const centerContainer = document.querySelector(".center_img_container");
-  const loginContainer = document.querySelector(".login_container");
-  const headerContainer = document.querySelector(".login-site-header");
-  const footerContainer = document.querySelector(".login-site-footer");
-  const logoContainer = document.querySelector(".login-site-logo-container");
-
-  setTimeout(
-    () =>
-      startAnimation(
-        img,
-        centerContainer,
-        loginContainer,
-        headerContainer,
-        footerContainer,
-        logoContainer
-      ),
-    400
-  );
+  const elements = getSplashElements();
+  setTimeout(() => startAnimation(elements), 400);
 }
 
 /**
- * Startet die Splash-Animation: wenn kein Bild vorhanden ist oder die
- * Animation bereits gelaufen ist, sorgt die Funktion dafür, dass die
- * Login-Elemente sichtbar und die Splash-Container verborgen sind.
+ * Gets all DOM elements needed for the splash animation.
  *
- * @param {Element|null} img - Das zu animierende Bild-Element.
- * @param {Element|null} centerContainer - Container der Splash/center image.
- * @param {Element|null} loginContainer - Container des Login-Formulars.
- * @param {Element|null} headerContainer - Header-Element der Login-Seite.
- * @param {Element|null} footerContainer - Footer-Element.
- * @param {Element|null} logoContainer - Logo-Container.
+ * @returns {Object} Object containing all splash elements
  */
-function startAnimation(
-  img,
-  centerContainer,
-  loginContainer,
-  headerContainer,
-  footerContainer,
-  logoContainer
-) {
-  // Prüfe, ob Animation übersprungen werden soll (z.B. nach Logout)
+function getSplashElements() {
+  return {
+    img: document.querySelector(".center_img"),
+    centerContainer: document.querySelector(".center_img_container"),
+    loginContainer: document.querySelector(".login_container"),
+    headerContainer: document.querySelector(".login-site-header"),
+    footerContainer: document.querySelector(".login-site-footer"),
+    logoContainer: document.querySelector(".login-site-logo-container"),
+  };
+}
+
+/**
+ * Shows the login UI elements and hides the splash container.
+ *
+ * @param {Object} elements - The splash elements object
+ */
+function showLoginUI(elements) {
+  if (elements.centerContainer)
+    elements.centerContainer.classList.add("hidden");
+  if (elements.loginContainer)
+    elements.loginContainer.classList.remove("hidden");
+  if (elements.headerContainer)
+    elements.headerContainer.classList.remove("hidden");
+  if (elements.footerContainer)
+    elements.footerContainer.classList.remove("hidden");
+  if (elements.logoContainer) elements.logoContainer.classList.remove("hidden");
+}
+
+/**
+ * Checks if animation should be skipped.
+ *
+ * @returns {boolean} True if animation should be skipped
+ */
+function shouldSkipAnimation() {
   if (sessionStorage.getItem("skipAnimation")) {
     sessionStorage.removeItem("skipAnimation");
-    if (centerContainer) centerContainer.classList.add("hidden");
-    if (loginContainer) loginContainer.classList.remove("hidden");
-    if (headerContainer) headerContainer.classList.remove("hidden");
-    if (footerContainer) footerContainer.classList.remove("hidden");
-    if (logoContainer) logoContainer.classList.remove("hidden");
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Starts the splash animation or shows login UI directly.
+ *
+ * @param {Object} elements - The splash elements object
+ */
+function startAnimation(elements) {
+  if (
+    shouldSkipAnimation() ||
+    !elements.img ||
+    elements.img.classList.contains("moved")
+  ) {
+    showLoginUI(elements);
     return;
   }
 
-  if (!img) {
-    // Kein Bild vorhanden: direkt umschalten
-    if (centerContainer) centerContainer.classList.add("hidden");
-    if (loginContainer) loginContainer.classList.remove("hidden");
-    if (headerContainer) headerContainer.classList.remove("hidden");
-    if (footerContainer) footerContainer.classList.remove("hidden");
-    if (logoContainer) logoContainer.classList.remove("hidden");
-    return;
-  }
-  if (img.classList.contains("moved")) {
-    // Bereits animiert: Zustände sicherstellen
-    if (centerContainer) centerContainer.classList.add("hidden");
-    if (loginContainer) loginContainer.classList.remove("hidden");
-    if (headerContainer) headerContainer.classList.remove("hidden");
-    if (footerContainer) footerContainer.classList.remove("hidden");
-    if (logoContainer) logoContainer.classList.remove("hidden");
-    return;
-  }
-
-  // Animation starten und nach Ende die UI umschalten
-  img.classList.add("moved");
-  img.addEventListener(
-    "transitionend",
-    () => {
-      if (centerContainer) centerContainer.classList.add("hidden");
-      if (loginContainer) loginContainer.classList.remove("hidden");
-      if (headerContainer) headerContainer.classList.remove("hidden");
-      if (footerContainer) footerContainer.classList.remove("hidden");
-      if (logoContainer) logoContainer.classList.remove("hidden");
-    },
-    { once: true }
-  );
+  elements.img.classList.add("moved");
+  elements.img.addEventListener("transitionend", () => showLoginUI(elements), {
+    once: true,
+  });
 }

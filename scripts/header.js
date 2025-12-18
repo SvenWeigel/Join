@@ -1,14 +1,19 @@
 /**
- * Schlüssel für das Lesen des aktuellen Benutzers aus `localStorage`.
- * Erwartet ein JSON-Objekt mit (mindestens) einer `name`-Eigenschaft.
+ * @fileoverview Header Component Controller
+ * @description Manages the application header including user initials display and dropdown menu functionality.
+ */
+
+/**
+ * Key for reading the current user from `localStorage`.
+ * Expects a JSON object with (at least) a `name` property.
  */
 const STORAGE_KEY = "currentUser";
 
 /**
- * Ermittelt bis zu zwei Initialen aus einem vollen Namen.
- * Beispiel: "Max Mustermann" -> "MM"; "Alice" -> "A".
- * @param {string} name - Voller Name des Benutzers.
- * @returns {string} 0-2 Zeichen mit Großbuchstaben.
+ * Determines up to two initials from a full name.
+ * Example: "Max Mustermann" -> "MM"; "Alice" -> "A".
+ * @param {string} name - Full name of the user.
+ * @returns {string} 0-2 uppercase characters.
  */
 function getInitials(name) {
   if (!name || typeof name !== "string") return "";
@@ -19,8 +24,8 @@ function getInitials(name) {
 }
 
 /**
- * Liest das gespeicherte `currentUser`-Objekt aus `localStorage`.
- * Gibt `null` zurück, wenn kein Eintrag vorhanden oder JSON ungültig ist.
+ * Reads the stored `currentUser` object from `localStorage`.
+ * Returns `null` if no entry is present or JSON is invalid.
  * @returns {Object|null}
  */
 function readUserFromStorage() {
@@ -34,10 +39,10 @@ function readUserFromStorage() {
 }
 
 /**
- * Aktualisiert alle Elemente mit der Klasse `.user-avatar`.
- * Setzt den Text auf die Initialen und (falls vorhanden) das Tooltip auf den vollen Namen.
- * @param {string} initials - Die anzuzeigenden Initialen.
- * @param {string} fullName - Voller Name für das Tooltip.
+ * Updates all elements with the class `.user-avatar`.
+ * Sets the text to the initials and (if available) the tooltip to the full name.
+ * @param {string} initials - The initials to display.
+ * @param {string} fullName - Full name for the tooltip.
  */
 function updateAvatars(initials, fullName) {
   const nodes = document.querySelectorAll(".user-avatar");
@@ -50,8 +55,8 @@ function updateAvatars(initials, fullName) {
 }
 
 /**
- * Lese den aktuellen Benutzer, berechne Initialen und trage sie in die UI ein.
- * Diese Funktion wird beim Laden ausgeführt und ist global als `applyInitials` verfügbar.
+ * Reads the current user, calculates initials, and applies them to the UI.
+ * This function runs on load and is globally available as `applyInitials`.
  */
 function applyInitials() {
   const user = readUserFromStorage();
@@ -69,6 +74,9 @@ if (document.readyState === "loading") {
 
 window.applyInitials = applyInitials;
 
+/**
+ * Shows or hides the profile options dropdown menu.
+ */
 function showProfileOptions() {
   const el = document.getElementById("profile-options");
   if (el) {
@@ -87,6 +95,10 @@ function showProfileOptions() {
   }
 }
 
+/**
+ * Closes the profile options menu when clicking outside of it.
+ * @param {Event} event - The click event.
+ */
 function closeProfileOptionsOnClickOutside(event) {
   const el = document.getElementById("profile-options");
   if (el && el.classList.contains("show")) {
@@ -101,16 +113,15 @@ function closeProfileOptionsOnClickOutside(event) {
 }
 
 /**
- * Meldet den Benutzer ab, löscht die Session-Daten und leitet zur Login-Seite weiter.
- * Setzt ein Flag, um die Splash-Animation zu überspringen.
- * Verwendet location.replace() um Browser-Zurück-Navigation zu verhindern.
+ * Logs out the user, clears session data, and redirects to the login page.
+ * Sets a flag to skip the splash animation.
+ * Uses location.replace() to prevent browser back navigation.
  */
 function logout() {
   localStorage.removeItem(STORAGE_KEY);
   sessionStorage.clear();
   sessionStorage.setItem("skipAnimation", "true");
 
-  // Ermittle den korrekten Pfad zur index.html
   const isInHtmlFolder = window.location.pathname.includes("html/");
   const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
   window.location.replace(redirectPath);

@@ -1,46 +1,72 @@
 /**
- * Befüllt das View-Modal mit den Task-Daten.
+ * @fileoverview Board Cards Render Functions
+ * @description Render functions for populating and displaying task cards in view and edit modals.
+ */
+
+/**
+ * Populates the view modal with task data.
  *
- * @param {Object} task - Das Task-Objekt mit allen Daten
+ * @param {Object} task - The task object containing all data
  */
 function populateViewModal(task) {
-  // Kategorie-Badge mit dynamischer Farbe
-  const categoryBadge = document.querySelector(".task-view-header span");
-  const categoryConfig =
-    CATEGORY_CONFIG[task.category] || CATEGORY_CONFIG.technical;
-  categoryBadge.textContent = categoryConfig.label;
-  categoryBadge.className =
-    task.category === "userstory" ? "user-story" : "technical";
-
-  // Titel
-  document.querySelector(".task-view-title span").textContent =
-    task.title || "";
-
-  // Beschreibung
-  document.querySelector(".task-view-description span").textContent =
-    task.description || "";
-
-  // Due Date
-  const dueDateSpans = document.querySelectorAll(".task-view-due-date span");
-  if (dueDateSpans.length >= 2) {
-    dueDateSpans[1].textContent = formatDate(task.dueDate) || "";
-  }
-
-  // Priorität
+  populateViewCategory(task.category);
+  populateViewTitle(task.title);
+  populateViewDescription(task.description);
+  populateViewDueDate(task.dueDate);
   populateViewPriority(task.priority);
-
-  // Assignees
   populateViewAssignees(task.assignees);
-
-  // Subtasks
   populateViewSubtasks(task.subtasks);
 }
 
 /**
- * Formatiert ein Datum von YYYY-MM-DD zu DD/MM/YYYY.
+ * Populates the category badge in the view modal.
  *
- * @param {string} dateString - Datum im Format YYYY-MM-DD
- * @returns {string} Datum im Format DD/MM/YYYY
+ * @param {string} category - The task category
+ */
+function populateViewCategory(category) {
+  const categoryBadge = document.querySelector(".task-view-header span");
+  const categoryConfig = CATEGORY_CONFIG[category] || CATEGORY_CONFIG.technical;
+  categoryBadge.textContent = categoryConfig.label;
+  categoryBadge.className =
+    category === "userstory" ? "user-story" : "technical";
+}
+
+/**
+ * Populates the title in the view modal.
+ *
+ * @param {string} title - The task title
+ */
+function populateViewTitle(title) {
+  document.querySelector(".task-view-title span").textContent = title || "";
+}
+
+/**
+ * Populates the description in the view modal.
+ *
+ * @param {string} description - The task description
+ */
+function populateViewDescription(description) {
+  document.querySelector(".task-view-description span").textContent =
+    description || "";
+}
+
+/**
+ * Populates the due date in the view modal.
+ *
+ * @param {string} dueDate - The task due date
+ */
+function populateViewDueDate(dueDate) {
+  const dueDateSpans = document.querySelectorAll(".task-view-due-date span");
+  if (dueDateSpans.length >= 2) {
+    dueDateSpans[1].textContent = formatDate(dueDate) || "";
+  }
+}
+
+/**
+ * Formats a date from YYYY-MM-DD to DD/MM/YYYY.
+ *
+ * @param {string} dateString - Date in YYYY-MM-DD format
+ * @returns {string} Date in DD/MM/YYYY format
  */
 function formatDate(dateString) {
   if (!dateString) return "";
@@ -50,9 +76,9 @@ function formatDate(dateString) {
 }
 
 /**
- * Befüllt die Prioritäts-Anzeige im View-Modal.
+ * Populates the priority display in the view modal.
  *
- * @param {string} priority - Die Priorität (urgent, medium, low)
+ * @param {string} priority - The priority level (urgent, medium, low)
  */
 function populateViewPriority(priority) {
   const priorityContainer = document.querySelector(".priority-view-container");
@@ -71,53 +97,62 @@ function populateViewPriority(priority) {
 }
 
 /**
- * Befüllt die Assignees-Liste im View-Modal.
+ * Populates the assignees list in the view modal.
  *
- * @param {Array} assignees - Array von Assignee-Objekten [{name, color}, ...]
+ * @param {Array} assignees - Array of assignee objects [{name, color}, ...]
  */
 function populateViewAssignees(assignees) {
   const container = document.querySelector(".task-view-assigned-to-container");
   const listContainer = container.querySelector(
     ".assigned-avatars-container-list"
   );
-
-  // Bestehenden Inhalt entfernen (außer dem Label)
   if (!listContainer) return;
 
-  // Container leeren und neu befüllen
   const assigneesArray = normalizeAssignees(assignees);
-
   if (assigneesArray.length === 0) {
     listContainer.innerHTML = '<span class="no-assignees">No assignees</span>';
     return;
   }
 
+  const html = buildAssigneesHtml(assigneesArray);
+  clearExistingAssigneeLists(container);
+  container.insertAdjacentHTML("beforeend", html);
+}
+
+/**
+ * Builds HTML string for assignees list.
+ *
+ * @param {Array} assigneesArray - Normalized array of assignee objects
+ * @returns {string} HTML string for assignees
+ */
+function buildAssigneesHtml(assigneesArray) {
   let html = "";
   assigneesArray.forEach((assignee) => {
     const initials = getInitials(assignee.name);
     const color = assignee.color || "#2A3647";
     html += getViewAssigneeTemplate(initials, color, assignee.name);
   });
+  return html;
+}
 
-  // Das ursprüngliche Label beibehalten, Container ersetzen
-  const parentContainer =
-    container.querySelector(".assigned-avatars-container-list")
-      ?.parentElement || container;
+/**
+ * Removes existing assignee list containers.
+ *
+ * @param {HTMLElement} container - The parent container element
+ */
+function clearExistingAssigneeLists(container) {
   const existingLists = container.querySelectorAll(
     ".assigned-avatars-container-list"
   );
   existingLists.forEach((el) => el.remove());
-
-  // Neuen HTML einfügen
-  container.insertAdjacentHTML("beforeend", html);
 }
 
 /**
- * Normalisiert Assignees zu einem Array.
- * Firebase kann Arrays als Objekte speichern.
+ * Normalizes assignees to an array.
+ * Firebase may store arrays as objects.
  *
- * @param {Array|Object} assignees - Assignees als Array oder Objekt
- * @returns {Array} Normalisiertes Array von Assignee-Objekten
+ * @param {Array|Object} assignees - Assignees as array or object
+ * @returns {Array} Normalized array of assignee objects
  */
 function normalizeAssignees(assignees) {
   if (!assignees) return [];
@@ -126,25 +161,42 @@ function normalizeAssignees(assignees) {
 }
 
 /**
- * Befüllt die Subtasks-Liste im View-Modal mit Checkboxen.
+ * Populates the subtasks list in the view modal with checkboxes.
  *
- * @param {Array} subtasks - Array von Subtask-Objekten [{title, completed}, ...]
+ * @param {Array} subtasks - Array of subtask objects [{title, completed}, ...]
  */
 function populateViewSubtasks(subtasks) {
   const container = document.querySelector(".subtasks-list-container");
   if (!container) return;
 
-  const subtasksArray = subtasks
-    ? Array.isArray(subtasks)
-      ? subtasks
-      : Object.values(subtasks)
-    : [];
-
+  const subtasksArray = normalizeSubtasks(subtasks);
   if (subtasksArray.length === 0) {
     container.innerHTML = '<span class="no-subtasks">No subtasks</span>';
     return;
   }
 
+  container.innerHTML = buildSubtasksHtml(subtasksArray);
+}
+
+/**
+ * Normalizes subtasks to an array.
+ *
+ * @param {Array|Object} subtasks - Subtasks as array or object
+ * @returns {Array} Normalized array of subtask objects
+ */
+function normalizeSubtasks(subtasks) {
+  if (!subtasks) return [];
+  if (Array.isArray(subtasks)) return subtasks;
+  return Object.values(subtasks);
+}
+
+/**
+ * Builds HTML string for subtasks list.
+ *
+ * @param {Array} subtasksArray - Normalized array of subtask objects
+ * @returns {string} HTML string for subtasks
+ */
+function buildSubtasksHtml(subtasksArray) {
   let html = "";
   subtasksArray.forEach((subtask, index) => {
     html += getViewSubtaskTemplate(
@@ -153,62 +205,84 @@ function populateViewSubtasks(subtasks) {
       subtask.completed
     );
   });
-
-  container.innerHTML = html;
+  return html;
 }
 
-// ============================================================================
-// EDIT MODAL RENDER FUNKTIONEN
-// ============================================================================
-
 /**
- * Befüllt die Assignees-Anzeige im Edit-Modal.
+ * Renders the assignees badges in the edit modal.
  */
 function renderEditAssigneesBadges() {
   const badgesContainer = document.getElementById(
     "editSelectedAssigneesBadges"
   );
+  if (!badgesContainer) return;
 
-  if (badgesContainer) {
-    if (editSelectedAssignees.length === 0) {
-      badgesContainer.innerHTML = "";
-      return;
-    }
-
-    let html = "";
-    editSelectedAssignees.forEach((assignee) => {
-      const initials = getInitials(assignee.name);
-      html += getEditAssigneeBadgeTemplate(
-        initials,
-        assignee.color || "#2A3647",
-        assignee.name
-      );
-    });
-    badgesContainer.innerHTML = html;
+  if (editSelectedAssignees.length === 0) {
+    badgesContainer.innerHTML = "";
+    return;
   }
+
+  badgesContainer.innerHTML = buildEditAssigneesBadgesHtml();
 }
 
 /**
- * Rendert die Assignee-Dropdown-Liste im Edit-Modal.
+ * Builds HTML string for edit assignees badges.
  *
- * @param {string} filter - Optionaler Suchfilter
+ * @returns {string} HTML string for assignee badges
+ */
+function buildEditAssigneesBadgesHtml() {
+  let html = "";
+  editSelectedAssignees.forEach((assignee) => {
+    const initials = getInitials(assignee.name);
+    html += getEditAssigneeBadgeTemplate(
+      initials,
+      assignee.color || "#2A3647",
+      assignee.name
+    );
+  });
+  return html;
+}
+
+/**
+ * Renders the assignee dropdown list in the edit modal.
+ *
+ * @param {string} filter - Optional search filter
  */
 function renderEditAssigneeDropdownList(filter = "") {
   const dropdown = document.getElementById("assignedDropdownList");
   if (!dropdown) return;
 
-  const filteredContacts = editAvailableContacts.filter((c) =>
-    c.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
+  const filteredContacts = getFilteredContacts(filter);
   if (filteredContacts.length === 0) {
     dropdown.innerHTML =
       '<div class="assigned-dropdown-item no-hover">No contacts available</div>';
     return;
   }
 
+  dropdown.innerHTML = buildDropdownItemsHtml(filteredContacts);
+}
+
+/**
+ * Filters contacts by search string.
+ *
+ * @param {string} filter - Search filter string
+ * @returns {Array} Filtered contacts array
+ */
+function getFilteredContacts(filter) {
+  return editAvailableContacts.filter((c) =>
+    c.name.toLowerCase().includes(filter.toLowerCase())
+  );
+}
+
+/**
+ * Builds HTML string for dropdown items.
+ *
+ * @param {Array} contacts - Array of contact objects
+ * @returns {string} HTML string for dropdown items
+ */
+function buildDropdownItemsHtml(contacts) {
   let html = "";
-  filteredContacts.forEach((contact) => {
+  contacts.forEach((contact) => {
     const isSelected = editSelectedAssignees.some((a) => a.id === contact.id);
     const initials = getInitials(contact.name);
     html += getEditAssigneeDropdownItemTemplate(
@@ -219,12 +293,11 @@ function renderEditAssigneeDropdownList(filter = "") {
       isSelected
     );
   });
-
-  dropdown.innerHTML = html;
+  return html;
 }
 
 /**
- * Rendert die Subtasks-Liste im Edit-Modal.
+ * Renders the subtasks list in the edit modal.
  */
 function renderEditSubtasksList() {
   const container = document.getElementById("subtasksListEditView");

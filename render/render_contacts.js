@@ -1,4 +1,9 @@
 /**
+ * @fileoverview Contacts Render Functions
+ * @description Render functions for displaying the contact list with alphabetical grouping.
+ */
+
+/**
  * Renders the contact list with alphabetical separators
  */
 function renderContactList() {

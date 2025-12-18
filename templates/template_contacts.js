@@ -1,4 +1,9 @@
 /**
+ * @fileoverview Contact Templates
+ * @description HTML template functions for the contacts page, including letter separators and contact list entries.
+ */
+
+/**
  * Generates the HTML template for a letter separator with divider line
  * @param {string} letter - The letter to display (e.g., "A")
  * @returns {string} HTML string for the letter separator

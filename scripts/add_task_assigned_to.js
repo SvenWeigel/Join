@@ -1,20 +1,16 @@
 /**
- * @fileoverview Assigned To Dropdown Controller für Add Task Page
- * @description Verwaltet das Assignee-Dropdown auf der Add Task-Seite
+ * @fileoverview Assigned To Dropdown Controller for Add Task Page
+ * @description Manages the assignee dropdown on the Add Task page
  */
 
-// ==========================================================================
-// ASSIGNED TO DROPDOWN (Add Task Page)
-// ==========================================================================
-
-/** @type {Object[]} Array der verfügbaren Kontakte */
+/** @type {Object[]} Array of available contacts */
 let availableContacts = [];
 
-/** @type {string[]} Array der ausgewählten Kontakt-IDs */
+/** @type {string[]} Array of selected contact IDs */
 let selectedAssignees = [];
 
 /**
- * Lädt die Kontakte für das Dropdown-Menü (global für alle User inkl. Gäste).
+ * Loads the contacts for the dropdown menu (global for all users including guests).
  */
 async function loadContactsForDropdown() {
   try {
@@ -28,9 +24,9 @@ async function loadContactsForDropdown() {
 }
 
 /**
- * Ermittelt die Initialen aus einem Namen.
- * @param {string} name - Der Name
- * @returns {string} Die Initialen
+ * Determines the initials from a name.
+ * @param {string} name - The name
+ * @returns {string} The initials
  */
 function getInitialsFromName(name) {
   const parts = name.trim().split(" ");
@@ -41,7 +37,7 @@ function getInitialsFromName(name) {
 }
 
 /**
- * Öffnet/Schließt das Assignee-Dropdown.
+ * Opens/closes the assignee dropdown.
  */
 function toggleAssigneeDropdown() {
   const dropdown = document.getElementById("assigneeDropdown");
@@ -52,7 +48,6 @@ function toggleAssigneeDropdown() {
   list.classList.toggle("open");
   arrow.classList.toggle("open");
 
-  // Badges verstecken wenn Dropdown offen, anzeigen wenn geschlossen
   if (list.classList.contains("open")) {
     badges.classList.add("hidden");
   } else {
@@ -61,7 +56,7 @@ function toggleAssigneeDropdown() {
 }
 
 /**
- * Öffnet das Assignee-Dropdown (ohne Toggle).
+ * Opens the assignee dropdown (without toggle).
  */
 function openAssigneeDropdown() {
   const list = document.getElementById("assigneeList");
@@ -76,7 +71,7 @@ function openAssigneeDropdown() {
 }
 
 /**
- * Filtert die Assignee-Liste basierend auf der Sucheingabe.
+ * Filters the assignee list based on search input.
  */
 function filterAssigneeList() {
   const searchInput = document.getElementById("assigneeSearch");
@@ -92,9 +87,9 @@ function filterAssigneeList() {
 }
 
 /**
- * Wählt einen Kontakt aus oder ab.
- * @param {Event} event - Das Click-Event
- * @param {string} contactId - Die ID des Kontakts
+ * Selects or deselects a contact.
+ * @param {Event} event - The click event
+ * @param {string} contactId - The ID of the contact
  */
 function toggleAssignee(event, contactId) {
   event.stopPropagation();
@@ -109,7 +104,7 @@ function toggleAssignee(event, contactId) {
 }
 
 /**
- * Schließt das Dropdown wenn außerhalb geklickt wird.
+ * Closes the dropdown when clicking outside.
  */
 document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("assigneeDropdown");

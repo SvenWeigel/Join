@@ -1,34 +1,25 @@
 /**
  * @fileoverview Task Edit Modal Logic
- * @description Funktionen für das Bearbeiten von Tasks im Edit-Modal.
- *              Ermöglicht das Öffnen, Befüllen, Speichern und Schließen des Edit-Modals
- *              sowie das Löschen von Tasks.
+ * @description Functions for editing tasks in the edit modal.
+ *              Enables opening, populating, saving and closing the edit modal
+ *              as well as deleting tasks.
  */
 
-// ============================================================================
-// EDIT MODAL STATE
-// ============================================================================
-
 /**
- * Temporäre Liste der ausgewählten Assignees im Edit-Modal.
+ * Temporary list of selected assignees in the edit modal.
  */
 let editSelectedAssignees = [];
 
 /**
- * Temporäre Liste der Subtasks im Edit-Modal.
+ * Temporary list of subtasks in the edit modal.
  */
 let editSubtasks = [];
 
-// ============================================================================
-// EDIT MODAL ÖFFNEN/SCHLIESSEN
-// ============================================================================
-
 /**
- * Öffnet das Edit-Modal für den aktuellen Task.
- * Schließt zuerst das View-Modal.
+ * Opens the edit modal for the current task.
+ * Closes the view modal first.
  */
 async function openEditModal() {
-  // View-Modal schließen
   closeTaskViewModal();
 
   if (!currentTaskId) {
@@ -37,7 +28,6 @@ async function openEditModal() {
   }
 
   try {
-    // Task-Daten laden (falls nicht mehr aktuell)
     const tasks = await fetchTasks();
     const task = tasks.find((t) => t.id === currentTaskId);
 
@@ -57,7 +47,7 @@ async function openEditModal() {
 }
 
 /**
- * Schließt das Edit-Modal und setzt den State zurück.
+ * Closes the edit modal and resets the state.
  */
 function closeEditModal() {
   document.getElementById("modalEditViewTaskOverlay").classList.add("d-none");
@@ -67,50 +57,38 @@ function closeEditModal() {
   editSubtasks = [];
 }
 
-// ============================================================================
-// EDIT MODAL BEFÜLLEN
-// ============================================================================
-
 /**
- * Befüllt das Edit-Modal mit den Task-Daten.
+ * Populates the edit modal with the task data.
  *
- * @param {Object} task - Das Task-Objekt mit allen Daten
+ * @param {Object} task - The task object with all data
  */
 async function populateEditModal(task) {
-  // Title
   const titleInput = document.querySelector(".title-input-div input");
   if (titleInput) titleInput.value = task.title || "";
 
-  // Description
   const descTextarea = document.querySelector(
     ".description-input-div textarea"
   );
   if (descTextarea) descTextarea.value = task.description || "";
 
-  // Due Date
   const dueDateInput = document.querySelector(".due-date-input-div input");
   if (dueDateInput) dueDateInput.value = task.dueDate || "";
 
-  // Priority
   populateEditPriority(task.priority);
 
-  // Kontakte laden für ID-Zuordnung
   await loadEditContactsForDropdown();
 
-  // Assignees - IDs zuordnen basierend auf Namen
   const rawAssignees = normalizeAssignees(task.assignees);
   editSelectedAssignees = rawAssignees.map((assignee) => {
-    // Versuche die ID aus den geladenen Kontakten zu finden
     const contact = editAvailableContacts.find((c) => c.name === assignee.name);
     return {
-      id: contact?.id || assignee.id || assignee.name, // Fallback auf Name wenn keine ID
+      id: contact?.id || assignee.id || assignee.name,
       name: assignee.name,
       color: assignee.color || contact?.color || "#2A3647",
     };
   });
   populateEditAssignees();
 
-  // Subtasks
   editSubtasks = task.subtasks
     ? Array.isArray(task.subtasks)
       ? [...task.subtasks]
@@ -120,9 +98,9 @@ async function populateEditModal(task) {
 }
 
 /**
- * Setzt den aktiven Priority-Button im Edit-Modal.
+ * Sets the active priority button in the edit modal.
  *
- * @param {string} priority - Die Priorität (urgent, medium, low)
+ * @param {string} priority - The priority (urgent, medium, low)
  */
 function populateEditPriority(priority) {
   const buttons = document.querySelectorAll(".priority-btn-edit-view");
@@ -138,25 +116,21 @@ function populateEditPriority(priority) {
 }
 
 /**
- * Behandelt den Klick auf einen Priority-Button im Edit-Modal.
+ * Handles the click on a priority button in the edit modal.
  *
- * @param {string} priority - Die gewählte Priorität
+ * @param {string} priority - The selected priority
  */
 function selectEditPriority(priority) {
   populateEditPriority(priority);
 }
 
-// ============================================================================
-// EDIT MODAL ASSIGNEES
-// ============================================================================
-
 /**
- * Temporäre Liste der verfügbaren Kontakte für das Edit-Modal.
+ * Temporary list of available contacts for the edit modal.
  */
 let editAvailableContacts = [];
 
 /**
- * Lädt Kontakte für das Edit-Modal (global für alle User inkl. Gäste).
+ * Loads contacts for the edit modal (global for all users including guests).
  */
 async function loadEditContactsForDropdown() {
   try {
@@ -168,15 +142,15 @@ async function loadEditContactsForDropdown() {
 }
 
 /**
- * Befüllt die Assignees-Anzeige im Edit-Modal.
- * Delegiert an die Render-Funktion in render_board_cards.js
+ * Populates the assignees display in the edit modal.
+ * Delegates to the render function in render_board_cards.js
  */
 function populateEditAssignees() {
   renderEditAssigneesBadges();
 }
 
 /**
- * Öffnet das Assignee-Dropdown im Edit-Modal.
+ * Opens the assignee dropdown in the edit modal.
  */
 async function openEditViewAssigneeDropdown() {
   const dropdown = document.getElementById("assignedDropdownList");
@@ -188,7 +162,6 @@ async function openEditViewAssigneeDropdown() {
     dropdown.classList.toggle("open");
     arrow.classList.toggle("open");
 
-    // Badges verstecken wenn Dropdown offen, anzeigen wenn geschlossen
     if (badges) {
       badges.classList.toggle("hidden", !isOpen);
     }
@@ -201,20 +174,20 @@ async function openEditViewAssigneeDropdown() {
 }
 
 /**
- * Rendert die Assignee-Dropdown-Liste im Edit-Modal.
- * Delegiert an die Render-Funktion in render_board_cards.js
+ * Renders the assignee dropdown list in the edit modal.
+ * Delegates to the render function in render_board_cards.js
  *
- * @param {string} filter - Optionaler Suchfilter
+ * @param {string} filter - Optional search filter
  */
 function renderEditAssigneeDropdown(filter = "") {
   renderEditAssigneeDropdownList(filter);
 }
 
 /**
- * Toggelt die Auswahl eines Assignees im Edit-Modal.
+ * Toggles the selection of an assignee in the edit modal.
  *
- * @param {Event} event - Das Click-Event
- * @param {string} contactId - Die ID des Kontakts
+ * @param {Event} event - The click event
+ * @param {string} contactId - The ID of the contact
  */
 function toggleEditAssignee(event, contactId) {
   event.stopPropagation();
@@ -234,20 +207,18 @@ function toggleEditAssignee(event, contactId) {
     }
   }
 
-  // Dropdown-Ansicht aktualisieren
   const searchInput = document.getElementById("editViewAssigneeSearch");
   renderEditAssigneeDropdown(searchInput?.value || "");
   populateEditAssignees();
 }
 
 /**
- * Filtert die Assignee-Liste im Edit-Modal.
+ * Filters the assignee list in the edit modal.
  */
 function filterEditViewAssigneeList() {
   const searchInput = document.getElementById("editViewAssigneeSearch");
   const searchTerm = searchInput?.value || "";
 
-  // Dropdown öffnen falls noch nicht offen
   const dropdown = document.getElementById("assignedDropdownList");
   const arrow = document.getElementById("assignedArrow");
   if (dropdown && !dropdown.classList.contains("open")) {
@@ -259,7 +230,7 @@ function filterEditViewAssigneeList() {
 }
 
 /**
- * Schließt das Edit-Modal Assignee Dropdown.
+ * Closes the edit modal assignee dropdown.
  */
 function closeEditAssigneeDropdown() {
   const dropdown = document.getElementById("assignedDropdownList");
@@ -273,98 +244,8 @@ function closeEditAssigneeDropdown() {
   }
 }
 
-// ============================================================================
-// EDIT MODAL SUBTASKS
-// ============================================================================
-
 /**
- * Rendert die Subtasks-Liste im Edit-Modal.
- * Delegiert an die Render-Funktion in render_board_cards.js
- */
-function renderEditSubtasks() {
-  renderEditSubtasksList();
-}
-
-/**
- * Fügt einen neuen Subtask im Edit-Modal hinzu.
- */
-function addEditSubtask() {
-  const input = document.getElementById("editViewSubtaskInput");
-  if (!input) return;
-
-  const title = input.value.trim();
-  if (title === "") return;
-
-  editSubtasks.push({ title, completed: false });
-  input.value = "";
-  renderEditSubtasks();
-}
-
-/**
- * Bearbeitet einen Subtask im Edit-Modal.
- *
- * @param {number} index - Der Index des Subtasks
- */
-function editEditSubtask(index) {
-  const container = document.getElementById("subtasksListEditView");
-  if (!container || index < 0 || index >= editSubtasks.length) return;
-
-  const item = container.querySelector(`[data-index="${index}"]`);
-  if (!item) return;
-
-  const currentTitle = editSubtasks[index].title;
-
-  item.innerHTML = getEditSubtaskInlineEditTemplate(
-    index,
-    escapeHtml(currentTitle)
-  );
-
-  const inputField = document.getElementById(`editSubtaskInput${index}`);
-  if (inputField) {
-    inputField.focus();
-    inputField.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") confirmEditSubtask(index);
-      if (e.key === "Escape") renderEditSubtasks();
-    });
-  }
-}
-
-/**
- * Bestätigt die Bearbeitung eines Subtasks.
- *
- * @param {number} index - Der Index des Subtasks
- */
-function confirmEditSubtask(index) {
-  const input = document.getElementById(`editSubtaskInput${index}`);
-  if (!input) return;
-
-  const newTitle = input.value.trim();
-  if (newTitle === "") {
-    deleteEditSubtask(index);
-    return;
-  }
-
-  editSubtasks[index].title = newTitle;
-  renderEditSubtasks();
-}
-
-/**
- * Löscht einen Subtask im Edit-Modal.
- *
- * @param {number} index - Der Index des Subtasks
- */
-function deleteEditSubtask(index) {
-  if (index < 0 || index >= editSubtasks.length) return;
-  editSubtasks.splice(index, 1);
-  renderEditSubtasks();
-}
-
-// ============================================================================
-// SPEICHERN UND LÖSCHEN
-// ============================================================================
-
-/**
- * Speichert alle Änderungen des Edit-Modals in Firebase.
+ * Saves all changes from the edit modal to Firebase.
  */
 async function saveTaskChanges() {
   if (!currentTaskId) {
@@ -373,7 +254,6 @@ async function saveTaskChanges() {
   }
 
   try {
-    // Alle Werte aus dem Formular sammeln
     const title =
       document.querySelector(".title-input-div input")?.value.trim() || "";
     const description =
@@ -383,13 +263,11 @@ async function saveTaskChanges() {
       document.querySelector(".due-date-input-div input")?.value || "";
     const priority = getSelectedEditPriority();
 
-    // Validierung
     if (title === "") {
       alert("Title is required");
       return;
     }
 
-    // Update-Daten zusammenstellen
     const updateData = {
       title,
       description,
@@ -399,16 +277,12 @@ async function saveTaskChanges() {
       subtasks: editSubtasks,
     };
 
-    // In Firebase speichern
     await updateTask(currentTaskId, updateData);
 
-    // Board neu rendern
     await renderAllTasks();
 
-    // Edit-Modal schließen (ohne State zurückzusetzen)
     document.getElementById("modalEditViewTaskOverlay").classList.add("d-none");
 
-    // Zurück zum View-Modal mit aktualisierten Daten
     await openTaskViewModal(currentTaskId);
   } catch (error) {
     console.error("Error saving task:", error);
@@ -417,9 +291,9 @@ async function saveTaskChanges() {
 }
 
 /**
- * Ermittelt die ausgewählte Priorität im Edit-Modal.
+ * Gets the selected priority in the edit modal.
  *
- * @returns {string} Die ausgewählte Priorität
+ * @returns {string} The selected priority
  */
 function getSelectedEditPriority() {
   const activeBtn = document.querySelector(".priority-btn-edit-view.active");
@@ -427,7 +301,7 @@ function getSelectedEditPriority() {
 }
 
 /**
- * Löscht den aktuellen Task nach Bestätigung.
+ * Deletes the current task after confirmation.
  */
 async function deleteCurrentTask() {
   if (!currentTaskId) {
@@ -441,11 +315,9 @@ async function deleteCurrentTask() {
   try {
     await deleteTask(currentTaskId);
 
-    // Modal schließen
     closeTaskViewModal();
     closeEditModal();
 
-    // Board neu rendern
     await renderAllTasks();
   } catch (error) {
     console.error("Error deleting task:", error);
@@ -453,107 +325,6 @@ async function deleteCurrentTask() {
   }
 }
 
-// ============================================================================
-// EVENT LISTENER FÜR SUBTASK INPUT
-// ============================================================================
-
-/**
- * Zeigt die Subtask-Actions im Edit-Modal.
- */
-function showEditSubtaskActions() {
-  const actions = document.getElementById("editSubtaskActions");
-  if (actions) {
-    actions.classList.add("show");
-  }
-}
-
-/**
- * Versteckt die Subtask-Actions im Edit-Modal mit Verzögerung.
- */
-function hideEditSubtaskActionsDelayed() {
-  setTimeout(() => {
-    const input = document.getElementById("editViewSubtaskInput");
-    const actions = document.getElementById("editSubtaskActions");
-
-    // Nur verstecken wenn Input nicht fokussiert und leer ist
-    if (
-      actions &&
-      input &&
-      document.activeElement !== input &&
-      input.value.trim() === ""
-    ) {
-      actions.classList.remove("show");
-    }
-  }, 150);
-}
-
-/**
- * Behandelt Keydown-Events im Subtask-Input des Edit-Modals.
- *
- * @param {KeyboardEvent} event - Das Keyboard-Event
- */
-function handleEditSubtaskKeydown(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    confirmEditSubtaskInput();
-  } else if (event.key === "Escape") {
-    cancelEditSubtaskInput();
-  }
-}
-
-/**
- * Bestätigt die Eingabe eines neuen Subtasks im Edit-Modal.
- */
-function confirmEditSubtaskInput() {
-  const input = document.getElementById("editViewSubtaskInput");
-  if (!input) return;
-
-  const title = input.value.trim();
-  if (title === "") return;
-
-  editSubtasks.push({ title, completed: false });
-  input.value = "";
-  renderEditSubtasks();
-
-  // Focus behalten für schnelle Eingabe
-  input.focus();
-}
-
-/**
- * Bricht die Eingabe ab und leert das Input-Feld.
- */
-function cancelEditSubtaskInput() {
-  const input = document.getElementById("editViewSubtaskInput");
-  const actions = document.getElementById("editSubtaskActions");
-
-  if (input) {
-    input.value = "";
-    input.blur();
-  }
-  if (actions) {
-    actions.classList.remove("show");
-  }
-}
-
-/**
- * Initialisiert Event Listener für das Subtask-Input im Edit-Modal.
- */
-function initEditSubtaskInput() {
-  const input = document.getElementById("editViewSubtaskInput");
-  if (input) {
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        confirmEditSubtaskInput();
-      }
-    });
-  }
-}
-
-// Event Listener hinzufügen wenn DOM geladen
-document.addEventListener("DOMContentLoaded", initEditSubtaskInput);
-
-// Schließt das Assignee-Dropdown bei Klick außerhalb
 document.addEventListener("click", function (event) {
   const assignedToDiv = document.querySelector(".assigned-to-div");
   const dropdown = document.getElementById("assignedDropdownList");

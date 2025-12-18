@@ -1,12 +1,13 @@
+/**
+ * @fileoverview Drag and Drop Controller
+ * @description Manages drag and drop functionality for task cards on the Kanban board.
+ */
+
 /** @type {HTMLElement|null} */
 let draggedTask = null;
 
 /** @type {HTMLElement|null} */
 let dragPreview = null;
-
-// ============================================================================
-// HILFSFUNKTIONEN - Pointer Events & Drop Indicator
-// ============================================================================
 
 /**
  * Disables pointer events on all task cards except the dragged one.
@@ -102,10 +103,6 @@ function getColumnAtPoint(x, y) {
   return null;
 }
 
-// ============================================================================
-// DESKTOP DRAG & DROP
-// ============================================================================
-
 /**
  * Initializes drag & drop for all task cards and columns.
  */
@@ -129,17 +126,23 @@ function initDragAndDrop() {
 }
 
 /**
- * Handles the start of dragging a task card.
- * @param {DragEvent} e
+ * Sets an empty drag image to use custom preview.
+ *
+ * @param {DragEvent} e - The drag event
  */
-function handleDragStart(e) {
-  draggedTask = e.target;
-
+function setEmptyDragImage(e) {
   const emptyImg = new Image();
   emptyImg.src =
     "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
   e.dataTransfer.setDragImage(emptyImg, 0, 0);
+}
 
+/**
+ * Creates and positions the drag preview element.
+ *
+ * @param {DragEvent} e - The drag event
+ */
+function createDragPreview(e) {
   const rect = draggedTask.getBoundingClientRect();
   dragPreview = draggedTask.cloneNode(true);
   dragPreview.classList.add("drag-preview");
@@ -147,19 +150,25 @@ function handleDragStart(e) {
   dragPreview.style.left = e.clientX - rect.width / 2 + "px";
   dragPreview.style.top = e.clientY - 30 + "px";
   document.body.appendChild(dragPreview);
+}
+
+/**
+ * Handles the start of dragging a task card.
+ *
+ * @param {DragEvent} e - The drag event
+ */
+function handleDragStart(e) {
+  draggedTask = e.target;
+  setEmptyDragImage(e);
+  createDragPreview(e);
 
   draggedTask.classList.add("dragging");
   draggedTask.classList.add("drag-start-pop");
   document.addEventListener("dragover", handleDragMove);
-
-  // Disable pointer events on other cards so entire column is drop target
   disableCardPointerEvents();
 
-  // Show drop indicators in adjacent columns
   const sourceColumn = draggedTask.closest(".column-content");
-  if (sourceColumn) {
-    showAdjacentDropIndicators(sourceColumn);
-  }
+  if (sourceColumn) showAdjacentDropIndicators(sourceColumn);
 
   e.dataTransfer.setData("text/plain", draggedTask.dataset.taskId);
   e.dataTransfer.effectAllowed = "move";
@@ -177,27 +186,30 @@ function handleDragMove(e) {
 }
 
 /**
- * Handles the end of dragging (drop or cancel).
- * @param {DragEvent} e
+ * Cleans up drag preview and dragged task state.
  */
-function handleDragEnd(e) {
-  document.removeEventListener("dragover", handleDragMove);
-
+function cleanupDragState() {
   if (dragPreview) {
     dragPreview.remove();
     dragPreview = null;
   }
-
   if (draggedTask) {
     draggedTask.classList.remove("dragging");
     draggedTask.classList.remove("drag-start-pop");
   }
   draggedTask = null;
+}
 
-  // Cleanup: re-enable pointer events and remove indicators
+/**
+ * Handles the end of dragging (drop or cancel).
+ *
+ * @param {DragEvent} e - The drag event
+ */
+function handleDragEnd(e) {
+  document.removeEventListener("dragover", handleDragMove);
+  cleanupDragState();
   enableCardPointerEvents();
   removeAllDropIndicators();
-
   document.querySelectorAll(".column-content").forEach((col) => {
     col.classList.remove("drag-over");
   });
@@ -265,10 +277,6 @@ async function handleDrop(e) {
   }
 }
 
-// ============================================================================
-// MOBILE MOVE MENU
-// ============================================================================
-
 /** @type {string|null} */
 let currentMoveTaskId = null;
 
@@ -276,54 +284,79 @@ let currentMoveTaskId = null;
 let currentMoveTaskStatus = null;
 
 /**
- * Opens the move menu for a task.
- * @param {Event} event - The click event
- * @param {string} taskId - The ID of the task to move
+ * Gets the current status of a task by its ID.
+ *
+ * @param {string} taskId - The task ID
+ * @returns {string|null} The status or null
  */
-function openMoveMenu(event, taskId) {
-  event.stopPropagation();
-
-  currentMoveTaskId = taskId;
-
-  // Find current status of the task
+function getTaskCurrentStatus(taskId) {
   const taskCard = document.querySelector(`[data-task-id="${taskId}"]`);
   const column = taskCard?.closest(".column-content");
-  currentMoveTaskStatus = column?.dataset?.status || null;
+  return column?.dataset?.status || null;
+}
 
-  // Highlight current status option
+/**
+ * Highlights the current status option in the move menu.
+ *
+ * @param {string|null} currentStatus - The current status
+ */
+function highlightCurrentStatusOption(currentStatus) {
   const menuOptions = document.querySelectorAll(".move-menu-option");
   menuOptions.forEach((option) => {
-    if (option.dataset.status === currentMoveTaskStatus) {
+    if (option.dataset.status === currentStatus) {
       option.classList.add("current-status");
     } else {
       option.classList.remove("current-status");
     }
   });
+}
 
-  // Position menu at the task card
-  const menu = document.querySelector(".move-menu");
-  const button = event.currentTarget;
-  const buttonRect = button.getBoundingClientRect();
-
-  // Position below the button, aligned to the right
+/**
+ * Positions the move menu relative to the button.
+ *
+ * @param {HTMLElement} menu - The menu element
+ * @param {DOMRect} buttonRect - The button's bounding rect
+ */
+function positionMoveMenu(menu, buttonRect) {
   menu.style.top = buttonRect.bottom + 8 + "px";
   menu.style.left = buttonRect.right - menu.offsetWidth + "px";
+}
 
-  // Show the menu
-  const overlay = document.getElementById("moveMenuOverlay");
-  overlay.classList.add("open");
-
-  // Adjust if menu goes off screen
+/**
+ * Adjusts menu position if it goes off screen.
+ *
+ * @param {HTMLElement} menu - The menu element
+ * @param {DOMRect} buttonRect - The button's bounding rect
+ */
+function adjustMenuPosition(menu, buttonRect) {
   const menuRect = menu.getBoundingClientRect();
   if (menuRect.right > window.innerWidth) {
     menu.style.left = window.innerWidth - menuRect.width - 16 + "px";
   }
-  if (menuRect.left < 0) {
-    menu.style.left = "16px";
-  }
+  if (menuRect.left < 0) menu.style.left = "16px";
   if (menuRect.bottom > window.innerHeight) {
     menu.style.top = buttonRect.top - menuRect.height - 8 + "px";
   }
+}
+
+/**
+ * Opens the move menu for a task.
+ *
+ * @param {Event} event - The click event
+ * @param {string} taskId - The ID of the task to move
+ */
+function openMoveMenu(event, taskId) {
+  event.stopPropagation();
+  currentMoveTaskId = taskId;
+  currentMoveTaskStatus = getTaskCurrentStatus(taskId);
+  highlightCurrentStatusOption(currentMoveTaskStatus);
+
+  const menu = document.querySelector(".move-menu");
+  const buttonRect = event.currentTarget.getBoundingClientRect();
+  positionMoveMenu(menu, buttonRect);
+
+  document.getElementById("moveMenuOverlay").classList.add("open");
+  adjustMenuPosition(menu, buttonRect);
 }
 
 /**

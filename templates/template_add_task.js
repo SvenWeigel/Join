@@ -1,16 +1,16 @@
 /**
- * @fileoverview Template-Funktionen für die Add Task-Seite
- * @description Enthält alle HTML-Template-Funktionen für das Assignee-Dropdown
+ * @fileoverview Template functions for the Add Task page
+ * @description Contains all HTML template functions for the assignee dropdown
  */
 
 /**
- * Generiert das HTML-Template für ein Dropdown-Item.
- * @param {string} id - Die ID des Kontakts
- * @param {string} name - Der Name des Kontakts
- * @param {string} initials - Die Initialen des Kontakts
- * @param {string} color - Die Hintergrundfarbe des Avatars
- * @param {boolean} isSelected - Ob der Kontakt ausgewählt ist
- * @returns {string} HTML-String für das Dropdown-Item
+ * Generates the HTML template for a dropdown item.
+ * @param {string} id - The contact ID
+ * @param {string} name - The contact name
+ * @param {string} initials - The contact initials
+ * @param {string} color - The background color of the avatar
+ * @param {boolean} isSelected - Whether the contact is selected
+ * @returns {string} HTML string for the dropdown item
  */
 function getDropdownItemTemplate(id, name, initials, color, isSelected) {
   const selectedClass = isSelected ? "selected" : "";
@@ -28,25 +28,21 @@ function getDropdownItemTemplate(id, name, initials, color, isSelected) {
 }
 
 /**
- * Generiert das HTML-Template für ein Kontakt-Badge.
- * @param {string} name - Der Name des Kontakts (für title-Attribut)
- * @param {string} initials - Die Initialen des Kontakts
- * @param {string} color - Die Hintergrundfarbe des Badges
- * @returns {string} HTML-String für das Badge
+ * Generates the HTML template for a contact badge.
+ * @param {string} name - The contact name (for title attribute)
+ * @param {string} initials - The contact initials
+ * @param {string} color - The background color of the badge
+ * @returns {string} HTML string for the badge
  */
 function getContactBadgeTemplate(name, initials, color) {
   return `<div class="contact-badge" style="background-color: ${color}" title="${name}">${initials}</div>`;
 }
 
-// ==========================================================================
-// SUBTASK TEMPLATES
-// ==========================================================================
-
 /**
- * Generiert das HTML-Template für ein Subtask-Item.
- * @param {string} title - Der Titel des Subtasks
- * @param {number} index - Der Index des Subtasks
- * @returns {string} HTML-String für das Subtask-Item
+ * Generates the HTML template for a subtask item.
+ * @param {string} title - The title of the subtask
+ * @param {number} index - The index of the subtask
+ * @returns {string} HTML string for the subtask item
  */
 function getSubtaskItemTemplate(title, index) {
   return `
@@ -72,10 +68,10 @@ function getSubtaskItemTemplate(title, index) {
 }
 
 /**
- * Generiert das HTML-Template für den Subtask-Edit-Modus.
- * @param {string} title - Der aktuelle Titel des Subtasks
- * @param {number} index - Der Index des Subtasks
- * @returns {string} HTML-String für den Edit-Modus
+ * Generates the HTML template for the subtask edit mode.
+ * @param {string} title - The current title of the subtask
+ * @param {number} index - The index of the subtask
+ * @returns {string} HTML string for the edit mode
  */
 function getSubtaskEditTemplate(title, index) {
   return `

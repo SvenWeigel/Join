@@ -1,17 +1,13 @@
 /**
- * @fileoverview Category Dropdown Controller für Add Task Page
- * @description Verwaltet das Category-Dropdown auf der Add Task-Seite
+ * @fileoverview Category Dropdown Controller for Add Task Page
+ * @description Manages the category dropdown on the Add Task page
  */
-
-// ==========================================================================
-// CATEGORY DROPDOWN (Add Task Page)
-// ==========================================================================
 
 /** @type {string} */
 let selectedPageCategoryValue = "";
 
 /**
- * Öffnet/Schließt das Category-Dropdown auf der Add Task-Seite.
+ * Opens/closes the category dropdown on the Add Task page.
  */
 function togglePageCategoryDropdown() {
   const list = document.getElementById("pageCategoryList");
@@ -22,7 +18,7 @@ function togglePageCategoryDropdown() {
 }
 
 /**
- * Schließt das Category-Dropdown auf der Add Task-Seite.
+ * Closes the category dropdown on the Add Task page.
  */
 function closePageCategoryDropdown() {
   const list = document.getElementById("pageCategoryList");
@@ -35,9 +31,9 @@ function closePageCategoryDropdown() {
 }
 
 /**
- * Wählt eine Kategorie auf der Add Task-Seite aus.
- * @param {string} value - Der Wert der Kategorie
- * @param {string} label - Der Anzeigetext der Kategorie
+ * Selects a category on the Add Task page.
+ * @param {string} value - The value of the category
+ * @param {string} label - The display text of the category
  */
 function selectPageCategory(value, label) {
   const selectedText = document.getElementById("pageCategorySelected");
@@ -62,7 +58,7 @@ function selectPageCategory(value, label) {
 }
 
 /**
- * Setzt das Category-Dropdown auf der Add Task-Seite zurück.
+ * Resets the category dropdown on the Add Task page.
  */
 function resetPageCategory() {
   const selectedText = document.getElementById("pageCategorySelected");
@@ -79,7 +75,7 @@ function resetPageCategory() {
 }
 
 /**
- * Schließt das Category-Dropdown bei Klick außerhalb.
+ * Closes the category dropdown when clicking outside.
  */
 document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("categoryDropdownPage");

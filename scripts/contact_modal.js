@@ -1,4 +1,9 @@
 /**
+ * @fileoverview Contact Modal Controller
+ * @description Manages the add and edit contact modal dialogs including form handling and validation.
+ */
+
+/**
  * Opens the Add Contact Modal
  */
 function openAddContactModal() {
@@ -20,41 +25,59 @@ function closeAddContactModal() {
 }
 
 /**
- * Resets the Add Contact form fields
+ * Clears the contact form input fields.
+ *
+ * @param {string} nameId - ID of the name input
+ * @param {string} emailId - ID of the email input
+ * @param {string} phoneId - ID of the phone input
  */
-function resetAddContactForm() {
-  let form = document.getElementById("addContactForm");
-  if (form) {
-    form.reset();
-  }
-  let nameInput = document.getElementById("contactName");
-  let emailInput = document.getElementById("contactEmail");
-  let phoneInput = document.getElementById("contactPhone");
+function clearContactInputs(nameId, emailId, phoneId) {
+  const nameInput = document.getElementById(nameId);
+  const emailInput = document.getElementById(emailId);
+  const phoneInput = document.getElementById(phoneId);
   if (nameInput) nameInput.value = "";
   if (emailInput) emailInput.value = "";
   if (phoneInput) phoneInput.value = "";
 }
 
 /**
- * Handles the Add Contact form submission
+ * Resets the Add Contact form fields.
+ */
+function resetAddContactForm() {
+  const form = document.getElementById("addContactForm");
+  if (form) form.reset();
+  clearContactInputs("contactName", "contactEmail", "contactPhone");
+}
+
+/**
+ * Collects data from the Add Contact form.
+ *
+ * @returns {Object} The contact data object
+ */
+function getAddContactFormData() {
+  return {
+    name: document.getElementById("contactName").value.trim(),
+    email: document.getElementById("contactEmail").value.trim(),
+    phone: document.getElementById("contactPhone").value.trim(),
+    color: getRandomColor(),
+  };
+}
+
+/**
+ * Handles the Add Contact form submission.
+ *
  * @param {Event} event - The form submit event
  */
 async function handleAddContact(event) {
   event.preventDefault();
-
-  let name = document.getElementById("contactName").value.trim();
-  let email = document.getElementById("contactEmail").value.trim();
-  let phone = document.getElementById("contactPhone").value.trim();
-  let color = getRandomColor();
-  let newContact = { name, email, phone, color };
+  const newContact = getAddContactFormData();
 
   try {
     const savedContact = await createContact(newContact);
     contacts.push(savedContact);
-    newContact = savedContact;
     renderContactList();
     closeAddContactModal();
-    selectContact(newContact.id);
+    selectContact(savedContact.id);
   } catch (err) {
     console.error("Failed to create contact:", err);
     alert("Fehler beim Erstellen des Kontakts.");
@@ -108,30 +131,46 @@ document.addEventListener("keydown", function (event) {
 });
 
 /**
- * ID des aktuell bearbeiteten Kontakts
+ * ID of the currently edited contact
  */
 let editingContactId = null;
 
 /**
- * Opens the Edit Contact Modal with pre-filled data
+ * Fills the edit form with contact data.
+ *
+ * @param {Object} contact - The contact object
+ */
+function fillEditContactForm(contact) {
+  document.getElementById("editContactName").value = contact.name;
+  document.getElementById("editContactEmail").value = contact.email;
+  document.getElementById("editContactPhone").value = contact.phone || "";
+}
+
+/**
+ * Updates the edit modal badge with contact initials and color.
+ *
+ * @param {Object} contact - The contact object
+ */
+function updateEditContactBadge(contact) {
+  const badge = document.getElementById("editContactBadge");
+  badge.textContent = getInitials(contact.name);
+  badge.style.backgroundColor = contact.color;
+}
+
+/**
+ * Opens the Edit Contact Modal with pre-filled data.
+ *
  * @param {string} contactId - ID of the contact to edit
  */
 function openEditContactModal(contactId) {
   editingContactId = contactId;
-  let contact = contacts.find((c) => c.id === contactId);
+  const contact = contacts.find((c) => c.id === contactId);
   if (!contact) return;
-  let overlay = document.getElementById("editContactModalOverlay");
 
-  // Felder mit Kontaktdaten füllen
-  document.getElementById("editContactName").value = contact.name;
-  document.getElementById("editContactEmail").value = contact.email;
-  document.getElementById("editContactPhone").value = contact.phone || "";
+  fillEditContactForm(contact);
+  updateEditContactBadge(contact);
 
-  // Badge mit Initialen und Farbe aktualisieren
-  let badge = document.getElementById("editContactBadge");
-  badge.textContent = getInitials(contact.name);
-  badge.style.backgroundColor = contact.color;
-
+  const overlay = document.getElementById("editContactModalOverlay");
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -149,27 +188,46 @@ function closeEditContactModal() {
 }
 
 /**
- * Handles the Edit Contact form submission
+ * Collects data from the Edit Contact form.
+ *
+ * @returns {Object} The updated contact data
+ */
+function getEditContactFormData() {
+  return {
+    name: document.getElementById("editContactName").value.trim(),
+    email: document.getElementById("editContactEmail").value.trim(),
+    phone: document.getElementById("editContactPhone").value.trim(),
+  };
+}
+
+/**
+ * Updates the local contact object with new data.
+ *
+ * @param {string} contactId - The contact ID
+ * @param {Object} updateData - The updated data
+ */
+function updateLocalContact(contactId, updateData) {
+  const contact = contacts.find((c) => c.id === contactId);
+  if (contact) {
+    contact.name = updateData.name;
+    contact.email = updateData.email;
+    contact.phone = updateData.phone;
+  }
+}
+
+/**
+ * Handles the Edit Contact form submission.
+ *
  * @param {Event} event - The form submit event
  */
 async function handleEditContact(event) {
   event.preventDefault();
   if (!editingContactId) return;
 
-  let name = document.getElementById("editContactName").value.trim();
-  let email = document.getElementById("editContactEmail").value.trim();
-  let phone = document.getElementById("editContactPhone").value.trim();
-
-  const updateData = { name, email, phone };
-
+  const updateData = getEditContactFormData();
   try {
     await updateContactInDb(editingContactId, updateData);
-    let contact = contacts.find((c) => c.id === editingContactId);
-    if (contact) {
-      contact.name = name;
-      contact.email = email;
-      contact.phone = phone;
-    }
+    updateLocalContact(editingContactId, updateData);
     const contactIdToSelect = editingContactId;
     renderContactList();
     closeEditContactModal();

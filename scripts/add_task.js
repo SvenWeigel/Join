@@ -1,17 +1,17 @@
 /**
  * @fileoverview Add Task Page Controller
- * @description Verwaltet die Task-Erstellung auf der Add Task-Seite
+ * @description Manages task creation on the add task page
  */
 
-/** @type {HTMLFormElement|null} Das Formular-Element */
+/** @type {HTMLFormElement|null} The form element */
 let addTaskForm = null;
 
-/** @type {HTMLElement[]} Array der Priority-Button-Elemente */
+/** @type {HTMLElement[]} Array of priority button elements */
 let addTaskPriorityButtons = [];
 
 /**
- * Initialisiert die Add Task-Seite beim Laden.
- * Cached DOM-Elemente und bindet alle Event-Listener.
+ * Initializes the add task page on load.
+ * Caches DOM elements and binds all event listeners.
  */
 async function initAddTaskPage() {
   cacheAddTaskElements();
@@ -20,7 +20,7 @@ async function initAddTaskPage() {
 }
 
 /**
- * Cached alle benötigten DOM-Elemente in Variablen.
+ * Caches all required DOM elements into variables.
  */
 function cacheAddTaskElements() {
   addTaskForm = document.getElementById("addTaskFormPage");
@@ -30,7 +30,7 @@ function cacheAddTaskElements() {
 }
 
 /**
- * Bindet alle Event-Listener für die Add Task-Seite.
+ * Binds all event listeners for the add task page.
  */
 function bindAddTaskEvents() {
   bindAddTaskPriorityButtons();
@@ -39,7 +39,7 @@ function bindAddTaskEvents() {
 }
 
 /**
- * Bindet Click-Event-Listener an alle Priority-Buttons.
+ * Binds click event listeners to all priority buttons.
  */
 function bindAddTaskPriorityButtons() {
   addTaskPriorityButtons.forEach((btn) => {
@@ -48,7 +48,7 @@ function bindAddTaskPriorityButtons() {
 }
 
 /**
- * Bindet den Submit-Event-Listener an das Formular.
+ * Binds the submit event listener to the form.
  */
 function bindAddTaskFormSubmit() {
   if (addTaskForm) {
@@ -57,7 +57,7 @@ function bindAddTaskFormSubmit() {
 }
 
 /**
- * Bindet den Click-Event-Listener an den Clear-Button.
+ * Binds the click event listener to the clear button.
  */
 function bindClearButton() {
   const clearBtn = document.getElementById("clearTaskBtn");
@@ -67,8 +67,8 @@ function bindClearButton() {
 }
 
 /**
- * Wählt einen Priority-Button aus und markiert ihn als aktiv.
- * @param {HTMLElement} selectedBtn - Der ausgewählte Priority-Button
+ * Selects a priority button and marks it as active.
+ * @param {HTMLElement} selectedBtn - The selected priority button
  */
 function selectAddTaskPriority(selectedBtn) {
   addTaskPriorityButtons.forEach((btn) => btn.classList.remove("active"));
@@ -76,8 +76,8 @@ function selectAddTaskPriority(selectedBtn) {
 }
 
 /**
- * Ermittelt die aktuell ausgewählte Priorität.
- * @returns {string} Die ausgewählte Priorität ("urgent", "medium" oder "low")
+ * Determines the currently selected priority.
+ * @returns {string} The selected priority ("urgent", "medium" or "low")
  */
 function getAddTaskSelectedPriority() {
   return (
@@ -87,8 +87,8 @@ function getAddTaskSelectedPriority() {
 }
 
 /**
- * Sammelt alle Formulardaten und gibt sie als Objekt zurück.
- * @returns {Object} Objekt mit allen Task-Daten
+ * Collects all form data and returns it as an object.
+ * @returns {Object} Object with all task data
  */
 function getAddTaskFormData() {
   return {
@@ -103,7 +103,7 @@ function getAddTaskFormData() {
 }
 
 /**
- * Setzt die Priority-Auswahl auf den Standardwert "Medium" zurück.
+ * Resets the priority selection to the default value "Medium".
  */
 function resetAddTaskPriority() {
   addTaskPriorityButtons.forEach((btn) => btn.classList.remove("active"));
@@ -114,7 +114,7 @@ function resetAddTaskPriority() {
 }
 
 /**
- * Leert das Formular und setzt die Priority zurück.
+ * Clears the form and resets the priority.
  */
 function clearAddTaskForm() {
   if (addTaskForm) {
@@ -131,16 +131,16 @@ function clearAddTaskForm() {
 }
 
 /**
- * Holt den aktuellen User aus dem localStorage.
- * @returns {Object|null} Der aktuelle User oder null
+ * Gets the current user from localStorage.
+ * @returns {Object|null} The current user or null
  */
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem("currentUser"));
 }
 
 /**
- * Liest den Status aus dem URL-Parameter.
- * @returns {string} Der Status aus der URL oder "todo" als Standard
+ * Reads the status from the URL parameter.
+ * @returns {string} The status from the URL or "todo" as default
  */
 function getStatusFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -150,10 +150,10 @@ function getStatusFromUrl() {
 }
 
 /**
- * Erstellt ein Task-Objekt aus den Formulardaten.
- * @param {Object} formData - Die gesammelten Formulardaten
- * @param {string} creatorEmail - E-Mail des Erstellers
- * @returns {Object} Das Task-Objekt für Firebase
+ * Creates a task object from the form data.
+ * @param {Object} formData - The collected form data
+ * @param {string} creatorEmail - Email of the creator
+ * @returns {Object} The task object for Firebase
  */
 function buildTaskData(formData, creatorEmail) {
   return {
@@ -170,9 +170,9 @@ function buildTaskData(formData, creatorEmail) {
 }
 
 /**
- * Wandelt Assignee-IDs in vollständige Assignee-Objekte um.
- * @param {string[]} assigneeIds - Array der ausgewählten Kontakt-IDs
- * @returns {Object[]} Array von Objekten mit name und color
+ * Converts assignee IDs into complete assignee objects.
+ * @param {string[]} assigneeIds - Array of selected contact IDs
+ * @returns {Object[]} Array of objects with name and color
  */
 function getAssigneesWithData(assigneeIds) {
   if (!assigneeIds || assigneeIds.length === 0) return [];
@@ -196,7 +196,7 @@ function getAssigneesWithData(assigneeIds) {
 }
 
 /**
- * Zeigt eine Erfolgsmeldung an.
+ * Displays a success message.
  */
 function showSuccessMessage() {
   const successMsg = document.getElementById("taskSuccessMessage");
@@ -207,29 +207,42 @@ function showSuccessMessage() {
 }
 
 /**
- * Verarbeitet die Formular-Übermittlung.
- * @param {Event} e - Das Submit-Event
+ * Redirects to the board page after a delay.
+ */
+function redirectToBoard() {
+  setTimeout(() => {
+    window.location.href = "html/board.html";
+  }, 1500);
+}
+
+/**
+ * Handles errors during task creation.
+ *
+ * @param {Error} error - The error object
+ */
+function handleTaskCreationError(error) {
+  console.error("Error creating task:", error);
+  alert("Task could not be created. Please try again.");
+}
+
+/**
+ * Handles the form submission.
+ *
+ * @param {Event} e - The submit event
  */
 async function handleAddTaskSubmit(e) {
   e.preventDefault();
   const currentUser = getCurrentUser();
+  const creatorEmail = currentUser?.email || "guest@guest.local";
   try {
     const formData = getAddTaskFormData();
-    const taskData = buildTaskData(
-      formData,
-      currentUser?.email || "guest@guest.local"
-    );
-    await createTask(taskData);
+    await createTask(buildTaskData(formData, creatorEmail));
     clearAddTaskForm();
     showSuccessMessage();
-    setTimeout(() => {
-      window.location.href = "html/board.html";
-    }, 1500);
+    redirectToBoard();
   } catch (error) {
-    console.error("Error creating task:", error);
-    alert("Task could not be created. Please try again.");
+    handleTaskCreationError(error);
   }
 }
 
-// Initialisierung beim Laden der Seite
 document.addEventListener("DOMContentLoaded", initAddTaskPage);

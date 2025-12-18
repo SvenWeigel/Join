@@ -1,25 +1,26 @@
 /**
- * Basis-URL für die Realtime-DB / REST-API (z. B. Firebase).
- * Wird in anderen Modulen als `BASE_URL` verwendet, um Endpunkte wie
- * `${BASE_URL}/users.json` aufzurufen.
+ * @fileoverview Database Service
+ * @description Handles all Firebase Realtime Database operations including CRUD for tasks, contacts, and users.
+ */
+
+/**
+ * Base URL for the Realtime DB / REST API (e.g. Firebase).
+ * Used in other modules as `BASE_URL` to call endpoints like
+ * `${BASE_URL}/users.json`.
  */
 const BASE_URL =
   "https://join-96f67-default-rtdb.europe-west1.firebasedatabase.app";
 
-// ============================================================================
-// TASK CRUD OPERATIONS
-// ============================================================================
-
 /**
- * Erstellt einen neuen Task in der Firebase-Datenbank.
+ * Creates a new task in the Firebase database.
  *
- * @param {Object} taskData - Die Task-Daten (title, description, dueDate, etc.)
- * @returns {Promise<Object>} Das erstellte Task-Objekt mit Firebase-ID
+ * @param {Object} taskData - The task data (title, description, dueDate, etc.)
+ * @returns {Promise<Object>} The created task object with Firebase ID
  *
  * @example
  * const newTask = await createTask({
- *   title: "Mein Task",
- *   description: "Beschreibung",
+ *   title: "My Task",
+ *   description: "Description",
  *   dueDate: "2025-12-01",
  *   priority: "medium",
  *   category: "technical",
@@ -27,13 +28,11 @@ const BASE_URL =
  * });
  */
 async function createTask(taskData) {
-  // Timestamp hinzufügen
   const task = {
     ...taskData,
     createdAt: new Date().toISOString(),
   };
 
-  // POST-Request an Firebase - erstellt neuen Eintrag mit auto-generierter ID
   const response = await fetch(`${BASE_URL}/tasks.json`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -44,15 +43,14 @@ async function createTask(taskData) {
     throw new Error("Failed to create task");
   }
 
-  // Firebase gibt { name: "auto-generated-id" } zurück
   const data = await response.json();
   return { id: data.name, ...task };
 }
 
 /**
- * Lädt alle Tasks aus der Firebase-Datenbank.
+ * Loads all tasks from the Firebase database.
  *
- * @returns {Promise<Object[]>} Array aller Tasks mit ihren IDs
+ * @returns {Promise<Object[]>} Array of all tasks with their IDs
  *
  * @example
  * const tasks = await fetchTasks();
@@ -67,11 +65,8 @@ async function fetchTasks() {
 
   const data = await response.json();
 
-  // Falls keine Tasks existieren, leeres Array zurückgeben
   if (!data) return [];
 
-  // Firebase gibt { id1: {task1}, id2: {task2} } zurück
-  // Wir wandeln es in ein Array um: [{ id: "id1", ...task1 }, ...]
   return Object.entries(data).map(([id, task]) => ({
     id,
     ...task,
@@ -79,17 +74,16 @@ async function fetchTasks() {
 }
 
 /**
- * Aktualisiert einen bestehenden Task in der Firebase-Datenbank.
+ * Updates an existing task in the Firebase database.
  *
- * @param {string} taskId - Die Firebase-ID des Tasks
- * @param {Object} updateData - Die zu aktualisierenden Felder
- * @returns {Promise<Object>} Die aktualisierten Task-Daten
+ * @param {string} taskId - The Firebase ID of the task
+ * @param {Object} updateData - The fields to update
+ * @returns {Promise<Object>} The updated task data
  *
  * @example
  * await updateTask("-abc123", { status: "done" });
  */
 async function updateTask(taskId, updateData) {
-  // PATCH aktualisiert nur die angegebenen Felder
   const response = await fetch(`${BASE_URL}/tasks/${taskId}.json`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -104,9 +98,9 @@ async function updateTask(taskId, updateData) {
 }
 
 /**
- * Löscht einen Task aus der Firebase-Datenbank.
+ * Deletes a task from the Firebase database.
  *
- * @param {string} taskId - Die Firebase-ID des Tasks
+ * @param {string} taskId - The Firebase ID of the task
  * @returns {Promise<void>}
  *
  * @example
@@ -122,15 +116,11 @@ async function deleteTask(taskId) {
   }
 }
 
-// ============================================================================
-// CONTACT CRUD OPERATIONS
-// ============================================================================
-
 /**
- * Erstellt einen neuen Kontakt in Firebase (global für alle User).
+ * Creates a new contact in Firebase (global for all users).
  *
- * @param {Object} contactData - Die Kontaktdaten (name, email, phone, color)
- * @returns {Promise<Object>} Der erstellte Kontakt mit Firebase-ID
+ * @param {Object} contactData - The contact data (name, email, phone, color)
+ * @returns {Promise<Object>} The created contact with Firebase ID
  */
 async function createContact(contactData) {
   const contact = {
@@ -153,9 +143,9 @@ async function createContact(contactData) {
 }
 
 /**
- * Lädt alle Kontakte aus Firebase (global für alle User).
+ * Loads all contacts from Firebase (global for all users).
  *
- * @returns {Promise<Object[]>} Array aller Kontakte mit ihren IDs
+ * @returns {Promise<Object[]>} Array of all contacts with their IDs
  */
 async function fetchContacts() {
   const response = await fetch(`${BASE_URL}/contacts.json`);
@@ -175,11 +165,11 @@ async function fetchContacts() {
 }
 
 /**
- * Aktualisiert einen bestehenden Kontakt in Firebase (global).
+ * Updates an existing contact in Firebase (global).
  *
- * @param {string} contactId - Die Firebase-ID des Kontakts
- * @param {Object} updateData - Die zu aktualisierenden Felder
- * @returns {Promise<Object>} Die aktualisierten Kontaktdaten
+ * @param {string} contactId - The Firebase ID of the contact
+ * @param {Object} updateData - The fields to update
+ * @returns {Promise<Object>} The updated contact data
  */
 async function updateContactInDb(contactId, updateData) {
   const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, {
@@ -196,9 +186,9 @@ async function updateContactInDb(contactId, updateData) {
 }
 
 /**
- * Löscht einen Kontakt aus Firebase (global).
+ * Deletes a contact from Firebase (global).
  *
- * @param {string} contactId - Die Firebase-ID des Kontakts
+ * @param {string} contactId - The Firebase ID of the contact
  * @returns {Promise<void>}
  */
 async function deleteContactFromDb(contactId) {

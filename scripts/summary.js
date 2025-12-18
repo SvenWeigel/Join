@@ -1,45 +1,37 @@
-// ============================================================================
-// EVENT LISTENERS - Navigation
-// ============================================================================
-
-document.getElementById("todo-div").addEventListener("click", function () {
-  window.location.href = "html/board.html";
-});
-
-document.getElementById("done-div").addEventListener("click", function () {
-  window.location.href = "html/board.html";
-});
-
-document
-  .getElementById("priority-date-div")
-  .addEventListener("click", function () {
-    window.location.href = "html/board.html";
-  });
-
-document
-  .getElementById("tasks-in-board-div")
-  .addEventListener("click", function () {
-    window.location.href = "html/board.html";
-  });
-
-document
-  .getElementById("tasks-in-progress-div")
-  .addEventListener("click", function () {
-    window.location.href = "html/board.html";
-  });
-
-document
-  .getElementById("awaiting-feedback-div")
-  .addEventListener("click", function () {
-    window.location.href = "html/board.html";
-  });
-
-// ============================================================================
-// INITIALIZATION
-// ============================================================================
+/**
+ * @fileoverview Summary Page Controller
+ * @description Manages the summary dashboard page, displaying task statistics and greeting messages.
+ */
 
 /**
- * Initialisiert die Summary-Seite mit dynamischen Daten.
+ * Navigates to the board page.
+ */
+function navigateToBoard() {
+  window.location.href = "html/board.html";
+}
+
+/**
+ * Attaches click listeners to summary divs for navigation.
+ */
+function attachSummaryClickListeners() {
+  const ids = [
+    "todo-div",
+    "done-div",
+    "priority-date-div",
+    "tasks-in-board-div",
+    "tasks-in-progress-div",
+    "awaiting-feedback-div",
+  ];
+  ids.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("click", navigateToBoard);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", attachSummaryClickListeners);
+
+/**
+ * Initializes the summary page with dynamic data.
  */
 async function initSummaryPage() {
   updateGreeting();
@@ -47,7 +39,7 @@ async function initSummaryPage() {
 }
 
 /**
- * Lädt alle Tasks und aktualisiert die Summary-Anzeigen.
+ * Loads all tasks and updates the summary displays.
  */
 async function loadAndDisplaySummaryData() {
   try {
@@ -63,13 +55,10 @@ async function loadAndDisplaySummaryData() {
   }
 }
 
-// ============================================================================
-// TASK COUNT FUNCTIONS
-// ============================================================================
-
 /**
- * Aktualisiert die Anzahl der To-do Tasks.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the count of to-do tasks.
+ *
+ * @param {Array} tasks - Array of all tasks
  */
 function updateTodoCount(tasks) {
   const todoCount = tasks.filter((task) => task.status === "todo").length;
@@ -78,8 +67,9 @@ function updateTodoCount(tasks) {
 }
 
 /**
- * Aktualisiert die Anzahl der erledigten Tasks.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the count of completed tasks.
+ *
+ * @param {Array} tasks - Array of all tasks
  */
 function updateDoneCount(tasks) {
   const doneCount = tasks.filter((task) => task.status === "done").length;
@@ -88,8 +78,9 @@ function updateDoneCount(tasks) {
 }
 
 /**
- * Aktualisiert die Anzahl der Tasks in Progress.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the count of tasks in progress.
+ *
+ * @param {Array} tasks - Array of all tasks
  */
 function updateInProgressCount(tasks) {
   const inProgressCount = tasks.filter(
@@ -100,8 +91,9 @@ function updateInProgressCount(tasks) {
 }
 
 /**
- * Aktualisiert die Anzahl der Tasks die auf Feedback warten.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the count of tasks awaiting feedback.
+ *
+ * @param {Array} tasks - Array of all tasks
  */
 function updateAwaitingFeedbackCount(tasks) {
   const awaitingCount = tasks.filter(
@@ -112,48 +104,55 @@ function updateAwaitingFeedbackCount(tasks) {
 }
 
 /**
- * Aktualisiert die Gesamtanzahl der Tasks im Board.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the total count of tasks in the board.
+ *
+ * @param {Array} tasks - Array of all tasks
  */
 function updateTotalTasksCount(tasks) {
   const element = document.querySelector(".tasks-in-board-number-span");
   if (element) element.textContent = tasks.length;
 }
 
-// ============================================================================
-// URGENT & DEADLINE FUNCTIONS
-// ============================================================================
-
 /**
- * Aktualisiert die Anzahl der dringenden Tasks und die nächste Deadline.
- * @param {Array} tasks - Array aller Tasks
+ * Updates the urgent task count display.
+ *
+ * @param {number} count - Number of urgent tasks
  */
-function updateUrgentAndDeadline(tasks) {
-  const urgentTasks = tasks.filter((task) => task.priority === "urgent");
-  const urgentCount = urgentTasks.length;
-
-  // Urgent Count aktualisieren
-  const urgentElement = document.querySelector(".urgency-number-span");
-  if (urgentElement) urgentElement.textContent = urgentCount;
-
-  // Früheste Deadline finden
-  const deadlineElement = document.querySelector(".date-span");
-  if (deadlineElement) {
-    if (urgentCount === 0) {
-      deadlineElement.textContent = "No urgent deadline";
-    } else {
-      const earliestDeadline = findEarliestDeadline(urgentTasks);
-      deadlineElement.textContent = earliestDeadline
-        ? formatDateToEnglish(earliestDeadline)
-        : "No urgent deadline";
-    }
-  }
+function updateUrgentCount(count) {
+  const element = document.querySelector(".urgency-number-span");
+  if (element) element.textContent = count;
 }
 
 /**
- * Findet die früheste Deadline unter den gegebenen Tasks.
- * @param {Array} tasks - Array von Tasks
- * @returns {string|null} Das früheste Datum im Format YYYY-MM-DD oder null
+ * Gets the deadline text for urgent tasks.
+ *
+ * @param {Array} urgentTasks - Array of urgent tasks
+ * @returns {string} Formatted deadline text
+ */
+function getDeadlineText(urgentTasks) {
+  if (urgentTasks.length === 0) return "No urgent deadline";
+  const earliest = findEarliestDeadline(urgentTasks);
+  return earliest ? formatDateToEnglish(earliest) : "No urgent deadline";
+}
+
+/**
+ * Updates urgent count and nearest deadline display.
+ *
+ * @param {Array} tasks - Array of all tasks
+ */
+function updateUrgentAndDeadline(tasks) {
+  const urgentTasks = tasks.filter((task) => task.priority === "urgent");
+  updateUrgentCount(urgentTasks.length);
+  const deadlineElement = document.querySelector(".date-span");
+  if (deadlineElement)
+    deadlineElement.textContent = getDeadlineText(urgentTasks);
+}
+
+/**
+ * Finds the earliest deadline among the given tasks.
+ *
+ * @param {Array} tasks - Array of tasks
+ * @returns {string|null} The earliest date or null
  */
 function findEarliestDeadline(tasks) {
   const tasksWithDates = tasks.filter((task) => task.dueDate);
@@ -166,9 +165,10 @@ function findEarliestDeadline(tasks) {
 }
 
 /**
- * Formatiert ein Datum von YYYY-MM-DD zu "Month DD, YYYY" (English).
- * @param {string} dateString - Datum im Format YYYY-MM-DD
- * @returns {string} Datum im Format "Month DD, YYYY"
+ * Formats a date from YYYY-MM-DD to English format.
+ *
+ * @param {string} dateString - Date in YYYY-MM-DD format
+ * @returns {string} Date in "Month DD, YYYY" format
  */
 function formatDateToEnglish(dateString) {
   if (!dateString) return "";
@@ -177,63 +177,63 @@ function formatDateToEnglish(dateString) {
   return date.toLocaleDateString("en-US", options);
 }
 
-// ============================================================================
-// GREETING FUNCTIONS
-// ============================================================================
+/**
+ * Gets greeting elements for desktop view.
+ *
+ * @returns {{greet: HTMLElement|null, name: HTMLElement|null}} Desktop elements
+ */
+function getDesktopGreetingElements() {
+  return {
+    greet: document.querySelector(".greet-span"),
+    name: document.querySelector(".greet-name-span"),
+  };
+}
 
 /**
- * Aktualisiert die Begrüßung basierend auf der Tageszeit und dem Benutzer.
+ * Gets greeting elements for mobile view.
+ *
+ * @returns {{greet: HTMLElement|null, name: HTMLElement|null}} Mobile elements
  */
-function updateGreeting() {
-  const greetingText = getTimeBasedGreeting();
+function getMobileGreetingElements() {
+  return {
+    greet: document.querySelector(".greet-span-responsive"),
+    name: document.querySelector(".greet-name-span-responsive"),
+  };
+}
 
-  // Desktop Greeting
-  const greetElement = document.querySelector(".greet-span");
-  const nameElement = document.querySelector(".greet-name-span");
-
-  // Mobile Greeting (Overlay)
-  const greetElementResponsive = document.querySelector(
-    ".greet-span-responsive"
-  );
-  const nameElementResponsive = document.querySelector(
-    ".greet-name-span-responsive"
-  );
-
-  const user = readUserFromStorage();
-  const isGuest = !user || user.guest || !user.name;
-
-  // Desktop
-  if (greetElement) {
-    if (isGuest) {
-      greetElement.textContent = greetingText + "!";
-      if (nameElement) nameElement.style.display = "none";
-    } else {
-      greetElement.textContent = greetingText + ",";
-      if (nameElement) {
-        nameElement.textContent = user.name;
-        nameElement.style.display = "";
-      }
-    }
-  }
-
-  // Mobile Overlay
-  if (greetElementResponsive) {
-    if (isGuest) {
-      greetElementResponsive.textContent = greetingText + "!";
-      if (nameElementResponsive) nameElementResponsive.style.display = "none";
-    } else {
-      greetElementResponsive.textContent = greetingText + ",";
-      if (nameElementResponsive) {
-        nameElementResponsive.textContent = user.name;
-        nameElementResponsive.style.display = "";
-      }
-    }
+/**
+ * Applies greeting to element pair.
+ *
+ * @param {{greet: HTMLElement|null, name: HTMLElement|null}} elements - Greeting elements
+ * @param {string} greetingText - The greeting text
+ * @param {boolean} isGuest - Whether user is a guest
+ * @param {string} userName - The user name
+ */
+function applyGreeting(elements, greetingText, isGuest, userName) {
+  if (!elements.greet) return;
+  elements.greet.textContent = greetingText + (isGuest ? "!" : ",");
+  if (elements.name) {
+    elements.name.style.display = isGuest ? "none" : "";
+    if (!isGuest) elements.name.textContent = userName;
   }
 }
 
 /**
- * Gibt eine zeitbasierte Begrüßung zurück.
- * @returns {string} "Good morning", "Good afternoon" oder "Good evening"
+ * Updates the greeting based on time and user.
+ */
+function updateGreeting() {
+  const greetingText = getTimeBasedGreeting();
+  const user = readUserFromStorage();
+  const isGuest = !user || user.guest || !user.name;
+  const userName = user?.name || "";
+  applyGreeting(getDesktopGreetingElements(), greetingText, isGuest, userName);
+  applyGreeting(getMobileGreetingElements(), greetingText, isGuest, userName);
+}
+
+/**
+ * Returns a time-based greeting.
+ *
+ * @returns {string} Greeting based on current hour
  */
 function getTimeBasedGreeting() {
   const hour = new Date().getHours();
@@ -243,8 +243,9 @@ function getTimeBasedGreeting() {
 }
 
 /**
- * Liest den aktuellen Benutzer aus dem localStorage.
- * @returns {Object|null} Das User-Objekt oder null
+ * Reads the current user from localStorage.
+ *
+ * @returns {Object|null} The user object or null
  */
 function readUserFromStorage() {
   try {
@@ -255,27 +256,32 @@ function readUserFromStorage() {
     return null;
   }
 }
-//Greeting kommt nur einmal pro Session
- document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('greetOverlay');
-    if (!overlay) return;
 
-    // Prüfen, ob das Overlay schon in dieser Sitzung gezeigt wurde
-    if (sessionStorage.getItem('greetOverlayShown')) {
-      overlay.style.display = 'none';
-    } else {
-      // Nach 2 Sekunden ausblenden (wie bisher)
-      setTimeout(() => {
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.style.display = 'none', 1500); // gleiche Zeit wie CSS-Animation
-      }, 2000);
-      // Merken, dass das Overlay gezeigt wurde
-      sessionStorage.setItem('greetOverlayShown', 'true');
-    }
-  });
+/**
+ * Hides the greeting overlay with fade effect.
+ *
+ * @param {HTMLElement} overlay - The overlay element
+ */
+function hideOverlayWithFade(overlay) {
+  setTimeout(() => {
+    overlay.style.opacity = "0";
+    setTimeout(() => (overlay.style.display = "none"), 1500);
+  }, 2000);
+}
 
-// ============================================================================
-// INIT ON PAGE LOAD
-// ============================================================================
+/**
+ * Initializes greeting overlay behavior.
+ */
+function initGreetingOverlay() {
+  const overlay = document.getElementById("greetOverlay");
+  if (!overlay) return;
+  if (sessionStorage.getItem("greetOverlayShown")) {
+    overlay.style.display = "none";
+  } else {
+    hideOverlayWithFade(overlay);
+    sessionStorage.setItem("greetOverlayShown", "true");
+  }
+}
 
+document.addEventListener("DOMContentLoaded", initGreetingOverlay);
 document.addEventListener("DOMContentLoaded", initSummaryPage);

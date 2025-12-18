@@ -1,33 +1,25 @@
 /**
  * @fileoverview Task View Modal Logic
- * @description Funktionen für das Anzeigen von Task-Details im View-Modal.
- *              Ermöglicht das Öffnen, Befüllen und Schließen des View-Modals
- *              sowie das direkte Togglen von Subtask-Checkboxen.
+ * @description Functions for displaying task details in the view modal.
+ *              Enables opening, populating, and closing the view modal
+ *              as well as toggling subtask checkboxes.
  */
 
-// ============================================================================
-// GLOBALE VARIABLEN
-// ============================================================================
-
 /**
- * Speichert die ID des aktuell angezeigten Tasks.
- * Wird von beiden Modals (View und Edit) verwendet.
+ * Stores the ID of the currently displayed task.
+ * Used by both view and edit modals.
  */
 let currentTaskId = null;
 
 /**
- * Speichert die geladenen Task-Daten für schnellen Zugriff.
+ * Stores the loaded task data for quick access.
  */
 let currentTaskData = null;
 
-// ============================================================================
-// VIEW MODAL FUNKTIONEN
-// ============================================================================
-
 /**
- * Öffnet das View-Modal und zeigt die Details eines Tasks an.
+ * Opens the view modal and displays the details of a task.
  *
- * @param {string} taskId - Die Firebase-ID des anzuzeigenden Tasks
+ * @param {string} taskId - The Firebase ID of the task to display
  */
 async function openTaskViewModal(taskId) {
   currentTaskId = taskId;
@@ -50,27 +42,22 @@ async function openTaskViewModal(taskId) {
 }
 
 /**
- * Schließt das View-Modal.
- * currentTaskId wird NICHT zurückgesetzt, da sie für das Edit-Modal benötigt wird.
+ * Closes the view modal.
+ * currentTaskId is NOT reset as it is needed for the edit modal.
  */
 function closeTaskViewModal() {
   document.getElementById("modalTaskViewOverlay").classList.add("d-none");
 }
 
-// ============================================================================
-// SUBTASK TOGGLE FUNKTION
-// ============================================================================
-
 /**
- * Toggelt den Completed-Status eines Subtasks und speichert die Änderung.
+ * Toggles the completed status of a subtask and saves the change.
  *
- * @param {number} subtaskIndex - Der Index des Subtasks im Array
+ * @param {number} subtaskIndex - The index of the subtask in the array
  */
 async function toggleSubtaskComplete(subtaskIndex) {
   if (!currentTaskId || !currentTaskData) return;
 
   try {
-    // Subtasks normalisieren
     let subtasks = currentTaskData.subtasks
       ? Array.isArray(currentTaskData.subtasks)
         ? [...currentTaskData.subtasks]
@@ -79,34 +66,22 @@ async function toggleSubtaskComplete(subtaskIndex) {
 
     if (subtaskIndex < 0 || subtaskIndex >= subtasks.length) return;
 
-    // Status toggeln
     subtasks[subtaskIndex].completed = !subtasks[subtaskIndex].completed;
-
-    // In Firebase speichern
     await updateTask(currentTaskId, { subtasks });
-
-    // Lokale Daten aktualisieren
     currentTaskData.subtasks = subtasks;
-
-    // Board neu rendern (für die Fortschrittsanzeige auf den Cards)
     await renderAllTasks();
   } catch (error) {
     console.error("Error toggling subtask:", error);
   }
 }
 
-// ============================================================================
-// CLICK HANDLER INITIALISIERUNG
-// ============================================================================
-
 /**
- * Initialisiert Click-Handler für alle Task-Cards.
- * Wird nach dem Rendern der Tasks aufgerufen.
+ * Initializes click handlers for all task cards.
+ * Called after rendering tasks.
  */
 function initTaskCardClickHandlers() {
   document.querySelectorAll(".task-card").forEach((card) => {
     card.addEventListener("click", (e) => {
-      // Nicht öffnen während Drag-Operation
       if (card.classList.contains("dragging")) return;
 
       const taskId = card.dataset.taskId;
@@ -117,12 +92,10 @@ function initTaskCardClickHandlers() {
   });
 }
 
-// Schließt das View-Modal bei Klick auf den Overlay-Hintergrund
 document.addEventListener("click", function (event) {
   const overlay = document.getElementById("modalTaskViewOverlay");
 
   if (overlay && !overlay.classList.contains("d-none")) {
-    // Nur schließen wenn auf den Overlay-Hintergrund geklickt wurde, nicht auf den Modal-Inhalt
     if (event.target === overlay) {
       closeTaskViewModal();
     }

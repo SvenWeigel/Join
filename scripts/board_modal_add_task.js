@@ -1,19 +1,22 @@
 /**
  * @fileoverview Board Modal Controller
- * @description Verwaltet die Add Task Modal-Funktionalität auf der Board-Seite
+ * @description Manages the Add Task modal functionality on the Board page
  */
 
 /** @type {HTMLElement|null} */
 let overlay = null;
+
 /** @type {HTMLFormElement|null} */
 let form = null;
+
 /** @type {HTMLElement[]} */
 let priorityButtons = [];
-/** @type {string} Vorgewählter Status für neue Tasks */
+
+/** @type {string} Pre-selected status for new tasks */
 let preSelectedStatus = "todo";
 
 /**
- * Initialisiert das Modal beim Laden der Seite.
+ * Initializes the modal when the page loads.
  */
 async function initModal() {
   cacheElements();
@@ -23,7 +26,7 @@ async function initModal() {
 }
 
 /**
- * Cached alle benötigten DOM-Elemente.
+ * Caches all required DOM elements.
  */
 function cacheElements() {
   overlay = document.getElementById("addTaskModalOverlay");
@@ -32,7 +35,7 @@ function cacheElements() {
 }
 
 /**
- * Bindet alle Event-Listener für das Modal.
+ * Binds all event listeners for the modal.
  */
 function bindEvents() {
   bindOpenButton();
@@ -44,7 +47,7 @@ function bindEvents() {
 }
 
 /**
- * Bindet den Click-Event an den "Add Task"-Button.
+ * Binds the click event to the "Add Task" button.
  */
 function bindOpenButton() {
   const openBtn = document.getElementById("addTaskBtn");
@@ -52,7 +55,7 @@ function bindOpenButton() {
 }
 
 /**
- * Behandelt den Klick auf den Open-Button.
+ * Handles the click on the open button.
  * @param {Event} e
  */
 function handleOpenClick(e) {
@@ -65,7 +68,7 @@ function handleOpenClick(e) {
 }
 
 /**
- * Bindet Click-Events an die Schließen-Buttons.
+ * Binds click events to the close buttons.
  */
 function bindCloseButtons() {
   const closeBtn = document.getElementById("closeAddTaskBtn");
@@ -75,14 +78,14 @@ function bindCloseButtons() {
 }
 
 /**
- * Bindet den Click-Event an das Overlay.
+ * Binds the click event to the overlay.
  */
 function bindOverlayClick() {
   if (overlay) overlay.addEventListener("click", handleOverlayClick);
 }
 
 /**
- * Behandelt Klicks auf das Overlay.
+ * Handles clicks on the overlay.
  * @param {Event} e
  */
 function handleOverlayClick(e) {
@@ -90,14 +93,14 @@ function handleOverlayClick(e) {
 }
 
 /**
- * Bindet den Escape-Tasten-Listener.
+ * Binds the escape key listener.
  */
 function bindEscapeKey() {
   document.addEventListener("keydown", handleEscapeKey);
 }
 
 /**
- * Behandelt Escape-Tastendruck.
+ * Handles escape key press.
  * @param {Event} e
  */
 function handleEscapeKey(e) {
@@ -105,7 +108,7 @@ function handleEscapeKey(e) {
 }
 
 /**
- * Bindet Click-Events an alle Priority-Buttons.
+ * Binds click events to all priority buttons.
  */
 function bindPriorityButtons() {
   priorityButtons.forEach((btn) => {
@@ -114,15 +117,15 @@ function bindPriorityButtons() {
 }
 
 /**
- * Bindet den Submit-Event an das Formular.
+ * Binds the submit event to the form.
  */
 function bindFormSubmit() {
   if (form) form.addEventListener("submit", handleSubmit);
 }
 
 /**
- * Öffnet das Modal.
- * @param {string} [status="todo"] - Der vorgewählte Status für den neuen Task
+ * Opens the modal.
+ * @param {string} [status="todo"] - The pre-selected status for the new task
  */
 function openModal(status = "todo") {
   preSelectedStatus = status;
@@ -134,7 +137,7 @@ function openModal(status = "todo") {
 }
 
 /**
- * Schließt das Modal.
+ * Closes the modal.
  */
 function closeModal() {
   overlay.classList.remove("open");
@@ -147,7 +150,7 @@ function closeModal() {
 }
 
 /**
- * Prüft ob das Modal geöffnet ist.
+ * Checks if the modal is open.
  * @returns {boolean}
  */
 function isModalOpen() {
@@ -155,7 +158,7 @@ function isModalOpen() {
 }
 
 /**
- * Fokussiert das erste Eingabefeld.
+ * Focuses the first input field.
  */
 function focusFirstInput() {
   const firstInput = document.getElementById("taskTitle");
@@ -163,7 +166,7 @@ function focusFirstInput() {
 }
 
 /**
- * Wählt einen Priority-Button aus.
+ * Selects a priority button.
  * @param {HTMLElement} selectedBtn
  */
 function selectPriority(selectedBtn) {
@@ -172,7 +175,7 @@ function selectPriority(selectedBtn) {
 }
 
 /**
- * Setzt die Priority auf "Medium" zurück.
+ * Resets the priority to "Medium".
  */
 function resetPriority() {
   priorityButtons.forEach((btn) => btn.classList.remove("active"));
@@ -183,7 +186,7 @@ function resetPriority() {
 }
 
 /**
- * Ermittelt die ausgewählte Priorität.
+ * Gets the selected priority.
  * @returns {string}
  */
 function getSelectedPriority() {
@@ -194,7 +197,7 @@ function getSelectedPriority() {
 }
 
 /**
- * Sammelt alle Formulardaten.
+ * Collects all form data.
  * @returns {Object}
  */
 function getFormData() {
@@ -209,7 +212,7 @@ function getFormData() {
 }
 
 /**
- * Erstellt das Task-Objekt für Firebase.
+ * Creates the task object for Firebase.
  * @param {Object} formData
  * @param {string} email
  * @returns {Object}
@@ -229,7 +232,7 @@ function buildTaskData(formData, email) {
 }
 
 /**
- * Verarbeitet die Formular-Übermittlung.
+ * Handles form submission.
  * @param {Event} e
  */
 async function handleSubmit(e) {
@@ -239,7 +242,7 @@ async function handleSubmit(e) {
 }
 
 /**
- * Speichert den Task und aktualisiert das Board.
+ * Saves the task and updates the board.
  * @param {Object} currentUser
  */
 async function submitTask(currentUser) {
@@ -256,7 +259,7 @@ async function submitTask(currentUser) {
 }
 
 /**
- * Setzt das Formular zurück und schließt das Modal.
+ * Resets the form and closes the modal.
  */
 function resetFormAndClose() {
   closeModal();
@@ -267,19 +270,15 @@ function resetFormAndClose() {
   resetModalSubtasks();
 }
 
-// ============================================================================
-// COLUMN PLUS BUTTON FUNKTIONEN
-// ============================================================================
-
 /**
- * Status-Mapping für die Board-Spalten.
+ * Status mapping for board columns.
  * @type {string[]}
  */
 const COLUMN_STATUS_MAP = ["todo", "inprogress", "awaitfeedback"];
 
 /**
- * Initialisiert die Click-Handler für die Plus-Buttons in den Spalten.
- * Die "Done"-Spalte hat keinen Plus-Button.
+ * Initializes click handlers for plus buttons in columns.
+ * The "Done" column has no plus button.
  */
 function initColumnPlusButtons() {
   const columnHeaders = document.querySelectorAll(".column-header");
@@ -296,8 +295,8 @@ function initColumnPlusButtons() {
 }
 
 /**
- * Behandelt den Klick auf einen Plus-Button in einer Spalte.
- * @param {string} status - Der Status für den neuen Task
+ * Handles the click on a plus button in a column.
+ * @param {string} status - The status for the new task
  */
 function handleColumnPlusClick(status) {
   if (window.innerWidth < 970) {

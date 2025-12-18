@@ -1,29 +1,29 @@
 /**
- * @fileoverview Render-Funktionen für die Add Task-Seite
- * @description Enthält alle Render-Funktionen für das Assignee-Dropdown und Badges
+ * @fileoverview Render functions for the Add Task page.
+ * @description Contains all render functions for the assignee dropdown and badges.
  */
 
 /**
- * Holt den aktuellen Benutzer aus dem localStorage.
- * @returns {Object|null} Das User-Objekt oder null
+ * Gets the current user from localStorage.
+ * @returns {Object|null} The user object or null.
  */
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem("currentUser"));
 }
 
 /**
- * Extrahiert den Anzeigenamen aus einem User-Objekt.
- * @param {Object} user - Das User-Objekt
- * @returns {string} Der Name oder der E-Mail-Präfix
+ * Extracts the display name from a user object.
+ * @param {Object} user - The user object.
+ * @returns {string} The name or email prefix.
  */
 function getUserName(user) {
   return user.name || user.email.split("@")[0];
 }
 
 /**
- * Filtert die Kontaktliste nach einem Suchbegriff.
- * @param {string} filter - Der Suchbegriff
- * @returns {Array<Object>} Die gefilterten Kontakte
+ * Filters the contact list by a search term.
+ * @param {string} filter - The search term.
+ * @returns {Array<Object>} The filtered contacts.
  */
 function filterContacts(filter) {
   return availableContacts.filter((c) =>
@@ -32,19 +32,19 @@ function filterContacts(filter) {
 }
 
 /**
- * Prüft, ob ein Name dem Filter entspricht.
- * @param {string} name - Der zu prüfende Name
- * @param {string} filter - Der Suchfilter
- * @returns {boolean} True wenn der Name passt oder Filter leer ist
+ * Checks if a name matches the filter.
+ * @param {string} name - The name to check.
+ * @param {string} filter - The search filter.
+ * @returns {boolean} True if the name matches or filter is empty.
  */
 function matchesFilter(name, filter) {
   return filter === "" || name.toLowerCase().includes(filter.toLowerCase());
 }
 
 /**
- * Erstellt das HTML für den aktuellen Benutzer im Dropdown.
- * @param {string} filter - Der aktuelle Suchfilter
- * @returns {string} HTML-String oder leerer String
+ * Builds the HTML for the current user in the dropdown.
+ * @param {string} filter - The current search filter.
+ * @returns {string} HTML string or empty string.
  */
 function buildCurrentUserHtml(filter) {
   const currentUser = getCurrentUser();
@@ -63,9 +63,9 @@ function buildCurrentUserHtml(filter) {
 }
 
 /**
- * Erstellt das HTML für alle gefilterten Kontakte.
- * @param {Array<Object>} filteredContacts - Die gefilterten Kontakte
- * @returns {string} HTML-String mit allen Kontakt-Items
+ * Builds the HTML for all filtered contacts.
+ * @param {Array<Object>} filteredContacts - The filtered contacts.
+ * @returns {string} HTML string with all contact items.
  */
 function buildContactsHtml(filteredContacts) {
   let html = "";
@@ -84,8 +84,8 @@ function buildContactsHtml(filteredContacts) {
 }
 
 /**
- * Rendert die Kontaktliste im Dropdown.
- * @param {string} [filter=""] - Optionaler Suchfilter
+ * Renders the contact list in the dropdown.
+ * @param {string} [filter=""] - Optional search filter.
  */
 function renderAssigneeDropdown(filter = "") {
   const listElement = document.getElementById("assigneeList");
@@ -97,9 +97,9 @@ function renderAssigneeDropdown(filter = "") {
 }
 
 /**
- * Holt die Daten eines Assignees anhand der ID.
- * @param {string} id - Die ID des Assignees
- * @returns {Object|null} Objekt mit name und color oder null
+ * Gets the data of an assignee by ID.
+ * @param {string} id - The assignee ID.
+ * @returns {Object|null} Object with name and color or null.
  */
 function getAssigneeData(id) {
   const currentUser = getCurrentUser();
@@ -111,8 +111,8 @@ function getAssigneeData(id) {
 }
 
 /**
- * Erstellt das HTML für alle ausgewählten Assignee-Badges.
- * @returns {string} HTML-String mit allen Badges
+ * Builds the HTML for all selected assignee badges.
+ * @returns {string} HTML string with all badges.
  */
 function buildBadgesHtml() {
   let html = "";
@@ -129,7 +129,7 @@ function buildBadgesHtml() {
 }
 
 /**
- * Rendert die Badges der ausgewählten Kontakte.
+ * Renders the badges of the selected contacts.
  */
 function renderSelectedContactsBadges() {
   const container = document.getElementById("selectedContactsBadges");
@@ -137,17 +137,12 @@ function renderSelectedContactsBadges() {
   container.innerHTML = buildBadgesHtml();
 }
 
-// ==========================================================================
-// SUBTASK RENDER FUNCTIONS
-// ==========================================================================
-
 /**
- * Rendert die Subtask-Liste.
+ * Renders the subtask list.
  */
 function renderPageSubtasks() {
   const list = document.getElementById("subtaskList");
   if (!list) return;
-
   list.innerHTML = pageSubtasks
     .map((subtask, index) => getSubtaskItemTemplate(subtask.title, index))
     .join("");

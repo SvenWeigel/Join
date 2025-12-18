@@ -1,20 +1,16 @@
 /**
- * @fileoverview Subtask Controller für Board Modal
- * @description Verwaltet die Subtasks im Add Task Modal auf der Board-Seite
+ * @fileoverview Subtask Controller for Board Modal
+ * @description Manages subtasks in the Add Task modal on the Board page
  */
 
-// ==========================================================================
-// SUBTASKS (Board Modal)
-// ==========================================================================
-
-/** @type {Object[]} Array der Modal-Subtasks */
+/** @type {Object[]} Array of modal subtasks */
 let modalSubtasks = [];
 
-/** @type {number|null} Timeout für verzögertes Ausblenden */
+/** @type {number|null} Timeout for delayed hiding */
 let modalHideActionsTimeout = null;
 
 /**
- * Zeigt die Subtask-Aktionsbuttons im Modal an.
+ * Shows the subtask action buttons in the modal.
  */
 function showModalSubtaskActions() {
   if (modalHideActionsTimeout) {
@@ -26,7 +22,7 @@ function showModalSubtaskActions() {
 }
 
 /**
- * Versteckt die Subtask-Aktionsbuttons im Modal verzögert.
+ * Hides the subtask action buttons in the modal with delay.
  */
 function hideModalSubtaskActionsDelayed() {
   modalHideActionsTimeout = setTimeout(() => {
@@ -39,7 +35,7 @@ function hideModalSubtaskActionsDelayed() {
 }
 
 /**
- * Bricht die Subtask-Eingabe im Modal ab.
+ * Cancels the subtask input in the modal.
  */
 function cancelModalSubtaskInput() {
   const input = document.getElementById("taskSubtasks");
@@ -52,7 +48,7 @@ function cancelModalSubtaskInput() {
 }
 
 /**
- * Bestätigt die Subtask-Eingabe im Modal und fügt sie zur Liste hinzu.
+ * Confirms the subtask input in the modal and adds it to the list.
  */
 function confirmModalSubtaskInput() {
   const input = document.getElementById("taskSubtasks");
@@ -69,7 +65,7 @@ function confirmModalSubtaskInput() {
 }
 
 /**
- * Behandelt Tastatureingaben im Subtask-Input des Modals.
+ * Handles keyboard input in the modal's subtask input.
  * @param {KeyboardEvent} event
  */
 function handleModalSubtaskKeydown(event) {
@@ -82,7 +78,7 @@ function handleModalSubtaskKeydown(event) {
 }
 
 /**
- * Löscht einen Subtask im Modal.
+ * Deletes a subtask in the modal.
  * @param {number} index
  * @param {Event} event
  */
@@ -93,23 +89,37 @@ function deleteModalSubtask(index, event) {
 }
 
 /**
- * Öffnet den Bearbeitungsmodus für einen Subtask im Modal.
- * @param {number} index
+ * Gets the subtask item element from the list.
+ *
+ * @param {number} index - The index of the subtask
+ * @returns {HTMLElement|null} The subtask item element or null
  */
-function editModalSubtask(index) {
+function getModalSubtaskItem(index) {
   const list = document.getElementById("modalSubtaskList");
-  if (!list) return;
-
-  const subtask = modalSubtasks[index];
+  if (!list) return null;
   const items = list.querySelectorAll(".subtask-item");
-  const item = items[index];
+  return items[index] || null;
+}
 
-  if (!item) return;
-
-  item.innerHTML = getModalSubtaskEditTemplate(subtask.title, index);
+/**
+ * Transforms a subtask item into edit mode.
+ *
+ * @param {HTMLElement} item - The subtask item element
+ * @param {string} title - The current subtask title
+ * @param {number} index - The subtask index
+ */
+function transformToEditMode(item, title, index) {
+  item.innerHTML = getModalSubtaskEditTemplate(title, index);
   item.classList.remove("subtask-item");
   item.style.padding = "0";
+}
 
+/**
+ * Focuses the edit input and sets cursor to end.
+ *
+ * @param {number} index - The subtask index
+ */
+function focusEditInput(index) {
   const editInput = document.getElementById(`modalSubtaskEditInput${index}`);
   if (editInput) {
     editInput.focus();
@@ -118,7 +128,20 @@ function editModalSubtask(index) {
 }
 
 /**
- * Behandelt Tastatureingaben im Subtask-Edit-Input des Modals.
+ * Opens edit mode for a subtask in the modal.
+ *
+ * @param {number} index - The index of the subtask
+ */
+function editModalSubtask(index) {
+  const item = getModalSubtaskItem(index);
+  if (!item) return;
+
+  transformToEditMode(item, modalSubtasks[index].title, index);
+  focusEditInput(index);
+}
+
+/**
+ * Handles keyboard input in the modal's subtask edit input.
  * @param {KeyboardEvent} event
  * @param {number} index
  */
@@ -132,7 +155,7 @@ function handleModalSubtaskEditKeydown(event, index) {
 }
 
 /**
- * Bestätigt die Bearbeitung eines Subtasks im Modal.
+ * Confirms the edit of a subtask in the modal.
  * @param {number} index
  */
 function confirmModalSubtaskEdit(index) {
@@ -150,7 +173,7 @@ function confirmModalSubtaskEdit(index) {
 }
 
 /**
- * Setzt die Modal-Subtasks zurück.
+ * Resets the modal subtasks.
  */
 function resetModalSubtasks() {
   modalSubtasks = [];

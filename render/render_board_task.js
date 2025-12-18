@@ -1,34 +1,26 @@
 /**
  * @fileoverview Task Rendering Logic
- * @description Logik-Funktionen für das Rendern von Tasks auf dem Board.
- *              Templates befinden sich in /templates/template_board.js
+ * @description Logic functions for rendering tasks on the board.
+ *              Templates are located in /templates/template_board.js
  */
 
-// ============================================================================
-// GLOBALE VARIABLEN
-// ============================================================================
-
 /**
- * Speichert alle geladenen Tasks für die Suchfunktion.
+ * Stores all loaded tasks for the search function.
  * @type {Array<Object>}
  */
 let allTasks = [];
 
 /**
- * Debounce-Timer für die Suchfunktion.
+ * Debounce timer for the search function.
  * @type {number|null}
  */
 let searchDebounceTimer = null;
 
-// ============================================================================
-// HILFSFUNKTIONEN - Datenverarbeitung
-// ============================================================================
-
 /**
- * Extrahiert Initialen aus einem Namen oder einer E-Mail.
+ * Extracts initials from a name or email address.
  *
- * @param {string} nameOrEmail - Name oder E-Mail-Adresse
- * @returns {string} Die Initialen (max. 2 Zeichen)
+ * @param {string} nameOrEmail - Name or email address
+ * @returns {string} The initials (max 2 characters)
  *
  * @example
  * getInitials("max.mustermann@email.com") // "MM"
@@ -37,12 +29,10 @@ let searchDebounceTimer = null;
 function getInitials(nameOrEmail) {
   if (!nameOrEmail) return "??";
 
-  // Falls E-Mail: Teil vor @ nehmen
   const name = nameOrEmail.includes("@")
     ? nameOrEmail.split("@")[0]
     : nameOrEmail;
 
-  // Nach Leerzeichen, Punkten, Unterstrichen oder Bindestrichen splitten
   const parts = name.split(/[\s._-]+/);
 
   if (parts.length >= 2) {
@@ -52,11 +42,11 @@ function getInitials(nameOrEmail) {
 }
 
 /**
- * Kürzt Text auf eine maximale Länge und fügt "..." hinzu.
+ * Truncates text to a maximum length and adds "...".
  *
- * @param {string} text - Der zu kürzende Text
- * @param {number} maxLength - Die maximale Länge
- * @returns {string} Der gekürzte Text
+ * @param {string} text - The text to truncate
+ * @param {number} maxLength - The maximum length
+ * @returns {string} The truncated text
  */
 function truncateText(text, maxLength) {
   if (!text) return "";
@@ -65,10 +55,10 @@ function truncateText(text, maxLength) {
 }
 
 /**
- * Escaped HTML-Sonderzeichen zur Vermeidung von XSS-Angriffen.
+ * Escapes HTML special characters to prevent XSS attacks.
  *
- * @param {string} text - Der zu escapende Text
- * @returns {string} Der sichere Text
+ * @param {string} text - The text to escape
+ * @returns {string} The safe text
  */
 function escapeHtml(text) {
   if (!text) return "";
@@ -77,23 +67,17 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// ============================================================================
-// RENDER FUNKTIONEN - Bereiten Daten auf und rufen Templates auf
-// ============================================================================
-
 /**
- * Bereitet Task-Daten auf und generiert HTML über Template.
+ * Prepares task data and generates HTML via template.
  *
- * @param {Object} task - Das rohe Task-Objekt aus Firebase
- * @returns {string} HTML-String der Task-Card
+ * @param {Object} task - The raw task object from Firebase
+ * @returns {string} HTML string of the task card
  */
 function renderTaskCard(task) {
-  // Konfiguration basierend auf Task-Daten holen
   const categoryConfig =
     CATEGORY_CONFIG[task.category] || CATEGORY_CONFIG.technical;
   const priorityIcon = PRIORITY_ICONS[task.priority] || PRIORITY_ICONS.medium;
 
-  // Aufbereitete Daten für Template erstellen
   const templateData = {
     id: task.id,
     title: escapeHtml(task.title),
@@ -106,38 +90,34 @@ function renderTaskCard(task) {
     assigneesHtml: renderAssignees(task.assignees),
   };
 
-  // Template aufrufen mit aufbereiteten Daten
   return getTaskCardTemplate(templateData);
 }
 
 /**
- * Berechnet Subtask-Statistiken und generiert HTML über Template.
+ * Calculates subtask statistics and generates HTML via template.
  *
- * @param {Array} subtasks - Array von Subtask-Objekten [{title, completed}, ...]
- * @returns {string} HTML-String der Fortschrittsanzeige oder leerer String
+ * @param {Array} subtasks - Array of subtask objects [{title, completed}, ...]
+ * @returns {string} HTML string of the progress bar or empty string
  */
 function renderSubtasksProgress(subtasks) {
   if (!subtasks || subtasks.length === 0) return "";
 
-  // Statistiken berechnen
   const completed = subtasks.filter((st) => st.completed).length;
   const total = subtasks.length;
 
-  // Template aufrufen mit berechneten Werten
   return getSubtasksProgressTemplate(completed, total);
 }
 
 /**
- * Verarbeitet Assignees und generiert HTML über Template.
- * Zeigt maximal 5 Badges an, bei mehr wird ein "+X" Badge angezeigt.
+ * Processes assignees and generates HTML via template.
+ * Shows a maximum of 5 badges, displays a "+X" badge for overflow.
  *
- * @param {Array|Object} assignees - Array oder Objekt von Assignee-Objekten [{name, color}, ...]
- * @returns {string} HTML-String der Badges oder leerer String
+ * @param {Array|Object} assignees - Array or object of assignee objects [{name, color}, ...]
+ * @returns {string} HTML string of badges or empty string
  */
 function renderAssignees(assignees) {
   if (!assignees) return "";
 
-  // Firebase kann Arrays als Objekte speichern - normalisieren
   const assigneesArray = Array.isArray(assignees)
     ? assignees
     : Object.values(assignees);
@@ -148,10 +128,8 @@ function renderAssignees(assignees) {
   const visibleAssignees = assigneesArray.slice(0, maxVisible);
   const overflowCount = assigneesArray.length - maxVisible;
 
-  // Für jeden sichtbaren Assignee: Badge generieren
   let html = visibleAssignees
     .map((assignee) => {
-      // Unterstützt sowohl Objekte {name, color} als auch Strings (für Abwärtskompatibilität)
       if (typeof assignee === "object" && assignee.name) {
         const initials = getInitials(assignee.name);
         return getAssigneeBadgeTemplate(initials, assignee.color);
@@ -162,7 +140,6 @@ function renderAssignees(assignees) {
     })
     .join("");
 
-  // Falls mehr als maxVisible Assignees, +X Badge hinzufügen
   if (overflowCount > 0) {
     html += getOverflowBadgeTemplate(overflowCount);
   }
@@ -171,30 +148,23 @@ function renderAssignees(assignees) {
 }
 
 /**
- * Generiert Placeholder-HTML für eine leere Spalte.
+ * Generates placeholder HTML for an empty column.
  *
- * @param {number} columnIndex - Der Index der Spalte (0-3)
- * @returns {string} HTML-String des Placeholders
+ * @param {number} columnIndex - The index of the column (0-3)
+ * @returns {string} HTML string of the placeholder
  */
 function renderEmptyColumn(columnIndex) {
   const label = COLUMN_LABELS[columnIndex] || "";
   return getEmptyColumnTemplate(label);
 }
 
-// ============================================================================
-// HAUPTFUNKTION - Orchestriert das komplette Board-Rendering
-// ============================================================================
-
 /**
- * Lädt alle Tasks aus Firebase und rendert sie ins Board.
- * Tasks werden basierend auf ihrem Status in die richtige Spalte sortiert.
+ * Loads all tasks from Firebase and renders them to the board.
+ * Tasks are sorted into the correct column based on their status.
  */
 async function renderAllTasks() {
   try {
-    // 1. Alle Tasks aus Firebase laden und global speichern
     allTasks = await fetchTasks();
-
-    // 2. Gefilterte Tasks rendern (ohne Filter = alle Tasks)
     renderFilteredTasks(allTasks);
   } catch (error) {
     console.error("Error loading tasks:", error);
@@ -202,18 +172,15 @@ async function renderAllTasks() {
 }
 
 /**
- * Rendert die übergebenen Tasks ins Board.
- * @param {Array<Object>} tasks - Array von Task-Objekten
- * @param {boolean} isSearchActive - Gibt an, ob gerade eine Suche aktiv ist
+ * Renders the provided tasks to the board.
+ *
+ * @param {Array<Object>} tasks - Array of task objects
+ * @param {boolean} isSearchActive - Indicates if a search is currently active
  */
 function renderFilteredTasks(tasks, isSearchActive = false) {
-  // 1. Alle Spalten-Container holen
   const columns = document.querySelectorAll(".column-content");
-
-  // 2. Alle Spalten leeren
   columns.forEach((col) => (col.innerHTML = ""));
 
-  // 3. Jeden Task in die richtige Spalte rendern
   tasks.forEach((task) => {
     const columnIndex = STATUS_COLUMNS[task.status];
     if (columnIndex !== undefined && columns[columnIndex]) {
@@ -221,7 +188,6 @@ function renderFilteredTasks(tasks, isSearchActive = false) {
     }
   });
 
-  // 4. Leere Spalten mit Placeholder versehen (nur wenn keine Suche aktiv ist)
   if (!isSearchActive) {
     columns.forEach((col, index) => {
       if (col.innerHTML.trim() === "") {
@@ -230,31 +196,33 @@ function renderFilteredTasks(tasks, isSearchActive = false) {
     });
   }
 
-  // 5. "No results" Meldung anzeigen/ausblenden
-  const noResultsMessage = document.getElementById("noSearchResults");
-  if (noResultsMessage) {
-    if (isSearchActive && tasks.length === 0) {
-      noResultsMessage.classList.add("show");
-    } else {
-      noResultsMessage.classList.remove("show");
-    }
-  }
-
-  // 6. Drag & Drop Event-Listener hinzufügen (aus drag_and_drop.js)
+  toggleNoResultsMessage(isSearchActive, tasks.length);
   initDragAndDrop();
-
-  // 7. Click-Handler für Task-Cards hinzufügen (öffnet View-Modal)
   initTaskCardClickHandlers();
 }
 
-// ============================================================================
-// SUCHFUNKTIONEN
-// ============================================================================
+/**
+ * Toggles the visibility of the no results message.
+ *
+ * @param {boolean} isSearchActive - Whether search is active
+ * @param {number} taskCount - Number of tasks found
+ */
+function toggleNoResultsMessage(isSearchActive, taskCount) {
+  const noResultsMessage = document.getElementById("noSearchResults");
+  if (!noResultsMessage) return;
+
+  if (isSearchActive && taskCount === 0) {
+    noResultsMessage.classList.add("show");
+  } else {
+    noResultsMessage.classList.remove("show");
+  }
+}
 
 /**
- * Filtert Tasks nach Suchbegriff in Titel und Beschreibung.
- * @param {string} searchText - Der Suchbegriff
- * @returns {Array<Object>} Gefilterte Tasks
+ * Filters tasks by search term in title and description.
+ *
+ * @param {string} searchText - The search term
+ * @returns {Array<Object>} Filtered tasks
  */
 function filterTasksBySearch(searchText) {
   if (!searchText || searchText.trim() === "") {
@@ -273,14 +241,14 @@ function filterTasksBySearch(searchText) {
 }
 
 /**
- * Handler für Sucheingabe mit Debounce.
- * Synchronisiert beide Suchfelder und filtert Tasks.
- * @param {Event} event - Das Input-Event
+ * Handler for search input with debounce.
+ * Synchronizes both search fields and filters tasks.
+ *
+ * @param {Event} event - The input event
  */
 function handleSearchInput(event) {
   const searchText = event.target.value;
 
-  // Beide Suchfelder synchronisieren
   const findTaskInput = document.getElementById("findTask");
   const findTaskResponsive = document.getElementById("findTask-responsive");
 
@@ -291,12 +259,10 @@ function handleSearchInput(event) {
     findTaskResponsive.value = searchText;
   }
 
-  // Debounce: Vorherigen Timer löschen
   if (searchDebounceTimer) {
     clearTimeout(searchDebounceTimer);
   }
 
-  // Neuen Timer setzen (200ms Verzögerung)
   searchDebounceTimer = setTimeout(() => {
     const filteredTasks = filterTasksBySearch(searchText);
     const isSearchActive = searchText && searchText.trim() !== "";
@@ -305,7 +271,7 @@ function handleSearchInput(event) {
 }
 
 /**
- * Initialisiert die Suchfunktion für beide Eingabefelder.
+ * Initializes the search function for both input fields.
  */
 function initBoardSearch() {
   const findTaskInput = document.getElementById("findTask");

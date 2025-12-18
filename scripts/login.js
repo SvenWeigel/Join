@@ -1,8 +1,13 @@
 /**
- * Login-spezifische Selektoren und Meldungen.
- * Die Funktionen in diesem Modul kümmern sich um: Formular-Input lesen,
- * Benutzer per REST-API suchen, Validierung und das lokale Speichern
- * des angemeldeten Benutzers in `localStorage`.
+ * @fileoverview Login Page Controller
+ * @description Handles user authentication including form validation, credential verification, and session management.
+ */
+
+/**
+ * Login-specific selectors and messages.
+ * The functions in this module handle: reading form input,
+ * searching for users via REST API, validation, and storing
+ * the logged-in user in `localStorage`.
  */
 const LOGIN_SELECTORS = {
   formSelector: ".login_container form",
@@ -12,7 +17,7 @@ const LOGIN_SELECTORS = {
 };
 
 /**
- * Benutzerfreundliche Meldungstexte, die in Alerts/Validation verwendet werden.
+ * User-friendly message texts used in alerts and validation.
  */
 const LOGIN_MESSAGES = {
   emailNotFound: "Email not found.",
@@ -24,33 +29,53 @@ const LOGIN_MESSAGES = {
 };
 
 /**
- * Normalisiert eine E‑Mail (trim + toLowerCase).
- * @param {string} email
- * @returns {string}
+ * Normalizes an email address (trim + toLowerCase).
+ *
+ * @param {string} email - The email to normalize
+ * @returns {string} The normalized email
  */
 function normalizeEmail(email) {
   return (email || "").trim().toLowerCase();
 }
 
 /**
- * Versucht, einen Benutzer per Firebase-Query (`orderBy=email&equaTo=...`) zu finden.
- * Gibt das erste gefundene Benutzer-Objekt oder `null` zurück.
- * @param {string} normalizedEmail - bereits lowercased
- * @returns {Promise<Object|null>}
+ * Builds the Firebase query URL for email lookup.
+ *
+ * @param {string} normalizedEmail - Already lowercased email
+ * @returns {string} The query URL
+ */
+function buildEmailQueryUrl(normalizedEmail) {
+  const orderBy = encodeURIComponent('"email"');
+  const equalTo = encodeURIComponent(JSON.stringify(normalizedEmail));
+  return `${BASE_URL}/users.json?orderBy=${orderBy}&equalTo=${equalTo}`;
+}
+
+/**
+ * Extracts the first user from query response data.
+ *
+ * @param {Object|null} data - The response data
+ * @returns {Object|null} User object with id or null
+ */
+function extractFirstUser(data) {
+  if (!data) return null;
+  const entries = Object.entries(data);
+  if (entries.length === 0) return null;
+  const [id, user] = entries[0];
+  return { id, ...user };
+}
+
+/**
+ * Attempts to find a user via Firebase query.
+ *
+ * @param {string} normalizedEmail - Already lowercased email
+ * @returns {Promise<Object|null>} User object or null
  */
 async function queryUserByEmail(normalizedEmail) {
   try {
-    const orderBy = encodeURIComponent('"email"');
-    const equalTo = encodeURIComponent(JSON.stringify(normalizedEmail));
-    const url = `${BASE_URL}/users.json?orderBy=${orderBy}&equalTo=${equalTo}`;
+    const url = buildEmailQueryUrl(normalizedEmail);
     const res = await fetch(url);
     if (!res.ok) throw new Error(LOGIN_MESSAGES.fetchError);
-    const data = await res.json();
-    if (!data) return null;
-    const entries = Object.entries(data);
-    if (entries.length === 0) return null;
-    const [id, user] = entries[0];
-    return { id, ...user };
+    return extractFirstUser(await res.json());
   } catch (err) {
     console.error("Query by email failed", err);
     return null;
@@ -58,8 +83,26 @@ async function queryUserByEmail(normalizedEmail) {
 }
 
 /**
- * Fallback: lädt alle Benutzer und sucht case-insensitive nach der E‑Mail.
- * Diese Methode ist ineffizient bei vielen Benutzern, steht aber als Fallback bereit.
+ * Searches user entries for matching email.
+ *
+ * @param {Array} entries - Array of [id, user] entries
+ * @param {string} normalizedEmail - Already lowercased email
+ * @returns {Object|null} User object with id or null
+ */
+function findUserInEntries(entries, normalizedEmail) {
+  for (const [id, user] of entries) {
+    if ((user.email || "").toLowerCase() === normalizedEmail) {
+      return { id, ...user };
+    }
+  }
+  return null;
+}
+
+/**
+ * Fallback: loads all users and searches for the email.
+ *
+ * @param {string} normalizedEmail - Already lowercased email
+ * @returns {Promise<Object|null>} User object or null
  */
 async function fetchAllUsersAndFind(normalizedEmail) {
   try {
@@ -67,13 +110,7 @@ async function fetchAllUsersAndFind(normalizedEmail) {
     if (!res.ok) throw new Error(LOGIN_MESSAGES.fetchError);
     const data = await res.json();
     if (!data) return null;
-    const entries = Object.entries(data);
-    for (const [id, user] of entries) {
-      if ((user.email || "").toLowerCase() === normalizedEmail) {
-        return { id, ...user };
-      }
-    }
-    return null;
+    return findUserInEntries(Object.entries(data), normalizedEmail);
   } catch (err) {
     console.error("Fallback fetch failed", err);
     return null;
@@ -81,8 +118,10 @@ async function fetchAllUsersAndFind(normalizedEmail) {
 }
 
 /**
- * Sucht einen Benutzer: zuerst per Query, dann per Full-Fetch als Fallback.
- * @returns {Promise<Object|null>}
+ * Searches for a user: first via query, then via fallback.
+ *
+ * @param {string} normalizedEmail - Already lowercased email
+ * @returns {Promise<Object|null>} User object or null
  */
 async function findUserByEmail(normalizedEmail) {
   const byQuery = await queryUserByEmail(normalizedEmail);
@@ -91,8 +130,9 @@ async function findUserByEmail(normalizedEmail) {
 }
 
 /**
- * Liest Email und Passwort aus dem Login-Formular.
- * @returns {{email:string,password:string}}
+ * Reads email and password from the login form.
+ *
+ * @returns {{email: string, password: string}} Form values
  */
 function readLoginFormValues() {
   return {
@@ -102,8 +142,7 @@ function readLoginFormValues() {
 }
 
 /**
- * Prefill: Trägt ggf. die gespeicherte E‑Mail aus `localStorage.currentUser` ins Form ein.
- * Wird global als `window.preFillLoginForm` exponiert, da HTML ein `onclick`-Attribut verwendet.
+ * Fills in stored email from localStorage if available.
  */
 function preFillLoginForm() {
   try {
@@ -118,9 +157,10 @@ function preFillLoginForm() {
 }
 
 /**
- * Führt Browser-Form-Validation aus und zeigt Fehlermeldungen an.
- * @param {HTMLFormElement|null} form
- * @returns {boolean} true wenn gültig oder kein Formular vorhanden.
+ * Performs browser form validation and displays error messages.
+ *
+ * @param {HTMLFormElement|null} form - The form to validate
+ * @returns {boolean} True if valid or no form present
  */
 function validateForm(form) {
   if (!form) return true;
@@ -132,8 +172,11 @@ function validateForm(form) {
 }
 
 /**
- * Führt die Login-Logik aus: lookup, Passwort-Check und Speichern im `localStorage`.
- * @throws {Error} mit passenden Login-Meldungen bei Fehlschlag.
+ * Performs login: lookup, password check, and store user.
+ *
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @returns {Promise<Object>} The user object
  */
 async function performLogin(email, password) {
   const normalized = normalizeEmail(email);
@@ -145,8 +188,9 @@ async function performLogin(email, password) {
 }
 
 /**
- * Submit-Handler für das Login-Formular: validieren, einloggen, redirect.
- * @param {Event} e
+ * Handles login form submission: validate, login, redirect.
+ *
+ * @param {Event} e - The submit event
  */
 async function handleLoginSubmit(e) {
   e.preventDefault();
@@ -164,9 +208,10 @@ async function handleLoginSubmit(e) {
 }
 
 /**
- * Helfer: hängt benutzerdefinierte Validations-Messages an ein Input-Element.
- * @param {HTMLElement|null} el
- * @param {string} requiredMessage
+ * Attaches custom validation messages to an input element.
+ *
+ * @param {HTMLElement|null} el - The input element
+ * @param {string} requiredMessage - Message for required validation
  */
 function attachValidation(el, requiredMessage) {
   if (!el) return;
@@ -179,7 +224,7 @@ function attachValidation(el, requiredMessage) {
 }
 
 /**
- * Verkettet Standard-Validationstexte für Email- und Passwort-Felder.
+ * Wires validation messages for email and password fields.
  */
 function wireLoginValidationMessages() {
   attachValidation(
@@ -193,7 +238,7 @@ function wireLoginValidationMessages() {
 }
 
 /**
- * Initialisiert Login-Event-Handler und Validation beim Laden der Seite.
+ * Initializes login event handlers and validation.
  */
 function initLogin() {
   const form = document.querySelector(LOGIN_SELECTORS.formSelector);
@@ -206,30 +251,29 @@ function initLogin() {
 document.addEventListener("DOMContentLoaded", initLogin);
 window.preFillLoginForm = preFillLoginForm;
 
+/**
+ * Updates password icon based on input value.
+ */
 function changePasswordIcon() {
   const passwordIcon = document.getElementById("password-icon");
   const passwordInput = document.getElementById("login-password-input");
-
-  if (passwordInput.value.length > 0) {
-    passwordIcon.src = "assets/icons/visibility_off.svg";
-    passwordIcon.classList.add("pointer");
-  } else {
-    passwordIcon.src = "assets/icons/lock.svg";
-    passwordIcon.classList.remove("pointer");
-  }
+  const hasValue = passwordInput.value.length > 0;
+  passwordIcon.src = hasValue
+    ? "assets/icons/visibility_off.svg"
+    : "assets/icons/lock.svg";
+  passwordIcon.classList.toggle("pointer", hasValue);
 }
 
+/**
+ * Toggles password field visibility between text and password.
+ */
 function togglePasswordVisibility() {
   const passwordIcon = document.getElementById("password-icon");
   const passwordInput = document.getElementById("login-password-input");
-
-  if (passwordInput.value.length > 0) {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      passwordIcon.src = "assets/icons/visibility.svg";
-    } else {
-      passwordInput.type = "password";
-      passwordIcon.src = "assets/icons/visibility_off.svg";
-    }
-  }
+  if (passwordInput.value.length === 0) return;
+  const isHidden = passwordInput.type === "password";
+  passwordInput.type = isHidden ? "text" : "password";
+  passwordIcon.src = isHidden
+    ? "assets/icons/visibility.svg"
+    : "assets/icons/visibility_off.svg";
 }

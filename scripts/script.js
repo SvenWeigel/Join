@@ -1,7 +1,12 @@
 /**
- * Prüft ob ein Benutzer eingeloggt ist.
- * Falls nicht, wird zur Login-Seite weitergeleitet.
- * @returns {boolean} true wenn eingeloggt, false wenn nicht
+ * @fileoverview Main Application Script
+ * @description Core utility functions for authentication, navigation, and common application logic.
+ */
+
+/**
+ * Checks if a user is logged in and redirects to login if not.
+ *
+ * @returns {boolean} True if logged in, false otherwise
  */
 function checkAuth() {
   const user = localStorage.getItem("currentUser");
@@ -17,8 +22,9 @@ function checkAuth() {
 window.checkAuth = checkAuth;
 
 /**
- * Prüft ob ein Benutzer bereits eingeloggt ist und leitet zur Summary weiter.
- * Wird auf der Login-Seite verwendet.
+ * Redirects to summary page if user is already logged in.
+ *
+ * @returns {boolean} True if redirected, false otherwise
  */
 function redirectIfLoggedIn() {
   const user = localStorage.getItem("currentUser");
@@ -32,12 +38,12 @@ function redirectIfLoggedIn() {
 window.redirectIfLoggedIn = redirectIfLoggedIn;
 
 /**
- * This script is used to add the disabled-link class to the active page in the menu bar.
+ * Returns mapping of page filenames to their menu button classes.
+ *
+ * @returns {Object} Page to class mapping
  */
-document.addEventListener("DOMContentLoaded", () => {
-  const currentPath = window.location.pathname;
-  const fileName = currentPath.split("/").pop();
-  const pageMapping = {
+function getPageMapping() {
+  return {
     "summary.html": "summary-btn",
     "add_task.html": "add-task-btn",
     "board.html": "board-btn",
@@ -45,9 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "privacy_policy.html": "privacy-btn",
     "legal_notice.html": "legal-link",
   };
-  const activeClass = pageMapping[fileName];
-  if (activeClass) {
-    const element = document.querySelector(`.${activeClass}`);
-    if (element) element.classList.add("disabled-link");
-  }
-});
+}
+
+/**
+ * Adds disabled-link class to the active page menu button.
+ */
+function highlightActiveMenuLink() {
+  const fileName = window.location.pathname.split("/").pop();
+  const activeClass = getPageMapping()[fileName];
+  if (!activeClass) return;
+  const element = document.querySelector(`.${activeClass}`);
+  if (element) element.classList.add("disabled-link");
+}
+
+document.addEventListener("DOMContentLoaded", highlightActiveMenuLink);

@@ -1,20 +1,16 @@
 /**
- * @fileoverview Subtask Controller für Add Task Page
- * @description Verwaltet die Subtasks auf der Add Task-Seite
+ * @fileoverview Subtask Controller for Add Task Page
+ * @description Manages subtasks on the Add Task page
  */
 
-// ==========================================================================
-// SUBTASKS (Add Task Page)
-// ==========================================================================
-
-/** @type {Object[]} Array der Subtasks */
+/** @type {Object[]} Array of subtasks */
 let pageSubtasks = [];
 
-/** @type {number|null} Timeout für verzögertes Ausblenden */
+/** @type {number|null} Timeout for delayed hiding */
 let hideActionsTimeout = null;
 
 /**
- * Zeigt die Subtask-Aktionsbuttons an.
+ * Shows the subtask action buttons.
  */
 function showSubtaskActions() {
   if (hideActionsTimeout) {
@@ -26,7 +22,7 @@ function showSubtaskActions() {
 }
 
 /**
- * Versteckt die Subtask-Aktionsbuttons verzögert.
+ * Hides the subtask action buttons with a delay.
  */
 function hideSubtaskActionsDelayed() {
   hideActionsTimeout = setTimeout(() => {
@@ -39,7 +35,7 @@ function hideSubtaskActionsDelayed() {
 }
 
 /**
- * Bricht die Subtask-Eingabe ab.
+ * Cancels the subtask input.
  */
 function cancelSubtaskInput() {
   const input = document.getElementById("taskSubtasksPage");
@@ -52,7 +48,7 @@ function cancelSubtaskInput() {
 }
 
 /**
- * Bestätigt die Subtask-Eingabe und fügt sie zur Liste hinzu.
+ * Confirms the subtask input and adds it to the list.
  */
 function confirmSubtaskInput() {
   const input = document.getElementById("taskSubtasksPage");
@@ -69,7 +65,7 @@ function confirmSubtaskInput() {
 }
 
 /**
- * Behandelt Tastatureingaben im Subtask-Input.
+ * Handles keyboard input in the subtask input field.
  * @param {KeyboardEvent} event
  */
 function handleSubtaskKeydown(event) {
@@ -82,7 +78,7 @@ function handleSubtaskKeydown(event) {
 }
 
 /**
- * Escaped HTML-Zeichen zur Sicherheit.
+ * Escapes HTML characters for security.
  * @param {string} text
  * @returns {string}
  */
@@ -93,7 +89,7 @@ function escapeHtml(text) {
 }
 
 /**
- * Löscht einen Subtask.
+ * Deletes a subtask.
  * @param {number} index
  * @param {Event} event
  */
@@ -104,7 +100,7 @@ function deletePageSubtask(index, event) {
 }
 
 /**
- * Öffnet den Bearbeitungsmodus für einen Subtask.
+ * Opens edit mode for a subtask.
  * @param {number} index
  */
 function editPageSubtask(index) {
@@ -129,7 +125,7 @@ function editPageSubtask(index) {
 }
 
 /**
- * Behandelt Tastatureingaben im Subtask-Edit-Input.
+ * Handles keyboard input in the subtask edit input field.
  * @param {KeyboardEvent} event
  * @param {number} index
  */
@@ -143,7 +139,7 @@ function handleSubtaskEditKeydown(event, index) {
 }
 
 /**
- * Bestätigt die Bearbeitung eines Subtasks.
+ * Confirms the edit of a subtask.
  * @param {number} index
  */
 function confirmPageSubtaskEdit(index) {
@@ -161,7 +157,7 @@ function confirmPageSubtaskEdit(index) {
 }
 
 /**
- * Setzt die Subtasks zurück.
+ * Resets the subtasks.
  */
 function resetPageSubtasks() {
   pageSubtasks = [];

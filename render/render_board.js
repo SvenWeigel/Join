@@ -1,16 +1,13 @@
 /**
  * @fileoverview Board Render Functions
- * @description Render-Funktionen für das Board Modal Assignee Dropdown
+ * @description Render functions for the board modal assignee dropdown.
  */
 
-// ============================================================================
-// MODAL ASSIGNEE DROPDOWN RENDER FUNKTIONEN
-// ============================================================================
-
 /**
- * Erstellt das HTML für den aktuellen Benutzer.
- * @param {string} filter
- * @returns {string}
+ * Builds the HTML for the current user in the dropdown.
+ *
+ * @param {string} filter - The search filter
+ * @returns {string} HTML string or empty string
  */
 function buildModalCurrentUserHtml(filter) {
   const currentUser = getModalCurrentUser();
@@ -21,9 +18,10 @@ function buildModalCurrentUserHtml(filter) {
 }
 
 /**
- * Erstellt ein Dropdown-Item für den aktuellen User.
- * @param {string} userName
- * @returns {string}
+ * Builds a dropdown item for the current user.
+ *
+ * @param {string} userName - The user's name
+ * @returns {string} HTML string for the dropdown item
  */
 function buildUserDropdownItem(userName) {
   const initials = getModalInitialsFromName(userName);
@@ -38,9 +36,10 @@ function buildUserDropdownItem(userName) {
 }
 
 /**
- * Erstellt das HTML für alle Kontakte.
- * @param {Array<Object>} filteredContacts
- * @returns {string}
+ * Builds the HTML for all contacts in the dropdown.
+ *
+ * @param {Array<Object>} filteredContacts - The filtered contacts array
+ * @returns {string} HTML string with all contact items
  */
 function buildModalContactsHtml(filteredContacts) {
   return filteredContacts
@@ -49,9 +48,10 @@ function buildModalContactsHtml(filteredContacts) {
 }
 
 /**
- * Erstellt ein Dropdown-Item für einen Kontakt.
- * @param {Object} contact
- * @returns {string}
+ * Builds a dropdown item for a contact.
+ *
+ * @param {Object} contact - The contact object
+ * @returns {string} HTML string for the dropdown item
  */
 function buildContactDropdownItem(contact) {
   const initials = getModalInitialsFromName(contact.name);
@@ -66,8 +66,9 @@ function buildContactDropdownItem(contact) {
 }
 
 /**
- * Rendert die Kontaktliste im Dropdown.
- * @param {string} [filter=""]
+ * Renders the contact list in the dropdown.
+ *
+ * @param {string} [filter=""] - Optional search filter
  */
 function renderModalAssigneeDropdown(filter = "") {
   const listElement = document.getElementById("modalAssigneeList");
@@ -80,8 +81,9 @@ function renderModalAssigneeDropdown(filter = "") {
 }
 
 /**
- * Erstellt das HTML für alle Badges.
- * @returns {string}
+ * Builds the HTML for all selected badges.
+ *
+ * @returns {string} HTML string with all badges
  */
 function buildModalBadgesHtml() {
   return modalSelectedAssignees
@@ -99,19 +101,15 @@ function buildModalBadgesHtml() {
 }
 
 /**
- * Rendert die Badges der ausgewählten Kontakte.
+ * Renders the badges of the selected contacts.
  */
 function renderModalSelectedContactsBadges() {
   const container = document.getElementById("modalSelectedContactsBadges");
   if (container) container.innerHTML = buildModalBadgesHtml();
 }
 
-// ============================================================================
-// MODAL SUBTASK RENDER FUNKTIONEN
-// ============================================================================
-
 /**
- * Rendert die Subtask-Liste im Modal.
+ * Renders the subtask list in the modal.
  */
 function renderModalSubtasks() {
   const list = document.getElementById("modalSubtaskList");
