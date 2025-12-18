@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="../" />
-    <title>help</title>
-    <link rel="stylesheet" href="styles/menu-bar.css" />
-    <link rel="stylesheet" href="styles/header.css" />
-    <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/font.css" />
-    <link rel="stylesheet" href="styles/help.css" />
-    <link rel="stylesheet" href="styles/responsiv/responsiv_help.css" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/login_center_logo.svg"
-      type="image/x-icon"
-    />
-    <script src="scripts/script.js"></script>
-    <script>
-      if (typeof checkAuth === "function" && !checkAuth()) {
-        document.write("");
-      }
-    </script>
-  </head>
-  <body>
-    <div id="rotate-warning">
-      Bitte drehe dein Gerät ins Hochformat
-    </div>
-      <div id="rotate-protection">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="../" />
+  <title>help</title>
+  <link rel="stylesheet" href="styles/menu-bar.css" />
+  <link rel="stylesheet" href="styles/header.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/font.css" />
+  <link rel="stylesheet" href="styles/help.css" />
+  <link rel="stylesheet" href="styles/responsiv/responsiv_help.css" />
+  <link rel="stylesheet"  href="styles/bottom-nav.css"/>
+  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
+  <script src="scripts/script.js"></script>
+  <script>
+    if (typeof checkAuth === "function" && !checkAuth()) {
+      document.write("");
+    }
+  </script>
+</head>
+
+<body>
+  <div id="rotate-warning">
+    Bitte drehe dein Gerät ins Hochformat
+  </div>
+  <div id="rotate-protection">
     <div class="main-layout-container">
       <header>
         <div class="header-content">
+          <img class="logo-responsive" src="assets/img/logo.svg" />
           <span>Kanban Project Management Tool</span>
           <div class="header-profile-container">
+            <a href="html/help.html"
+              ><img src="assets/icons/help.svg" alt="help_icon"
+            /></a>
             <div
               class="user-badge"
               onclick="showProfileOptions()"
@@ -42,6 +45,7 @@
             </div>
           </div>
           <div class="profile-options d-none" id="profile-options">
+            <a class="help-options" href="html/help.html">Help</a>
             <a href="html/legal_notice.html">Legal Notice</a>
             <a href="html/privacy_policy.html">Privacy Policy</a>
             <a href="#" onclick="logout(); return false;">Log Out</a>
@@ -89,62 +93,98 @@
       <main class="help-container">
         <h1 class="title-positioning">Help</h1>
 
-      <div class="help-content-div">
-        <h2>Willkommen auf der Hilfeseite von Join</h2>
-  <p>Willkommen bei <span class="highlight">Join</span>, Ihrem Leitfaden zur Nutzung unseres Kanban-Projektmanagement-Tools. Hier erfahren Sie, was Join ist, welche Vorteile es bietet und wie Sie es verwenden.</p>
+        <div class="help-content-div">
+          <h2>Willkommen auf der Hilfeseite von Join</h2>
+          <p>Willkommen bei <span class="highlight">Join</span>, Ihrem Leitfaden zur Nutzung unseres
+            Kanban-Projektmanagement-Tools. Hier erfahren Sie, was Join ist, welche Vorteile es bietet und wie Sie es
+            verwenden.</p>
 
-  <h2>Was ist Join?</h2>
-  <p><span class="highlight">Join</span> ist ein Kanban-basiertes Projektmanagement-Tool, das von einer Gruppe engagierter Studierender im Rahmen ihres Web-Development-Bootcamps an der <span class="highlight">Developer Akademie</span> entwickelt wurde.</p>
-  <p>Der Begriff <span class="highlight">Kanban</span> stammt aus dem Japanischen und bedeutet „Billboard“. Kanban ist eine effektive Methode, um Arbeit zu visualisieren, die gleichzeitige Arbeit zu begrenzen und die Effizienz (Flow) zu maximieren.</p>
-  <p>Join nutzt die Prinzipien von Kanban, um Ihnen zu helfen, Aufgaben und Projekte auf einer <strong>intuitiven, visuellen Oberfläche</strong> zu verwalten.</p>
-  <p class="note">Wichtig: Join ist ein pädagogisches Projekt und nicht für den umfangreichen Geschäftsbetrieb ausgelegt. Wir bemühen uns, ein gutes Nutzererlebnis zu bieten, können jedoch keine konsistente Verfügbarkeit, Zuverlässigkeit oder Genauigkeit garantieren.</p>
+          <h2>Was ist Join?</h2>
+          <p><span class="highlight">Join</span> ist ein Kanban-basiertes Projektmanagement-Tool, das von einer Gruppe
+            engagierter Studierender im Rahmen ihres Web-Development-Bootcamps an der <span class="highlight">Developer
+              Akademie</span> entwickelt wurde.</p>
+          <p>Der Begriff <span class="highlight">Kanban</span> stammt aus dem Japanischen und bedeutet „Billboard“.
+            Kanban ist eine effektive Methode, um Arbeit zu visualisieren, die gleichzeitige Arbeit zu begrenzen und die
+            Effizienz (Flow) zu maximieren.</p>
+          <p>Join nutzt die Prinzipien von Kanban, um Ihnen zu helfen, Aufgaben und Projekte auf einer
+            <strong>intuitiven, visuellen Oberfläche</strong> zu verwalten.</p>
+          <p class="note">Wichtig: Join ist ein pädagogisches Projekt und nicht für den umfangreichen Geschäftsbetrieb
+            ausgelegt. Wir bemühen uns, ein gutes Nutzererlebnis zu bieten, können jedoch keine konsistente
+            Verfügbarkeit, Zuverlässigkeit oder Genauigkeit garantieren.</p>
 
-  <h2>Wie man Join benutzt</h2>
-  
-  <h3>1. Das Board erkunden</h3>
-  <p>Nach dem Login finden Sie ein <strong>Standard-Board</strong>, das Ihr Projekt darstellt. Es enthält vier Standardlisten:</p>
-  <ul>
-    <li>To Do</li>
-    <li>In Progress</li>
-    <li>Await Feedback</li>
-    <li>Done</li>
-  </ul>
+          <h2>Wie man Join benutzt</h2>
 
-  <h3>2. Kontakte erstellen</h3>
-  <p>Fügen Sie Kontakte hinzu, um gemeinsam an Projekten zu arbeiten:</p>
-  <ol>
-    <li>Gehen Sie zum Bereich <strong>„Contacts“</strong>.</li>
-    <li>Klicken Sie auf <strong>„New Contact“</strong>.</li>
-    <li>Füllen Sie die erforderlichen Informationen aus.</li>
-  </ol>
-  <p>Die hinzugefügten Kontakte können Aufgaben zugewiesen bekommen und mit den Karten auf dem Board interagieren.</p>
+          <h3>1. Das Board erkunden</h3>
+          <p>Nach dem Login finden Sie ein <strong>Standard-Board</strong>, das Ihr Projekt darstellt. Es enthält vier
+            Standardlisten:</p>
+          <ul>
+            <li>To Do</li>
+            <li>In Progress</li>
+            <li>Await Feedback</li>
+            <li>Done</li>
+          </ul>
 
-  <h3>3. Karten hinzufügen</h3>
-  <p>Karten repräsentieren einzelne Aufgaben:</p>
-  <ol>
-    <li>Klicken Sie auf das <strong>„+“-Symbol</strong> unter der passenden Liste.</li>
-    <li>Füllen Sie die Aufgabendetails aus: Name, Beschreibung, Fälligkeitsdatum, Zuständige usw.</li>
-  </ol>
+          <h3>2. Kontakte erstellen</h3>
+          <p>Fügen Sie Kontakte hinzu, um gemeinsam an Projekten zu arbeiten:</p>
+          <ol>
+            <li>Gehen Sie zum Bereich <strong>„Contacts“</strong>.</li>
+            <li>Klicken Sie auf <strong>„New Contact“</strong>.</li>
+            <li>Füllen Sie die erforderlichen Informationen aus.</li>
+          </ol>
+          <p>Die hinzugefügten Kontakte können Aufgaben zugewiesen bekommen und mit den Karten auf dem Board
+            interagieren.</p>
 
-  <h3>4. Karten verschieben</h3>
-  <p>Wenn eine Aufgabe von einem Stadium ins nächste wechselt, ziehen Sie die Karte einfach per <strong>Drag & Drop</strong> in die entsprechende Liste.</p>
+          <h3>3. Karten hinzufügen</h3>
+          <p>Karten repräsentieren einzelne Aufgaben:</p>
+          <ol>
+            <li>Klicken Sie auf das <strong>„+“-Symbol</strong> unter der passenden Liste.</li>
+            <li>Füllen Sie die Aufgabendetails aus: Name, Beschreibung, Fälligkeitsdatum, Zuständige usw.</li>
+          </ol>
 
-  <h3>5. Karten löschen</h3>
-  <p>Nach Abschluss einer Aufgabe können Sie die Karte entweder in die <strong>„Done“-Liste</strong> verschieben oder löschen.</p>
-  <p class="note">Hinweis: Das Löschen ist <strong>irreversibel</strong>, also bitte vorsichtig sein.</p>
+          <h3>4. Karten verschieben</h3>
+          <p>Wenn eine Aufgabe von einem Stadium ins nächste wechselt, ziehen Sie die Karte einfach per <strong>Drag &
+              Drop</strong> in die entsprechende Liste.</p>
 
-  <h2>Tipps für effektive Nutzung</h2>
-  <ul>
-    <li>Aktualisieren Sie das Board regelmäßig, damit es den aktuellen Projektstatus widerspiegelt.</li>
-    <li>Kommunizieren Sie aktiv mit Ihrem Team, um Aufgaben und Fortschritte im Blick zu behalten.</li>
-  </ul>
+          <h3>5. Karten löschen</h3>
+          <p>Nach Abschluss einer Aufgabe können Sie die Karte entweder in die <strong>„Done“-Liste</strong> verschieben
+            oder löschen.</p>
+          <p class="note">Hinweis: Das Löschen ist <strong>irreversibel</strong>, also bitte vorsichtig sein.</p>
 
-  <h2>Weitere Fragen?</h2>
-  <p>Bei Fragen zu Join können Sie uns jederzeit unter <strong>[Ihre Kontakt-E-Mail]</strong> kontaktieren. Wir helfen Ihnen gerne weiter!</p>
-  <p>Viel Spaß beim Arbeiten mit <span class="highlight">Join</span>! 🎉</p>
-      </div>
+          <h2>Tipps für effektive Nutzung</h2>
+          <ul>
+            <li>Aktualisieren Sie das Board regelmäßig, damit es den aktuellen Projektstatus widerspiegelt.</li>
+            <li>Kommunizieren Sie aktiv mit Ihrem Team, um Aufgaben und Fortschritte im Blick zu behalten.</li>
+          </ul>
+
+          <h2>Weitere Fragen?</h2>
+          <p>Bei Fragen zu Join können Sie uns jederzeit unter <strong>[Ihre Kontakt-E-Mail]</strong> kontaktieren. Wir
+            helfen Ihnen gerne weiter!</p>
+          <p>Viel Spaß beim Arbeiten mit <span class="highlight">Join</span>! 🎉</p>
+        </div>
+        <button onclick="history.back()" class="btn-back">
+      <img src="assets/icons/arrow-left-line.svg">
+    </button>
+    <nav class="bottom-nav">
+      <a href="html/summary.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/summary.svg" />
+        <span class="bottom-nav-span">Summary</span>
+      </a>
+      <a href="html/add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/add_task.svg" />
+        <span class="bottom-nav-span">Add Task</span>
+      </a>
+      <a href="html/board.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/board.svg" />
+        <span class="bottom-nav-span">Board</span>
+      </a>
+      <a href="html/contacts.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/contacts.svg" />
+        <span class="bottom-nav-span">Contacts</span>
+      </a>
+    </nav>
       </main>
     </div>
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>

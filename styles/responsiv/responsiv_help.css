@@ -1,3 +1,39 @@
+@media (max-width: 1000px){
+  .title-positioning{
+    padding: 48px 0 32px 16px;
+  }
+
+  .help-content-div{
+    margin-left:16px;
+    margin-right: 16px;
+    padding-top:0;
+  }
+  .help-container{
+    width: 100%;
+  }
+}
+
+
+@media (max-width:870px){
+  .btn-back{
+    width:32px;
+    height:32px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    background-color: #f6f7f8;
+    cursor: pointer;
+    position:absolute;
+    top: 128px;
+    right: 16px;
+  }
+  .btn-back:hover{
+    background-color:#d1d1d1;
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 40px 20px;
