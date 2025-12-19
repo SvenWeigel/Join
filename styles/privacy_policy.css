@@ -25,6 +25,14 @@
   background-color: #091931;
 }
 
+.profile-options a{
+  color: rgba(205, 205, 205, 1);
+}
+
+.profile-options a:hover{
+  text-decoration: none!important;
+  border-bottom: none!important;
+}
 .container {
   max-width: 1000px;
   margin: 0 auto;
