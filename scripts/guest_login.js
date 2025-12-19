@@ -31,7 +31,5 @@ function isGuestLoggedIn() {
   }
 }
 
-
-
 window.handleGuestLogin = handleGuestLogin;
 window.isGuestLoggedIn = isGuestLoggedIn;
