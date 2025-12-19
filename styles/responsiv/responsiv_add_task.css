@@ -17,6 +17,11 @@
     width:100%;
     overflow-y: auto;
   }
+
+  .content::-webkit-scrollbar {
+    display: none;
+  }
+
   .seperator-content{
     display:none;
   }
