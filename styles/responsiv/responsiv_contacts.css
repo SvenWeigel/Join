@@ -84,6 +84,7 @@
   }
   .contact-list-entry{
     width: unset;
+    padding: 15px 23px;
   }
   .contacts-right{
     display:none;

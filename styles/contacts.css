@@ -78,7 +78,7 @@
 }
 
 .contact-avatar {
-  width: 42px;
+  min-width: 42px;
   height: 42px;
   border-radius: 50%;
   background-color: #fc71ff;
