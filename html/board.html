@@ -8,6 +8,7 @@
   <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
   <link rel="stylesheet" href="styles/board.css" />
   <link rel="stylesheet" href="styles/board_modal.css" />
+  <link rel="stylesheet" href="styles/form_validation.css" />
   <link rel="stylesheet" href="styles/global.css" />
   <link rel="stylesheet" href="styles/font.css" />
   <link rel="stylesheet" href="styles/menu-bar.css" />
@@ -18,6 +19,9 @@
   <link rel="stylesheet" href="styles/responsiv/responsiv_board.css">
   <link rel="stylesheet" href="styles/responsiv/responsiv_edit_view.css">
   <script src="scripts/script.js"></script>
+  <script src="scripts/validation_helpers.js"></script>
+  <script src="scripts/validation_task.js"></script>
+  <script src="scripts/form_validation.js"></script>
   <script>if (typeof checkAuth === 'function' && !checkAuth()) { document.write(''); }</script>
 
   <title>Join</title>
@@ -199,17 +203,15 @@
             <div class="left-content">
               <div class="title-section">
                 <label for="taskTitle">Title<span class="required-star">*</span></label>
-                <input id="taskTitle" name="title" class="titel-input" type="text" placeholder="Enter a title"
-                  required />
+                <input id="taskTitle" name="title" class="titel-input" type="text" placeholder="Enter a title" />
               </div>
               <div class="description-section">
                 <span>Description</span>
-                <textarea name="description" maxlength="440" placeholder="Enter a Description"></textarea>
+                <textarea name="description" placeholder="Enter a Description"></textarea>
               </div>
               <div class="due-date-section">
                 <label for="taskDueDate">Due date<span class="required-star">*</span></label>
-                <input id="taskDueDate" name="due" class="due-date-input" type="date" placeholder="dd/mm/yyyy"
-                  required />
+                <input id="taskDueDate" name="due" class="due-date-input" type="text" placeholder="dd/mm/yyyy" />
               </div>
             </div>
 
@@ -269,7 +271,7 @@
                     </div>
                   </div>
                 </div>
-                <input type="hidden" id="taskCategory" name="category" required />
+                <input type="hidden" id="taskCategory" name="category" />
               </div>
 
               <div class="subtasks-section">
@@ -454,23 +456,23 @@
       </div>
     </div>
     </div>
-    <script src="scripts/header.js"></script>
-    <script src="scripts/db.js"></script>
-    <script src="templates/template_board.js"></script>
-    <script src="templates/template_add_task.js"></script>
-    <script src="render/render_add_task.js"></script>
-    <script src="render/render_board.js"></script>
-    <script src="render/render_board_task.js"></script>
-    <script src="render/render_board_cards.js"></script>
-    <script src="scripts/drag_and_drop.js"></script>
-    <script src="scripts/board_modal_assigned_to.js"></script>
-    <script src="scripts/board_modal_category.js"></script>
-    <script src="scripts/board_modal_subtask.js"></script>
-    <script src="scripts/board_modal_add_task.js"></script>
-    <script src="scripts/board_modal_cards.js"></script>
-    <script src="scripts/board_modal_cards_edit.js"></script>
-    <script src="scripts/board_modal_edit_subtasks.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="../scripts/header.js"></script>
+    <script src="../scripts/db.js"></script>
+    <script src="../templates/template_board.js"></script>
+    <script src="../templates/template_add_task.js"></script>
+    <script src="../render/render_add_task.js"></script>
+    <script src="../render/render_board.js"></script>
+    <script src="../render/render_board_task.js"></script>
+    <script src="../render/render_board_cards.js"></script>
+    <script src="../scripts/drag_and_drop.js"></script>
+    <script src="../scripts/board_modal_assigned_to.js"></script>
+    <script src="../scripts/board_modal_category.js"></script>
+    <script src="../scripts/board_modal_subtask.js"></script>
+    <script src="../scripts/board_modal_add_task.js"></script>
+    <script src="../scripts/board_modal_cards.js"></script>
+    <script src="../scripts/board_modal_cards_edit.js"></script>
+    <script src="../scripts/board_modal_edit_subtasks.js"></script>
+    <script src="../scripts/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         renderAllTasks();

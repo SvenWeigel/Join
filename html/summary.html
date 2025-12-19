@@ -26,185 +26,183 @@
   </head>
 
   <body>
-    <div id="rotate-warning">
-      Bitte drehe dein Gerät ins Hochformat
-    </div>
-  <div id="rotate-protection">
-    <div class="main-layout-container">
-      <header>
-        <div class="header-content">
-          <img class="logo-responsive" src="assets/img/logo.svg" />
-          <span>Kanban Project Management Tool</span>
-          <div class="header-profile-container">
-            <a href="html/help.html"
-              ><img src="assets/icons/help.svg" alt="help_icon"
-            /></a>
-            <div
-              class="user-badge"
-              onclick="showProfileOptions()"
-              title="Benutzer"
-            >
-              <div class="user-avatar">SM</div>
+    <div id="rotate-warning">Bitte drehe dein Gerät ins Hochformat</div>
+    <div id="rotate-protection">
+      <div class="main-layout-container">
+        <header>
+          <div class="header-content">
+            <img class="logo-responsive" src="assets/img/logo.svg" />
+            <span>Kanban Project Management Tool</span>
+            <div class="header-profile-container">
+              <a href="html/help.html"
+                ><img src="assets/icons/help.svg" alt="help_icon"
+              /></a>
+              <div
+                class="user-badge"
+                onclick="showProfileOptions()"
+                title="Benutzer"
+              >
+                <div class="user-avatar">SM</div>
+              </div>
+            </div>
+            <div class="profile-options d-none" id="profile-options">
+              <a class="help-options" href="html/help.html">Help</a>
+              <a href="html/legal_notice.html">Legal Notice</a>
+              <a href="html/privacy_policy.html">Privacy Policy</a>
+              <a href="#" onclick="logout(); return false;">Log Out</a>
             </div>
           </div>
-          <div class="profile-options d-none" id="profile-options">
-            <a class="help-options" href="html/help.html">Help</a>
-            <a href="html/legal_notice.html">Legal Notice</a>
-            <a href="html/privacy_policy.html">Privacy Policy</a>
-            <a href="#" onclick="logout(); return false;">Log Out</a>
-          </div>
-        </div>
-      </header>
+        </header>
 
-      <aside class="menu-bar-container">
-        <div class="join-logo-container">
-          <img src="assets/img/join_logo_vector.svg" alt="join logo" />
-        </div>
+        <aside class="menu-bar-container">
+          <div class="join-logo-container">
+            <img src="assets/img/join_logo_vector.svg" alt="join logo" />
+          </div>
 
-        <div class="menu-bar-btn-container">
-          <div class="summary-btn center-btn">
-            <a class="main-bar-btn" href="html/summary.html">
-              <img src="assets/icons/summary.svg" alt="" />Summary
-            </a>
-          </div>
-          <div class="add-task-btn center-btn">
-            <a class="main-bar-btn" href="html/add_task.html">
-              <img src="assets/icons/add_task.svg" alt="" />Add Task
-            </a>
-          </div>
-          <div class="board-btn center-btn">
-            <a class="main-bar-btn" href="html/board.html">
-              <img src="assets/icons/board.svg" alt="" />Board
-            </a>
-          </div>
-          <div class="contacts-btn center-btn">
-            <a class="main-bar-btn" href="html/contacts.html">
-              <img src="assets/icons/contacts.svg" alt="" />Contacts
-            </a>
-          </div>
-        </div>
-
-        <div class="legal-container">
-          <div class="privacy-btn">
-            <a href="html/privacy_policy.html">Privacy Policy</a>
-          </div>
-          <div class="legal-link">
-            <a href="html/legal_notice.html">Legal Notice</a>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Summary Content -->
-
-      <main class="summary-content-div">
-        <div class="headline-div">
-          <h1 class="headline-span">Join 360</h1>
-          <div class="seperator-content"></div>
-          <span class="headline-span-div">Key Metrics at a Glance</span>
-        </div>
-
-        <div class="todo-done-div">
-          <div id="todo-div" class="todo-div">
-            <img class="normal" src="assets/icons/to-do-summary.svg" alt="" />
-            <img
-              class="hover"
-              src="assets/icons/to-do-white-summary.svg"
-              alt=""
-            />
-            <div class="todo-span-div">
-              <span class="todo-span">To-do</span>
-              <span class="todo-number-span">1</span>
+          <div class="menu-bar-btn-container">
+            <div class="summary-btn center-btn">
+              <a class="main-bar-btn" href="html/summary.html">
+                <img src="assets/icons/summary.svg" alt="" />Summary
+              </a>
+            </div>
+            <div class="add-task-btn center-btn">
+              <a class="main-bar-btn" href="html/add_task.html">
+                <img src="assets/icons/add_task.svg" alt="" />Add Task
+              </a>
+            </div>
+            <div class="board-btn center-btn">
+              <a class="main-bar-btn" href="html/board.html">
+                <img src="assets/icons/board.svg" alt="" />Board
+              </a>
+            </div>
+            <div class="contacts-btn center-btn">
+              <a class="main-bar-btn" href="html/contacts.html">
+                <img src="assets/icons/contacts.svg" alt="" />Contacts
+              </a>
             </div>
           </div>
 
-          <div id="done-div" class="done-div">
-            <img class="normal" src="assets/icons/done-summary.svg" alt="" />
-            <img
-              class="hover"
-              src="assets/icons/done-white-summary.svg"
-              alt=""
-            />
-            <div class="done-span-div">
-              <span class="done-span">Done</span>
-              <span class="done-number-span">1</span>
+          <div class="legal-container">
+            <div class="privacy-btn">
+              <a href="html/privacy_policy.html">Privacy Policy</a>
+            </div>
+            <div class="legal-link">
+              <a href="html/legal_notice.html">Legal Notice</a>
             </div>
           </div>
-        </div>
+        </aside>
 
-        <div class="priority-date-greeting-div">
-          <div id="priority-date-div" class="priority-date-div">
-            <div class="urgency-summary">
-              <img src="assets/icons/prio-summary.svg" alt="" />
-              <div class="urgency-span-div">
-                <span class="urgency-number-span">1</span>
-                <span class="urgency-span">Urgent</span>
+        <!-- Summary Content -->
+
+        <main class="summary-content-div">
+          <div class="headline-div">
+            <h1 class="headline-span">Join 360</h1>
+            <div class="seperator-content"></div>
+            <span class="headline-span-div">Key Metrics at a Glance</span>
+          </div>
+
+          <div class="todo-done-div">
+            <div id="todo-div" class="todo-div">
+              <img class="normal" src="assets/icons/to-do-summary.svg" alt="" />
+              <img
+                class="hover"
+                src="assets/icons/to-do-white-summary.svg"
+                alt=""
+              />
+              <div class="todo-span-div">
+                <span class="todo-span">To-do</span>
+                <span class="todo-number-span">1</span>
               </div>
             </div>
 
-            <div class="seperator-content-summary"></div>
-
-            <div class="date-summary">
-              <div class="date-span-div">
-                <span class="date-span">October 16, 2022</span>
-                <span class="date-number-span">Upcoming Deadline</span>
+            <div id="done-div" class="done-div">
+              <img class="normal" src="assets/icons/done-summary.svg" alt="" />
+              <img
+                class="hover"
+                src="assets/icons/done-white-summary.svg"
+                alt=""
+              />
+              <div class="done-span-div">
+                <span class="done-span">Done</span>
+                <span class="done-number-span">1</span>
               </div>
             </div>
           </div>
-          <div class="greet-span-div">
-            <span class="greet-span"> Good Morning, </span>
-            <span class="greet-name-span"> Sofia Müller </span>
-          </div>
-        </div>
 
-        <div class="open-tasks-div">
-          <div id="tasks-in-board-div" class="tasks-in-board-div">
-            <span class="tasks-in-board-number-span">5</span>
-            <span class="tasks-in-board-span"
-              >Tasks in <br />
-              Board</span
-            >
+          <div class="priority-date-greeting-div">
+            <div id="priority-date-div" class="priority-date-div">
+              <div class="urgency-summary">
+                <img src="assets/icons/prio-summary.svg" alt="" />
+                <div class="urgency-span-div">
+                  <span class="urgency-number-span">1</span>
+                  <span class="urgency-span">Urgent</span>
+                </div>
+              </div>
+
+              <div class="seperator-content-summary"></div>
+
+              <div class="date-summary">
+                <div class="date-span-div">
+                  <span class="date-span">October 16, 2022</span>
+                  <span class="date-number-span">Upcoming Deadline</span>
+                </div>
+              </div>
+            </div>
+            <div class="greet-span-div">
+              <span class="greet-span"> Good Morning, </span>
+              <span class="greet-name-span"> Sofia Müller </span>
+            </div>
           </div>
-          <div id="tasks-in-progress-div" class="tasks-in-progress-div">
-            <span class="tasks-in-progress-number-span">2</span>
-            <span class="tasks-in-progress-span"
-              >Tasks in <br />
-              Progress</span
-            >
+
+          <div class="open-tasks-div">
+            <div id="tasks-in-board-div" class="tasks-in-board-div">
+              <span class="tasks-in-board-number-span">5</span>
+              <span class="tasks-in-board-span"
+                >Tasks in <br />
+                Board</span
+              >
+            </div>
+            <div id="tasks-in-progress-div" class="tasks-in-progress-div">
+              <span class="tasks-in-progress-number-span">2</span>
+              <span class="tasks-in-progress-span"
+                >Tasks in <br />
+                Progress</span
+              >
+            </div>
+            <div id="awaiting-feedback-div" class="awaiting-feedback-div">
+              <span class="awaiting-feedback-number-span">1</span>
+              <span class="awaiting-feedback-span"
+                >Awaiting <br />
+                Feedback</span
+              >
+            </div>
           </div>
-          <div id="awaiting-feedback-div" class="awaiting-feedback-div">
-            <span class="awaiting-feedback-number-span">1</span>
-            <span class="awaiting-feedback-span"
-              >Awaiting <br />
-              Feedback</span
-            >
-          </div>
-        </div>
-      </main>
-    </div>
-    <nav class="bottom-nav">
-      <a href="html/summary.html" class="nav-div current-nav">
-        <img class="bottom-nav-img" src="assets/icons/summary.svg" />
-        <span class="bottom-nav-span">Summary</span>
-      </a>
-      <a href="html/add_task.html" class="nav-div">
-        <img class="bottom-nav-img" src="assets/icons/add_task.svg" />
-        <span class="bottom-nav-span">Add Task</span>
-      </a>
-      <a href="html/board.html" class="nav-div">
-        <img class="bottom-nav-img" src="assets/icons/board.svg" />
-        <span class="bottom-nav-span">Board</span>
-      </a>
-      <a href="html/contacts.html" class="nav-div">
-        <img class="bottom-nav-img" src="assets/icons/contacts.svg" />
-        <span class="bottom-nav-span">Contacts</span>
-      </a>
-    </nav>
-    <div class="greet-overlay" id="greetOverlay">
-      <div class="greet-container">
-        <span class="greet-span-responsive">Good Morning,</span>
-        <span class="greet-name-span-responsive">Sofia Müller</span>
+        </main>
       </div>
-    </div>
+      <nav class="bottom-nav">
+        <a href="html/summary.html" class="nav-div current-nav">
+          <img class="bottom-nav-img" src="assets/icons/summary.svg" />
+          <span class="bottom-nav-span">Summary</span>
+        </a>
+        <a href="html/add_task.html" class="nav-div">
+          <img class="bottom-nav-img" src="assets/icons/add_task.svg" />
+          <span class="bottom-nav-span">Add Task</span>
+        </a>
+        <a href="html/board.html" class="nav-div">
+          <img class="bottom-nav-img" src="assets/icons/board.svg" />
+          <span class="bottom-nav-span">Board</span>
+        </a>
+        <a href="html/contacts.html" class="nav-div">
+          <img class="bottom-nav-img" src="assets/icons/contacts.svg" />
+          <span class="bottom-nav-span">Contacts</span>
+        </a>
+      </nav>
+      <div class="greet-overlay" id="greetOverlay">
+        <div class="greet-container">
+          <span class="greet-span-responsive">Good Morning,</span>
+          <span class="greet-name-span-responsive">Sofia Müller</span>
+        </div>
+      </div>
     </div>
     <script src="scripts/script.js"></script>
     <script src="scripts/header.js"></script>
