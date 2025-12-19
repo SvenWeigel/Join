@@ -12,10 +12,14 @@
   <link rel="stylesheet" href="styles/header.css" />
   <link rel="stylesheet" href="styles/contacts.css" />
   <link rel="stylesheet" href="styles/contacts_modal.css" />
+  <link rel="stylesheet" href="styles/form_validation.css" />
   <link rel="stylesheet" href="styles/bottom-nav.css" />
   <link rel="stylesheet" href="styles/responsiv/responsiv_contacts.css">
   <link rel="stylesheet" href="styles/responsiv/responsiv_add_contacts.css">
   <script src="scripts/script.js"></script>
+  <script src="scripts/validation_helpers.js"></script>
+  <script src="scripts/validation_contact.js"></script>
+  <script src="scripts/form_validation.js"></script>
   <script>if (typeof checkAuth === 'function' && !checkAuth()) { document.write(''); }</script>
   <title>Contacts</title>
 </head>
@@ -152,15 +156,15 @@
           </div>
           <div class="modal-inputs-container">
             <div class="contact-input-group">
-              <input type="text" id="contactName" name="name" placeholder="Name" required />
+              <input type="text" id="contactName" name="name" placeholder="Name" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
             <div class="contact-input-group">
-              <input type="email" id="contactEmail" name="email" placeholder="Email" required />
+              <input type="text" id="contactEmail" name="email" placeholder="Email" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
             <div class="contact-input-group">
-              <input type="tel" id="contactPhone" name="phone" placeholder="Phone" />
+              <input type="text" id="contactPhone" name="phone" placeholder="Phone" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
             <div class="modal-buttons-wrapper">
@@ -205,15 +209,15 @@
           </div>
           <div class="modal-inputs-container">
             <div class="contact-input-group">
-              <input type="text" id="editContactName" name="name" placeholder="Name" required />
+              <input type="text" id="editContactName" name="name" placeholder="Name" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
             <div class="contact-input-group">
-              <input type="email" id="editContactEmail" name="email" placeholder="Email" required />
+              <input type="text" id="editContactEmail" name="email" placeholder="Email" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
             <div class="contact-input-group">
-              <input type="tel" id="editContactPhone" name="phone" placeholder="Phone" />
+              <input type="text" id="editContactPhone" name="phone" placeholder="Phone" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
           </div>

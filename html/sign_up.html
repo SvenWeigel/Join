@@ -1,95 +1,163 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="../" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/login_center_logo.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="styles/log_in.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/sign_up.css" />
+    <link rel="stylesheet" href="styles/form_validation.css" />
+    <link rel="stylesheet" href="styles/responsiv/responsiv_signup.css" />
+    <script src="scripts/script.js"></script>
+    <script src="scripts/validation_helpers.js"></script>
+    <script src="scripts/validation_signup.js"></script>
+    <script src="scripts/form_validation.js"></script>
+    <title>Join</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="../" />
-  <link rel="shortcut icon" href="assets/img/login_center_logo.svg" type="image/x-icon" />
-  <link rel="stylesheet" href="styles/log_in.css" />
-  <link rel="stylesheet" href="styles/global.css" />
-  <link rel="stylesheet" href="styles/font.css" />
-  <link rel="stylesheet" href="styles/sign_up.css" />
-  <link rel="stylesheet" href="styles/responsiv/responsiv_signup.css">
-  <title>Join</title>
-</head>
+  <body>
+    <div id="rotate-warning">Bitte drehe dein Gerät ins Hochformat</div>
+    <div id="rotate-protection">
+      <!--Sollten es vielleicht anders regeln mit den CSS Klassen von Sign up und Log in-->
 
-<body>
-  <div id="rotate-warning">
-      Bitte drehe dein Gerät ins Hochformat
+      <div class="center_img_container" style="display: none">
+        <img
+          src="assets/img/login_center_logo.svg"
+          alt="center_img"
+          class="center_img"
+        />
+      </div>
+
+      <div class="sign-up-container">
+        <form
+          id="signup-form"
+          class="sign-up-form position-relative"
+          action=""
+          autocomplete="off"
+        >
+          <div class="sign-up-form-arrow-left-container">
+            <a href="index.html">
+              <img
+                src="assets/icons/arrow-left-line.svg"
+                class="sign-up-form-arrow-left-icon"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="sign-up-form-header">
+            <h1>Sign up</h1>
+            <div class="border-bottom-div"></div>
+          </div>
+          <div class="sign-up-input-container">
+            <div class="sign-up-input-box">
+              <input
+                onclick="preFillSignupForm()"
+                id="signup-name"
+                name="name"
+                class="sign-up-input"
+                type="text"
+                placeholder="Name"
+                autocomplete="name"
+                autocomplete="off"
+              />
+              <img src="assets/icons/person.svg" style="padding: 4px" alt="" />
+            </div>
+
+            <div class="sign-up-input-box">
+              <input
+                id="signup-email"
+                name="email"
+                class="sign-up-input"
+                type="text"
+                placeholder="Email"
+                autocomplete="email"
+              />
+              <img src="assets/icons/mail.svg" alt="" />
+            </div>
+
+            <div class="sign-up-input-box">
+              <input
+                id="signup-password"
+                oninput="changePasswordIcon('signup-password','password-icon')"
+                name="password"
+                class="sign-up-input"
+                type="password"
+                placeholder="Password"
+                autocomplete="new-password"
+              />
+              <img
+                onclick="togglePasswordVisibility('signup-password','password-icon')"
+                id="password-icon"
+                src="assets/icons/lock.svg"
+                alt=""
+              />
+            </div>
+
+            <div class="sign-up-input-box">
+              <input
+                id="signup-confirm-password"
+                oninput="changePasswordIcon('signup-confirm-password','password-confirm-icon')"
+                onclick="togglePasswordVisibility()"
+                name="confirm_password"
+                class="sign-up-input"
+                type="password"
+                placeholder="Confirm Password"
+                autocomplete="new-password"
+              />
+              <img
+                id="password-confirm-icon"
+                onclick="togglePasswordVisibility('signup-confirm-password','password-confirm-icon')"
+                src="assets/icons/lock.svg"
+                alt=""
+              />
+            </div>
+
+            <div class="check-container">
+              <input type="checkbox" id="check-privacy" name="check-privacy" />
+              <label for="check-privacy"
+                >I accept the
+                <a href="html/privacy_policy.html">Privacy policy</a></label
+              >
+            </div>
+
+            <!-- <input class="login_input" type="password" placeholder="Password" src="assets/icons/lock.svg" /> -->
+          </div>
+          <button
+            id="signup-btn"
+            type="submit"
+            class="sign-up-form-btn-login"
+            disabled
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+
+      <div class="login-site-logo-container">
+        <img
+          src="assets/img/logo.svg"
+          alt="site logo"
+          class="login-site-logo"
+        />
+      </div>
+
+      <div id="signup-success-overlay" style="display: none">
+        <div class="signup-success-message">You Signed Up successfully</div>
+      </div>
+
+      <footer class="login-site-footer">
+        <a href="html/privacy_policy.html">Privacy policy</a>
+        <a href="html/legal_notice.html">Legal Notice</a>
+      </footer>
     </div>
-  <div id="rotate-protection">
-  <!--Sollten es vielleicht anders regeln mit den CSS Klassen von Sign up und Log in-->
-
-  <div class="center_img_container" style="display: none">
-    <img src="assets/img/login_center_logo.svg" alt="center_img" class="center_img" />
-  </div>
-
-  <div class="sign-up-container">
-    <form id="signup-form" class="sign-up-form position-relative" action="" autocomplete="off">
-      <div class="sign-up-form-arrow-left-container">
-        <a href="index.html">
-          <img src="assets/icons/arrow-left-line.svg" class="sign-up-form-arrow-left-icon" alt="" />
-        </a>
-      </div>
-      <div class="sign-up-form-header">
-        <h1>Sign up</h1>
-        <div class="border-bottom-div"></div>
-      </div>
-      <div class="sign-up-input-container">
-        <div class="sign-up-input-box">
-          <input onclick="preFillSignupForm()" id="signup-name" name="name" class="sign-up-input" type="text"
-            placeholder="Name" autocomplete="name" required minlength="2" autocomplete="off" />
-          <img src="assets/icons/person.svg" style="padding: 4px" alt="" />
-        </div>
-
-        <div class="sign-up-input-box">
-          <input id="signup-email" name="email" class="sign-up-input" type="email" placeholder="Email"
-            autocomplete="email" required />
-          <img src="assets/icons/mail.svg" alt="" />
-        </div>
-
-        <div class="sign-up-input-box">
-          <input id="signup-password" oninput="changePasswordIcon('signup-password','password-icon')" name="password" class="sign-up-input" type="password" placeholder="Password"
-            autocomplete="new-password" required minlength="8" />
-          <img onclick="togglePasswordVisibility('signup-password','password-icon')" id="password-icon" src="assets/icons/lock.svg" alt="" />
-        </div>
-
-        <div class="sign-up-input-box">
-          <input id="signup-confirm-password" oninput="changePasswordIcon('signup-confirm-password','password-confirm-icon')" onclick="togglePasswordVisibility()" name="confirm_password" class="sign-up-input" type="password"
-            placeholder="Confirm Password" autocomplete="new-password" required />
-          <img id="password-confirm-icon" onclick="togglePasswordVisibility('signup-confirm-password','password-confirm-icon')" src="assets/icons/lock.svg" alt="" />
-        </div>
-
-        <div class="check-container">
-          <input type="checkbox" id="check-privacy" name="check-privacy" required />
-          <label for="check-privacy">I accept the
-            <a href="html/privacy_policy.html">Privacy policy</a></label>
-        </div>
-
-        <!-- <input class="login_input" type="password" placeholder="Password" src="assets/icons/lock.svg" /> -->
-      </div>
-      <button id="signup-btn" type="submit" class="sign-up-form-btn-login" disabled>
-        Sign up
-      </button>
-    </form>
-  </div>
-
-  <div class="login-site-logo-container">
-    <img src="assets/img/logo.svg" alt="site logo" class="login-site-logo" />
-  </div>
-
-  <div id="signup-success-overlay" style="display:none;">
-    <div class="signup-success-message">You Signed Up successfully</div>
-  </div>
-
-  <footer class="login-site-footer">
-    <a href="html/privacy_policy.html">Privacy policy</a>
-    <a href="html/legal_notice.html">Legal Notice</a>
-  </footer>
-  </div>
-  <script src="scripts/db.js"></script>
-  <script src="scripts/sign_up.js"></script>
-</body>
-
+    <script src="scripts/db.js"></script>
+    <script src="scripts/sign_up.js"></script>
+  </body>
 </html>

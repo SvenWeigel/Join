@@ -198,6 +198,11 @@ async function handleLoginSubmit(e) {
   const form = document.querySelector(LOGIN_SELECTORS.formSelector);
   if (!validateForm(form)) return;
   const { email, password } = readLoginFormValues();
+
+  if (!email.trim() || !password.trim()) {
+    return;
+  }
+
   try {
     await performLogin(email, password);
     alert(LOGIN_MESSAGES.loginSuccess);
