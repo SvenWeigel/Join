@@ -45,6 +45,7 @@ function bindEvents() {
   bindEscapeKey();
   bindPriorityButtons();
   bindFormSubmit();
+  bindModalValidation();
 }
 
 /**
@@ -135,6 +136,7 @@ function openModal(status = "todo") {
   document.body.style.overflow = "hidden";
   focusFirstInput();
   renderModalAssigneeDropdown();
+  updateModalCreateTaskButtonState();
 }
 
 /**
@@ -305,6 +307,41 @@ function handleColumnPlusClick(status) {
   } else {
     openModal(status);
   }
+}
+
+/**
+ * Checks if all required modal task fields are filled.
+ * @returns {boolean} True if all required fields are valid
+ */
+function areModalTaskFieldsValid() {
+  const title = document.getElementById("taskTitle");
+  const dueDate = document.getElementById("taskDueDate");
+  const category = form?.category;
+  return (
+    title?.value.trim() !== "" &&
+    dueDate?.value.trim() !== "" &&
+    category?.value !== ""
+  );
+}
+
+/**
+ * Updates the create task modal button state based on form validation.
+ */
+function updateModalCreateTaskButtonState() {
+  const button = document.getElementById("createTaskModalBtn");
+  if (!button) return;
+  button.disabled = !areModalTaskFieldsValid();
+}
+
+/**
+ * Binds input listeners to required fields for validation.
+ */
+function bindModalValidation() {
+  const title = document.getElementById("taskTitle");
+  const dueDate = document.getElementById("taskDueDate");
+  if (title) title.addEventListener("input", updateModalCreateTaskButtonState);
+  if (dueDate)
+    dueDate.addEventListener("input", updateModalCreateTaskButtonState);
 }
 
 document.addEventListener("DOMContentLoaded", initModal);

@@ -83,6 +83,9 @@ function selectModalCategory(value, label) {
   highlightCategoryItem(value);
   updateCategoryDisplay(value, label);
   closeModalCategoryDropdown();
+  if (typeof updateModalCreateTaskButtonState === "function") {
+    updateModalCreateTaskButtonState();
+  }
 }
 
 /**

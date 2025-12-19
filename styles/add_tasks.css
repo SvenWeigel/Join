@@ -333,8 +333,14 @@ textarea {
   border-radius: 8px;
   cursor: pointer;
   border: none;
-  padding:16px;
+  padding: 16px;
   gap: 4px;
+}
+
+.btn-create:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .btn-clear {
@@ -420,8 +426,8 @@ textarea {
   z-index: 1000;
 }
 
-.success-message span{
-  margin:0;
+.success-message span {
+  margin: 0;
 }
 
 .success-message.show {
@@ -685,11 +691,11 @@ textarea {
 #pageCategoryList .dropdown-item.selected {
   background-color: #f0f0f0;
 }
-.required-note-form{
-  display:none;
+.required-note-form {
+  display: none;
   font-size: 14px;
   color: #666;
 }
-.required-star-form{
+.required-star-form {
   color: #e60000;
 }

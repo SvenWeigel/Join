@@ -37,6 +37,7 @@ function bindAddTaskEvents() {
   bindAddTaskPriorityButtons();
   bindAddTaskFormSubmit();
   bindClearButton();
+  bindAddTaskValidation();
 }
 
 /**
@@ -244,6 +245,41 @@ async function handleAddTaskSubmit(e) {
   } catch (error) {
     handleTaskCreationError(error);
   }
+}
+
+/**
+ * Checks if all required task fields are filled.
+ * @returns {boolean} True if all required fields are valid
+ */
+function areTaskFieldsValid() {
+  const title = document.getElementById("taskTitlePage");
+  const dueDate = document.getElementById("taskDueDatePage");
+  const category = addTaskForm?.category;
+  return (
+    title?.value.trim() !== "" &&
+    dueDate?.value.trim() !== "" &&
+    category?.value !== ""
+  );
+}
+
+/**
+ * Updates the create task button state based on form validation.
+ */
+function updateCreateTaskButtonState() {
+  const button = document.getElementById("createTaskBtn");
+  if (!button) return;
+  button.disabled = !areTaskFieldsValid();
+}
+
+/**
+ * Binds input listeners to required fields for validation.
+ */
+function bindAddTaskValidation() {
+  const title = document.getElementById("taskTitlePage");
+  const dueDate = document.getElementById("taskDueDatePage");
+  if (title) title.addEventListener("input", updateCreateTaskButtonState);
+  if (dueDate) dueDate.addEventListener("input", updateCreateTaskButtonState);
+  updateCreateTaskButtonState();
 }
 
 document.addEventListener("DOMContentLoaded", initAddTaskPage);

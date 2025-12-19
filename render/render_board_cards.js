@@ -64,16 +64,16 @@ function populateViewDueDate(dueDate) {
 }
 
 /**
- * Formats a date from YYYY-MM-DD to DD/MM/YYYY.
+ * Formats a date from YYYY-MM-DD to MM/DD/YYYY (English format).
  *
  * @param {string} dateString - Date in YYYY-MM-DD format
- * @returns {string} Date in DD/MM/YYYY format
+ * @returns {string} Date in MM/DD/YYYY format
  */
 function formatDate(dateString) {
   if (!dateString) return "";
   const parts = dateString.split("-");
   if (parts.length !== 3) return dateString;
-  return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  return `${parts[1]}/${parts[2]}/${parts[0]}`;
 }
 
 /**

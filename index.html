@@ -11,42 +11,17 @@
     <link rel="stylesheet" href="styles/log_in.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/form_validation.css" />
     <link rel="stylesheet" href="styles/responsiv/responsiv_login.css" />
-    <script>
-      /**
-       * @file index.html
-       * @description Entry page for the Join application. Includes minimal inline
-       * scripts that perform runtime checks (redirect if already logged in,
-       * skip animations) and load main scripts. JSDoc is provided here so
-       * inline-script behavior is documented for automated doc generation.
-       */
-    </script>
     <script src="scripts/script.js"></script>
-    <script>
-      /**
-       * Redirects a user to the summary page if they are already authenticated.
-       * This calls the `redirectIfLoggedIn` function from `scripts/script.js` if
-       * it exists at runtime.
-       * @returns {void}
-       */
-      if (typeof redirectIfLoggedIn === "function") {
-        redirectIfLoggedIn();
-      }
-    </script>
+    <script src="scripts/validation_helpers.js"></script>
+    <script src="scripts/form_validation.js"></script>
+    <script src="scripts/login_init.js"></script>
     <title>Join</title>
   </head>
 
   <body>
-    <script>
-      /**
-       * Checks whether animations should be skipped (e.g. after logout) and
-       * applies a CSS class to the root element to disable animations.
-       * @returns {void}
-       */
-      if (sessionStorage.getItem("skipAnimation")) {
-        document.documentElement.classList.add("skip-animation");
-      }
-    </script>
+    <script src="scripts/animation_skip.js"></script>
     <div class="center_img_container">
       <img
         src="assets/img/login_center_logo.svg"
