@@ -64,6 +64,10 @@
   .login-site-footer{
     bottom: 10px;
   }
+
+  .login-form-header-div h1{
+    font-size:37px;
+  }
 }
 
 @media(max-width: 450px){

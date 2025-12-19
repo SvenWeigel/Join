@@ -74,6 +74,12 @@ function checkUserOrGuest() {
   return false;
 }
 
+function setDisplay(el, value) {
+  if (!el) return;
+  el.style.display = value;
+}
+
+
 const ui = {
   menuBar: document.querySelector(".menu-bar-btn-container"),
   logInBtn: document.querySelector(".menu-bar-btn-logIn"),
@@ -83,27 +89,30 @@ const ui = {
 };
 
 function renderDesktop() {
-  ui.bottomNavUser.style.display = "none";
-  ui.bottomNavGuest.style.display = "none";
+  setDisplay(ui.bottomNavUser, "none");
+  setDisplay(ui.bottomNavGuest, "none");
 }
+
 
 function renderMobileUser() {
-  ui.menuBar.style.display = "flex";
-  ui.logInBtn.style.display = "none";
-  ui.headerProfile.style.display = "flex";
+  setDisplay(ui.menuBar, "flex");
+  setDisplay(ui.logInBtn, "none");
+  setDisplay(ui.headerProfile, "flex");
 
-  ui.bottomNavUser.style.display = "flex";
-  ui.bottomNavGuest.style.display = "none";
+  setDisplay(ui.bottomNavUser, "flex");
+  setDisplay(ui.bottomNavGuest, "none");
 }
+
 
 function renderMobileGuest() {
-  ui.menuBar.style.display = "none";
-  ui.logInBtn.style.display = "flex";
-  ui.headerProfile.style.display = "none";
+  setDisplay(ui.menuBar, "none");
+  setDisplay(ui.logInBtn, "flex");
+  setDisplay(ui.headerProfile, "none");
 
-  ui.bottomNavUser.style.display = "none";
-  ui.bottomNavGuest.style.display = "flex";
+  setDisplay(ui.bottomNavUser, "none");
+  setDisplay(ui.bottomNavGuest, "flex");
 }
+
 
 function renderLayout() {
   const isMobile = window.innerWidth < 870;
@@ -121,3 +130,4 @@ window.addEventListener("resize", renderLayout);
 window.addEventListener("DOMContentLoaded", renderLayout);
 
 
+//prüfen ob Elemente schon existieren
