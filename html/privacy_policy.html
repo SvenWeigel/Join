@@ -21,7 +21,7 @@
     <title>Join</title>
   </head>
 
-  <body>
+  <body onload="renderGuestView()">
     <div id="rotate-warning">
       Bitte drehe dein Gerät ins Hochformat
     </div>
@@ -80,11 +80,11 @@
         </div>
 
         <!-- anzeigen wenn User nicht logged in ist -->
-        <div class="menu-bar-btn-container" style="display: none">
+        <div class="menu-bar-btn-logIn">
           <div class="contacts-btn center-btn">
-            <button class="main-bar-btn" href="">
+            <a class="main-bar-btn" href="index.html">
               <img src="assets/icons/login.svg" alt="" />Log In
-            </button>
+            </a>
           </div>
         </div>
 
@@ -497,5 +497,6 @@
     </div>
     <script src="scripts/header.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/privacy_policy.js"></script>
   </body>
 </html>

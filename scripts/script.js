@@ -65,3 +65,28 @@ function highlightActiveMenuLink() {
 }
 
 document.addEventListener("DOMContentLoaded", highlightActiveMenuLink);
+
+
+
+function checkUserOrGuest(){
+  if (localStorage.getItem("currentUser")) {
+    return true;
+  }
+  return false;
+}
+
+function renderGuestView() {
+  if (checkUserOrGuest()) return;
+  applyGuestView();
+}
+
+function applyGuestView(){
+  const menuBar = document.querySelector(".menu-bar-btn-container");
+  const logInRef = document.querySelector(".menu-bar-btn-logIn");
+  const headRef = document.querySelector(".header-profile-container");
+
+  menuBar.style.display = "none";
+  headRef.style.display = "none";
+  logInRef.style.display = "flex";
+  
+}

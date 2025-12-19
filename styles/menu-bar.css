@@ -102,6 +102,10 @@
     margin-bottom: 4px;
 }
 
+.menu-bar-btn-logIn{
+    display: none;
+}
+
 @media (max-width: 870px) {
   .menu-bar-container {
     display: none;
