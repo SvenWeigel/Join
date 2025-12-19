@@ -43,8 +43,12 @@
     font-size:36px;
   }
   .contacts-details-avatar{
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+  .contact-details{
+    gap: 20px;
   }
   
 }
