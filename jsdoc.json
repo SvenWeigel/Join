@@ -1,0 +1,47 @@
+{
+  "source": {
+    "include": ["scripts", "render", "templates"],
+    "includePattern": ".+\\.js$"
+  },
+  "opts": {
+    "destination": "./out",
+    "recurse": true,
+    "template": "node_modules/clean-jsdoc-theme"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": false
+  },
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  },
+  "clean-jsdoc-theme": {
+    "theme_mode": "light",
+    "title": "Join - Documentation",
+    "homepageTitle": "Join API Dokumentation",
+    "include_css": [],
+    "include_js": [],
+    "menu": [
+      {
+        "title": "GitHub",
+        "link": "https://github.com/SvenWeigel/Join",
+        "target": "_blank"
+      }
+    ],
+    "meta": [
+      {
+        "name": "description",
+        "content": "Join - Task Management Application Documentation"
+      }
+    ],
+    "search": {
+      "enable": true,
+      "placeholder": "Suchen..."
+    },
+    "codepen": {
+      "enable_for": ["examples"]
+    }
+  }
+}
