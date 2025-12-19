@@ -123,9 +123,9 @@ function logout() {
   sessionStorage.clear();
   sessionStorage.setItem("skipAnimation", "true");
 
-  const isInHtmlFolder = window.location.pathname.includes("html/");
-  const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
-  window.location.replace(redirectPath);
+  // const isInHtmlFolder = window.location.pathname.includes("html/");
+  // const redirectPath = isInHtmlFolder ? "../index.html" : "index.html";
+  window.location.replace("index.html");
 }
 
 window.logout = logout;
