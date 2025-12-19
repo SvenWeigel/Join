@@ -18,6 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction:column;
   gap: 32px;
   font-family: "Inter", sans-serif;
   height: 100vh;
@@ -148,6 +149,12 @@ h1 {
     border: 1px solid #28abe2;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
   }
+}
+
+.sign-up-responsive{
+  display:none;
+  gap: 35px;
+  padding: 77px 0 42px 0;
 }
 
 .center_img_container {

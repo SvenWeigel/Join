@@ -13,11 +13,7 @@
     margin: 0 16px;
   }
   .login-site-header{
-    top: unset;
-    right:unset;
-    bottom: 99px;
-    left: 50%;
-    transform: translateX(-50%);
+    display:none;
   }
   .login-site-header-to-signup{
     white-space:nowrap;
@@ -25,23 +21,53 @@
   .login_input_container{
     width: 70vw;
   }
+  .sign-up-responsive{
+    display:flex;
+  }
 }
 
 @media (max-width: 600px) {
+  .login-site-logo-container{
+    width: unset;
+    height: unset;
+    top: 20px;
+    left: 20px;
+  }
   .login-site-logo-container img{
-    width: 64px;
-    height: 78px;
+    width: 32px;
+    height: 39px;
   }
   .login-form-btns-container{
     flex-direction: column;
     width: 50%;
     gap:21px;
     padding-bottom: 32px;
+    padding-top: 32px;
   }
   .login-form-btns-container button{
     font-size:16px;
   }
   form{
     height: unset;
+    gap:21px;
+  }
+}
+
+@media (max-width: 500px){
+  .sign-up-responsive{
+    padding: 35px 0 20px 0;
+  }
+  .login_input_container{
+    height: unset;
+  }
+
+  .login-site-footer{
+    bottom: 10px;
+  }
+}
+
+@media(max-width: 450px){
+  .sign-up-responsive{
+    padding: 8px;
   }
 }
