@@ -101,6 +101,15 @@
   flex-direction: column;
   gap: 16px;
 }
+.add-task-modal .left-content input:focus{
+  border-color:#29abe2;
+  outline:none;
+}
+
+.add-task-modal .left-content textarea:focus{
+  border-color:#29abe2;
+  outline:none;
+}
 
 /* Rechte Spalte */
 .add-task-modal .right-content {
