@@ -74,17 +74,50 @@ function checkUserOrGuest() {
   return false;
 }
 
-function renderGuestView() {
-  if (checkUserOrGuest()) return;
-  applyGuestView();
+const ui = {
+  menuBar: document.querySelector(".menu-bar-btn-container"),
+  logInBtn: document.querySelector(".menu-bar-btn-logIn"),
+  headerProfile: document.querySelector(".header-profile-container"),
+  bottomNavUser: document.querySelector(".bottom-nav"),
+  bottomNavGuest: document.querySelector(".bottom-nav-guest"),
+};
+
+function renderDesktop() {
+  ui.bottomNavUser.style.display = "none";
+  ui.bottomNavGuest.style.display = "none";
 }
 
-function applyGuestView() {
-  const menuBar = document.querySelector(".menu-bar-btn-container");
-  const logInRef = document.querySelector(".menu-bar-btn-logIn");
-  const headRef = document.querySelector(".header-profile-container");
+function renderMobileUser() {
+  ui.menuBar.style.display = "flex";
+  ui.logInBtn.style.display = "none";
+  ui.headerProfile.style.display = "flex";
 
-  menuBar.style.display = "none";
-  headRef.style.display = "none";
-  logInRef.style.display = "flex";
+  ui.bottomNavUser.style.display = "flex";
+  ui.bottomNavGuest.style.display = "none";
 }
+
+function renderMobileGuest() {
+  ui.menuBar.style.display = "none";
+  ui.logInBtn.style.display = "flex";
+  ui.headerProfile.style.display = "none";
+
+  ui.bottomNavUser.style.display = "none";
+  ui.bottomNavGuest.style.display = "flex";
+}
+
+function renderLayout() {
+  const isMobile = window.innerWidth < 870;
+  const isUser = checkUserOrGuest();
+
+  if (!isMobile) {
+    renderDesktop();
+    return;
+  }
+
+  isUser ? renderMobileUser() : renderMobileGuest();
+}
+
+window.addEventListener("resize", renderLayout);
+window.addEventListener("DOMContentLoaded", renderLayout);
+
+
