@@ -72,7 +72,7 @@ async function populateEditModal(task) {
   );
   if (descTextarea) descTextarea.value = task.description || "";
 
-  const dueDateInput = document.querySelector(".due-date-input-div input");
+  const dueDateInput = document.getElementById("editTaskDueDate");
   if (dueDateInput) dueDateInput.value = task.dueDate || "";
 
   populateEditPriority(task.priority);
@@ -260,8 +260,7 @@ async function saveTaskChanges() {
     const description =
       document.querySelector(".description-input-div textarea")?.value.trim() ||
       "";
-    const dueDate =
-      document.querySelector(".due-date-input-div input")?.value || "";
+    const dueDate = document.getElementById("editTaskDueDate")?.value || "";
     const priority = getSelectedEditPriority();
 
     if (title === "") {

@@ -132,8 +132,8 @@
                     id="taskDueDatePage"
                     name="due"
                     class="due-date-input"
-                    type="text"
-                    placeholder="dd/mm/yyyy"
+                    type="date"
+                    placeholder="mm/dd/yyyy"
                   />
                 </div>
               </div>
@@ -301,7 +301,12 @@
                     class="btn-icon"
                   />
                 </button>
-                <button type="submit" class="btn-create">
+                <button
+                  type="submit"
+                  class="btn-create"
+                  id="createTaskBtn"
+                  disabled
+                >
                   Create Task
                   <img
                     src="assets/icons/check.svg"

@@ -211,7 +211,7 @@
               </div>
               <div class="due-date-section">
                 <label for="taskDueDate">Due date<span class="required-star">*</span></label>
-                <input id="taskDueDate" name="due" class="due-date-input" type="text" placeholder="dd/mm/yyyy" />
+                <input id="taskDueDate" name="due" class="due-date-input" type="date" placeholder="mm/dd/yyyy" />
               </div>
             </div>
 
@@ -302,7 +302,7 @@
                 Cancel
                 <img class="modal-close-icon" src="assets/icons/iconoir_cancel.svg" alt="Close" />
               </button>
-              <button type="submit" class="btn-create-task">
+              <button type="submit" class="btn-create-task" id="createTaskModalBtn" disabled>
                 Create Task
                 <img class="check-icon" src="assets/icons/check.svg" alt="check" />
                 </svg>
@@ -391,7 +391,7 @@
 
           <div class="due-date-input-div">
             <h4>Due Date</h4>
-            <input type="date">
+            <input id="editTaskDueDate" name="dueDate" type="date">
 
           </div>
 

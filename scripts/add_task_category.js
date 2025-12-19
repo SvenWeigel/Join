@@ -56,6 +56,9 @@ function selectPageCategory(value, label) {
   selectedPageCategoryValue = value;
 
   closePageCategoryDropdown();
+  if (typeof updateCreateTaskButtonState === "function") {
+    updateCreateTaskButtonState();
+  }
 }
 
 /**
