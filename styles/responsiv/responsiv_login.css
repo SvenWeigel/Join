@@ -13,7 +13,7 @@
     margin: 0 16px;
   }
   .login-site-header{
-    display:none;
+    display:none !important;
   }
   .login-site-header-to-signup{
     white-space:nowrap;
@@ -24,6 +24,7 @@
   .sign-up-responsive{
     display:flex;
   }
+  
 }
 
 @media (max-width: 600px) {
@@ -65,6 +66,16 @@
     bottom: 10px;
   }
 
+  .login-form-header-div{
+    margin-top:16px;
+    padding-bottom:16px;
+  }
+
+  .login-form-btns-container{
+    padding-top:16px;
+    gap:12px;
+  }
+
   .login-form-header-div h1{
     font-size:37px;
   }
@@ -73,5 +84,8 @@
 @media(max-width: 450px){
   .sign-up-responsive{
     padding: 8px;
+  }
+  form{
+    gap:unset;
   }
 }
