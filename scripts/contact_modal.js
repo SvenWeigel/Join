@@ -1,6 +1,7 @@
 /**
  * @fileoverview Contact Modal Controller
  * @description Manages the add and edit contact modal dialogs including form handling and validation.
+ * @module Contacts/Modal
  */
 
 /**

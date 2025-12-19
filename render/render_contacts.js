@@ -1,6 +1,7 @@
 /**
  * @fileoverview Contacts Render Functions
  * @description Render functions for displaying the contact list with alphabetical grouping.
+ * @module Rendering/Contacts
  */
 
 /**

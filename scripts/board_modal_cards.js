@@ -3,6 +3,7 @@
  * @description Functions for displaying task details in the view modal.
  *              Enables opening, populating, and closing the view modal
  *              as well as toggling subtask checkboxes.
+ * @module Board/ModalView
  */
 
 /**

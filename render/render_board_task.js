@@ -2,6 +2,7 @@
  * @fileoverview Task Rendering Logic
  * @description Logic functions for rendering tasks on the board.
  *              Templates are located in /templates/template_board.js
+ * @module Rendering/BoardTask
  */
 
 /**

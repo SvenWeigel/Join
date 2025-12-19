@@ -1,6 +1,7 @@
 /**
  * @fileoverview Add Task Page Controller
  * @description Manages task creation on the add task page
+ * @module AddTask/Main
  */
 
 /** @type {HTMLFormElement|null} The form element */

@@ -1,6 +1,7 @@
 /**
  * @fileoverview Subtask Controller for Board Modal
  * @description Manages subtasks in the Add Task modal on the Board page
+ * @module Board/ModalSubtasks
  */
 
 /** @type {Object[]} Array of modal subtasks */

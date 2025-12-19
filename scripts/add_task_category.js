@@ -1,6 +1,7 @@
 /**
  * @fileoverview Category Dropdown Controller for Add Task Page
  * @description Manages the category dropdown on the Add Task page
+ * @module AddTask/Category
  */
 
 /** @type {string} */

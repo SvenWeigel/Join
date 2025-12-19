@@ -1,6 +1,7 @@
 /**
  * @fileoverview Subtask Controller for Add Task Page
  * @description Manages subtasks on the Add Task page
+ * @module AddTask/Subtasks
  */
 
 /** @type {Object[]} Array of subtasks */

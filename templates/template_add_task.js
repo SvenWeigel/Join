@@ -1,6 +1,7 @@
 /**
  * @fileoverview Template functions for the Add Task page
  * @description Contains all HTML template functions for the assignee dropdown
+ * @module Templates/AddTask
  */
 
 /**

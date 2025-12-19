@@ -1,6 +1,7 @@
 /**
  * @fileoverview Summary Page Controller
  * @description Manages the summary dashboard page, displaying task statistics and greeting messages.
+ * @module Summary
  */
 
 /**

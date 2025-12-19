@@ -1,6 +1,7 @@
 /**
  * @fileoverview Board Modal Category Controller
  * @description Manages the Category dropdown functionality in the Add Task modal
+ * @module Board/ModalCategory
  */
 
 /** @type {string} */

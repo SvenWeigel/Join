@@ -1,6 +1,7 @@
 /**
  * @fileoverview Board Modal Controller
  * @description Manages the Add Task modal functionality on the Board page
+ * @module Board/ModalAddTask
  */
 
 /** @type {HTMLElement|null} */

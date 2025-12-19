@@ -1,6 +1,7 @@
 /**
  * @fileoverview Drag and Drop Controller
  * @description Manages drag and drop functionality for task cards on the Kanban board.
+ * @module Board/DragAndDrop
  */
 
 /** @type {HTMLElement|null} */

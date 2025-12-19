@@ -1,6 +1,7 @@
 /**
  * @fileoverview Main Application Script
  * @description Core utility functions for authentication, navigation, and common application logic.
+ * @module Core/Utilities
  */
 
 /**
@@ -66,9 +67,7 @@ function highlightActiveMenuLink() {
 
 document.addEventListener("DOMContentLoaded", highlightActiveMenuLink);
 
-
-
-function checkUserOrGuest(){
+function checkUserOrGuest() {
   if (localStorage.getItem("currentUser")) {
     return true;
   }
@@ -80,7 +79,7 @@ function renderGuestView() {
   applyGuestView();
 }
 
-function applyGuestView(){
+function applyGuestView() {
   const menuBar = document.querySelector(".menu-bar-btn-container");
   const logInRef = document.querySelector(".menu-bar-btn-logIn");
   const headRef = document.querySelector(".header-profile-container");
@@ -88,5 +87,4 @@ function applyGuestView(){
   menuBar.style.display = "none";
   headRef.style.display = "none";
   logInRef.style.display = "flex";
-  
 }

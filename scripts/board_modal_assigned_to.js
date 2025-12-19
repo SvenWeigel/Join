@@ -1,6 +1,7 @@
 /**
  * @fileoverview Board Modal Assigned To Controller
  * @description Manages the Assigned-To dropdown functionality in the Add Task modal
+ * @module Board/ModalAssignedTo
  */
 
 /** @type {Object[]} */

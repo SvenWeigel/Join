@@ -1,6 +1,7 @@
 /**
  * @fileoverview Edit Modal Subtask Functions
  * @description Functions for managing subtasks in the edit modal.
+ * @module Board/ModalEditSubtasks
  */
 
 /**

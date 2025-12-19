@@ -1,6 +1,7 @@
 /**
  * @fileoverview Database Service
  * @description Handles all Firebase Realtime Database operations including CRUD for tasks, contacts, and users.
+ * @module Database
  */
 
 /**

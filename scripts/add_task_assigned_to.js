@@ -1,6 +1,7 @@
 /**
  * @fileoverview Assigned To Dropdown Controller for Add Task Page
  * @description Manages the assignee dropdown on the Add Task page
+ * @module AddTask/AssignedTo
  */
 
 /** @type {Object[]} Array of available contacts */

@@ -2,6 +2,7 @@
  * @fileoverview Board Templates
  * @description Pure template functions - only return HTML, no logic!
  *              Logic is located in /scripts/render.js
+ * @module Templates/Board
  */
 
 /**

@@ -1,6 +1,7 @@
 /**
  * @fileoverview Contacts Page Controller
  * @description Manages the contacts page functionality including loading, selecting, and displaying contacts.
+ * @module Contacts/Main
  */
 
 /**

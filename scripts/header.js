@@ -1,6 +1,7 @@
 /**
  * @fileoverview Header Component Controller
  * @description Manages the application header including user initials display and dropdown menu functionality.
+ * @module UI/Header
  */
 
 /**

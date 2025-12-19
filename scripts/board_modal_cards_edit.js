@@ -3,6 +3,7 @@
  * @description Functions for editing tasks in the edit modal.
  *              Enables opening, populating, saving and closing the edit modal
  *              as well as deleting tasks.
+ * @module Board/ModalEdit
  */
 
 /**

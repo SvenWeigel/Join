@@ -1,6 +1,7 @@
 /**
  * @fileoverview Sign Up Page Controller
  * @description Handles user registration functionality including form validation and account creation.
+ * @module Authentication/SignUp
  */
 
 /**

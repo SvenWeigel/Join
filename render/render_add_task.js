@@ -1,6 +1,7 @@
 /**
  * @fileoverview Render functions for the Add Task page.
  * @description Contains all render functions for the assignee dropdown and badges.
+ * @module Rendering/AddTask
  */
 
 /**

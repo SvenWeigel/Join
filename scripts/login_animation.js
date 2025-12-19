@@ -1,6 +1,7 @@
 /**
  * @fileoverview Login Animation Controller
  * @description Manages the splash screen and login page animations on application startup.
+ * @module Authentication/Animation
  */
 
 /**

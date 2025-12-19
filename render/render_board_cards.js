@@ -1,6 +1,7 @@
 /**
  * @fileoverview Board Cards Render Functions
  * @description Render functions for populating and displaying task cards in view and edit modals.
+ * @module Rendering/BoardCards
  */
 
 /**

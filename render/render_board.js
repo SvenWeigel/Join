@@ -1,6 +1,7 @@
 /**
  * @fileoverview Board Render Functions
  * @description Render functions for the board modal assignee dropdown.
+ * @module Rendering/Board
  */
 
 /**

@@ -2,6 +2,7 @@
  * @fileoverview Guest Login Handler
  * @description Handles guest login for the Join application.
  *              The guest user can access all global data like a logged-in user.
+ * @module Authentication/GuestLogin
  */
 
 /**

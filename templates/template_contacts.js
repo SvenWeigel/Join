@@ -1,6 +1,7 @@
 /**
  * @fileoverview Contact Templates
  * @description HTML template functions for the contacts page, including letter separators and contact list entries.
+ * @module Templates/Contacts
  */
 
 /**

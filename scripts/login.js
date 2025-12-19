@@ -1,6 +1,7 @@
 /**
  * @fileoverview Login Page Controller
  * @description Handles user authentication including form validation, credential verification, and session management.
+ * @module Authentication/Login
  */
 
 /**
