@@ -24,6 +24,18 @@
   .sign-up-responsive{
     display:flex;
   }
+  .login-site-logo-container{
+    width: unset;
+    height: unset;
+    top: 40px;
+    left: 40px;
+  }
+
+  .login-site-logo-container img{
+    width: 80px;
+    height: 85px;
+  }
+
   
 }
 

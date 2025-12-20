@@ -1,3 +1,16 @@
+@media(max-width: 700px){
+  .login-site-logo{
+   width: 80px;
+   height: 85px;
+  }
+  .login-site-logo-container{
+    width: unset;
+    height: unset;
+    top: 40px;
+    left:40px;
+  }
+}
+
 @media (max-width: 630px){
   .login-site-logo-container{
     width: 64px;
@@ -33,5 +46,29 @@
   .login-site-logo-container{
     top:37px;
     left: 38px;
+  }
+}
+
+@media(max-width: 600px){
+  .sign-up-form{
+    gap:12px;
+  }
+
+  .sign-up-input-container{
+    gap:12px;
+  }
+  .sign-up-form-header h1{
+    font-size: 37px;
+  }
+  .login-site-logo{
+    height: 32px;
+    width: 39px;
+  }
+
+  .login-site-logo-container{
+    top: 20px;
+    left: 20px;
+    width: unset;
+    height:unset;
   }
 }
