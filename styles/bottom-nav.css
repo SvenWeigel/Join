@@ -78,6 +78,9 @@
 }
 
 @media(max-width: 870px){
+  .bottom-nav{
+    display:flex;
+  }
 }
 
 @media(max-width:470px){
