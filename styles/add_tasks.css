@@ -109,6 +109,16 @@ textarea {
   resize: vertical;
 }
 
+input:focus{
+  border-color:#29abe2;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:#29abe2;
+  outline:none;
+}
+
 .priority-section {
   display: flex;
   flex-direction: column;
