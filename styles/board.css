@@ -131,10 +131,6 @@ input:focus {
   max-width: 252px;
 }
 
-/* ============================================================================
-   TASK CARD - MOBILE MOVE BUTTON
-   ============================================================================ */
-
 .task-move-btn {
   display: none;
   position: absolute;
@@ -164,10 +160,6 @@ input:focus {
   width: 20px;
   height: 20px;
 }
-
-/* ============================================================================
-   MOBILE MOVE MENU OVERLAY & POPUP
-   ============================================================================ */
 
 .move-menu-overlay {
   display: none;
@@ -232,10 +224,6 @@ input:focus {
   background-color: #f9f9f9;
 }
 
-/* ============================================================================
-   TASK CARD - CATEGORY BADGE
-   ============================================================================ */
-
 .task-category {
   display: inline-block;
   padding: 4px 16px;
@@ -254,10 +242,6 @@ input:focus {
   background-color: #1fd7c1;
 }
 
-/* ============================================================================
-   TASK CARD - CONTENT
-   ============================================================================ */
-
 .task-title {
   font-size: 16px;
   font-weight: 700;
@@ -272,10 +256,6 @@ input:focus {
   margin: 0;
   line-height: 1.2;
 }
-
-/* ============================================================================
-   TASK CARD - PROGRESS BAR
-   ============================================================================ */
 
 .task-progress {
   display: flex;
@@ -312,10 +292,6 @@ input:focus {
   height: 24px;
 }
 
-/* ============================================================================
-   TASK CARD - FOOTER
-   ============================================================================ */
-
 .task-footer {
   display: flex;
   justify-content: space-between;
@@ -331,10 +307,6 @@ input:focus {
   width: 21px;
   height: 21px;
 }
-
-/* ============================================================================
-   TASK CARD - ASSIGNEE BADGES
-   ============================================================================ */
 
 .badge {
   width: 32px;
@@ -359,10 +331,6 @@ input:focus {
   background: #a8a8a8;
 }
 
-/* ============================================================================
-   DRAG & DROP PLACEHOLDER
-   ============================================================================ */
-
 .drop-placeholder {
   display: flex;
   align-items: center;
@@ -377,12 +345,10 @@ input:focus {
   text-align: center;
 }
 
-/* Highlight wenn eine Karte über die Spalte gezogen wird */
 .column-content.drag-over .drop-placeholder {
   display: none;
 }
 
-/* No search results message (same style as success-message in add_tasks.css) */
 .no-search-results {
   position: fixed;
   bottom: -100px;
@@ -410,11 +376,6 @@ input:focus {
   margin: 0;
 }
 
-/* ============================================================================
-   DRAG & DROP TASK CARD STATES
-   ============================================================================ */
-
-/* Task-Card ist draggable */
 .task-card {
   cursor: grab;
 }
@@ -423,12 +384,10 @@ input:focus {
   cursor: grabbing;
 }
 
-/* Task-Card wird gerade gezogen - Original bleibt halbtransparent an Ort */
 .task-card.dragging {
   opacity: 0.3;
 }
 
-/* Clone der Karte folgt dem Cursor mit Rotation */
 .drag-preview {
   position: fixed;
   z-index: 9999;
@@ -438,13 +397,11 @@ input:focus {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-/* Spalte ist ein gültiges Drop-Target */
 .column-content.drag-over {
   background-color: #f6f7f8;
   border-radius: 10px;
 }
 
-/* Drop-Indikator zeigt an, wo die Karte eingefügt wird */
 .drag-drop-indicator {
   min-height: 200px;
   border: 1px dashed #a8a8a8;
@@ -454,14 +411,12 @@ input:focus {
   opacity: 0.5;
 }
 
-/* Aktiver Drop-Indikator (wenn Karte darüber schwebt) */
 .drag-drop-indicator-active {
   opacity: 1;
   border-color: #2a3647;
   background-color: rgba(42, 54, 71, 0.08);
 }
 
-/* Pop-Animation beim Start des Drags */
 .drag-start-pop {
   animation: dragPop 0.15s ease-out;
 }

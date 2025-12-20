@@ -109,14 +109,14 @@ textarea {
   resize: vertical;
 }
 
-input:focus{
-  border-color:#29abe2;
-  outline:none;
+input:focus {
+  border-color: #29abe2;
+  outline: none;
 }
 
-textarea:focus{
-  border-color:#29abe2;
-  outline:none;
+textarea:focus {
+  border-color: #29abe2;
+  outline: none;
 }
 
 .priority-section {
@@ -167,7 +167,6 @@ textarea:focus{
   flex-direction: column;
 }
 
-/* Subtask Input Wrapper */
 .subtask-input-wrapper {
   position: relative;
   display: flex;
@@ -291,7 +290,6 @@ textarea:focus{
   opacity: 1;
 }
 
-/* Subtask Edit Mode */
 .subtask-edit-wrapper {
   display: flex;
   align-items: center;
@@ -369,7 +367,6 @@ textarea:focus{
   gap: 4px;
 }
 
-/* Priority Button Active States */
 .priority-btn.active[data-priority="urgent"] {
   background-color: #ff3d00;
   color: white;
@@ -401,7 +398,6 @@ textarea:focus{
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Footer Wrapper */
 .form-footer-wrapper {
   display: flex;
   justify-content: space-between;
@@ -416,7 +412,6 @@ textarea:focus{
   color: #666;
 }
 
-/* Success Message */
 .success-message {
   position: fixed;
   bottom: -100px;
@@ -450,7 +445,6 @@ textarea:focus{
   filter: brightness(0) invert(1);
 }
 
-/* Custom Dropdown for Assignees */
 .custom-dropdown {
   position: relative;
   width: 100%;
@@ -584,7 +578,6 @@ textarea:focus{
   display: block;
 }
 
-/* Selected Contacts Badges */
 .selected-contacts {
   display: flex;
   flex-wrap: wrap;
@@ -607,10 +600,6 @@ textarea:focus{
   font-weight: 500;
   color: #fff;
 }
-
-/* ==========================================================================
-   Category Custom Dropdown
-   ========================================================================== */
 
 #categoryDropdownPage {
   position: relative;

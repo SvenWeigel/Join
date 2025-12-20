@@ -253,7 +253,6 @@
   line-height: 120%;
 }
 
-/* Letter separator styles */
 .letter-separator {
   display: flex;
   flex-direction: column;

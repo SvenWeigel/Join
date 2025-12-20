@@ -38,7 +38,6 @@
   padding-inline: 0px;
   flex-grow:1;
 }
-/* input-field cant be focused */
 input:focus {
   outline: none;
   box-shadow: none;

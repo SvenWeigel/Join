@@ -376,7 +376,6 @@
   color: #d1d1d1;
 }
 
-/* Subtask Input Wrapper für Edit Modal */
 .subtask-input-wrapper-edit {
   display: flex;
   align-items: center;
@@ -430,7 +429,6 @@
   padding: 0;
 }
 
-/* Edit Modal Footer mit OK Button */
 .edit-modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -465,7 +463,6 @@
   filter: brightness(0) invert(1);
 }
 
-/* Subtask Items im Edit-Modal */
 .subtask-item-edit {
   display: flex;
   align-items: center;
@@ -533,7 +530,6 @@
   outline: none;
 }
 
-/* Selected Assignees Badges Container */
 .selected-assignees-badges {
   display: flex;
   flex-wrap: wrap;

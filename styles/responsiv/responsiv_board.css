@@ -1,8 +1,4 @@
-/* ============================================================================
-   RESPONSIVE BOARD STYLES
-   ============================================================================ */
 
-/* Horizontales Spalten-Layout: Drop-Indikator anpassen */
 @media (max-width: 1095px) {
   .drag-drop-indicator {
     min-width: 252px;
@@ -47,7 +43,7 @@
   }
   .column-content {
     flex-direction: row;
-    width: calc(100vw - 232px - 32px); /* -32- wegen padding*/
+    width: calc(100vw - 232px - 32px);
     overflow-x: auto;
   }
   .column-content::-webkit-scrollbar {
@@ -61,7 +57,7 @@
     min-width: 252px;
   }
 
-  /* Show move button on mobile/tablet */
+  
   .task-move-btn {
     display: flex;
   }
@@ -133,9 +129,7 @@
     width: 100%;
   }
 }
-/* ==========================================================================
-   10. RESPONSIVE
-   ========================================================================== */
+
 
 @media (max-width: 960px) {
   .add-task-modal {

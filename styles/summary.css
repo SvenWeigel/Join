@@ -39,8 +39,6 @@
   margin-top: 56px;
 }
 
-/* TODO */
-
 .todo-div {
   display: flex;
   gap: 18px;
@@ -77,8 +75,6 @@
   line-height: 120%;
 }
 
-/* DONE */
-
 .done-div {
   display: flex;
   gap: 18px;
@@ -114,8 +110,6 @@
   font-size: 20px;
   line-height: 120%;
 }
-
-/* Priority and Date Summary */
 
 .priority-date-greeting-div {
   display: flex;
@@ -195,8 +189,6 @@
   color: #2a3647;
 }
 
-/* Greeting Section */
-
 .greet-span-div {
   display: flex;
   flex-direction: column;
@@ -218,8 +210,6 @@
   color: #29abe2;
   line-height: 120%;
 }
-
-/* Tasks Overview */
 
 .open-tasks-div {
   display: flex;

@@ -8,7 +8,6 @@
     justify-content: center;
     align-items: center;
     animation: fadeOut 1.5s ease 2s forwards;
-    /* 0.5s ausblenden, nach 2s starten */
     transition: opacity 1.5s;
     opacity: 1;
   }
