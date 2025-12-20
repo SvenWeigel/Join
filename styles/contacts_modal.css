@@ -8,6 +8,10 @@
   z-index: 1200;
 }
 
+.modal-close-btn-responsiv{
+  display:none;
+}
+
 .contact-modal-overlay.open {
   display: flex;
 }
@@ -113,6 +117,9 @@
 }
 
 .modal-close-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+.modal-close-btn-responsive:hover {
   background: rgba(0, 0, 0, 0.08);
 }
 

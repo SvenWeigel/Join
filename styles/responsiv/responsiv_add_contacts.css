@@ -1,118 +1,181 @@
-@media (max-width:1100px){
-    .add-contact-modal-left{
+@media (max-width:1100px) {
+    .add-contact-modal-left {
         padding: 33px 24px;
     }
-    .add-contact-modal-right{
+
+    .add-contact-modal-right {
         padding: 38px;
     }
-    .modal-content-wrapper{
+
+    .modal-content-wrapper {
         gap: 20px;
     }
-    .contact-input-group input{
+
+    .contact-input-group input {
         width: 350px;
+    }
+
+    .contact-modal-overlay {
+        z-index: 9999;
     }
 }
 
-@media (max-width: 925px){
-    .add-contact-modal{
+@media (max-width: 925px) {
+    .add-contact-modal {
         flex-direction: column;
-        height: unset;
+        height: 80%;
         width: 70%;
+        position: relative;
     }
-    .add-contact-modal-left{
+
+    .modal-close-btn-responsiv {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: white;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background 0.125s ease;
+    }
+    .modal-close-btn{
+        display:none;
+    }
+
+    .add-contact-modal-left {
         border-bottom-left-radius: 0;
         border-top-right-radius: 20px;
         padding: 124px 90px 124px 24px;
+        height: 30%;
     }
 
-    .add-contact-modal-right{
+    .add-contact-modal-right {
         border-bottom-left-radius: 20px;
         border-top-right-radius: 0;
         padding: 0;
+        gap: 0;
+        padding-bottom: 62px;
+        height: 70%;
     }
-    .btn-cancel-contact{
-        display:none;
+
+    .btn-cancel-contact {
+        display: none;
     }
-    .modal-content-wrapper{
+
+    .modal-content-wrapper {
         flex-direction: column;
         width: 100%;
     }
-    .modal-badge-container{
+
+    .modal-badge-container {
         position: absolute;
-        top:-55px;
+        top: -55px;
     }
-    .modal-inputs-container{
-        padding: 92px 16px 80px 16px;
+
+    .modal-inputs-container {
+        padding: 92px 0 32px 0;
         align-items: center;
-        width:100%;
-    }
-    .contact-input-group{
-        width: 50vw;
-    }
-    .contact-input-group input{
         width: 100%;
     }
-    .modal-close-btn{
-        top:-330px;
+
+    .modal-form-buttons {
+        margin-top: 0;
+    }
+
+    .contact-input-group {
+        width: 50vw;
+    }
+
+    .contact-input-group input {
+        width: 100%;
+    }
+
+    .modal-close-btn {
+        top: -330px;
         right: 16px;
     }
-    .modal-close-btn svg{
+
+    .modal-close-btn svg {
         color: white;
     }
-    .modal-logo{
-        display:none;
+
+    .modal-logo {
+        display: none;
     }
 
     @keyframes slideInModal {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-}
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
 
-@media(max-width:720px){
-    .add-contact-modal{
-        width:100%;
-        margin:0 16px;
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 }
 
-@media(max-width:520px){
-    .add-contact-modal-left{
+@media(max-width:720px) {
+    .add-contact-modal {
+        width: 100%;
+        margin: 0 16px;
+    }
+}
+
+@media(max-width:520px) {
+    .add-contact-modal-left {
         padding: 62px 45px 62px 24px;
     }
-    .contact-input-group{
-        width:70vw;
+
+    .contact-input-group {
+        width: 70vw;
     }
-    .modal-close-btn{
-        top:-200px;
+
+    .modal-close-btn {
+        top: -200px;
     }
 }
 
-@media(max-width: 380px){
-    .add-contact-modal-left{
+@media(max-width: 380px) {
+    .add-contact-modal-left {
         padding: 30px 45px 40px 24px;
     }
-    .modal-contact-badge{
+
+    .modal-contact-badge {
         width: 100px;
         height: 100px;
     }
-    .modal-inputs-container{
-        padding: 45px 16px 45px 16px;
+
+    .modal-inputs-container {
+        padding: 45px 0 30px 0;
     }
-    .contacts-left{
+
+    .contacts-left {
         padding: 32px 10px 90px 10px;
     }
-    .add-contact-modal-left h2{
-        margin:0;
+
+    .add-contact-modal-left h2 {
+        margin: 0;
     }
-    .add-contact-modal-left h2{
+
+    .add-contact-modal-left h2 {
         line-height: 100%;
     }
-}
 
+    .add-contact-modal-right {
+        padding-bottom: 16px;
+    }
+
+    .edit-contact-badge {
+        width: 80px;
+        height: 80px;
+    }
+}
