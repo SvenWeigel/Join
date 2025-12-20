@@ -50,6 +50,11 @@ input:focus {
   border-color: inherit;
 }
 
+.input-box:focus-within{
+  border-color: #29abe2;
+  outline:none;
+}
+
 .login_input::placeholder {
   font-size: 20px;
   font-weight: 400;

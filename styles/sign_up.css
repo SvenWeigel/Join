@@ -44,6 +44,11 @@ input:focus {
   border-color: inherit;
 }
 
+.sign-up-input-box:focus-within{
+  border-color: #29abe2;
+  outline:none;
+}
+
 .sign-up-input::placeholder {
   color: #d1d1d1;
 }
