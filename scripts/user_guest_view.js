@@ -1,3 +1,6 @@
+window.addEventListener("resize", renderLayout);
+window.addEventListener("DOMContentLoaded", renderLayout);
+
 function checkUserOrGuest() {
   if (localStorage.getItem("currentUser")) {
     return true;
@@ -19,9 +22,13 @@ const ui = {
   bottomNavGuest: document.querySelector(".bottom-nav-guest"),
 };
 
-function renderDesktop() {
+function renderDesktop(isUser) {
   setDisplay(ui.bottomNavUser, "none");
   setDisplay(ui.bottomNavGuest, "none");
+
+  setDisplay(ui.logInBtn, isUser ? "none" : "flex");
+  setDisplay(ui.headerProfile, isUser ? "flex" : "none");
+  setDisplay(ui.menuBar, isUser ? "flex" : "none");
 }
 
 
@@ -50,12 +57,9 @@ function renderLayout() {
   const isUser = checkUserOrGuest();
 
   if (!isMobile) {
-    renderDesktop();
+    renderDesktop(isUser);
     return;
   }
 
   isUser ? renderMobileUser() : renderMobileGuest();
 }
-
-window.addEventListener("resize", renderLayout);
-window.addEventListener("DOMContentLoaded", renderLayout);
