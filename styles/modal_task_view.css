@@ -233,7 +233,7 @@
     max-width: none;
     width: 100%;
     margin: 16px;
-    gap:16px;
+    gap:12px;
   }
 
   .task-view-header span{
@@ -276,7 +276,7 @@
     display:none;
   }
   .task-view-title span{
-    font-size:24px;
+    font-size:21px;
   }
 }
 
