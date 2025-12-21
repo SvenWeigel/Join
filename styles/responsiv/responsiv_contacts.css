@@ -170,7 +170,26 @@
   .btn-back:hover{
     background-color:#d1d1d1;
   }
-  
+}
+
+@media (max-width: 400px){
+  .contacts-container{
+    padding-bottom: 80px;
+  }
+
+  .btn-more{
+    bottom: 80px;
+  }
+  .contact-list-entry{
+    padding: 10px 14px;
+    gap: 16px;
+  }
+}
+
+@media(max-width: 350px){
+  .btn-more{
+    right: 4px;
+  }
 }
 
 
