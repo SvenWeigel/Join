@@ -72,3 +72,18 @@
     height:unset;
   }
 }
+
+@media(max-width: 500px){
+  .sign-up-form{
+    margin: 0 16px;
+    padding: 32px 0;
+    width: 100%;
+  }
+  .sign-up-input-container{
+    width: 80%;
+  }
+  .sign-up-form-arrow-left-container{
+    top: 37px;
+    left: 25px;
+  }
+}
