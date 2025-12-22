@@ -20,7 +20,7 @@ function showSignUpError(fieldId, message) {
   }
   if (errorElement) {
     errorElement.textContent = message;
-    errorElement.style.display = "block";
+    errorElement.style.visibility="visible";
   }
 }
 
@@ -37,8 +37,8 @@ function clearSignUpError(fieldId) {
     containerElement.classList.remove("border-red");
   }
   if (errorElement) {
-    errorElement.textContent = "";
-    errorElement.style.display = "none";
+    
+    errorElement.style.visibility = "hidden";
   }
 }
 

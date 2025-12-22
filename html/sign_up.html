@@ -23,6 +23,7 @@
   </head>
 
   <body>
+    <div class="max-width-con">
     <div id="rotate-warning">Bitte drehe dein Gerät ins Hochformat</div>
     <div id="rotate-protection">
       <!--Sollten es vielleicht anders regeln mit den CSS Klassen von Sign up und Log in-->
@@ -70,7 +71,7 @@
               />
               <img src="assets/icons/person.svg" style="padding: 4px" alt="" />
             </div>
-            <span id="signup-name-error" class="signup-error-message"></span>
+            <span id="signup-name-error" class="signup-error-message">Name is required</span>
             
             <div class="sign-up-input-box" id="signup-email-container">
               <input
@@ -85,7 +86,7 @@
               />
               <img src="assets/icons/mail.svg" alt="" />
             </div>
-            <span id="signup-email-error" class="signup-error-message"></span>
+            <span id="signup-email-error" class="signup-error-message">Email is required</span>
 
             <div class="sign-up-input-box" id="signup-password-container">
               <input
@@ -109,7 +110,7 @@
             <span
               id="signup-password-error"
               class="signup-error-message"
-            ></span>
+            >Password is required</span>
 
             <div
               class="sign-up-input-box"
@@ -137,7 +138,7 @@
             <span
               id="signup-confirm-password-error"
               class="signup-error-message"
-            ></span>
+            >Please confirm your password</span>
 
             <div class="check-container">
               <input type="checkbox" id="check-privacy" name="check-privacy" />
@@ -176,6 +177,7 @@
         <a href="html/privacy_policy.html">Privacy policy</a>
         <a href="html/legal_notice.html">Legal Notice</a>
       </footer>
+    </div>
     </div>
     <script src="scripts/db.js"></script>
     <script src="scripts/sign_up.js"></script>

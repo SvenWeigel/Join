@@ -10,6 +10,7 @@
 .max-width-con{
   max-width: 1440px;
   position:relative;
+  margin: 0 auto;
 }
 
 .center_img {
@@ -26,7 +27,6 @@
   gap: 32px;
   font-family: "Inter", sans-serif;
   height: 100vh;
-  box-shadow: 0 0 14px 3px #0000000a;
 }
 
 .login_input_container {

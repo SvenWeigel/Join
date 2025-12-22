@@ -5,7 +5,6 @@
   gap: 32px;
   font-family: "Inter", sans-serif;
   height: 100vh;
-  box-shadow: 0 0 14px 3px #0000000a;
 }
 
 .sign-up-form-header {
@@ -27,7 +26,7 @@
   padding: 12px 21px;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .sign-up-input {
@@ -166,9 +165,9 @@ input:focus {
 }
 
 .signup-error-message {
-  display: none;
   color: #e60026;
   font-size: 14px;
   margin-top: 4px;
   font-family: "Inter", sans-serif;
+  visibility: hidden;
 }
