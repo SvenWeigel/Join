@@ -287,7 +287,7 @@ function validateSignupForm() {
 async function processSignup(name, email, password) {
   const normalizedEmail = email.toLowerCase();
   if (await isEmailTaken(normalizedEmail)) {
-    alert(MESSAGES.emailExists);
+    showSignUpError("signup-email", "Email already exists");
     return;
   }
   await registerAndRedirect({ name, email, password });
@@ -306,7 +306,7 @@ async function handleSignupSubmit(e) {
     await processSignup(name, email, password);
   } catch (err) {
     console.error(err);
-    alert("Error: " + err.message);
+    showSignUpError("signup-email", "Error: " + err.message);
   }
 }
 

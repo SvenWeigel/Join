@@ -56,7 +56,7 @@
             <div class="border-bottom-div"></div>
           </div>
           <div class="sign-up-input-container">
-            <div class="sign-up-input-box">
+            <div class="sign-up-input-box" id="signup-name-container">
               <input
                 id="signup-name"
                 name="name"
@@ -65,11 +65,14 @@
                 placeholder="Name"
                 autocomplete="name"
                 autocomplete="off"
+                onblur="validateSignUpNameOnBlur()"
+                oninput="clearSignUpError('signup-name')"
               />
               <img src="assets/icons/person.svg" style="padding: 4px" alt="" />
             </div>
+            <span id="signup-name-error" class="signup-error-message"></span>
 
-            <div class="sign-up-input-box">
+            <div class="sign-up-input-box" id="signup-email-container">
               <input
                 id="signup-email"
                 name="email"
@@ -77,11 +80,14 @@
                 type="text"
                 placeholder="Email"
                 autocomplete="email"
+                onblur="validateSignUpEmailOnBlur()"
+                oninput="clearSignUpError('signup-email')"
               />
               <img src="assets/icons/mail.svg" alt="" />
             </div>
+            <span id="signup-email-error" class="signup-error-message"></span>
 
-            <div class="sign-up-input-box">
+            <div class="sign-up-input-box" id="signup-password-container">
               <input
                 id="signup-password"
                 oninput="changePasswordIcon('signup-password','password-icon')"
@@ -90,6 +96,8 @@
                 type="password"
                 placeholder="Password"
                 autocomplete="new-password"
+                onblur="validateSignUpPasswordOnBlur()"
+                onfocus="clearSignUpError('signup-password')"
               />
               <img
                 onclick="togglePasswordVisibility('signup-password','password-icon')"
@@ -98,8 +106,15 @@
                 alt=""
               />
             </div>
+            <span
+              id="signup-password-error"
+              class="signup-error-message"
+            ></span>
 
-            <div class="sign-up-input-box">
+            <div
+              class="sign-up-input-box"
+              id="signup-confirm-password-container"
+            >
               <input
                 id="signup-confirm-password"
                 oninput="changePasswordIcon('signup-confirm-password','password-confirm-icon')"
@@ -109,6 +124,8 @@
                 type="password"
                 placeholder="Confirm Password"
                 autocomplete="new-password"
+                onblur="validateSignUpConfirmPasswordOnBlur()"
+                onfocus="clearSignUpError('signup-confirm-password')"
               />
               <img
                 id="password-confirm-icon"
@@ -117,6 +134,10 @@
                 alt=""
               />
             </div>
+            <span
+              id="signup-confirm-password-error"
+              class="signup-error-message"
+            ></span>
 
             <div class="check-container">
               <input type="checkbox" id="check-privacy" name="check-privacy" />

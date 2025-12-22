@@ -48,6 +48,9 @@ function resetAddContactForm() {
   const form = document.getElementById("addContactForm");
   if (form) form.reset();
   clearContactInputs("contactName", "contactEmail", "contactPhone");
+  clearContactError("contactName");
+  clearContactError("contactEmail");
+  clearContactError("contactPhone");
 }
 
 /**
@@ -71,6 +74,11 @@ function getAddContactFormData() {
  */
 async function handleAddContact(event) {
   event.preventDefault();
+  
+  if (!validateContactForm(event, "contact", true)) {
+    return; 
+  }
+  
   const newContact = getAddContactFormData();
 
   try {
@@ -224,6 +232,10 @@ function updateLocalContact(contactId, updateData) {
 async function handleEditContact(event) {
   event.preventDefault();
   if (!editingContactId) return;
+
+  if (!validateContactForm(event, "editContact", true, editingContactId)) {
+    return; 
+  }
 
   const updateData = getEditContactFormData();
   try {

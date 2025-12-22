@@ -155,18 +155,21 @@
             <img src="assets/icons/clear-badge.svg" alt="Contact Badge" class="modal-contact-badge" />
           </div>
           <div class="modal-inputs-container">
-            <div class="contact-input-group">
-              <input type="text" id="contactName" name="name" placeholder="Name" />
+            <div class="contact-input-group" id="contactName-container">
+              <input type="text" id="contactName" name="name" placeholder="Name" onblur="validateContactNameOnBlur('contact')" oninput="clearContactError('contactName')" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
-            <div class="contact-input-group">
-              <input type="text" id="contactEmail" name="email" placeholder="Email" />
+            <span id="contactName-error" class="contact-error-message"></span>
+            <div class="contact-input-group" id="contactEmail-container">
+              <input type="text" id="contactEmail" name="email" placeholder="Email" onblur="validateContactEmailOnBlur('contact')" oninput="clearContactError('contactEmail')" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
-            <div class="contact-input-group">
-              <input type="text" id="contactPhone" name="phone" placeholder="Phone" />
+            <span id="contactEmail-error" class="contact-error-message"></span>
+            <div class="contact-input-group" id="contactPhone-container">
+              <input type="text" id="contactPhone" name="phone" placeholder="Phone" onblur="validateContactPhoneOnBlur('contact')" oninput="clearContactError('contactPhone')" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
+            <span id="contactPhone-error" class="contact-error-message"></span>
             <div class="modal-buttons-wrapper">
               <form id="addContactForm" class="add-contact-form" onsubmit="handleAddContact(event)">
                 <div class="modal-form-buttons">
@@ -213,18 +216,21 @@
             <div id="editContactBadge" class="edit-contact-badge">AM</div>
           </div>
           <div class="modal-inputs-container">
-            <div class="contact-input-group">
-              <input type="text" id="editContactName" name="name" placeholder="Name" />
+            <div class="contact-input-group" id="editContactName-container">
+              <input type="text" id="editContactName" name="name" placeholder="Name" onblur="validateContactNameOnBlur('editContact')" oninput="clearContactError('editContactName')" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
-            <div class="contact-input-group">
-              <input type="text" id="editContactEmail" name="email" placeholder="Email" />
+            <span id="editContactName-error" class="contact-error-message"></span>
+            <div class="contact-input-group" id="editContactEmail-container">
+              <input type="text" id="editContactEmail" name="email" placeholder="Email" onblur="validateContactEmailOnBlur('editContact')" oninput="clearContactError('editContactEmail')" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
-            <div class="contact-input-group">
-              <input type="text" id="editContactPhone" name="phone" placeholder="Phone" />
+            <span id="editContactEmail-error" class="contact-error-message"></span>
+            <div class="contact-input-group" id="editContactPhone-container">
+              <input type="text" id="editContactPhone" name="phone" placeholder="Phone" onblur="validateContactPhoneOnBlur('editContact')" oninput="clearContactError('editContactPhone')" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
+            <span id="editContactPhone-error" class="contact-error-message"></span>
           </div>
         </div>
         <div class="modal-buttons-wrapper">
