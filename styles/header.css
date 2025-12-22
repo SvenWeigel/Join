@@ -18,7 +18,7 @@ header {
   align-items: center;
   width: 100%;
   padding: 20px 40px 20px calc(348px - 232px);
-  /* max-width: 1052px; */
+  max-width: 1052px;
   position:relative;
 }
 
