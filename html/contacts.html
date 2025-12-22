@@ -26,111 +26,111 @@
 
 <body onload="initContacts()">
   <div id="rotate-warning">
-      Bitte drehe dein Gerät ins Hochformat
-    </div>
-      <div id="rotate-protection">
-  <div class="main-layout-container">
-    <header>
-      <div class="header-content">
-        <img class="logo-responsive" src="assets/img/logo.svg">
-        <span>Kanban Project Management Tool</span>
-        <div class="header-profile-container">
-          <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
-          <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
-            <div class="user-avatar">SM</div>
+    Bitte drehe dein Gerät ins Hochformat
+  </div>
+  <div id="rotate-protection">
+    <div class="main-layout-container">
+      <header>
+        <div class="header-content">
+          <img class="logo-responsive" src="assets/img/logo.svg">
+          <span>Kanban Project Management Tool</span>
+          <div class="header-profile-container">
+            <a href="html/help.html"><img src="assets/icons/help.svg" alt="help_icon" /></a>
+            <div class="user-badge" onclick="showProfileOptions()" title="Benutzer">
+              <div class="user-avatar">SM</div>
+            </div>
+          </div>
+          <div class="profile-options d-none" id="profile-options">
+            <a class="help-options" href="html/help.html">Help</a>
+            <a href="html/legal_notice.html">Legal Notice</a>
+            <a href="html/privacy_policy.html">Privacy Policy</a>
+            <a href="#" onclick="logout(); return false;">Log Out</a>
           </div>
         </div>
-        <div class="profile-options d-none" id="profile-options">
-          <a class="help-options" href="html/help.html">Help</a>
-          <a href="html/legal_notice.html">Legal Notice</a>
-          <a href="html/privacy_policy.html">Privacy Policy</a>
-          <a href="#" onclick="logout(); return false;">Log Out</a>
-        </div>
-      </div>
-    </header>
+      </header>
 
-    <aside class="menu-bar-container">
-      <div class="join-logo-container">
-        <img src="assets/img/join_logo_vector.svg" alt="join logo" />
-      </div>
+      <aside class="menu-bar-container">
+        <div class="join-logo-container">
+          <img src="assets/img/join_logo_vector.svg" alt="join logo" />
+        </div>
 
-      <div class="menu-bar-btn-container">
-        <div class="summary-btn center-btn">
-          <a class="main-bar-btn" href="html/summary.html">
-            <img src="assets/icons/summary.svg" alt="" />Summary
-          </a>
+        <div class="menu-bar-btn-container">
+          <div class="summary-btn center-btn">
+            <a class="main-bar-btn" href="html/summary.html">
+              <img src="assets/icons/summary.svg" alt="" />Summary
+            </a>
+          </div>
+          <div class="add-task-btn center-btn">
+            <a class="main-bar-btn" href="html/add_task.html">
+              <img src="assets/icons/add_task.svg" alt="" />Add Task
+            </a>
+          </div>
+          <div class="board-btn center-btn">
+            <a class="main-bar-btn" href="html/board.html">
+              <img src="assets/icons/board.svg" alt="" />Board
+            </a>
+          </div>
+          <div class="contacts-btn center-btn disabled-link">
+            <a class="main-bar-btn" href="">
+              <img src="assets/icons/contacts.svg" alt="" />Contacts
+            </a>
+          </div>
         </div>
-        <div class="add-task-btn center-btn">
-          <a class="main-bar-btn" href="html/add_task.html">
-            <img src="assets/icons/add_task.svg" alt="" />Add Task
-          </a>
-        </div>
-        <div class="board-btn center-btn">
-          <a class="main-bar-btn" href="html/board.html">
-            <img src="assets/icons/board.svg" alt="" />Board
-          </a>
-        </div>
-        <div class="contacts-btn center-btn disabled-link">
-          <a class="main-bar-btn" href="">
-            <img src="assets/icons/contacts.svg" alt="" />Contacts
-          </a>
-        </div>
-      </div>
 
-      <div class="legal-container">
-        <div class="privacy-btn">
-          <a href="html/privacy_policy.html">Privacy Policy</a>
+        <div class="legal-container">
+          <div class="privacy-btn">
+            <a href="html/privacy_policy.html">Privacy Policy</a>
+          </div>
+          <div class="legal-link">
+            <a href="html/legal_notice.html">Legal Notice</a>
+          </div>
         </div>
-        <div class="legal-link">
-          <a href="html/legal_notice.html">Legal Notice</a>
-        </div>
-      </div>
-    </aside>
+      </aside>
 
-    <main class="contacts-container">
-      <div class="contacts-left">
-        <button class="add-contact-btn" onclick="openAddContactModal()">
-          <span class="add-contact-span">Add new contact</span>
-          <img src="assets/icons/person_add.svg" class="add-contact-icon" />
-        </button>
+      <main class="contacts-container">
+        <div class="contacts-left">
+          <button class="add-contact-btn" onclick="openAddContactModal()">
+            <span class="add-contact-span">Add new contact</span>
+            <img src="assets/icons/person_add.svg" class="add-contact-icon" />
+          </button>
 
-        <div class="contacts-list">
-          <!-- Contact list rendered by JavaScript -->
+          <div class="contacts-list">
+            <!-- Contact list rendered by JavaScript -->
+          </div>
         </div>
-      </div>
-      <div class="contacts-right">
-        <div class="contacts-title-row">
-          <h1>Contacts</h1>
-          <div class="contacts-title-divider"></div>
-          <h3 class="contacts-title-sub">Better with a team</h3>
+        <div class="contacts-right">
+          <div class="contacts-title-row">
+            <h1>Contacts</h1>
+            <div class="contacts-title-divider"></div>
+            <h3 class="contacts-title-sub">Better with a team</h3>
+          </div>
+          <div class="contact-details-container">
+            <!-- Contact details rendered by JavaScript -->
+          </div>
+          <button onclick="backToContactList()" class="btn-back">
+            <img src="assets/icons/arrow-left-line.svg">
+          </button>
         </div>
-        <div class="contact-details-container">
-          <!-- Contact details rendered by JavaScript -->
-        </div>
-        <button onclick="backToContactList()" class="btn-back">
-          <img src="assets/icons/arrow-left-line.svg">
-        </button>
-      </div>
-  </div>
-  </main>
-  <nav class="bottom-nav">
-    <a href="html/summary.html" class="nav-div">
-      <img class="bottom-nav-img" src="assets/icons/summary.svg">
-      <span class="bottom-nav-span">Summary</span>
-    </a>
-    <a href="html/add_task.html" class="nav-div">
-      <img class="bottom-nav-img" src="assets/icons/add_task.svg">
-      <span class="bottom-nav-span">Add Task</span>
-    </a>
-    <a href="html/board.html" class="nav-div">
-      <img class="bottom-nav-img" src="assets/icons/board.svg">
-      <span class="bottom-nav-span">Board</span>
-    </a>
-    <a href="html/contacts.html" class="nav-div current-nav">
-      <img class="bottom-nav-img" src="assets/icons/contacts.svg">
-      <span class="bottom-nav-span">Contacts</span>
-    </a>
-  </nav>
+    </div>
+    </main>
+    <nav class="bottom-nav">
+      <a href="html/summary.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/summary.svg">
+        <span class="bottom-nav-span">Summary</span>
+      </a>
+      <a href="html/add_task.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/add_task.svg">
+        <span class="bottom-nav-span">Add Task</span>
+      </a>
+      <a href="html/board.html" class="nav-div">
+        <img class="bottom-nav-img" src="assets/icons/board.svg">
+        <span class="bottom-nav-span">Board</span>
+      </a>
+      <a href="html/contacts.html" class="nav-div current-nav">
+        <img class="bottom-nav-img" src="assets/icons/contacts.svg">
+        <span class="bottom-nav-span">Contacts</span>
+      </a>
+    </nav>
   </div>
 
   <!-- Add Contact Modal -->
@@ -155,21 +155,30 @@
             <img src="assets/icons/clear-badge.svg" alt="Contact Badge" class="modal-contact-badge" />
           </div>
           <div class="modal-inputs-container">
-            <div class="contact-input-group" id="contactName-container">
-              <input type="text" id="contactName" name="name" placeholder="Name" onblur="validateContactNameOnBlur('contact')" oninput="clearContactError('contactName')" />
-              <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
+            <div>
+              <div class="contact-input-group" id="contactName-container">
+                <input type="text" id="contactName" name="name" placeholder="Name"
+                  onblur="validateContactNameOnBlur('contact')" oninput="clearContactError('contactName')" />
+                <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
+              </div>
+              <span id="contactName-error" class="contact-error-message"></span>
             </div>
-            <span id="contactName-error" class="contact-error-message"></span>
-            <div class="contact-input-group" id="contactEmail-container">
-              <input type="text" id="contactEmail" name="email" placeholder="Email" onblur="validateContactEmailOnBlur('contact')" oninput="clearContactError('contactEmail')" />
-              <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
+            <div>
+              <div class="contact-input-group" id="contactEmail-container">
+                <input type="text" id="contactEmail" name="email" placeholder="Email"
+                  onblur="validateContactEmailOnBlur('contact')" oninput="clearContactError('contactEmail')" />
+                <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
+              </div>
+              <span id="contactEmail-error" class="contact-error-message"></span>
             </div>
-            <span id="contactEmail-error" class="contact-error-message"></span>
-            <div class="contact-input-group" id="contactPhone-container">
-              <input type="text" id="contactPhone" name="phone" placeholder="Phone" onblur="validateContactPhoneOnBlur('contact')" oninput="clearContactError('contactPhone')" />
-              <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
+            <div>
+              <div class="contact-input-group" id="contactPhone-container">
+                <input type="text" id="contactPhone" name="phone" placeholder="Phone"
+                  onblur="validateContactPhoneOnBlur('contact')" oninput="clearContactError('contactPhone')" />
+                <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
+              </div>
+              <span id="contactPhone-error" class="contact-error-message"></span>
             </div>
-            <span id="contactPhone-error" class="contact-error-message"></span>
             <div class="modal-buttons-wrapper">
               <form id="addContactForm" class="add-contact-form" onsubmit="handleAddContact(event)">
                 <div class="modal-form-buttons">
@@ -195,10 +204,10 @@
     <div class="add-contact-modal edit-contact-modal" role="dialog" aria-labelledby="editContactModalTitle">
       <!-- Linke Seite (dunkel) -->
       <button type="button" class="modal-close-btn-responsiv" onclick="closeEditContactModal()" aria-label="Close">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </button>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
       <div class="add-contact-modal-left">
         <img src="assets/img/join_logo_vector.svg" alt="Join Logo" class="modal-logo" />
         <h2 id="editContactModalTitle">Edit contact</h2>
@@ -217,17 +226,20 @@
           </div>
           <div class="modal-inputs-container">
             <div class="contact-input-group" id="editContactName-container">
-              <input type="text" id="editContactName" name="name" placeholder="Name" onblur="validateContactNameOnBlur('editContact')" oninput="clearContactError('editContactName')" />
+              <input type="text" id="editContactName" name="name" placeholder="Name"
+                onblur="validateContactNameOnBlur('editContact')" oninput="clearContactError('editContactName')" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
             <span id="editContactName-error" class="contact-error-message"></span>
             <div class="contact-input-group" id="editContactEmail-container">
-              <input type="text" id="editContactEmail" name="email" placeholder="Email" onblur="validateContactEmailOnBlur('editContact')" oninput="clearContactError('editContactEmail')" />
+              <input type="text" id="editContactEmail" name="email" placeholder="Email"
+                onblur="validateContactEmailOnBlur('editContact')" oninput="clearContactError('editContactEmail')" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
             <span id="editContactEmail-error" class="contact-error-message"></span>
             <div class="contact-input-group" id="editContactPhone-container">
-              <input type="text" id="editContactPhone" name="phone" placeholder="Phone" onblur="validateContactPhoneOnBlur('editContact')" oninput="clearContactError('editContactPhone')" />
+              <input type="text" id="editContactPhone" name="phone" placeholder="Phone"
+                onblur="validateContactPhoneOnBlur('editContact')" oninput="clearContactError('editContactPhone')" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
             <span id="editContactPhone-error" class="contact-error-message"></span>
