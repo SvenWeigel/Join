@@ -52,11 +52,10 @@
 @media(max-width: 600px){
   .sign-up-form{
     gap:12px;
+    margin: 0 16px;
+    width: 100%;
   }
 
-  .sign-up-input-container{
-    gap:12px;
-  }
   .sign-up-form-header h1{
     font-size: 37px;
   }
@@ -85,5 +84,11 @@
   .sign-up-form-arrow-left-container{
     top: 37px;
     left: 25px;
+  }
+  .sign-up-input-box{
+    margin-top: 16px;
+    padding-left: 6px;
+    padding-top: 6px;
+    padding-bottom:6px;
   }
 }

@@ -83,6 +83,10 @@ a {
   display: none !important;
 }
 
+.border-red{
+  border-color:#E60026 !important;
+}
+
 
 .btn-create {
   display: flex;

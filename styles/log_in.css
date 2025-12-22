@@ -76,9 +76,7 @@ form {
   color: #E60026;
 }
 
-.border-red{
-  border-color:#E60026 !important;
-}
+
 
 h1 {
   font-family: "Inter", sans-serif;
@@ -286,7 +284,7 @@ html.skip-animation .center_img_container {
   display: none !important;
 }
 
-html.skip-animation .login-site-header,
+
 html.skip-animation .login-site-footer,
 html.skip-animation .login-site-logo-container {
   display: flex !important;
