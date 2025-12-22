@@ -559,7 +559,6 @@
   flex-direction: column;
 }
 
-/* Subtask Input Wrapper */
 .add-task-modal .subtask-input-wrapper {
   position: relative;
   display: flex;
@@ -589,6 +588,15 @@
   display: none;
   align-items: center;
   gap: 4px;
+}
+
+.subtask-list{
+  height: 65px;
+  overflow-y:scroll;
+}
+
+.subtask-list::-webkit-scrollbar {
+  display: none;
 }
 
 .add-task-modal .subtask-actions.visible {
