@@ -229,6 +229,12 @@ textarea:focus {
   list-style: none;
   padding: 0;
   margin: 8px 0 0 0;
+  overflow-y: scroll;
+  height: 65px;
+}
+
+.subtask-list::-webkit-scrollbar{
+  display:none;
 }
 
 .subtask-item {
@@ -413,7 +419,6 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 32px;
   padding: 0 96px 48px 96px;
   max-width: 1052px;
 }
