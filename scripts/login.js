@@ -182,8 +182,14 @@ function validateForm(form) {
 async function performLogin(email, password) {
   const normalized = normalizeEmail(email);
   const user = await findUserByEmail(normalized);
-  if (!user) throw new Error(LOGIN_MESSAGES.emailNotFound);
-  if (user.password !== password) throw new Error(LOGIN_MESSAGES.wrongPassword);
+  if (!user) {
+    incorrectMailPassword();
+    return;
+  }
+  if (user.password !== password) {
+    incorrectMailPassword();
+    return;
+  }
   localStorage.setItem("currentUser", JSON.stringify(user));
   return user;
 }
@@ -194,22 +200,24 @@ async function performLogin(email, password) {
  * @param {Event} e - The submit event
  */
 async function handleLoginSubmit(e) {
+
   e.preventDefault();
+  resetIncorrectMailPassword();
+
   const form = document.querySelector(LOGIN_SELECTORS.formSelector);
   if (!validateForm(form)) return;
   const { email, password } = readLoginFormValues();
-
   if (!email.trim() || !password.trim()) {
     return;
   }
 
   try {
-    await performLogin(email, password);
-    alert(LOGIN_MESSAGES.loginSuccess);
-    window.location.replace("html/summary.html");
+    const user = await performLogin(email, password);
+    if (user) {
+      window.location.replace("html/summary.html");
+    }
   } catch (err) {
-    console.error(err);
-    alert(err.message || "Login error");
+    
   }
 }
 
@@ -282,4 +290,24 @@ function togglePasswordVisibility() {
   passwordIcon.src = isHidden
     ? "assets/icons/visibility.svg"
     : "assets/icons/visibility_off.svg";
+}
+
+
+function incorrectMailPassword(){
+  const mailRef = document.getElementById("login-email-container");
+  const passwordRef = document.getElementById("login-password-container");
+  const errMRef = document.getElementById("err-message");
+
+  mailRef.classList.add("border-red");
+  passwordRef.classList.add("border-red");
+  errMRef.style.display = "flex";
+}
+
+function resetIncorrectMailPassword(){
+  const mailRef = document.getElementById("login-email-container");
+  const passwordRef = document.getElementById("login-password-container");
+  const errMRef = document.getElementById("err-message");
+  mailRef.classList.remove("border-red");
+  passwordRef.classList.remove("border-red");
+  errMRef.style.display = "none";
 }

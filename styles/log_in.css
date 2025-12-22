@@ -30,7 +30,6 @@
   height: 152px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .login_input {
@@ -72,6 +71,15 @@ form {
   border-radius: 30px;
 }
 
+#err-message{
+  display:none;
+  color: #E60026;
+}
+
+.border-red{
+  border-color:#E60026 !important;
+}
+
 h1 {
   font-family: "Inter", sans-serif;
   font-weight: 700;
@@ -96,7 +104,9 @@ h1 {
   padding: 12px 21px;
 }
 
-
+.input-box-login{
+  margin-bottom:20px;
+}
 
 .login-form-btns-container {
   display: flex;

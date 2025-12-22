@@ -29,18 +29,19 @@
         <div class="border-bottom-div"></div>
       </div>
       <div class="login_input_container">
-        <div class="input-box">
+        <div id="login-email-container" class="input-box input-box-login">
           <input id="login-email-input" class="login_input" type="text" placeholder="Email"
             onclick="preFillLoginForm()" />
           <img src="assets/icons/mail.svg" class="login-form-icon" alt="" />
         </div>
 
-        <div class="input-box">
+        <div id="login-password-container" class="input-box">
           <input id="login-password-input" oninput="changePasswordIcon()" class="login_input" type="password"
             placeholder="Password" />
           <img id="password-icon" src="assets/icons/lock.svg" onclick="togglePasswordVisibility()"
             class="login-form-icon" alt="" />
         </div>
+        <span id="err-message">Check your email and password. Please try again.</span>
       </div>
       <div class="login-form-btns-container">
         <button class="login-form-btn-login">Log in</button>

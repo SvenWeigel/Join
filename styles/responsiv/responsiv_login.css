@@ -100,4 +100,7 @@
   form{
     gap:unset;
   }
+  .input-box{
+    padding: 6px 6px 6px 0;
+  }
 }
