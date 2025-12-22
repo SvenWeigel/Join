@@ -37,7 +37,6 @@ function bindAddTaskEvents() {
   bindAddTaskPriorityButtons();
   bindAddTaskFormSubmit();
   bindClearButton();
-  bindAddTaskValidation();
 }
 
 /**
@@ -263,14 +262,6 @@ function areTaskFieldsValid() {
     dueDate?.value.trim() !== "" &&
     category?.value !== ""
   );
-}
-
-/**
- * Binds input listeners to required fields for validation.
- */
-function bindAddTaskValidation() {
-  const title = document.getElementById("taskTitlePage");
-  const dueDate = document.getElementById("taskDueDatePage");
 }
 
 document.addEventListener("DOMContentLoaded", initAddTaskPage);

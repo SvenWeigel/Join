@@ -45,7 +45,6 @@ function bindEvents() {
   bindEscapeKey();
   bindPriorityButtons();
   bindFormSubmit();
-  bindModalValidation();
 }
 
 /**
@@ -136,7 +135,6 @@ function openModal(status = "todo") {
   document.body.style.overflow = "hidden";
   focusFirstInput();
   renderModalAssigneeDropdown();
-  updateModalCreateTaskButtonState();
 }
 
 /**
@@ -249,6 +247,8 @@ async function handleSubmit(e) {
  * @param {Object} currentUser
  */
 async function submitTask(currentUser) {
+  if (!areModalTaskFieldsValid())
+    return;
   try {
     const email = currentUser?.email || "guest@guest.local";
     const taskData = buildTaskData(getFormData(), email);
@@ -322,26 +322,6 @@ function areModalTaskFieldsValid() {
     dueDate?.value.trim() !== "" &&
     category?.value !== ""
   );
-}
-
-/**
- * Updates the create task modal button state based on form validation.
- */
-function updateModalCreateTaskButtonState() {
-  const button = document.getElementById("createTaskModalBtn");
-  if (!button) return;
-  button.disabled = !areModalTaskFieldsValid();
-}
-
-/**
- * Binds input listeners to required fields for validation.
- */
-function bindModalValidation() {
-  const title = document.getElementById("taskTitle");
-  const dueDate = document.getElementById("taskDueDate");
-  if (title) title.addEventListener("input", updateModalCreateTaskButtonState);
-  if (dueDate)
-    dueDate.addEventListener("input", updateModalCreateTaskButtonState);
 }
 
 document.addEventListener("DOMContentLoaded", initModal);
