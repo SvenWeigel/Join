@@ -68,6 +68,9 @@ input:focus {
   border: none;
   padding: 8px 16px;
   gap: 4px;
+  &:hover {
+    background-color: #28abe2;
+  }
 }
 
 #addTaskBtn img {

@@ -299,15 +299,10 @@ input:focus {
   box-shadow: none;
   border-color: inherit;
 }
-/* Error message styling - similar to sign up page */
 .contact-error-message {
   display: none;
   color: #e60026;
   font-size: 14px;
   margin-top: 4px;
   font-family: "Inter", sans-serif;
-}
-
-.input-error-container{
-
 }

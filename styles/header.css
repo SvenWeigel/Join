@@ -57,6 +57,9 @@ header {
   font-size: 22px;
   border: 3.5px solid #2a3647;
   box-sizing: border-box;
+  &:hover{
+    background-color: #e2e6ec;
+  }
 }
 
 .profile-options{
