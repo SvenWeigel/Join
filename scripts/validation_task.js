@@ -33,10 +33,20 @@ function validateTaskTitle(formId) {
   const titleInput = document.getElementById(
     isPageForm ? "taskTitlePage" : "taskTitle"
   );
-  const spanRef = document.getElementById("title-span-page");
-  const inputRef = document.getElementById("taskTitlePage");
+  const spanRefPage = document.getElementById("title-span-page");
+  const inputRefPage = document.getElementById("taskTitlePage");
+  const spanRef = document.getElementById("title-span");
+  const inputRef= document.getElementById("taskTitle");
+
+  if(spanRefPage)
+  spanRefPage.style.visibility = "visible";
+  if(inputRefPage)
+  inputRefPage.classList.add("border-red");
+  if(spanRef)
   spanRef.style.visibility = "visible";
+  if(inputRef)
   inputRef.classList.add("border-red");
+
 }
 
 /**
@@ -50,9 +60,18 @@ function validateTaskDueDate(formId) {
   const dueDateInput = document.getElementById(
     isPageForm ? "taskDueDatePage" : "taskDueDate"
   );
-  const spanRef = document.getElementById("date-span-page");
-  const inputRef = document.getElementById("taskDueDatePage");
+  const spanRefPage = document.getElementById("date-span-page");
+  const inputRefPage = document.getElementById("taskDueDatePage");
+  const spanRef = document.getElementById("date-span");
+  const inputRef = document.getElementById("taskDueDate");
+
+  if(spanRefPage)
+  spanRefPage.style.visibility = "visible";
+  if(inputRefPage)
+  inputRefPage.classList.add("border-red");
+  if(spanRef)
   spanRef.style.visibility = "visible";
+  if(inputRef)
   inputRef.classList.add("border-red");
 }
 
@@ -67,10 +86,19 @@ function validateTaskCategory(formId) {
   const categoryInput = document.getElementById(
     isPageForm ? "taskCategoryPage" : "taskCategory"
   );
-  const spanRef = document.getElementById("category-span-page");
-  const inputRef = document.getElementById("categoryDropdownPage");
+  const spanRefPage = document.getElementById("category-span-page");
+  const inputRefPage = document.getElementById("categoryDropdownPage");
+  const spanRef = document.getElementById("category-span");
+  const inputRef = document.getElementById("dropdown-header");
+  if(spanRefPage)
+  spanRefPage.style.visibility = "visible";
+  if(inputRefPage)
+  inputRefPage.classList.add("border-red");
+  if(spanRef)
   spanRef.style.visibility = "visible";
+  if(inputRef)
   inputRef.classList.add("border-red");
+
 
   if (!validateRequired(categoryInput.value)) {
     const categorySection = categoryInput.closest(".category-section");
