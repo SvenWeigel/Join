@@ -271,9 +271,6 @@ function areTaskFieldsValid() {
 function bindAddTaskValidation() {
   const title = document.getElementById("taskTitlePage");
   const dueDate = document.getElementById("taskDueDatePage");
-  if (title) title.addEventListener("input", updateCreateTaskButtonState);
-  if (dueDate) dueDate.addEventListener("input", updateCreateTaskButtonState);
-  updateCreateTaskButtonState();
 }
 
 document.addEventListener("DOMContentLoaded", initAddTaskPage);
