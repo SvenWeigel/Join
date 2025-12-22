@@ -7,6 +7,10 @@
   height: 100vh;
   overflow: visible;
 }
+.max-width-con{
+  max-width: 1440px;
+  position:relative;
+}
 
 .center_img {
   height: 334px;
@@ -228,8 +232,8 @@ h1 {
   align-items: center;
   gap: 35px;
   position: absolute;
-  top: 67px;
-  right: 77px;
+  top: 140px;
+  right: 20px;
 }
 .login-site-header-text {
   width: 153px;
