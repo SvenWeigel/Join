@@ -33,7 +33,10 @@ function validateTaskTitle(formId) {
   const titleInput = document.getElementById(
     isPageForm ? "taskTitlePage" : "taskTitle"
   );
-  return validateField(titleInput, "Title is required");
+  const spanRef = document.getElementById("title-span-page");
+  const inputRef = document.getElementById("taskTitlePage");
+  spanRef.style.visibility = "visible";
+  inputRef.classList.add("border-red");
 }
 
 /**
@@ -47,7 +50,10 @@ function validateTaskDueDate(formId) {
   const dueDateInput = document.getElementById(
     isPageForm ? "taskDueDatePage" : "taskDueDate"
   );
-  return validateField(dueDateInput, "Due date is required");
+  const spanRef = document.getElementById("date-span-page");
+  const inputRef = document.getElementById("taskDueDatePage");
+  spanRef.style.visibility = "visible";
+  inputRef.classList.add("border-red");
 }
 
 /**
@@ -61,6 +67,11 @@ function validateTaskCategory(formId) {
   const categoryInput = document.getElementById(
     isPageForm ? "taskCategoryPage" : "taskCategory"
   );
+  const spanRef = document.getElementById("category-span-page");
+  const inputRef = document.getElementById("categoryDropdownPage");
+  spanRef.style.visibility = "visible";
+  inputRef.classList.add("border-red");
+
   if (!validateRequired(categoryInput.value)) {
     const categorySection = categoryInput.closest(".category-section");
     const dropdownHeader = categorySection?.querySelector(".dropdown-header");

@@ -234,6 +234,9 @@ function handleTaskCreationError(error) {
  */
 async function handleAddTaskSubmit(e) {
   e.preventDefault();
+  if (!areTaskFieldsValid()) {
+    return;
+  }
   const currentUser = getCurrentUser();
   const creatorEmail = currentUser?.email || "guest@guest.local";
   try {
@@ -260,15 +263,6 @@ function areTaskFieldsValid() {
     dueDate?.value.trim() !== "" &&
     category?.value !== ""
   );
-}
-
-/**
- * Updates the create task button state based on form validation.
- */
-function updateCreateTaskButtonState() {
-  const button = document.getElementById("createTaskBtn");
-  if (!button) return;
-  button.disabled = !areTaskFieldsValid();
 }
 
 /**
