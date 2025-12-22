@@ -161,7 +161,7 @@
                   onblur="validateContactNameOnBlur('contact')" oninput="clearContactError('contactName')" />
                 <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
               </div>
-              <span id="contactName-error" class="contact-error-message"></span>
+              <span id="contactName-error" class="contact-error-message">Name is required</span>
             </div>
             <div>
               <div class="contact-input-group" id="contactEmail-container">
@@ -169,7 +169,7 @@
                   onblur="validateContactEmailOnBlur('contact')" oninput="clearContactError('contactEmail')" />
                 <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
               </div>
-              <span id="contactEmail-error" class="contact-error-message"></span>
+              <span id="contactEmail-error" class="contact-error-message"> Email is required</span>
             </div>
             <div>
               <div class="contact-input-group" id="contactPhone-container">
@@ -177,7 +177,7 @@
                   onblur="validateContactPhoneOnBlur('contact')" oninput="clearContactError('contactPhone')" />
                 <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
               </div>
-              <span id="contactPhone-error" class="contact-error-message"></span>
+              <span id="contactPhone-error" class="contact-error-message">Phone-Number is required</span>
             </div>
             <div class="modal-buttons-wrapper">
               <form id="addContactForm" class="add-contact-form" onsubmit="handleAddContact(event)">
@@ -230,19 +230,19 @@
                 onblur="validateContactNameOnBlur('editContact')" oninput="clearContactError('editContactName')" />
               <img src="assets/icons/person.svg" alt="Person" class="input-icon" />
             </div>
-            <span id="editContactName-error" class="contact-error-message"></span>
+            <span id="editContactName-error" class="contact-error-message">Name is required</span>
             <div class="contact-input-group" id="editContactEmail-container">
               <input type="text" id="editContactEmail" name="email" placeholder="Email"
                 onblur="validateContactEmailOnBlur('editContact')" oninput="clearContactError('editContactEmail')" />
               <img src="assets/icons/mail.svg" alt="Email" class="input-icon" />
             </div>
-            <span id="editContactEmail-error" class="contact-error-message"></span>
+            <span id="editContactEmail-error" class="contact-error-message">Email is required</span>
             <div class="contact-input-group" id="editContactPhone-container">
               <input type="text" id="editContactPhone" name="phone" placeholder="Phone"
                 onblur="validateContactPhoneOnBlur('editContact')" oninput="clearContactError('editContactPhone')" />
               <img src="assets/icons/call.svg" alt="Phone" class="input-icon" />
             </div>
-            <span id="editContactPhone-error" class="contact-error-message"></span>
+            <span id="editContactPhone-error" class="contact-error-message">Phonenumber is required</span>
           </div>
         </div>
         <div class="modal-buttons-wrapper">
