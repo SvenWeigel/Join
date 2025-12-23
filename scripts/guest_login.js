@@ -18,19 +18,4 @@ function handleGuestLogin(e) {
   window.location.replace("html/summary.html");
 }
 
-/**
- * Checks if the current user is a guest (only for UI purposes like greeting).
- *
- * @returns {boolean} True if the user is marked as guest
- */
-function isGuestLoggedIn() {
-  try {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    return currentUser && currentUser.guest === true;
-  } catch {
-    return false;
-  }
-}
-
 window.handleGuestLogin = handleGuestLogin;
-window.isGuestLoggedIn = isGuestLoggedIn;

@@ -13,21 +13,6 @@ function renderEditSubtasks() {
 }
 
 /**
- * Adds a new subtask in the edit modal.
- */
-function addEditSubtask() {
-  const input = document.getElementById("editViewSubtaskInput");
-  if (!input) return;
-
-  const title = input.value.trim();
-  if (title === "") return;
-
-  editSubtasks.push({ title, completed: false });
-  input.value = "";
-  renderEditSubtasks();
-}
-
-/**
  * Gets the subtask item element by index.
  *
  * @param {number} index - The index of the subtask

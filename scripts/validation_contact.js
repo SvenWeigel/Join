@@ -37,20 +37,8 @@ function clearContactError(fieldId) {
     containerElement.classList.remove("border-red");
   }
   if (errorElement) {
-    
     errorElement.style.visibility = "hidden";
   }
-}
-
-/**
- * Validates if name contains only letters and spaces.
- *
- * @param {string} name - The name to validate
- * @returns {boolean} True if valid
- */
-function validateNameFormat(name) {
-  const nameRegex = /^[a-zA-ZäöüÄÖÜß\s]+$/;
-  return nameRegex.test(name);
 }
 
 /**
