@@ -36,6 +36,10 @@
   white-space: nowrap;
 }
 
+.nav-div span{
+  font-size: 14px !important;
+}
+
 .nav-div:hover {
   cursor: pointer;
 }
