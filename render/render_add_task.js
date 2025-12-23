@@ -147,4 +147,9 @@ function renderPageSubtasks() {
   list.innerHTML = pageSubtasks
     .map((subtask, index) => getSubtaskItemTemplate(subtask.title, index))
     .join("");
+  if (pageSubtasks.length === 0) {
+    list.style.visibility = "hidden";
+  } else {
+    list.style.visibility = "visible";
+  }
 }
