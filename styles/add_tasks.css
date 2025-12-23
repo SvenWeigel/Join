@@ -599,6 +599,7 @@ textarea:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top:10px;
 }
 
 .selected-contacts.hidden {
