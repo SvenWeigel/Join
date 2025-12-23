@@ -311,9 +311,6 @@ async function deleteCurrentTask() {
     return;
   }
 
-  const confirmed = confirm("Are you sure you want to delete this task?");
-  if (!confirmed) return;
-
   try {
     await deleteTask(currentTaskId);
 
