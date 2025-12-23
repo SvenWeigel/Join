@@ -203,7 +203,7 @@
             <div class="left-content">
               <div class="title-section">
                 <label for="taskTitle">Title<span class="required-star">*</span></label>
-                <input id="taskTitle" name="title" class="titel-input" type="text" placeholder="Enter a title" />
+                <input id="taskTitle" name="title" class="titel-input" type="text" placeholder="Enter a title" onfocus="resetTaskTitleError('addTaskForm')" />
                 <span id="title-span" class="error-message">Title is required</span>
               </div>
               <div class="description-section">
@@ -212,7 +212,7 @@
               </div>
               <div class="due-date-section">
                 <label for="taskDueDate">Due date<span class="required-star">*</span></label>
-                <input id="taskDueDate" name="due" class="due-date-input" type="date" placeholder="mm/dd/yyyy" />
+                <input id="taskDueDate" name="due" class="due-date-input" type="date" placeholder="mm/dd/yyyy" onfocus="resetTaskDueDateError('addTaskForm')" />
                 <span id="date-span" class="error-message">Due Date is required</span>
               </div>
             </div>
@@ -257,7 +257,7 @@
               <div class="category-section">
                 <label>Category<span class="required-star">*</span></label>
                 <div class="custom-dropdown" id="modalCategoryDropdown">
-                  <div id="dropdown-header" class="dropdown-header" onclick="toggleModalCategoryDropdown()">
+                  <div id="dropdown-header" class="dropdown-header" onclick="toggleModalCategoryDropdown(); resetTaskCategoryError('addTaskForm')">
                     <span id="modalCategorySelected" class="dropdown-selected-text">Select task category</span>
                     <img src="assets/icons/arrow_drop_downaa.svg" alt="Dropdown" class="dropdown-arrow"
                       id="categoryDropdownArrow" />
