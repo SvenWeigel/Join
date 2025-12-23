@@ -15,5 +15,4 @@ function initLoginPage() {
   }
 }
 
-// Execute initialization
 initLoginPage();
