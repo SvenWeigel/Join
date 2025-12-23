@@ -25,9 +25,13 @@
   flex-direction: column;
   gap: 24px;
   animation: slideInTaskModal 0.3s ease-out;
-  overflow-wrap: anywhere;
+  overflow-y:auto;
+  max-height: 80%;
 }
 
+.inside-modal-view-overlay::-webkit-scrollbar{
+  display: none;
+}
 .scroll-container::-webkit-scrollbar {
     display: none;
   }
