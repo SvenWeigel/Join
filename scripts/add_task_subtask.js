@@ -79,17 +79,6 @@ function handleSubtaskKeydown(event) {
 }
 
 /**
- * Escapes HTML characters for security.
- * @param {string} text
- * @returns {string}
- */
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-/**
  * Deletes a subtask.
  * @param {number} index
  * @param {Event} event

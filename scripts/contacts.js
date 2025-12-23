@@ -75,20 +75,6 @@ function highlightSelectedContact(contactId) {
 }
 
 /**
- * Generates initials from a full name
- * @param {string} name - Full name (e.g., "Anton Mayer")
- * @returns {string} Initials (e.g., "AM")
- */
-function getInitials(name) {
-  let nameParts = name.split(" ");
-  let initials = "";
-  for (let i = 0; i < nameParts.length && i < 2; i++) {
-    initials += nameParts[i].charAt(0).toUpperCase();
-  }
-  return initials;
-}
-
-/**
  * Sorts contacts alphabetically by name.
  *
  * @param {Array} contactList - Array of contact objects

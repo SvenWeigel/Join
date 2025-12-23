@@ -102,15 +102,6 @@ function resetModalCategory() {
   selectedCategoryValue = "";
 }
 
-/**
- * Gets the currently selected category value.
- *
- * @returns {string} The selected category value
- */
-function getSelectedCategory() {
-  return selectedCategoryValue;
-}
-
 document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("modalCategoryDropdown");
   if (dropdown && !dropdown.contains(event.target)) {
