@@ -114,6 +114,7 @@
                     class="titel-input"
                     type="text"
                     placeholder="Enter a title"
+                    onfocus="resetTaskTitleError('addTaskFormPage')"
                   />
                   <span id="title-span-page" class="error-message"
                     >Title is required</span
@@ -137,6 +138,7 @@
                     class="due-date-input"
                     type="date"
                     placeholder="mm/dd/yyyy"
+                    onfocus="resetTaskDueDateError('addTaskFormPage')"
                   />
                   <span id="date-span-page" class="error-message"
                     >Due date is required</span
@@ -220,7 +222,7 @@
                   <div class="custom-dropdown" id="categoryDropdownPage">
                     <div
                       class="dropdown-header"
-                      onclick="togglePageCategoryDropdown()"
+                      onclick="togglePageCategoryDropdown(); resetTaskCategoryError('addTaskFormPage')"
                     >
                       <span
                         id="pageCategorySelected"
