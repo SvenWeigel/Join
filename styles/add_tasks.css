@@ -233,9 +233,10 @@ textarea:focus {
   height: 65px;
 }
 
-.subtask-list::-webkit-scrollbar{
+.subtask-list::-webkit-scrollbar-button{
   display:none;
 }
+
 
 .subtask-item {
   display: flex;
@@ -598,7 +599,6 @@ textarea:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
 }
 
 .selected-contacts.hidden {
